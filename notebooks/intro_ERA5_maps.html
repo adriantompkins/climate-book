@@ -1,0 +1,825 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; Earth System Modelling</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Earth System Modelling</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Earth System Modelling
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_radiation.html">
+   Chapter 2: Energy Balance and Forcing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_insolation.html">
+     Insolation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_radeq.html">
+     Radiative Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_rce.html">
+     Radiative-Convective Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_orbital.html">
+     Orbital variations, insolation, and the ice ages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_feedbacks.html">
+   Chapter 3: Climate feedbacks
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_EBM_0D_ice_feedback.html">
+     Ice albedo feedback in the 0D energy balance model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_EBM_water_vapor.html">
+     Adding water vapor feedback to the grey model of the atmosphere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_daisy_world.html">
+     Biogeophysical feedbacks: Daisy World
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_modelling.html">
+   Chapter 1: Climate models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_climate-system-models.html">
+     The climate system and climate models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_advection.html">
+     Focus on advection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_CMIP_IPCC_fun.html">
+     Coupled Model Intercomparison Project (CMIP)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebooks/intro_ERA5_maps.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/intro_ERA5_maps.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/intro_ERA5_maps.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><no title></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cdsapi</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span><span class="n">num2date</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfea</span>
+<span class="kn">import</span> <span class="nn">cartopy.util</span> <span class="k">as</span> <span class="nn">cutil</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mplt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="kn">from</span> <span class="nn">cdo</span> <span class="kn">import</span> <span class="n">Cdo</span>
+<span class="kn">import</span> <span class="nn">os</span> 
+<span class="n">cdo</span><span class="o">=</span><span class="n">Cdo</span><span class="p">()</span>
+<span class="n">scr</span><span class="o">=</span><span class="s2">&quot;/Users/tompkins/Downloads/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span><span class="n">num2date</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfea</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">cartopy.util</span> <span class="k">as</span> <span class="nn">cutil</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;cartopy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_map</span><span class="p">(</span><span class="n">ifile</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">varname</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">sf</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;mm day$^{-1}$&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;BrBG&quot;</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">50</span><span class="p">]):</span>
+
+    <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+    <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">];</span><span class="n">creg</span><span class="o">=</span><span class="s1">&#39;glob&#39;</span>
+    <span class="n">mplt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span> 
+    <span class="n">mplt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+
+    <span class="c1"># read the netcdf data</span>
+    <span class="n">nc</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">ifile</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,:]</span><span class="o">*</span><span class="n">sf</span>
+    <span class="n">nc</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1">#</span>
+    <span class="n">lon2d</span><span class="p">,</span> <span class="n">lat2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+    <span class="n">cdata</span><span class="p">,</span> <span class="n">clon2d</span><span class="p">,</span> <span class="n">clat2d</span> <span class="o">=</span> <span class="n">cutil</span><span class="o">.</span><span class="n">add_cyclic</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">lon2d</span><span class="p">,</span><span class="n">lat2d</span><span class="p">)</span>
+
+
+    <span class="c1"># set up the figure size</span>
+    <span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span><span class="n">projection</span><span class="p">)</span>
+
+    <span class="c1"># add map features</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfea</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="c1">#ax.add_feature(cfea.RIVERS,lw=.5)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfea</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;dimgray&#39;</span><span class="p">)</span>
+
+    <span class="c1"># add gridlines</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">top_labels</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">left_labels</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">right_labels</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlabel_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">}</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">ylabel_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">}</span>
+
+    <span class="c1"># specify levels and colormap</span>
+    <span class="c1">#levels=[0,0.1,0.2,0.5,1,2,5,10,20,30,50]</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">BrBG</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">rainbow_r</span>
+    <span class="n">norm</span><span class="o">=</span><span class="n">mplt</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span><span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="c1"># make plot</span>
+    <span class="n">pc</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">clon2d</span><span class="p">,</span><span class="n">clat2d</span><span class="p">,</span><span class="n">cdata</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+    <span class="n">pc</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">clon2d</span><span class="p">,</span><span class="n">clat2d</span><span class="p">,</span><span class="n">cdata</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span><span class="n">extend</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+
+    <span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax_cb</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">new_horizontal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="s2">&quot;3%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">axes_class</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">ax_cb</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">(</span><span class="n">ax_cb</span><span class="p">)</span>
+
+    <span class="c1"># add colorbar</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span><span class="n">cax</span><span class="o">=</span><span class="n">ax_cb</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">labelpad</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="c1"># add title</span>
+    <span class="n">ttitle</span><span class="o">=</span><span class="n">title</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ttitle</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ifile</span><span class="o">=</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;precip.nc&quot;</span>
+<span class="n">varlist</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sea_surface_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;surface_latent_heat_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;surface_net_solar_radiation&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;surface_net_thermal_radiation&#39;</span><span class="p">,</span> <span class="s1">&#39;surface_sensible_heat_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;top_net_solar_radiation&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;top_net_thermal_radiation&#39;</span><span class="p">,</span> <span class="s1">&#39;total_column_water_vapour&#39;</span><span class="p">,</span> <span class="s1">&#39;total_precipitation&#39;</span><span class="p">]</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+    <span class="s1">&#39;reanalysis-era5-single-levels-monthly-means&#39;</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;netcdf&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="s1">&#39;2020&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;07&#39;</span><span class="p">,</span> <span class="s1">&#39;08&#39;</span><span class="p">,</span> <span class="s1">&#39;09&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;product_type&#39;</span><span class="p">:</span> <span class="s1">&#39;monthly_averaged_reanalysis&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="n">varlist</span><span class="p">,</span>
+        <span class="s1">&#39;grid&#39;</span><span class="p">:[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
+        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="s1">&#39;00:00&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">ifile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-11-13 13:08:53,300 INFO Welcome to the CDS
+2023-11-13 13:08:53,301 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/reanalysis-era5-single-levels-monthly-means
+2023-11-13 13:08:53,457 INFO Request is queued
+2023-11-13 13:09:26,320 INFO Request is running
+2023-11-13 13:09:43,435 INFO Request is completed
+2023-11-13 13:09:43,436 INFO Downloading https://download-0005-clone.copernicus-climate.eu/cache-compute-0005/cache/data7/adaptor.mars.internal-1699877374.0481625-4398-2-a24cf865-2f12-49aa-ad0f-e2ac9947633f.nc to /Users/tompkins/Downloads/precip.nc (13.4M)
+2023-11-13 13:09:49,542 INFO Download rate 2.2M/s                                                    
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result(content_length=14080360,content_type=application/x-netcdf,location=https://download-0005-clone.copernicus-climate.eu/cache-compute-0005/cache/data7/adaptor.mars.internal-1699877374.0481625-4398-2-a24cf865-2f12-49aa-ad0f-e2ac9947633f.nc)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ofile</span><span class="o">=</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;yearmean.nc&quot;</span>
+<span class="n">ofilejja</span><span class="o">=</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;JJAmean.nc&quot;</span>
+<span class="n">ofiledjf</span><span class="o">=</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;DJFmean.nc&quot;</span>
+
+<span class="n">cdo</span><span class="o">.</span><span class="n">timmean</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;-aexpr,pr=1000*tp &quot;</span><span class="o">+</span><span class="n">ifile</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;yearmean.nc&quot;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="s2">&quot;-b f32&quot;</span><span class="p">)</span>
+<span class="n">cdo</span><span class="o">.</span><span class="n">timmean</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;-selmon,12,1,2 -aexpr,pr=1000*tp &quot;</span><span class="o">+</span><span class="n">ifile</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;DJFmean.nc&quot;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="s2">&quot;-b f32&quot;</span><span class="p">)</span>
+<span class="n">cdo</span><span class="o">.</span><span class="n">timmean</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;-selmon,6,7,8 -aexpr,pr=1000*tp &quot;</span><span class="o">+</span><span class="n">ifile</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;JJAmean.nc&quot;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="s2">&quot;-b f32&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tompkins/Downloads/JJAmean.nc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s have a look to see what there is in the file:</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;ncdump -h &quot;</span><span class="o">+</span><span class="n">ofile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>netcdf yearmean {
+dimensions:
+	time = UNLIMITED ; // (1 currently)
+	bnds = 2 ;
+	longitude = 360 ;
+	latitude = 181 ;
+variables:
+	int time(time) ;
+		time:standard_name = &quot;time&quot; ;
+		time:long_name = &quot;time&quot; ;
+		time:bounds = &quot;time_bnds&quot; ;
+		time:units = &quot;hours since 1900-01-01 00:00:00.0&quot; ;
+		time:calendar = &quot;gregorian&quot; ;
+		time:axis = &quot;T&quot; ;
+	double time_bnds(time, bnds) ;
+	float longitude(longitude) ;
+		longitude:standard_name = &quot;longitude&quot; ;
+		longitude:long_name = &quot;longitude&quot; ;
+		longitude:units = &quot;degrees_east&quot; ;
+		longitude:axis = &quot;X&quot; ;
+	float latitude(latitude) ;
+		latitude:standard_name = &quot;latitude&quot; ;
+		latitude:long_name = &quot;latitude&quot; ;
+		latitude:units = &quot;degrees_north&quot; ;
+		latitude:axis = &quot;Y&quot; ;
+	float sst(time, latitude, longitude) ;
+		sst:long_name = &quot;Sea surface temperature&quot; ;
+		sst:units = &quot;K&quot; ;
+		sst:_FillValue = -32767.f ;
+		sst:missing_value = -32767.f ;
+		sst:cell_methods = &quot;time: mean&quot; ;
+	float slhf(time, latitude, longitude) ;
+		slhf:standard_name = &quot;surface_upward_latent_heat_flux&quot; ;
+		slhf:long_name = &quot;Surface latent heat flux&quot; ;
+		slhf:units = &quot;J m**-2&quot; ;
+		slhf:_FillValue = -32767.f ;
+		slhf:missing_value = -32767.f ;
+		slhf:cell_methods = &quot;time: mean&quot; ;
+	float ssr(time, latitude, longitude) ;
+		ssr:standard_name = &quot;surface_net_downward_shortwave_flux&quot; ;
+		ssr:long_name = &quot;Surface net short-wave (solar) radiation&quot; ;
+		ssr:units = &quot;J m**-2&quot; ;
+		ssr:_FillValue = -32767.f ;
+		ssr:missing_value = -32767.f ;
+		ssr:cell_methods = &quot;time: mean&quot; ;
+	float str(time, latitude, longitude) ;
+		str:standard_name = &quot;surface_net_upward_longwave_flux&quot; ;
+		str:long_name = &quot;Surface net long-wave (thermal) radiation&quot; ;
+		str:units = &quot;J m**-2&quot; ;
+		str:_FillValue = -32767.f ;
+		str:missing_value = -32767.f ;
+		str:cell_methods = &quot;time: mean&quot; ;
+	float sshf(time, latitude, longitude) ;
+		sshf:standard_name = &quot;surface_upward_sensible_heat_flux&quot; ;
+		sshf:long_name = &quot;Surface sensible heat flux&quot; ;
+		sshf:units = &quot;J m**-2&quot; ;
+		sshf:_FillValue = -32767.f ;
+		sshf:missing_value = -32767.f ;
+		sshf:cell_methods = &quot;time: mean&quot; ;
+	float tsr(time, latitude, longitude) ;
+		tsr:standard_name = &quot;toa_net_upward_shortwave_flux&quot; ;
+		tsr:long_name = &quot;Top net short-wave (solar) radiation&quot; ;
+		tsr:units = &quot;J m**-2&quot; ;
+		tsr:_FillValue = -32767.f ;
+		tsr:missing_value = -32767.f ;
+		tsr:cell_methods = &quot;time: mean&quot; ;
+	float ttr(time, latitude, longitude) ;
+		ttr:standard_name = &quot;toa_outgoing_longwave_flux&quot; ;
+		ttr:long_name = &quot;Top net long-wave (thermal) radiation&quot; ;
+		ttr:units = &quot;J m**-2&quot; ;
+		ttr:_FillValue = -32767.f ;
+		ttr:missing_value = -32767.f ;
+		ttr:cell_methods = &quot;time: mean&quot; ;
+	float tcwv(time, latitude, longitude) ;
+		tcwv:standard_name = &quot;lwe_thickness_of_atmosphere_mass_content_of_water_vapor&quot; ;
+		tcwv:long_name = &quot;Total column vertically-integrated water vapour&quot; ;
+		tcwv:units = &quot;kg m**-2&quot; ;
+		tcwv:_FillValue = -32767.f ;
+		tcwv:missing_value = -32767.f ;
+		tcwv:cell_methods = &quot;time: mean&quot; ;
+	float tp(time, latitude, longitude) ;
+		tp:long_name = &quot;Total precipitation&quot; ;
+		tp:units = &quot;m&quot; ;
+		tp:_FillValue = -32767.f ;
+		tp:missing_value = -32767.f ;
+		tp:cell_methods = &quot;time: mean&quot; ;
+	float pr(time, latitude, longitude) ;
+		pr:_FillValue = -32767.f ;
+		pr:missing_value = -32767.f ;
+		pr:cell_methods = &quot;time: mean&quot; ;
+
+// global attributes:
+		:CDI = &quot;Climate Data Interface version 2.2.4 (https://mpimet.mpg.de/cdi)&quot; ;
+		:Conventions = &quot;CF-1.6&quot; ;
+		:history = &quot;Mon Nov 13 19:20:26 2023: cdo -O -s -b f32 -timmean -aexpr,pr=1000*tp /Users/tompkins/Downloads/precip.nc /Users/tompkins/Downloads/yearmean.nc\n&quot;,
+			&quot;2023-11-13 12:09:34 GMT by grib_to_netcdf-2.25.1: /opt/ecmwf/mars-client/bin/grib_to_netcdf.bin -S param -o /cache/data7/adaptor.mars.internal-1699877374.0481625-4398-2-a24cf865-2f12-49aa-ad0f-e2ac9947633f.nc /cache/tmp/a24cf865-2f12-49aa-ad0f-e2ac9947633f-adaptor.mars.internal-1699877364.040831-4398-2-tmp.grib&quot; ;
+		:CDO = &quot;Climate Data Operators version 2.2.2 (https://mpimet.mpg.de/cdo)&quot; ;
+}
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map</span><span class="p">(</span><span class="n">scr</span><span class="o">+</span><span class="s2">&quot;yearmean.nc&quot;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;precipitation&quot;</span><span class="p">,</span><span class="n">varname</span><span class="o">=</span><span class="s2">&quot;pr&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;mm day$^{-1}$&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_ERA5_maps_5_0.png" src="../_images/intro_ERA5_maps_5_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map</span><span class="p">(</span><span class="n">ofilejja</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;precipitation JJA&quot;</span><span class="p">,</span><span class="n">varname</span><span class="o">=</span><span class="s2">&quot;pr&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;mm day$^{-1}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_ERA5_maps_6_0.png" src="../_images/intro_ERA5_maps_6_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map</span><span class="p">(</span><span class="n">ofiledjf</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;precipitation JJA&quot;</span><span class="p">,</span><span class="n">varname</span><span class="o">=</span><span class="s2">&quot;pr&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;mm day$^{-1}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_ERA5_maps_7_0.png" src="../_images/intro_ERA5_maps_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TCWV</span>
+<span class="n">plot_map</span><span class="p">(</span><span class="n">ofile</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;TWCV&quot;</span><span class="p">,</span><span class="n">varname</span><span class="o">=</span><span class="s2">&quot;tcwv&quot;</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">],</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;kg m$^{-2}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_ERA5_maps_8_0.png" src="../_images/intro_ERA5_maps_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_map</span><span class="p">(</span><span class="n">ofile</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;TOA OLR&quot;</span><span class="p">,</span><span class="n">varname</span><span class="o">=</span><span class="s2">&quot;ttr&quot;</span><span class="p">,</span><span class="n">sf</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mf">86400.</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;W m$^{-2}$&#39;</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">20</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#plot_map(ofile,title=&quot;T&quot;,varname=&quot;tcwv&quot;,levels=[0,3,5,10,20,30,40,50,60],units=&#39;kg m$^{-2}$&#39;)</span>
+<span class="c1">#plt.show()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/intro_ERA5_maps_9_0.png" src="../_images/intro_ERA5_maps_9_0.png" />
+</div>
+</div>
+<p>Now try to duplicate this and make plots of solar radiation, net radiation and surface fluxes.</p>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Adrian Tompkins<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

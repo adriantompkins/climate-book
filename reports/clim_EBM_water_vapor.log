@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.10/3.10.13_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def dtaudT(T,fac=fac):
+    """optical depth as function of surface temperature"""
+    LoR=Lv/Rv
+    return tauwv(T,fac=fac)*LoR/(T*T)
+
+Ts=288
+lamwv=dtaudT(Ts,fac=0.14)*2*sigma*np.power(Ts,4)/np.power(2+tau(Ts),2)
+print ("water vapour feedback for",Ts," = ",lamwv," W m$^{-2}$ K^-1")
+
+Ts=np.arange(260,380,2)
+lamwv=dtaudT(Ts,fac=0.14)*2*sigma*np.power(Ts,4)/np.power(2+tau(Ts),2)
+fig,ax=plt.subplots(figsize=(4,3))
+ax.plot(Ts,lamwv)
+ax.set_xlabel("$T_s$ (K)")
+ax.set_ylabel("WV Feedback $\\lambda_{wv}$ (W m$^{-2}$ K$^{-1}$)")
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[5], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mdef[39;00m [38;5;21mdtaudT[39m(T,fac[38;5;241m=[39m[43mfac[49m):
+[1;32m      2[0m [38;5;250m    [39m[38;5;124;03m"""optical depth as function of surface temperature"""[39;00m
+[1;32m      3[0m     LoR[38;5;241m=[39mLv[38;5;241m/[39mRv
+
+[0;31mNameError[0m: name 'fac' is not defined
+NameError: name 'fac' is not defined
+

@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Biogeophysical feedbacks: Daisy World &#8212; Earth System Modelling</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 1: Climate models" href="../content_modelling.html" />
+    <link rel="prev" title="Adding water vapor feedback to the grey model of the atmosphere" href="clim_EBM_water_vapor.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Earth System Modelling</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Earth System Modelling
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_radiation.html">
+   Chapter 2: Energy Balance and Forcing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_insolation.html">
+     Insolation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_radeq.html">
+     Radiative Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_rce.html">
+     Radiative-Convective Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_orbital.html">
+     Orbital variations, insolation, and the ice ages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content_feedbacks.html">
+   Chapter 3: Climate feedbacks
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_EBM_0D_ice_feedback.html">
+     Ice albedo feedback in the 0D energy balance model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_EBM_water_vapor.html">
+     Adding water vapor feedback to the grey model of the atmosphere
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Biogeophysical feedbacks: Daisy World
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_modelling.html">
+   Chapter 1: Climate models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_climate-system-models.html">
+     The climate system and climate models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_advection.html">
+     Focus on advection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_CMIP_IPCC_fun.html">
+     Coupled Model Intercomparison Project (CMIP)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebooks/clim_daisy_world.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/clim_daisy_world.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/clim_daisy_world.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plant-response-function">
+   Plant response function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-plant-function-types">
+   The plant function types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   Results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-to-investigate">
+   Questions to investigate
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Biogeophysical feedbacks: Daisy World</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plant-response-function">
+   Plant response function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-plant-function-types">
+   The plant function types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   Results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-to-investigate">
+   Questions to investigate
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="biogeophysical-feedbacks-daisy-world">
+<h1>Biogeophysical feedbacks: Daisy World<a class="headerlink" href="#biogeophysical-feedbacks-daisy-world" title="Permalink to this headline">#</a></h1>
+<p>Acknowledgements:
+Code is adapted from a python script by Andrew Bennett</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>Daisy world is a toy model of the planet designed to show how negative feedbacks with the biosphere can lead to a stable planet temperature over a wide range of solar luminosities. It was introduced by Watson and Lovelock (1983, Tellus B: Chemical and Physical Meteorology 35.4 (1983): 284-289., hereafter WL83) as an example of the Gaia theory, which proposed a solution to the weak young sun paradox. You are also referred to the excellent review paper, Wood et al. (2008), Rev. Geophys.,46, RG1001, doi:10.1029/2006RG000217, referred to W08 hereafter.</p>
+<p>In the early stage of the planet, when life had already established, the sun was about 30% weaker than today, and yet mean temperatures must have remained within the rough range of 0-40C which allow life to persist. The Gaia theory proposed a negative, “stabilizing feedback”, whereby the presence of life reduces temperature variability, thus permitted the continued presence of life.</p>
+<p>In response to criticism to the theory, WL83 introduced daisy world. Quite simply, a planet is occupied by two species of daisy with different albedos (see figure above), but the same temperature response function where growth is maximized at a certain temperature (22.5C in the paper).  Black daisies are warmer than white due to their lower albedo.</p>
+<p>The model is simple, consisting of two ODEs that describe the evolution of the black and white daisies as a function of the temperature and three diagnostic equations that describe mean albedo of the planet, the resulting mean temperature assuming energy balance, and the local temperatures of the daisy patches, which are a function of the flower albedo.</p>
+<p>Before we start we need to import the modules we will need for the code, numpy and matplotlib for the graphics, and we define a few constants.</p>
+<p><img alt="Daisy world" src="https://personal.ems.psu.edu/~dmb53/Earth_System_Models/Daisyworld_files/Daisyworld_pict.jpg" /></p>
+<p>Daisyworld image from PSU, David Bice.</p>
+</section>
+<section id="the-model">
+<h2>The model<a class="headerlink" href="#the-model" title="Permalink to this headline">#</a></h2>
+<p>The model is simple, consisting of two ODEs that describe the evolution of the black and white daisies as a function of the temperature and three diagnostic equations that describe mean albedo of the planet, the resulting mean temperature assuming energy balance, and the local temperatures of the daisy patches, which are a function of the flower albedo.</p>
+<p>Before we start we need to import the modules we will need for the code, numpy and matplotlib for the graphics, and we define a few constants.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+
+
+<span class="n">keloff</span><span class="o">=</span><span class="mf">273.15</span> <span class="c1"># to convert between K and deg C </span>
+<span class="n">sigma</span><span class="o">=</span><span class="mf">5.67e-8</span> <span class="c1"># S-B constant</span>
+<span class="n">S0</span><span class="o">=</span><span class="mi">1000</span> <span class="c1"># solar constant W/m**2</span>
+<span class="n">transport</span><span class="o">=</span><span class="mi">20</span>  <span class="c1"># q&#39; in equation 7 of WL83, lineared diffusion heat transport - this relates local albedo perturbations to temperature perturbations</span>
+<span class="n">maxloop</span><span class="o">=</span><span class="mi">100</span> <span class="c1"># number of iterations to allow daisies to equilibrate.</span>
+<span class="n">luminosity</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1"># range of luminosities ratios over which we will loop, starting from low to high</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="n">maxloop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plant-response-function">
+<h2>Plant response function<a class="headerlink" href="#plant-response-function" title="Permalink to this headline">#</a></h2>
+<p>We now define the plant growth temperature response function.  This is a quadratic curve that peaks at T=22.5C (you may change this value).</p>
+<p>Equation 3 of WL83:</p>
+<div class="math notranslate nohighlight">
+\[
+\beta=1-0.003265(22.5-T)^2
+\]</div>
+<p>The max function ensures positive-definite growth rates, setting the growth rate to zero below about 5C and above 40C.  NOTE: Be careful of the units for temperature, which switch between deg C and K in the code and paper.</p>
+<p>This plant response function is identical for both kinds of daisies, black and white, thus the difference in growth rates can only be due to their impact on the local temperature due to their albedo.</p>
+<p>Let’s code up the temperature response function now, note that we also define the plant death rate, which is introduced in the equations below (<span class="math notranslate nohighlight">\(\gamma\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Td_ideal</span><span class="o">=</span><span class="mf">22.5</span><span class="o">+</span><span class="n">keloff</span>  <span class="c1"># peak growth rate for daisies</span>
+<span class="n">birth_rate_k</span><span class="o">=</span><span class="mf">0.003265</span> <span class="c1">#</span>
+<span class="n">death_rate</span><span class="o">=</span><span class="mf">0.3</span> <span class="c1"># fixed death rate gamma in equation 1</span>
+<span class="k">def</span> <span class="nf">birth_rate</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;function to calculate birth rate&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">birth_rate_k</span><span class="o">*</span><span class="p">(</span><span class="n">Td_ideal</span><span class="o">-</span><span class="n">T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tarr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">41</span><span class="p">)</span><span class="o">+</span><span class="n">keloff</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">br</span><span class="o">=</span><span class="p">[</span><span class="n">birth_rate</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tarr</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tarr</span><span class="p">,</span><span class="n">br</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Temperature(K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;beta&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;beta&#39;)
+</pre></div>
+</div>
+<img alt="../_images/clim_daisy_world_7_1.png" src="../_images/clim_daisy_world_7_1.png" />
+</div>
+</div>
+</section>
+<section id="the-plant-function-types">
+<h2>The plant function types<a class="headerlink" href="#the-plant-function-types" title="Permalink to this headline">#</a></h2>
+<p>We now introduce some other parameters in the model, the white daisy (dw) and black daisy (db) and bare soil (bs) albedoes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alb_dw</span><span class="o">=</span><span class="mf">0.75</span> <span class="c1"># white daisies albedo </span>
+<span class="n">alb_db</span><span class="o">=</span><span class="mf">0.25</span> <span class="c1"># black daisies</span>
+<span class="n">alb_bs</span><span class="o">=</span><span class="mf">0.5</span>  <span class="c1"># bare soil </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We perform the main loop over normalized luminosity values (so L=1 implies present day solar constant), and for each luminosity find the stable solution of daisy area and temperature.</p>
+<p>The equations we solve in turn are:</p>
+<p>Equation 5 of WL83, this simply states that the mean planetary albedo is an area-weighted average of the daisies and bare soil values.</p>
+<div class="math notranslate nohighlight">
+\[
+A_p=A_{dw}\alpha_{dw}+A_{db}\alpha_{db}+A_{bs}\alpha_{bs}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the fractional coverage of the white daisies (dw), black daises (db) or bare soil (bs) and <span class="math notranslate nohighlight">\(A\)</span> is the respective albedo of each land cover type.  (NOTE: We use this notation to follow WL83 and W08, but do not get confused as we usually use <span class="math notranslate nohighlight">\(\alpha\)</span> for albedo in the course).</p>
+<p>We then calculate the planet mean temperature, which is a simple energy balance equation between incoming solar and emitted infrared radiation (Equation 4 of WL83) (note they are ignoring the emissivity of the grey atmosphere for simplicity, here the atmosphere is transparent to SW and IR radn, it doesn’t really change anything in the behaviour of the model).</p>
+<div class="math notranslate nohighlight">
+\[
+T_e=\sqrt[4]{\frac{LS_0(1-A_p)}{\sigma}}
+\]</div>
+<p>The next step is to calculate the local temperature resulting from the presence of the daisies.  In WL83 this is not explained in much detail, and we thus refer to the excellent description of W08: The local temperatures <span class="math notranslate nohighlight">\(T_{dw}\)</span> and <span class="math notranslate nohighlight">\(T_{db}\)</span> and the bare soil temperature <span class="math notranslate nohighlight">\(T_{bs}\)</span> are defined by making a simplifying assumption about the heat transfer, essentially a linearization of adiffusion term (refer to the 1D zonal model for ice albedo feedback). This gives a degree of connectedness to the daisy patches without introducing space explicitly. A parameter <span class="math notranslate nohighlight">\(q\)</span> is defined as the heat transfer coefficient in WL83, thereby defining the local temperatures as (equation 7 of WL83 or 5-7 in W08):</p>
+<div class="math notranslate nohighlight">
+\[
+T_{dw}=q(A_p-A_{dw})+T_e
+\]</div>
+<p>and similarly for the black daisies.</p>
+<p>Now we only have to define the two key equations, which describe the birthrate of each daisy type which is a function of their optimum temperatures, using the birthrate function defined above.  Each daisies has a constant death rate <span class="math notranslate nohighlight">\(\gamma\)</span>, converting daisy coverage back to bare soil. These equations are standard for population dynamics, disease models etc.  These are eqn. 1 in WL83 or eqn 2 in W08:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac {\partial \alpha_{dw}}{\partial t}=\alpha_{dw}(\alpha_{bs}\beta(T_{dw})-\gamma)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac {\partial \alpha_{db}}{\partial t}=\alpha_{db}(\alpha_{bs}\beta(T_{db})-\gamma)
+\]</div>
+<p>In the code below we note the solver is not accurate, as the system is coupled and the integration method is explicit, but it simple to understand and will do for present purposes.  If you have finished the ICTP diploma course in numerical methods I/II you may like to replace this, implementing a Runge-Kutta 4th order solver for example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># store arrays </span>
+<span class="n">area_dw_v</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">area_db_v</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">area_bs_v</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">T_p_v</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">T_ref</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">area_dw</span><span class="o">=</span><span class="n">area_db</span><span class="o">=</span><span class="mf">0.01</span> <span class="c1"># initial conditions</span>
+
+<span class="c1">#luminosity=[1]</span>
+
+<span class="c1"># loop over luminosity...</span>
+<span class="k">for</span> <span class="n">iflux</span><span class="p">,</span><span class="n">flux</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">luminosity</span><span class="p">):</span>
+    <span class="c1"># initial conditions are taken from a previous run, subject to </span>
+    <span class="c1"># a minimum of 1% in case the species had died out </span>
+    <span class="n">area_dw</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">area_dw</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># white daisies can&#39;t die out</span>
+    <span class="n">area_db</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">area_db</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># black daises neither  </span>
+    <span class="n">area_bs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">-</span><span class="n">area_dw</span><span class="o">-</span><span class="n">area_db</span> <span class="c1"># bare soil fraction</span>
+    <span class="n">delta_db</span><span class="o">=</span><span class="n">delta_dw</span><span class="o">=</span><span class="mi">1</span>
+    
+    <span class="n">iloop</span><span class="o">=</span><span class="mi">0</span> 
+    
+    <span class="k">while</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">delta_db</span><span class="p">)</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">delta_dw</span><span class="p">))</span><span class="o">&gt;</span><span class="mf">1.e-8</span><span class="p">:</span>
+        <span class="n">iloop</span><span class="o">+=</span><span class="mi">1</span>
+        
+        <span class="c1"># EQN 5: calculate weighted average albedo</span>
+        <span class="n">alb_p</span><span class="o">=</span><span class="n">area_dw</span><span class="o">*</span><span class="n">alb_dw</span><span class="o">+</span><span class="n">area_db</span><span class="o">*</span><span class="n">alb_db</span><span class="o">+</span><span class="n">area_bs</span><span class="o">*</span><span class="n">alb_bs</span>
+        
+        <span class="c1"># EQN 4: calculate planet mean temperature</span>
+        <span class="n">T_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">flux</span><span class="o">*</span><span class="n">S0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alb_p</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span><span class="mf">0.25</span><span class="p">)</span>
+         
+        <span class="c1"># EQN 7: calculate local temperatures</span>
+        <span class="n">T_db</span><span class="o">=</span><span class="n">transport</span><span class="o">*</span><span class="p">(</span><span class="n">alb_p</span><span class="o">-</span><span class="n">alb_db</span><span class="p">)</span><span class="o">+</span><span class="n">T_p</span>
+        <span class="n">T_dw</span><span class="o">=</span><span class="n">transport</span><span class="o">*</span><span class="p">(</span><span class="n">alb_p</span><span class="o">-</span><span class="n">alb_dw</span><span class="p">)</span><span class="o">+</span><span class="n">T_p</span>
+        
+        <span class="c1"># EQN 3: calculate birth rate beta</span>
+        <span class="n">birth_rate_db</span><span class="o">=</span><span class="n">birth_rate</span><span class="p">(</span><span class="n">T_db</span><span class="p">)</span>
+        <span class="n">birth_rate_dw</span><span class="o">=</span><span class="n">birth_rate</span><span class="p">(</span><span class="n">T_dw</span><span class="p">)</span>
+           
+        <span class="c1"># EQN 1: change in daisy area</span>
+        <span class="n">delta_db</span><span class="o">=</span><span class="n">area_db</span><span class="o">*</span><span class="p">(</span><span class="n">birth_rate_db</span><span class="o">*</span><span class="n">area_bs</span><span class="o">-</span><span class="n">death_rate</span><span class="p">)</span>
+        <span class="n">delta_dw</span><span class="o">=</span><span class="n">area_dw</span><span class="o">*</span><span class="p">(</span><span class="n">birth_rate_dw</span><span class="o">*</span><span class="n">area_bs</span><span class="o">-</span><span class="n">death_rate</span><span class="p">)</span>
+        <span class="n">area_db</span><span class="o">+=</span><span class="n">delta_db</span>
+        <span class="n">area_dw</span><span class="o">+=</span><span class="n">delta_dw</span>
+        
+        <span class="c1"># update areas</span>
+        <span class="n">area_bs</span><span class="o">=</span><span class="mf">1.0</span><span class="o">-</span><span class="n">area_db</span><span class="o">-</span><span class="n">area_dw</span>
+
+        <span class="c1">#print (area_db,area_dw,area_bs)</span>
+     
+    <span class="nb">print</span> <span class="p">(</span><span class="n">flux</span><span class="p">,</span><span class="s2">&quot; converged after iteration &quot;</span><span class="p">,</span><span class="n">iloop</span><span class="p">)</span>
+    <span class="c1"># store the value...</span>
+    <span class="n">area_db_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">area_db</span><span class="p">)</span>
+    <span class="n">area_dw_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">area_dw</span><span class="p">)</span>
+    <span class="n">area_bs_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">area_bs</span><span class="p">)</span>
+    <span class="n">T_p_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T_p</span><span class="p">)</span>
+    <span class="n">T_ref</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">flux</span><span class="o">*</span><span class="n">S0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alb_bs</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span><span class="mf">0.25</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5  converged after iteration  39
+0.51  converged after iteration  39
+0.52  converged after iteration  39
+0.53  converged after iteration  39
+0.54  converged after iteration  39
+0.55  converged after iteration  39
+0.56  converged after iteration  39
+0.5700000000000001  converged after iteration  39
+0.5800000000000001  converged after iteration  39
+0.5900000000000001  converged after iteration  39
+0.6000000000000001  converged after iteration  39
+0.6100000000000001  converged after iteration  39
+0.6200000000000001  converged after iteration  39
+0.6300000000000001  converged after iteration  39
+0.6400000000000001  converged after iteration  58
+0.6500000000000001  converged after iteration  134
+0.6600000000000001  converged after iteration  52
+0.6700000000000002  converged after iteration  633
+0.6800000000000002  converged after iteration  2165
+0.6900000000000002  converged after iteration  556
+0.7000000000000002  converged after iteration  314
+0.7100000000000002  converged after iteration  218
+0.7200000000000002  converged after iteration  169
+0.7300000000000002  converged after iteration  139
+0.7400000000000002  converged after iteration  119
+0.7500000000000002  converged after iteration  104
+0.7600000000000002  converged after iteration  93
+0.7700000000000002  converged after iteration  84
+0.7800000000000002  converged after iteration  78
+0.7900000000000003  converged after iteration  72
+0.8000000000000003  converged after iteration  68
+0.8100000000000003  converged after iteration  64
+0.8200000000000003  converged after iteration  61
+0.8300000000000003  converged after iteration  58
+0.8400000000000003  converged after iteration  56
+0.8500000000000003  converged after iteration  55
+0.8600000000000003  converged after iteration  53
+0.8700000000000003  converged after iteration  52
+0.8800000000000003  converged after iteration  52
+0.8900000000000003  converged after iteration  51
+0.9000000000000004  converged after iteration  51
+0.9100000000000004  converged after iteration  51
+0.9200000000000004  converged after iteration  51
+0.9300000000000004  converged after iteration  52
+0.9400000000000004  converged after iteration  52
+0.9500000000000004  converged after iteration  53
+0.9600000000000004  converged after iteration  54
+0.9700000000000004  converged after iteration  55
+0.9800000000000004  converged after iteration  57
+0.9900000000000004  converged after iteration  58
+1.0000000000000004  converged after iteration  60
+1.0100000000000005  converged after iteration  62
+1.0200000000000005  converged after iteration  64
+1.0300000000000005  converged after iteration  66
+1.0400000000000005  converged after iteration  69
+1.0500000000000005  converged after iteration  72
+1.0600000000000005  converged after iteration  76
+1.0700000000000005  converged after iteration  79
+1.0800000000000005  converged after iteration  84
+1.0900000000000005  converged after iteration  89
+1.1000000000000005  converged after iteration  94
+1.1100000000000005  converged after iteration  100
+1.1200000000000006  converged after iteration  108
+1.1300000000000006  converged after iteration  116
+1.1400000000000006  converged after iteration  126
+1.1500000000000006  converged after iteration  138
+1.1600000000000006  converged after iteration  152
+1.1700000000000006  converged after iteration  170
+1.1800000000000006  converged after iteration  192
+1.1900000000000006  converged after iteration  222
+1.2000000000000006  converged after iteration  264
+1.2100000000000006  converged after iteration  325
+1.2200000000000006  converged after iteration  426
+1.2300000000000006  converged after iteration  628
+1.2400000000000007  converged after iteration  1248
+1.2500000000000007  converged after iteration  3058
+1.2600000000000007  converged after iteration  876
+1.2700000000000007  converged after iteration  533
+1.2800000000000007  converged after iteration  387
+1.2900000000000007  converged after iteration  305
+1.3000000000000007  converged after iteration  251
+1.3100000000000007  converged after iteration  214
+1.3200000000000007  converged after iteration  186
+1.3300000000000007  converged after iteration  164
+1.3400000000000007  converged after iteration  146
+1.3500000000000008  converged after iteration  131
+1.3600000000000008  converged after iteration  119
+1.3700000000000008  converged after iteration  108
+1.3800000000000008  converged after iteration  98
+1.3900000000000008  converged after iteration  89
+1.4000000000000008  converged after iteration  81
+1.4100000000000008  converged after iteration  74
+1.4200000000000008  converged after iteration  67
+1.4300000000000008  converged after iteration  71
+1.4400000000000008  converged after iteration  61
+1.4500000000000008  converged after iteration  39
+1.4600000000000009  converged after iteration  39
+1.4700000000000009  converged after iteration  39
+1.4800000000000009  converged after iteration  39
+1.4900000000000009  converged after iteration  39
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h2>
+<p>Now we just need to plot the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">luminosity</span><span class="p">,</span><span class="n">area_db_v</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">luminosity</span><span class="p">,</span><span class="n">area_dw_v</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;solar luminosity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">luminosity</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">T_p_v</span><span class="p">)</span><span class="o">-</span><span class="n">keloff</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Daisy World :-)&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">luminosity</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">T_ref</span><span class="p">)</span><span class="o">-</span><span class="n">keloff</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bare Soil World :-(&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;solar luminosity&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Global Temperature (C)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1140e1a50&gt;
+</pre></div>
+</div>
+<img alt="../_images/clim_daisy_world_16_1.png" src="../_images/clim_daisy_world_16_1.png" />
+</div>
+</div>
+<p>We see the very interesting behaviour of daisy world.  Once the black daisies are established, they locally increase the temperature, and as the luminosity increases in also allows white daisies to be established. Increases in luminosity in turn increase the proportion of white daisies, which reduce the local temperature due to the higher albedo (note, higher than bare soil).  The key take home of WL83 was that, relative to bare soil world (red line) the temperature is very stable.  In fact you will see when you carry out some of the exercises below that the two daisies type are actually mutually beneficial in the standard set up of these model, that is “cooperative”, and can coexist across a far wider range of luminosity than is the case when a single species exists.  This perhaps has important implications for the importance of biodiversity on our planet!</p>
+</section>
+<section id="questions-to-investigate">
+<h2>Questions to investigate<a class="headerlink" href="#questions-to-investigate" title="Permalink to this headline">#</a></h2>
+<ol>
+    <li> What happens if you change the albedo values of the black and/or white daisies?  Try altering the albedos but keeping $A_{db} < A_{bs} < A_{dw}$.  But then also try $A_{db} < A_{dw} < A_{bs}$ or $A_{bs} < A_{db} < A_{dw}$. </li>
+    <li> Tinker with the daisy-dependent death rates and see what happens</li>
+    <li> What happens if, after arriving at a luminosity $L$ of 1.6 you turn the sun back down again?  (i.e. reverse the luminosity loop). Do the solution branches follow each other exactly, or is there a hysteresis? Why? </li>
+    <li>What happens if for each value of luminosity you start from a near bare earth? (1% coverage for each daisy type)  At which values of luminosity does the population crash occur?</li>
+    <li>What happens if you only allow one daisy type? </li>
+    <li>What happens if you introduce 3 (or more) daisy types? </li>
+    <li> Watson and Lovelock introduce another experiment in which black daisies are warmer, but they cool the planet by introducing clouds.  This experiment can be conducted by assuming that the TOA albedo for black daisy areas is 0.8, the daises are still warmer than white daisies due to their lower albedo (not very physical!) - See if you can reproduce fig 2 of Watson and Lovelock with this experiment.  What happens to the white daisies?</li>
+    <li>Can you introduce adaptation? You could apply random mutations to the constants in the $\beta$ plant growth function over time, perhaps introduces to a third type with a seed fraction at a particular time.  </li>
+</ol>
+<p>Have fun and above all, never stop asking yourself “what if?”</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="clim_EBM_water_vapor.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Adding water vapor feedback to the grey model of the atmosphere</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../content_modelling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 1: Climate models</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Adrian Tompkins<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

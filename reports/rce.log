@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.10/3.10.13_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#  get the annual mean air temperature
+#ncep_url = "http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/"
+#ncep_air = xr.open_dataset("~/Downloads/air.mon.1981-2010.ltm.nc", use_cftime=True)
+
+ncep_air=xr.open_dataset(ncep_url,use_cftime=True)
+
+#  Take global, annual average 
+coslat = np.cos(np.deg2rad(ncep_air.lat))
+weight = coslat / coslat.mean(dim='lat')
+Tglobal = (ncep_air.air * weight).mean(dim=('lat','lon','time'))
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[2], line 5[0m
+[1;32m      1[0m [38;5;66;03m#  get the annual mean air temperature[39;00m
+[1;32m      2[0m [38;5;66;03m#ncep_url = "http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/"[39;00m
+[1;32m      3[0m [38;5;66;03m#ncep_air = xr.open_dataset("~/Downloads/air.mon.1981-2010.ltm.nc", use_cftime=True)[39;00m
+[0;32m----> 5[0m ncep_air[38;5;241m=[39mxr[38;5;241m.[39mopen_dataset([43mncep_url[49m,use_cftime[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[1;32m      7[0m [38;5;66;03m#  Take global, annual average [39;00m
+[1;32m      8[0m coslat [38;5;241m=[39m np[38;5;241m.[39mcos(np[38;5;241m.[39mdeg2rad(ncep_air[38;5;241m.[39mlat))
+
+[0;31mNameError[0m: name 'ncep_url' is not defined
+NameError: name 'ncep_url' is not defined
+

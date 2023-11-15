@@ -1,0 +1,1521 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Coupled Model Intercomparison Project (CMIP) &#8212; Earth System Modelling</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Focus on advection" href="mod_advection.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Earth System Modelling</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Earth System Modelling
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_radiation.html">
+   Chapter 2: Energy Balance and Forcing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_insolation.html">
+     Insolation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_radeq.html">
+     Radiative Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_rce.html">
+     Radiative-Convective Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_orbital.html">
+     Orbital variations, insolation, and the ice ages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_feedbacks.html">
+   Chapter 3: Climate feedbacks
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_EBM_0D_ice_feedback.html">
+     Ice albedo feedback in the 0D energy balance model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_EBM_water_vapor.html">
+     Adding water vapor feedback to the grey model of the atmosphere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_daisy_world.html">
+     Biogeophysical feedbacks: Daisy World
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content_modelling.html">
+   Chapter 1: Climate models
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_climate-system-models.html">
+     The climate system and climate models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_advection.html">
+     Focus on advection
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Coupled Model Intercomparison Project (CMIP)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebooks/mod_CMIP_IPCC_fun.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/mod_CMIP_IPCC_fun.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/mod_CMIP_IPCC_fun.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Coupled Model Intercomparison Project (CMIP)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-present-day-design-deck">
+     The present day design, DECK
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representative-concentration-pathways-rcps">
+     Representative Concentration Pathways (RCPs)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shared-socioeconomic-pathway-ssp">
+     shared socioeconomic pathway (SSP)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-cmip6-data">
+   Obtaining CMIP6 data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-series-of-global-mean-temperatures">
+     Time series of global mean temperatures.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#questions">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Questions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toa-fluxes">
+   TOA fluxes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-assessment">
+   Class assessment
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Coupled Model Intercomparison Project (CMIP)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Coupled Model Intercomparison Project (CMIP)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-present-day-design-deck">
+     The present day design, DECK
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representative-concentration-pathways-rcps">
+     Representative Concentration Pathways (RCPs)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shared-socioeconomic-pathway-ssp">
+     shared socioeconomic pathway (SSP)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtaining-cmip6-data">
+   Obtaining CMIP6 data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-series-of-global-mean-temperatures">
+     Time series of global mean temperatures.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#questions">
+       Questions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Questions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toa-fluxes">
+   TOA fluxes
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-assessment">
+   Class assessment
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="coupled-model-intercomparison-project-cmip">
+<h1>Coupled Model Intercomparison Project (CMIP)<a class="headerlink" href="#coupled-model-intercomparison-project-cmip" title="Permalink to this headline">#</a></h1>
+<p>In this notebook we will introduce the basics of the Coupled Model Intercomparison Project (CMIP), which is coordinated by the world climate research program (WCRP). Note that this notebook contains a short summary, more details are available in the handout.</p>
+<p>To use this notebook you will need the following python packages installed</p>
+<ul class="simple">
+<li><p>cdsapi</p></li>
+<li><p>cdo</p></li>
+<li><p>matplotlib</p></li>
+<li><p>numpy</p></li>
+</ul>
+<p>In the 70s and 80s, it was very difficult to assess the range on uncertainties of future climate projections, and indeed to partition these into contributions from model, forcing and initial conditions, due to the fact that different modelling centres ran different experiments with different boundary conditions ($CO_2 pathways) and so on.</p>
+<p>Thus, CMIP began in 1995 under the auspices of the Working Group on Coupled Modelling (WGCM).  The first set of common experiments involved comparing the model response to an idealized forcing, a constant rate of increase which was accomplished using a CO<span class="math notranslate nohighlight">\(_2\)</span> increase of 1% per year compounded. Since that time a number of CMIP experiments have been developed. The experiments continue to include integrations using idealized forcings to facilitate understanding. They now also include integrations forced with estimates of the changes in the historical radiative forcings as
+well as estimates of the future changes.</p>
+<p>Note that CMIP and IPCC are separate, even if closely linked.  CMIP is a coordination project for climate model intercomparisons in a fairly controlled framework, while the role of IPCC is to summarize the state of climate science (see the lecture notes for more details on IPCC). These days there is close coordination, with a new round of CMIP designed to feed into the IPCC summary (in fact CMIP4 was skipped to bring the round numbers together, so that CMIP5 fed into IPCC assessment report 5), but IPCC can cast the umbrella wider and summarizes a lot of science not directly linked to CMIP (e.g. cloud resolving model experiments, observational studies and so on).</p>
+<section id="the-present-day-design-deck">
+<h2>The present day design, DECK<a class="headerlink" href="#the-present-day-design-deck" title="Permalink to this headline">#</a></h2>
+<p>CMIP arranges a common experimental framework consisting of compulsory core experiments and a range of optional experiments that investigate scientific questions deeper,  such as the role of land-atmosphere interactions, or the impact of  accurate initialization of ocean conditions to perform near-term decadal prediction. In the upcoming 6<span class="math notranslate nohighlight">\(^{th}\)</span> assessment report the core experiments are
+now known as CMIP Diagnostic, Evaluation and Characterization of Klima
+(DECK) \index{CMIP!DECK} experiments \cite{eyring:16}</p>
+<p><img alt="esm_ipcc_cmip6_deck.jpg" src="notebooks/attachment:esm_ipcc_cmip6_deck.jpg" /> DECK experiments of CMIP6</p>
+<ul class="simple">
+<li><p>The modelling centres are free to choose their model set up (e.g. horizontal and vertical resolutions), thus model uncertainties consist of both structural uncertainties pertaining to physical parameterization choices and numerical methods, as well as the model resolution choices.</p></li>
+<li><p>Also the method to initialize the model runs is left to the discretion of the modeller, with the exception of the decadal initialized experiments that are part of CMIP5 and CMIP6.</p></li>
+<li><p>Thus the key element of the coordination is in the specification of the boundary conditions in terms of the atmospheric composition of radiatively active gases (or alternatively their anthropogenic sources), and increasingly the land cover conditions.</p></li>
+</ul>
+</section>
+<section id="representative-concentration-pathways-rcps">
+<h2>Representative Concentration Pathways (RCPs)<a class="headerlink" href="#representative-concentration-pathways-rcps" title="Permalink to this headline">#</a></h2>
+<p>Part of the CMIP process is the definition of potential boundary conditions for the future. As stated earlier, in early rounds of CMIP, experiments were very simple in design consisting of instantaneous doubling of CO<span class="math notranslate nohighlight">\(_2\)</span> or increasing CO<span class="math notranslate nohighlight">\(_2\)</span> by a fixed percentage each year.</p>
+<p>Although these experiments are retained in DECK, CMIP5 has introduced the concept of Representative Concentration Pathways (RCPs) for future greenhouse gas and aerosol concentrations (or emissions for interactive carbon cycle experiments) (Fig. ref{fig:rcp1}). The RCPs for CMIP5 are generally referred to by the magnitude of the TOA radiative forcing (<span class="math notranslate nohighlight">\(\Delta R\)</span> in W m<span class="math notranslate nohighlight">\(^{-2}\)</span>) expected at the end of the 21<span class="math notranslate nohighlight">\(^{st}\)</span> century, namely RCP2.6, RCP4.5, RCP6.0 and RCP8.5 for CMIP5 (supplemented by intermediate scenarios in CMIP6).</p>
+<p><img alt="esm_part4_rcps.png" src="notebooks/attachment:esm_part4_rcps.png" />
+To produce these, four modelling groups were selected and tasked with producing RCPs that spanned the range of
+over 100 studies existing in the literature, ranging from a low-end emission scenario to a high-end scenario.</p>
+</section>
+<section id="shared-socioeconomic-pathway-ssp">
+<h2>shared socioeconomic pathway (SSP)<a class="headerlink" href="#shared-socioeconomic-pathway-ssp" title="Permalink to this headline">#</a></h2>
+<p>These scenarios are built around a storyline for economic development, population growth and government policy, in particular for energy generation (e.g. nuclear, fossil fuels, solar, biofuels).  As each group was tasked separately to come up with a scenario for a given radiative forcing, there can be considerable overlap in the socioeconomic assumptions of the scenarios, referred to as the shared socioeconomic pathway (SSP). For example, Fig. \ref{fig:rcp_gdp_pop} shows similarlity in the population growth projections of the first three RCPs (2.6, 4.5 and 6.0), with population asymptoting to around 9 billion, while RCP8.5 sees the population reaching 12 billion individuals, each with their own carbon footprint.</p>
+<p><img alt="esm_part4_rcp_pop_gdp.png" src="notebooks/attachment:esm_part4_rcp_pop_gdp.png" /></p>
+<p>The population growth leads to changes in land use change due to food requirements, and also for energy, resulting potential pathways for anthropogenic land cover change.  RCP2.6 has a low emissions scenario, but the natural vegetation cover change in Africa actually exceeds that in RCP8.5!</p>
+<p><img alt="esm_part4_rcp_landuse.png" src="notebooks/attachment:esm_part4_rcp_landuse.png" /></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="obtaining-cmip6-data">
+<h1>Obtaining CMIP6 data<a class="headerlink" href="#obtaining-cmip6-data" title="Permalink to this headline">#</a></h1>
+<p>The official way to retrieve data is through the Earth System Grid (ESM), a system of mirror site nodes which host <strong>all</strong> the CMIP6 output. However, a subset of the main data is now available on the CDS which we know how to access using the webapi.  Details of the data available here <a class="reference external" href="https://cds.climate.copernicus.eu/cdsapp#%21/dataset/projections-cmip6?tab=overview">https://cds.climate.copernicus.eu/cdsapp#!/dataset/projections-cmip6?tab=overview</a></p>
+<p>Hang on though, we are going too fast, before we get going let’s import all the other packages we need in one place here before we move on…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import all the packages we will need for this lesson</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">cdsapi</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">num2date</span>
+<span class="kn">from</span> <span class="nn">cdo</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Right, now let’s get going… You can click on the link above to browse the CMIP6 data.  You will see that you are restricted unfortunately to downloading one model at a time with the web interface.  We will look at the near surface air temperature for the Noresm model, using monthly data.</p>
+<p>Selecting the data and click on the API window, you should see something like this code snippet below, but here we have altered it to a function, to which we can pass the model name  - this will be useful later if we want to compare several models. I have also edited the code to place the data in a different directory, you can run this directly but make sure you are in a scratch directory with at least 120MB of space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># python code for getting code</span>
+
+<span class="n">odir</span><span class="o">=</span><span class="s2">&quot;/Users/tompkins/junk/&quot;</span>
+<span class="c1">#odir=&quot;/scratch/tompkins/cmip/&quot;</span>
+<span class="n">Path</span><span class="p">(</span><span class="n">odir</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_var</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">exp</span><span class="p">):</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+    
+    <span class="c1"># This is where you want to put your output directory and file name</span>
+    <span class="n">ofile</span><span class="o">=</span><span class="n">odir</span><span class="o">+</span><span class="n">model</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">var</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">exp</span><span class="o">+</span><span class="s2">&quot;.zip&quot;</span>
+
+    <span class="n">c</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+    <span class="s1">&#39;projections-cmip6&#39;</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;zip&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;temporal_resolution&#39;</span><span class="p">:</span> <span class="s1">&#39;monthly&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;experiment&#39;</span><span class="p">:</span> <span class="n">exp</span><span class="p">,</span>
+        <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;single_levels&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="n">var</span><span class="p">,</span>
+        <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">ofile</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ofile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s try it out </span>
+<span class="n">model</span><span class="o">=</span><span class="s1">&#39;noresm2_mm&#39;</span>
+<span class="n">var</span><span class="o">=</span><span class="s2">&quot;near_surface_air_temperature&quot;</span>
+<span class="n">exp</span><span class="o">=</span><span class="s1">&#39;ssp5_8_5&#39;</span>
+
+<span class="n">ofile</span><span class="o">=</span><span class="n">get_var</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">exp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-11-13 23:21:35,804 INFO Welcome to the CDS
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-11-13 23:21:35,805 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-11-13 23:21:36,247 INFO Request is queued
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-11-13 23:21:37,338 INFO Request is running
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-11-13 23:21:57,366 INFO Request is completed
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-11-13 23:21:57,367 INFO Downloading https://download-0003-clone.copernicus-climate.eu/cache-compute-0003/cache/data3/adaptor.esgf_wps.retrieve-1699914106.5864606-9951-14-4deeac39-bb5e-4fa2-880e-08f33d1d72a4.zip to /Users/tompkins/junk/noresm2_mm_near_surface_air_temperature_ssp5_8_5.zip (120.3M)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                  | 0.00/120M [00:00&lt;?, ?B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                          | 259k/120M [00:00&lt;00:47, 2.65MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▏                         | 746k/120M [00:00&lt;00:39, 3.17MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▎                        | 1.24M/120M [00:00&lt;00:34, 3.57MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▍                        | 2.12M/120M [00:00&lt;00:22, 5.48MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▋                        | 3.05M/120M [00:00&lt;00:18, 6.82MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▊                        | 3.79M/120M [00:00&lt;00:17, 7.11MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▉                        | 4.49M/120M [00:01&lt;00:28, 4.20MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|█                        | 5.24M/120M [00:01&lt;00:24, 4.88MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|█▏                       | 5.84M/120M [00:01&lt;00:27, 4.42MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|█▎                       | 6.35M/120M [00:01&lt;00:28, 4.14MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|█▌                       | 7.38M/120M [00:01&lt;00:21, 5.57MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|█▋                       | 8.34M/120M [00:01&lt;00:17, 6.59MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|█▉                       | 9.11M/120M [00:01&lt;00:25, 4.65MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|██                       | 9.93M/120M [00:02&lt;00:21, 5.38MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|██▎                      | 11.0M/120M [00:02&lt;00:17, 6.59MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|██▍                      | 11.9M/120M [00:02&lt;00:31, 3.66MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|██▋                      | 12.7M/120M [00:02&lt;00:26, 4.29MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|██▊                      | 13.3M/120M [00:03&lt;00:38, 2.90MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|██▊                      | 13.8M/120M [00:03&lt;00:45, 2.43MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|███                      | 14.5M/120M [00:03&lt;00:36, 3.07MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|███▏                     | 15.2M/120M [00:03&lt;00:29, 3.70MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|███▎                     | 15.8M/120M [00:04&lt;00:35, 3.10MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 14%|███▍                     | 16.6M/120M [00:04&lt;00:27, 3.97MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|███▋                     | 17.5M/120M [00:04&lt;00:21, 5.02MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|███▊                     | 18.2M/120M [00:04&lt;00:22, 4.80MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|███▉                     | 18.8M/120M [00:04&lt;00:23, 4.46MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|████                     | 19.7M/120M [00:04&lt;00:19, 5.33MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 17%|████▎                    | 20.5M/120M [00:04&lt;00:17, 6.10MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|████▍                    | 21.2M/120M [00:05&lt;00:23, 4.35MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|████▌                    | 22.2M/120M [00:05&lt;00:18, 5.49MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 19%|████▊                    | 23.0M/120M [00:05&lt;00:16, 6.16MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|████▉                    | 23.9M/120M [00:05&lt;00:17, 5.83MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|█████                    | 24.6M/120M [00:05&lt;00:19, 5.07MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|█████▎                   | 25.7M/120M [00:05&lt;00:15, 6.48MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 22%|█████▌                   | 26.6M/120M [00:05&lt;00:14, 6.70MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 23%|█████▋                   | 27.3M/120M [00:06&lt;00:19, 4.88MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 23%|█████▊                   | 28.2M/120M [00:06&lt;00:16, 5.78MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 24%|██████                   | 29.2M/120M [00:06&lt;00:14, 6.67MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██████▏                  | 29.9M/120M [00:06&lt;00:15, 6.03MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██████▎                  | 30.6M/120M [00:06&lt;00:17, 5.48MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 26%|██████▌                  | 31.5M/120M [00:06&lt;00:14, 6.23MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██████▋                  | 32.5M/120M [00:06&lt;00:12, 7.19MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|██████▉                  | 33.2M/120M [00:07&lt;00:18, 4.93MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|███████                  | 34.3M/120M [00:07&lt;00:14, 6.10MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 29%|███████▎                 | 35.1M/120M [00:07&lt;00:13, 6.61MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                  
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">var</span><span class="o">=</span><span class="s2">&quot;near_surface_air_temperature&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">exp</span><span class="o">=</span><span class="s1">&#39;ssp5_8_5&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">ofile</span><span class="o">=</span><span class="n">get_var</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">exp</span><span class="p">)</span>
+
+<span class="nn">Cell In[2], line 14,</span> in <span class="ni">get_var</span><span class="nt">(model, var, exp)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># This is where you want to put your output directory and file name</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">ofile</span><span class="o">=</span><span class="n">odir</span><span class="o">+</span><span class="n">model</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">var</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">exp</span><span class="o">+</span><span class="s2">&quot;.zip&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">c</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="s1">&#39;projections-cmip6&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="p">{</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;zip&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="s1">&#39;temporal_resolution&#39;</span><span class="p">:</span> <span class="s1">&#39;monthly&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="s1">&#39;experiment&#39;</span><span class="p">:</span> <span class="n">exp</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;single_levels&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="n">var</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">ofile</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="k">return</span> <span class="n">ofile</span>
+
+<span class="nn">File ~/Library/Python/3.10/lib/python/site-packages/cdsapi/api.py:350,</span> in <span class="ni">Client.retrieve</span><span class="nt">(self, name, request, target)</span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/resources/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">request</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">349</span> <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">350</span>     <span class="n">result</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File ~/Library/Python/3.10/lib/python/site-packages/cdsapi/api.py:173,</span> in <span class="ni">Result.download</span><span class="nt">(self, target)</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">173</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_download</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_length</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+
+<span class="nn">File ~/Library/Python/3.10/lib/python/site-packages/cdsapi/api.py:133,</span> in <span class="ni">Result._download</span><span class="nt">(self, url, size, target)</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span> <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">133</span>     <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span>         <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+<span class="nn">File ~/Library/Python/3.10/lib/python/site-packages/requests/models.py:816,</span> in <span class="ni">Response.iter_content.&lt;locals&gt;.generate</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">814</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">815</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">816</span>         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">,</span> <span class="n">decode_content</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">817</span>     <span class="k">except</span> <span class="n">ProtocolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">818</span>         <span class="k">raise</span> <span class="n">ChunkedEncodingError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="nn">File ~/Library/Python/3.10/lib/python/site-packages/urllib3/response.py:628,</span> in <span class="ni">HTTPResponse.stream</span><span class="nt">(self, amt, decode_content)</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">627</span>     <span class="k">while</span> <span class="ow">not</span> <span class="n">is_fp_closed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fp</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">628</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">amt</span><span class="o">=</span><span class="n">amt</span><span class="p">,</span> <span class="n">decode_content</span><span class="o">=</span><span class="n">decode_content</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">630</span>         <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>             <span class="k">yield</span> <span class="n">data</span>
+
+<span class="nn">File ~/Library/Python/3.10/lib/python/site-packages/urllib3/response.py:567,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt, decode_content, cache_content)</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span> <span class="n">fp_closed</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fp</span><span class="p">,</span> <span class="s2">&quot;closed&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error_catcher</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">567</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fp_read</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fp_closed</span> <span class="k">else</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="k">if</span> <span class="n">amt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>         <span class="n">flush_decoder</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~/Library/Python/3.10/lib/python/site-packages/urllib3/response.py:533,</span> in <span class="ni">HTTPResponse._fp_read</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span>     <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span>     <span class="c1"># StringIO doesn&#39;t like amt=None</span>
+<span class="ne">--&gt; </span><span class="mi">533</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span> <span class="k">if</span> <span class="n">amt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="nn">File /usr/local/Cellar/python@3.10/3.10.13_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py:466,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span>     <span class="c1"># clip the read to the &quot;end of response&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span>     <span class="n">amt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
+<span class="ne">--&gt; </span><span class="mi">466</span> <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">amt</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span>     <span class="c1"># Ideally, we would raise IncompleteRead if the content-length</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span>     <span class="c1"># wasn&#39;t satisfied, but it might break compatibility.</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_close_conn</span><span class="p">()</span>
+
+<span class="nn">File /usr/local/Cellar/python@3.10/3.10.13_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py:705,</span> in <span class="ni">SocketIO.readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">705</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File /usr/local/Cellar/python@3.10/3.10.13_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py:1307,</span> in <span class="ni">SSLSocket.recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1303</span>     <span class="k">if</span> <span class="n">flags</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1305</span>           <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+<span class="g g-Whitespace">   </span><span class="mi">1306</span>           <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1307</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1308</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1309</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/Cellar/python@3.10/3.10.13_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/ssl.py:1163,</span> in <span class="ni">SSLSocket.read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1163</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1164</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>now we need to unzip the files and then pass results to a variable as a list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># unzip file call to shell to detar and examine header</span>
+<span class="k">def</span> <span class="nf">unzip_cmip</span><span class="p">(</span><span class="n">ofile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;unzips the zip file and returns the contents list&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">ofile</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">odir</span><span class="p">)</span>
+        <span class="n">files</span><span class="o">=</span><span class="n">zip_ref</span><span class="o">.</span><span class="n">namelist</span><span class="p">()[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># keep only .nc files</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s try it out</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ofile was &quot;</span><span class="p">,</span><span class="n">ofile</span><span class="p">)</span>
+<span class="n">files</span><span class="o">=</span><span class="n">unzip_cmip</span><span class="p">(</span><span class="n">ofile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ofile was  /Users/tompkins/junk/noresm2_mm_near_surface_air_temperature_ssp5_8_5.zip
+[&#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_201501-202012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_202101-203012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_203101-204012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_204101-205012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_205101-206012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_206101-207012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_207101-208012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_208101-209012_v20191108.nc&#39;, &#39;tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_209101-210012_v20191108.nc&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>That worked, so now let’s take a look at the header of one of the files (recall you can also do this using ncdump from the command line)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CDO from python to do some stats, fldmeans and means at start, and at end </span>
+<span class="n">ds</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">odir</span><span class="o">+</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">variables</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;time&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float64 time(time)
+     bounds: time_bnds
+     units: days since 0001-01-01 00:00:00
+     calendar: noleap
+     axis: T
+     long_name: time
+     standard_name: time
+ unlimited dimensions: time
+ current shape = (72,)
+ filling on, default _FillValue of 9.969209968386869e+36 used,
+ &#39;time_bnds&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float64 time_bnds(time, bnds)
+ unlimited dimensions: time
+ current shape = (72, 2)
+ filling on, default _FillValue of 9.969209968386869e+36 used,
+ &#39;lat&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float64 lat(lat)
+     bounds: lat_bnds
+     units: degrees_north
+     axis: Y
+     long_name: Latitude
+     standard_name: latitude
+ unlimited dimensions: 
+ current shape = (192,)
+ filling on, default _FillValue of 9.969209968386869e+36 used,
+ &#39;lat_bnds&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float64 lat_bnds(lat, bnds)
+ unlimited dimensions: 
+ current shape = (192, 2)
+ filling on, default _FillValue of 9.969209968386869e+36 used,
+ &#39;lon&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float64 lon(lon)
+     bounds: lon_bnds
+     units: degrees_east
+     axis: X
+     long_name: Longitude
+     standard_name: longitude
+ unlimited dimensions: 
+ current shape = (288,)
+ filling on, default _FillValue of 9.969209968386869e+36 used,
+ &#39;lon_bnds&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float64 lon_bnds(lon, bnds)
+ unlimited dimensions: 
+ current shape = (288, 2)
+ filling on, default _FillValue of 9.969209968386869e+36 used,
+ &#39;height&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float64 height()
+     units: m
+     axis: Z
+     positive: up
+     long_name: height
+     standard_name: height
+ unlimited dimensions: 
+ current shape = ()
+ filling on, default _FillValue of 9.969209968386869e+36 used,
+ &#39;tas&#39;: &lt;class &#39;netCDF4._netCDF4.Variable&#39;&gt;
+ float32 tas(time, lat, lon)
+     standard_name: air_temperature
+     long_name: Near-Surface Air Temperature
+     comment: near-surface (usually, 2 meter) air temperature
+     units: K
+     original_name: TREFHT
+     cell_methods: area: time: mean
+     cell_measures: area: areacella
+     history: 2020-01-26T21:16:31Z altered by CMOR: Treated scalar dimension: &#39;height&#39;. 2020-01-26T21:16:31Z altered by CMOR: Converted type from &#39;d&#39; to &#39;f&#39;.
+     coordinates: height
+     missing_value: 1e+20
+     _FillValue: 1e+20
+ unlimited dimensions: time
+ current shape = (72, 192, 288)
+ filling on}
+</pre></div>
+</div>
+</div>
+</div>
+<p>So the key variable is called <strong>tas</strong></p>
+<section id="time-series-of-global-mean-temperatures">
+<h2>Time series of global mean temperatures.<a class="headerlink" href="#time-series-of-global-mean-temperatures" title="Permalink to this headline">#</a></h2>
+<p>Now we are going to use cdo to make global means and spatial means of the climate data output</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_ts_yearmean</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;cdo based routine to make annual and fldmean, merging section files&quot;&quot;&quot;</span>
+    
+    <span class="c1"># set cdo to an incidence of Cdo(), you don&#39;t need to do this, but cdo.func is neater than Cdo().func</span>
+    <span class="n">cdo</span> <span class="o">=</span> <span class="n">Cdo</span><span class="p">()</span>
+
+    <span class="c1"># this illustrates one advantage of cdo within python, the ability to auto handle tmp files...</span>
+    <span class="n">mfile</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">mfile</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cdo</span><span class="o">.</span><span class="n">fldmean</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">odir</span><span class="o">+</span><span class="n">file</span><span class="p">))</span> <span class="c1"># look, no output :-) </span>
+    <span class="n">ofile</span><span class="o">=</span><span class="n">odir</span><span class="o">+</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">16</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;fldmean_yearmean.nc&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ofile</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="n">cdo</span><span class="o">.</span><span class="n">yearmean</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">cdo</span><span class="o">.</span><span class="n">mergetime</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">mfile</span><span class="p">),</span><span class="n">output</span><span class="o">=</span><span class="n">ofile</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="s2">&quot;-O &quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ofile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s try it out </span>
+
+<span class="n">tsfile</span><span class="o">=</span><span class="n">make_ts_yearmean</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+
+<span class="c1"># check if the file is there:</span>
+<span class="n">annmean</span><span class="o">=</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">odir</span><span class="o">+</span><span class="s2">&quot;*fldmean_yearmean.nc&quot;</span><span class="p">)</span>
+<span class="c1">#print(annmean)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tsfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tompkins/junk/tas_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_201501-202fldmean_yearmean.nc
+</pre></div>
+</div>
+</div>
+</div>
+<p>you should see a list with the file as the only string if everything has worked okay.  You   can open that file from the command line using <strong>ncview</strong> if you like (go on, give it a try!)… but let’s also plot it here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s try a plot</span>
+
+<span class="k">def</span> <span class="nf">plot_base</span><span class="p">(</span><span class="n">tsfile</span><span class="p">,</span><span class="n">var</span><span class="p">):</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">tsfile</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+    <span class="n">years</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">year</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">num2date</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">units</span><span class="p">,</span><span class="n">only_use_python_datetimes</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+    <span class="n">xvar</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">var</span><span class="p">]</span>
+
+    <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">getncattr</span><span class="p">(</span><span class="s2">&quot;experiment_id&quot;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">xvar</span><span class="o">.</span><span class="n">long_name</span><span class="o">+</span><span class="s2">&quot; (&quot;</span><span class="o">+</span><span class="n">xvar</span><span class="o">.</span><span class="n">units</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span><span class="n">xvar</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">getncattr</span><span class="p">(</span><span class="s2">&quot;source_id&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span><span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_base</span><span class="p">(</span><span class="n">tsfile</span><span class="p">,</span><span class="s2">&quot;tas&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11e8735e0&gt;
+</pre></div>
+</div>
+<img alt="../_images/mod_CMIP_IPCC_fun_22_1.png" src="../_images/mod_CMIP_IPCC_fun_22_1.png" />
+</div>
+</div>
+<section id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>What is the temperature increase globally over the century period?</p></li>
+<li><p>Does the temperature increase linearly, or are there signs of an accelerating trend?</p></li>
+<li><p>Is the trend constant or do you see decades where temperature is not increasing?</p></li>
+</ul>
+<p>Let’s make an intercomparison between different models now…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you cut and paste the model title note that you need to change &quot;-&quot; to &quot;_&quot; </span>
+<span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;CanESM5&quot;</span><span class="p">,</span><span class="s2">&quot;MPI_ESM1_2_LR&quot;</span><span class="p">,</span><span class="s2">&quot;CMCC_CM2_SR5&quot;</span><span class="p">,</span><span class="s2">&quot;MIROC6&quot;</span><span class="p">,</span><span class="s2">&quot;NorESM2_MM&quot;</span><span class="p">,</span><span class="s2">&quot;HadGEM3_GC31_MM&quot;</span><span class="p">]</span>
+<span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span> <span class="c1"># and convert to lower case too...</span>
+<span class="n">exp</span><span class="o">=</span><span class="s1">&#39;ssp5_8_5&#39;</span>
+
+<span class="c1"># process the files and make the timeseries</span>
+<span class="n">zipfiles</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+    <span class="n">zipfiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_var</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">exp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-09 10:22:37,326 INFO Welcome to the CDS
+2023-03-09 10:22:37,327 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2023-03-09 10:22:37,356 INFO Request is queued
+2023-03-09 10:22:39,902 INFO Request is running
+2023-03-09 10:22:50,670 INFO Request is completed
+2023-03-09 10:22:50,672 INFO Downloading https://download-0019.copernicus-climate.eu/cache-compute-0019/cache/data8/adaptor.esgf_wps.retrieve-1678353762.3623266-8974-19-43149711-de4f-4e54-9a1b-f68f442e52d7.zip to /Users/tompkins/junk/canesm5_near_surface_air_temperature_ssp5_8_5.zip (86.2M)
+2023-03-09 10:23:09,341 INFO Download rate 4.6M/s                               
+2023-03-09 10:23:09,377 INFO Welcome to the CDS
+2023-03-09 10:23:09,378 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2023-03-09 10:23:09,421 INFO Request is queued
+2023-03-09 10:23:10,443 INFO Request is running
+2023-03-09 10:23:22,731 INFO Request is completed
+2023-03-09 10:23:22,732 INFO Downloading https://download-0005-clone.copernicus-climate.eu/cache-compute-0005/cache/data5/adaptor.esgf_wps.retrieve-1678353797.354479-32501-17-209b7d40-e5c5-4f8d-a5d7-fa093b281dc4.zip to /Users/tompkins/junk/mpi_esm1_2_lr_near_surface_air_temperature_ssp5_8_5.zip (33.1M)
+2023-03-09 10:23:28,161 INFO Download rate 6.1M/s                               
+2023-03-09 10:23:28,205 INFO Welcome to the CDS
+2023-03-09 10:23:28,206 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2023-03-09 10:23:28,280 INFO Request is queued
+2023-03-09 10:23:30,838 INFO Request is running
+2023-03-09 10:23:41,669 INFO Request is completed
+2023-03-09 10:23:41,670 INFO Downloading https://download-0000-clone.copernicus-climate.eu/cache-compute-0000/cache/data2/adaptor.esgf_wps.retrieve-1678353816.3676257-15078-6-b66c82ca-e896-4668-9b61-5c4dd3a3aa5a.zip to /Users/tompkins/junk/cmcc_cm2_sr5_near_surface_air_temperature_ssp5_8_5.zip (121.2M)
+2023-03-09 10:24:00,956 INFO Download rate 6.3M/s                               
+2023-03-09 10:24:01,052 INFO Welcome to the CDS
+2023-03-09 10:24:01,053 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2023-03-09 10:24:01,133 INFO Request is queued
+2023-03-09 10:24:02,151 INFO Request is running
+2023-03-09 10:24:09,353 INFO Request is completed
+2023-03-09 10:24:09,354 INFO Downloading https://download-0006-clone.copernicus-climate.eu/cache-compute-0006/cache/data2/adaptor.esgf_wps.retrieve-1678353845.8313627-29539-17-9144de9a-c4c7-429a-949b-c7e796323aa4.zip to /Users/tompkins/junk/miroc6_near_surface_air_temperature_ssp5_8_5.zip (71.2M)
+2023-03-09 10:24:22,415 INFO Download rate 5.5M/s                               
+2023-03-09 10:24:22,456 INFO Welcome to the CDS
+2023-03-09 10:24:22,457 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2023-03-09 10:24:22,534 INFO Request is completed
+2023-03-09 10:24:22,535 INFO Downloading https://download-0009-clone.copernicus-climate.eu/cache-compute-0009/cache/data0/adaptor.esgf_wps.retrieve-1678353640.6340725-18603-11-ac28a9e2-a27c-4f01-8202-c15746a70291.zip to /Users/tompkins/junk/noresm2_mm_near_surface_air_temperature_ssp5_8_5.zip (120.3M)
+2023-03-09 10:24:43,710 INFO Download rate 5.7M/s                               
+2023-03-09 10:24:43,747 INFO Welcome to the CDS
+2023-03-09 10:24:43,748 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2023-03-09 10:24:43,821 INFO Request is queued
+2023-03-09 10:24:46,394 INFO Request is running
+2023-03-09 10:25:16,186 INFO Request is completed
+2023-03-09 10:25:16,188 INFO Downloading https://download-0013-clone.copernicus-climate.eu/cache-compute-0013/cache/data0/adaptor.esgf_wps.retrieve-1678353891.911434-31971-16-3321f45b-708b-4a6f-8c90-8a5a0351155d.zip to /Users/tompkins/junk/hadgem3_gc31_mm_near_surface_air_temperature_ssp5_8_5.zip (257.9M)
+2023-03-09 10:26:04,644 INFO Download rate 5.3M/s                               
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># commented out, zipfiles is defined in the previous cell - this was just a fudge</span>
+<span class="c1"># zipfiles=glob.glob(odir+&quot;*.zip&quot;)</span>
+<span class="n">tsfiles</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">zfile</span> <span class="ow">in</span> <span class="n">zipfiles</span><span class="p">:</span>
+    <span class="n">tsfiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">make_ts_yearmean</span><span class="p">(</span><span class="n">unzip_cmip</span><span class="p">(</span><span class="n">zfile</span><span class="p">)))</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we want to plot multiple models, we also need a function to add a line to an existing plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now let&#39;s make the plot </span>
+<span class="k">def</span> <span class="nf">plot_add</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">ax</span><span class="p">):</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+    <span class="n">dtime</span><span class="o">=</span><span class="n">num2date</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">units</span><span class="p">,</span><span class="n">only_use_python_datetimes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">years</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">year</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dtime</span><span class="p">]</span>
+    <span class="n">xvar</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">var</span><span class="p">]</span>    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span><span class="n">xvar</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">getncattr</span><span class="p">(</span><span class="s2">&quot;source_id&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now we will plot the randomly selected models</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var</span><span class="o">=</span><span class="s2">&quot;tas&quot;</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tsfiles</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_base</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">),</span><span class="n">var</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plot_add</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">ax</span><span class="p">)</span>
+<span class="c1"># uncomment if you only want to 2100</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">2000</span><span class="p">,</span><span class="mi">2100</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">287</span><span class="p">,</span><span class="mi">295</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x146d0aa30&gt;
+</pre></div>
+</div>
+<img alt="../_images/mod_CMIP_IPCC_fun_30_1.png" src="../_images/mod_CMIP_IPCC_fun_30_1.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Questions<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Do all the models agree on the trend?</p></li>
+<li><p>Why do you think the models disagree on the temperature for 2015 at the start of the experiment?</p></li>
+<li><p>If you had to communicate the uncertainty to a decision maker what would you do?</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>For a single model and RCP8.5, Compare surface temperature to the near surface temperature - in which parameter are the changes largest, and try to explain why</p></li>
+<li><p>Get the TOA SW and LW net fluxes (start with one model, you can expand later) for the 4 main RCPs.</p></li>
+<li><p>Plot a series of the TOA net flux for all RCP</p></li>
+<li><p>Compare this to the RCP radiative forcing in the figure at the top of this notebook</p></li>
+<li><p>What are the similarities and what are the key differences?  Which is lowest the TOA flux imbalance or the forcing? Do you understand why?  tsfiles=[]
+for zfile in zipfiles:
+tsfiles.append(make_ts_yearmean(unzip_cmip(zfile)))</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="toa-fluxes">
+<h1>TOA fluxes<a class="headerlink" href="#toa-fluxes" title="Permalink to this headline">#</a></h1>
+<p>so once you have tried the exercise, let’s have a look at the TOA fluxes…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># so let&#39;s get the TOA fluxes now</span>
+<span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;CanESM5&quot;</span><span class="p">,</span><span class="s2">&quot;CMCC-CM2-SR5&quot;</span><span class="p">,</span><span class="s2">&quot;MIROC6&quot;</span><span class="p">,</span><span class="s2">&quot;NorESM2-MM&quot;</span><span class="p">]</span>
+<span class="c1">#models=[s.lower() for s in models] # and convert to lower case too...</span>
+<span class="n">exp</span><span class="o">=</span><span class="s1">&#39;ssp585&#39;</span>
+
+<span class="n">varlist</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;toa_outgoing_shortwave_radiation&#39;</span><span class="p">,</span><span class="s1">&#39;toa_outgoing_longwave_radiation&#39;</span><span class="p">]</span>
+<span class="c1"># process the files and make the timeseries</span>
+<span class="n">zipfiles</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">varlist</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">zipfiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_var</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">exp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:23:04,626 INFO Welcome to the CDS
+2021-05-27 12:23:04,627 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_shortwave_radiation CanESM5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:23:04,702 INFO Request is completed
+2021-05-27 12:23:04,703 INFO Downloading https://download-0003.copernicus-climate.eu/cache-compute-0003/cache/data2/adaptor.esgf_wps.retrieve-1622025371.8238087-32079-4-94713805-b40a-421f-a6d5-3cda65038591.zip to /Users/tompkins/junk/CanESM5_toa_outgoing_shortwave_radiation_ssp585.zip (90M)
+2021-05-27 12:23:32,727 INFO Download rate 3.2M/s   
+2021-05-27 12:23:32,838 INFO Welcome to the CDS
+2021-05-27 12:23:32,839 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2021-05-27 12:23:32,912 INFO Request is completed
+2021-05-27 12:23:32,913 INFO Downloading https://download-0004.copernicus-climate.eu/cache-compute-0004/cache/data8/adaptor.esgf_wps.retrieve-1622025847.8412232-26222-3-08af7eee-d460-425f-a1f2-65f38b50af59.zip to /Users/tompkins/junk/CanESM5_toa_outgoing_longwave_radiation_ssp585.zip (91.8M)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_longwave_radiation CanESM5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:24:03,254 INFO Download rate 3M/s     
+2021-05-27 12:24:03,359 INFO Welcome to the CDS
+2021-05-27 12:24:03,360 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2021-05-27 12:24:03,435 INFO Request is completed
+2021-05-27 12:24:03,436 INFO Downloading https://download-0004.copernicus-climate.eu/cache-compute-0004/cache/data0/adaptor.esgf_wps.retrieve-1622025831.9204278-26294-3-47302eda-9833-40c1-b394-70e35de12feb.zip to /Users/tompkins/junk/CMCC-CM2-SR5_toa_outgoing_shortwave_radiation_ssp585.zip (150.8M)
+  0%|          | 0.00/151M [00:00&lt;?, ?B/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_shortwave_radiation CMCC-CM2-SR5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:24:52,638 INFO Download rate 3.1M/s  
+2021-05-27 12:24:52,743 INFO Welcome to the CDS
+2021-05-27 12:24:52,743 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2021-05-27 12:24:52,825 INFO Request is completed
+2021-05-27 12:24:52,826 INFO Downloading https://download-0004.copernicus-climate.eu/cache-compute-0004/cache/data0/adaptor.esgf_wps.retrieve-1622025900.982731-26156-4-b695f373-8f09-4fdc-8ac3-65f33c0223b3.zip to /Users/tompkins/junk/CMCC-CM2-SR5_toa_outgoing_longwave_radiation_ssp585.zip (137.7M)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_longwave_radiation CMCC-CM2-SR5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:25:30,609 INFO Download rate 3.6M/s  
+2021-05-27 12:25:30,710 INFO Welcome to the CDS
+2021-05-27 12:25:30,711 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2021-05-27 12:25:30,790 INFO Request is completed
+2021-05-27 12:25:30,791 INFO Downloading https://download-0004.copernicus-climate.eu/cache-compute-0004/cache/data8/adaptor.esgf_wps.retrieve-1622025932.0695705-26258-3-ffb32c43-d33e-4f10-9348-df9920c21e8b.zip to /Users/tompkins/junk/MIROC6_toa_outgoing_shortwave_radiation_ssp585.zip (88.9M)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_shortwave_radiation MIROC6
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:26:00,012 INFO Download rate 3M/s     
+2021-05-27 12:26:00,116 INFO Welcome to the CDS
+2021-05-27 12:26:00,117 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2021-05-27 12:26:00,190 INFO Request is completed
+2021-05-27 12:26:00,191 INFO Downloading https://download-0004.copernicus-climate.eu/cache-compute-0004/cache/data2/adaptor.esgf_wps.retrieve-1622025953.355772-26411-4-138bb488-ec3e-4969-b120-cafb74af0481.zip to /Users/tompkins/junk/MIROC6_toa_outgoing_longwave_radiation_ssp585.zip (82.3M)
+  0%|          | 0.00/82.3M [00:00&lt;?, ?B/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_longwave_radiation MIROC6
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:26:24,325 INFO Download rate 3.4M/s   
+2021-05-27 12:26:24,426 INFO Welcome to the CDS
+2021-05-27 12:26:24,427 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2021-05-27 12:26:24,503 INFO Request is completed
+2021-05-27 12:26:24,504 INFO Downloading https://download-0012.copernicus-climate.eu/cache-compute-0012/cache/data3/adaptor.esgf_wps.retrieve-1622025973.0386257-11520-4-6c09207c-3674-448f-9634-dd599b4f7e11.zip to /Users/tompkins/junk/NorESM2-MM_toa_outgoing_shortwave_radiation_ssp585.zip (149.1M)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_shortwave_radiation NorESM2-MM
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:27:09,789 INFO Download rate 3.3M/s  
+2021-05-27 12:27:09,903 INFO Welcome to the CDS
+2021-05-27 12:27:09,904 INFO Sending request to https://cds.climate.copernicus.eu/api/v2/resources/projections-cmip6
+2021-05-27 12:27:09,979 INFO Request is completed
+2021-05-27 12:27:09,980 INFO Downloading https://download-0003.copernicus-climate.eu/cache-compute-0003/cache/data2/adaptor.esgf_wps.retrieve-1622026000.032005-31926-13-c9df4dd7-e4d2-4b27-9e92-7f4eb6b17b7f.zip to /Users/tompkins/junk/NorESM2-MM_toa_outgoing_longwave_radiation_ssp585.zip (136.9M)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toa_outgoing_longwave_radiation NorESM2-MM
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-05-27 12:28:00,100 INFO Download rate 2.7M/s  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we unzip and append to timeseries</span>
+<span class="n">zipfiles</span><span class="o">=</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">odir</span><span class="o">+</span><span class="s2">&quot;*radiation*.zip&quot;</span><span class="p">)</span> <span class="c1">### uncomment this if you didn&#39;t run the previous cell before</span>
+<span class="n">tsfiles</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">zfile</span> <span class="ow">in</span> <span class="n">zipfiles</span><span class="p">:</span>
+    <span class="n">tsfiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">make_ts_yearmean</span><span class="p">(</span><span class="n">unzip_cmip</span><span class="p">(</span><span class="n">zfile</span><span class="p">)))</span>
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tsfiles</span><span class="p">)</span>
+
+<span class="c1"># set cdo to an incidence of Cdo(), you don&#39;t need to do this, but cdo.func is neater than Cdo().func</span>
+<span class="n">cdo</span> <span class="o">=</span> <span class="n">Cdo</span><span class="p">()</span>
+<span class="n">s0d4</span><span class="o">=</span><span class="mf">1361.</span><span class="o">/</span><span class="mf">4.</span>
+<span class="c1"># lets add the two together:</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="n">f1</span><span class="o">=</span><span class="n">odir</span><span class="o">+</span><span class="s2">&quot;rlut_Amon_&quot;</span><span class="o">+</span><span class="n">model</span><span class="o">+</span><span class="s2">&quot;_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&quot;</span>
+    <span class="n">f2</span><span class="o">=</span><span class="n">odir</span><span class="o">+</span><span class="s2">&quot;rsut_Amon_&quot;</span><span class="o">+</span><span class="n">model</span><span class="o">+</span><span class="s2">&quot;_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&quot;</span>
+    <span class="n">tmpfile</span><span class="o">=</span><span class="n">cdo</span><span class="o">.</span><span class="n">addc</span><span class="p">(</span><span class="n">s0d4</span><span class="p">,</span><span class="nb">input</span><span class="o">=</span><span class="n">cdo</span><span class="o">.</span><span class="n">mulc</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nb">input</span><span class="o">=</span><span class="n">cdo</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">])))</span>
+    <span class="n">var</span><span class="o">=</span><span class="s2">&quot;rlut&quot;</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_base</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">),</span><span class="n">var</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plot_add</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">ax</span><span class="p">)</span>
+<span class="c1"># uncomment if you only want to 2100</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">2000</span><span class="p">,</span><span class="mi">2100</span><span class="p">])</span>
+<span class="c1">#ax.set_ylim([287,295])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/Users/tompkins/junk/rsut_Amon_MIROC6_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;, &#39;/Users/tompkins/junk/rsut_Amon_CanESM5_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;, &#39;/Users/tompkins/junk/rsut_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;, &#39;/Users/tompkins/junk/rlut_Amon_CanESM5_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;, &#39;/Users/tompkins/junk/rlut_Amon_CMCC-CM2-SR5_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;, &#39;/Users/tompkins/junk/rsut_Amon_CMCC-CM2-SR5_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;, &#39;/Users/tompkins/junk/rlut_Amon_NorESM2-MM_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;, &#39;/Users/tompkins/junk/rlut_Amon_MIROC6_ssp585_r1i1p1f1_gn_fldmean_yearmean.nc&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-6-f1279e13b263&gt;:14: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  ax.plot(years,xvar[:,0,0],label=ds.getncattr(&quot;source_id&quot;))
+&lt;ipython-input-7-6ebd35fd2c45&gt;:8: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  ax.plot(years,xvar[:,0,0],label=ds.getncattr(&quot;source_id&quot;))
+&lt;ipython-input-7-6ebd35fd2c45&gt;:8: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  ax.plot(years,xvar[:,0,0],label=ds.getncattr(&quot;source_id&quot;))
+&lt;ipython-input-7-6ebd35fd2c45&gt;:8: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  ax.plot(years,xvar[:,0,0],label=ds.getncattr(&quot;source_id&quot;))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x139fbdee0&gt;
+</pre></div>
+</div>
+<img alt="../_images/mod_CMIP_IPCC_fun_36_3.png" src="../_images/mod_CMIP_IPCC_fun_36_3.png" />
+</div>
+</div>
+<p>what do we see…</p>
+<ul class="simple">
+<li><p>is the radiative flux imbalance zero in 2015, if not why not?</p></li>
+<li><p>what happens to the flux imbalance over time, is it growing or shrinking and why ?</p></li>
+<li><p>is the rate of change linear or does it begin to slow down with some models, why do you think this is?</p></li>
+<li><p>Compare the flux imbalance in 2100 with the plot of the RCP radiative forcing, is it larger or smaller in magnitude?  Why is this?</p></li>
+</ul>
+<p>what have we learned today?  Well the change in TOA flux imbalance over time does not look like the nice linear plots of <span class="math notranslate nohighlight">\(\Delta F - \Delta T\)</span> that we saw in the hand out - THOSE were for an idealized experiment where CO2 was suddenly turned up in a pulse (doubled or quadrupled typically) - In that case you suddenly hit the model hard and then watch as it adjusts over time… the planet warms and the TOA flux imbalance is reduced until balance is restored at the new warmer equilibrum temperature.   Here, the CO2 is slowly turned up over time (along with other greenhouse gases), so why doesn’t the planet adjust (warm) and keep the fluxes close to balance.  Well that is the slow timescales for ocean heat uptake, the earth system just can’t keep up, especially for RCP8p5 and the imbalance grows in time - it is still less than the radiative forcing, since the temperature is adjusting, but not fast enough to prevent the imbalance from growing. Thus you can see that at any point in time, there is a lot of “latent warming” locked in…  The only way one could prevent that future warming from being realized if it one could remove CO2 from the atmosphere. Simply moving to carbon neutral is not enough, that locked in warming will occur until TOA balance is restored.</p>
+<p>Now tell me, that WAS fun wasn’t it?</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="class-assessment">
+<h1>Class assessment<a class="headerlink" href="#class-assessment" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Choose 8 models at random and 4 RCPs and plot global mean annual surface temperature rises from 2015 to 2100. What is the main cause of uncertainty in the first 30 years and what in the main cause of uncertainty in the last 30 years?  What other causes of uncertainty are there which should also be taken into account?</p></li>
+<li><p>Take 5 models that have contributed to BOTH CMIP5 and CMIP6 - plot global mean surface temperature changes for RCP8p5 for each model and both CMIP rounds…  Are the temperature changes identical, and if not explain why not? Are the differences between CMIP5 and CMIP6 for specific models larger or smaller than changes due to RCP or climate model?</p></li>
+<li><p>Make a map of the temperature changes for a thirty year period at the end of century minus preindustrial times… i.e. the average for 2070-2099 minus the average for 1850-1880 (you can choose the exact period to suit you and the model, as file chunk sizes differ according to the model, or use cdo seldate) - Where are the largest temperature changes found around the globe, explain the differences you find.</p></li>
+<li><p>With CMIP5 (unfortunately the TOA clear sky fields are not available yet for CMIP6) get the TOA all-sky and clear-sky fluxes. Take the difference to calculate the SW and LW cloud forcing (try with one model first, but you can also extend to 3 or 4 others later to see if it impacts the results).  Then make a map of the future minus past changes in cloud radiative forcing.  Try to interpret these in terms of the cloud types and changes - feel free to make reference to the literature when interpreting the changes you see.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="mod_advection.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Focus on advection</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Adrian Tompkins<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

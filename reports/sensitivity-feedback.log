@@ -1,0 +1,76 @@
+Traceback (most recent call last):
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.10/3.10.13/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/tompkins/Library/Python/3.10/lib/python/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#  This code is used just to create the skew-T plot of global, annual mean air temperature
+ncep_url = "http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/"
+ncep_air = xr.open_dataset( ncep_url + "pressure/air.mon.1981-2010.ltm.nc", use_cftime=True)
+#  Take global, annual average 
+coslat = np.cos(np.deg2rad(ncep_air.lat))
+weight = coslat / coslat.mean(dim='lat')
+Tglobal = (ncep_air.air * weight).mean(dim=('lat','lon','time'))
+
+#  Resuable function to plot the temperature data on a Skew-T chart
+def make_skewT():
+    fig = plt.figure(figsize=(9, 9))
+    skew = SkewT(fig, rotation=30)
+    skew.plot(Tglobal.level, Tglobal, color='black', linestyle='-', linewidth=2, label='Observations')
+    skew.ax.set_ylim(1050, 10)
+    skew.ax.set_xlim(-90, 45)
+    # Add the relevant special lines
+    skew.plot_dry_adiabats(linewidth=0.5)
+    skew.plot_moist_adiabats(linewidth=0.5)
+    #skew.plot_mixing_lines()
+    skew.ax.legend()
+    skew.ax.set_xlabel('Temperature (degC)', fontsize=14)
+    skew.ax.set_ylabel('Pressure (hPa)', fontsize=14)
+    return skew
+
+#  and a function to add extra profiles to this chart
+def add_profile(skew, model, linestyle='-', color=None):
+    line = skew.plot(model.lev, model.Tatm - climlab.constants.tempCtoK,
+             label=model.name, linewidth=2)[0]
+    skew.plot(1000, model.Ts - climlab.constants.tempCtoK, 'o', 
+              markersize=8, color=line.get_color())
+    skew.ax.legend()
+
+# Get the water vapor data from CESM output
+#cesm_data_path = "http://thredds.atmos.albany.edu:8080/thredds/dodsC/CESMA/"
+
+#ncep_air = xr.open_dataset("~/Downloads/air.mon.1981-2010.ltm.nc", use_cftime=True)
+atm_control = xr.open_dataset(cesm_data_path + "cpl_1850_f19/concatenated/cpl_1850_f19.cam.h0.nc")
+# Take global, annual average of the specific humidity
+weight_factor = atm_control.gw / atm_control.gw.mean(dim='lat')
+Qglobal = (atm_control.Q * weight_factor).mean(dim=('lat','lon','time'))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[2], line 37[0m
+[1;32m     31[0m     skew[38;5;241m.[39max[38;5;241m.[39mlegend()
+[1;32m     33[0m [38;5;66;03m# Get the water vapor data from CESM output[39;00m
+[1;32m     34[0m [38;5;66;03m#cesm_data_path = "http://thredds.atmos.albany.edu:8080/thredds/dodsC/CESMA/"[39;00m
+[1;32m     35[0m 
+[1;32m     36[0m [38;5;66;03m#ncep_air = xr.open_dataset("~/Downloads/air.mon.1981-2010.ltm.nc", use_cftime=True)[39;00m
+[0;32m---> 37[0m atm_control [38;5;241m=[39m xr[38;5;241m.[39mopen_dataset([43mcesm_data_path[49m [38;5;241m+[39m [38;5;124m"[39m[38;5;124mcpl_1850_f19/concatenated/cpl_1850_f19.cam.h0.nc[39m[38;5;124m"[39m)
+[1;32m     38[0m [38;5;66;03m# Take global, annual average of the specific humidity[39;00m
+[1;32m     39[0m weight_factor [38;5;241m=[39m atm_control[38;5;241m.[39mgw [38;5;241m/[39m atm_control[38;5;241m.[39mgw[38;5;241m.[39mmean(dim[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlat[39m[38;5;124m'[39m)
+
+[0;31mNameError[0m: name 'cesm_data_path' is not defined
+NameError: name 'cesm_data_path' is not defined
+

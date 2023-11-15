@@ -1,0 +1,912 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Ice albedo feedback in the 0D energy balance model &#8212; Earth System Modelling</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Adding water vapor feedback to the grey model of the atmosphere" href="clim_EBM_water_vapor.html" />
+    <link rel="prev" title="Chapter 3: Climate feedbacks" href="../content_feedbacks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Earth System Modelling</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Earth System Modelling
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_radiation.html">
+   Chapter 2: Energy Balance and Forcing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_insolation.html">
+     Insolation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_radeq.html">
+     Radiative Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_rce.html">
+     Radiative-Convective Equilibrium
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="radn_orbital.html">
+     Orbital variations, insolation, and the ice ages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content_feedbacks.html">
+   Chapter 3: Climate feedbacks
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Ice albedo feedback in the 0D energy balance model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_EBM_water_vapor.html">
+     Adding water vapor feedback to the grey model of the atmosphere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clim_daisy_world.html">
+     Biogeophysical feedbacks: Daisy World
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_modelling.html">
+   Chapter 1: Climate models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_climate-system-models.html">
+     The climate system and climate models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_advection.html">
+     Focus on advection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_CMIP_IPCC_fun.html">
+     Coupled Model Intercomparison Project (CMIP)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebooks/clim_EBM_0D_ice_feedback.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/clim_EBM_0D_ice_feedback.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/clim_EBM_0D_ice_feedback.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-how-do-you-think-the-shrinking-ice-cover-with-change-the-toa-radiative-balance">
+   Question:  How do you think the shrinking ice cover with change the TOA radiative balance?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-where-are-the-three-equilibria-temperatures-and-are-they-stable-or-unstable">
+   Question: Where are the three equilibria temperatures and are they stable or unstable?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question">
+   Question:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Question:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-why-is-the-feedback-zero-at-cold-or-warm-temperatures">
+   Question: Why is the feedback zero at cold or warm temperatures?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-is-the-overall-feedback-ice-albedo-ever-unstable">
+   Question: Is the overall feedback (ice+albedo) ever unstable?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lesson-take-home-messages">
+   Lesson take home messages:
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Ice albedo feedback in the 0D energy balance model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-how-do-you-think-the-shrinking-ice-cover-with-change-the-toa-radiative-balance">
+   Question:  How do you think the shrinking ice cover with change the TOA radiative balance?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-where-are-the-three-equilibria-temperatures-and-are-they-stable-or-unstable">
+   Question: Where are the three equilibria temperatures and are they stable or unstable?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question">
+   Question:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Question:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-why-is-the-feedback-zero-at-cold-or-warm-temperatures">
+   Question: Why is the feedback zero at cold or warm temperatures?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-is-the-overall-feedback-ice-albedo-ever-unstable">
+   Question: Is the overall feedback (ice+albedo) ever unstable?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lesson-take-home-messages">
+   Lesson take home messages:
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="ice-albedo-feedback-in-the-0d-energy-balance-model">
+<h1>Ice albedo feedback in the 0D energy balance model<a class="headerlink" href="#ice-albedo-feedback-in-the-0d-energy-balance-model" title="Permalink to this headline">#</a></h1>
+<p><strong>Credits: This notebook is based on a class exercise provided by Simona Bordoni (University of Trento) with additional ideas taken from lesson 6 of Brian Rose’s climate modelling course at Albany.</strong></p>
+<p>We will start our consideration of climate feedbacks with one that is not a particularly fast atmosphere process, but that is easy to understand to introduce the concept.  While glaciers have a long inertia in terms of their melting timescale, the change in snow cover on land and the growth and melting of sea ice, can occur on timescales that are seasonal and relatively fast compared to the forcing of climate change.  Take a look at this figure which shows the extent of artic sea ice cover in September (the annual relative minimum) in 1984, not long after the modern record of remotely sensed data began and 2012, which was a record mimimum until it was broken in 2020/21.</p>
+<div>
+    <img src="attachment:esm_ebm_Arctic_Sea_Ice_Minimum_Comparison.png" width="300"/>
+</div>
+Caption: Ice cover comparison 1984 and 2012 [credit: https://energyeducation.ca/]
+<section id="question-how-do-you-think-the-shrinking-ice-cover-with-change-the-toa-radiative-balance">
+<h2>Question:  How do you think the shrinking ice cover with change the TOA radiative balance?<a class="headerlink" href="#question-how-do-you-think-the-shrinking-ice-cover-with-change-the-toa-radiative-balance" title="Permalink to this headline">#</a></h2>
+<p>Consider the globally averaged energy balance equation for a planet whose surface temperature is <span class="math notranslate nohighlight">\(T_s\)</span>, this time no equilibrium is assumed, so the difference between the incoming and outgoing radiation leads to a temperature tendancy:</p>
+<div class="math notranslate nohighlight">
+\[
+  C \frac{dT_s}{dt} = \frac{S_0}{4} [ 1 - \alpha(T_s)]  - \epsilon_e \sigma T_s^4
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is the heat capacity of our system (units J m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>), related mainly to the deep ocean (we come back to this later), and <span class="math notranslate nohighlight">\(\epsilon_e\)</span> is the effective surface emissivity of the Earth (refer to lecture notes).</p>
+<p>Here the albedo of the planet <span class="math notranslate nohighlight">\(\alpha\)</span> is now a function of global mean temperature rather than a fixed constant.<br />
+Why is this?  Well, this is to mimic the feedback due to ice (although of course one could also try to represent other temperature sensitive albedo feedbacks such as land-surface cover, although difficult to do in such a simple model).</p>
+<p>As the temperature cools, more of the planet is assumed to be below the threshold for ice cover, increasing the global mean albedo.  This is represented by the following function:</p>
+<div class="math notranslate nohighlight">
+\[
+  \alpha(T_s) = 0.45 - 0.25 \,\mathrm{tanh} \left( \frac{(T_s-272)}{23} \right)
+\]</div>
+<p>Note that we don’t actually know what the ice cover is in this model, we only know the final impact on albedo.</p>
+<p>First of all we will define this function of albedo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># function to calculate alfa</span>
+<span class="k">def</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; function for albedo&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mf">0.45</span><span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">((</span><span class="n">T</span><span class="o">-</span><span class="mf">272.</span><span class="p">)</span><span class="o">/</span><span class="mf">23.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at this function by plotting it.  We can do this by defining a vector of temperatures…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector of surface temperatures</span>
+<span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="mi">350</span>
+<span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">Ts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[200.  200.5 201.  201.5 202.  202.5 203.  203.5 204.  204.5 205.  205.5
+ 206.  206.5 207.  207.5 208.  208.5 209.  209.5 210.  210.5 211.  211.5
+ 212.  212.5 213.  213.5 214.  214.5 215.  215.5 216.  216.5 217.  217.5
+ 218.  218.5 219.  219.5 220.  220.5 221.  221.5 222.  222.5 223.  223.5
+ 224.  224.5 225.  225.5 226.  226.5 227.  227.5 228.  228.5 229.  229.5
+ 230.  230.5 231.  231.5 232.  232.5 233.  233.5 234.  234.5 235.  235.5
+ 236.  236.5 237.  237.5 238.  238.5 239.  239.5 240.  240.5 241.  241.5
+ 242.  242.5 243.  243.5 244.  244.5 245.  245.5 246.  246.5 247.  247.5
+ 248.  248.5 249.  249.5 250.  250.5 251.  251.5 252.  252.5 253.  253.5
+ 254.  254.5 255.  255.5 256.  256.5 257.  257.5 258.  258.5 259.  259.5
+ 260.  260.5 261.  261.5 262.  262.5 263.  263.5 264.  264.5 265.  265.5
+ 266.  266.5 267.  267.5 268.  268.5 269.  269.5 270.  270.5 271.  271.5
+ 272.  272.5 273.  273.5 274.  274.5 275.  275.5 276.  276.5 277.  277.5
+ 278.  278.5 279.  279.5 280.  280.5 281.  281.5 282.  282.5 283.  283.5
+ 284.  284.5 285.  285.5 286.  286.5 287.  287.5 288.  288.5 289.  289.5
+ 290.  290.5 291.  291.5 292.  292.5 293.  293.5 294.  294.5 295.  295.5
+ 296.  296.5 297.  297.5 298.  298.5 299.  299.5 300.  300.5 301.  301.5
+ 302.  302.5 303.  303.5 304.  304.5 305.  305.5 306.  306.5 307.  307.5
+ 308.  308.5 309.  309.5 310.  310.5 311.  311.5 312.  312.5 313.  313.5
+ 314.  314.5 315.  315.5 316.  316.5 317.  317.5 318.  318.5 319.  319.5
+ 320.  320.5 321.  321.5 322.  322.5 323.  323.5 324.  324.5 325.  325.5
+ 326.  326.5 327.  327.5 328.  328.5 329.  329.5 330.  330.5 331.  331.5
+ 332.  332.5 333.  333.5 334.  334.5 335.  335.5 336.  336.5 337.  337.5
+ 338.  338.5 339.  339.5 340.  340.5 341.  341.5 342.  342.5 343.  343.5
+ 344.  344.5 345.  345.5 346.  346.5 347.  347.5 348.  348.5 349.  349.5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector of albedos</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">alpha</span><span class="p">(</span><span class="n">Ts</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Ts (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Albedo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Albedo&#39;)
+</pre></div>
+</div>
+<img alt="../_images/clim_EBM_0D_ice_feedback_6_1.png" src="../_images/clim_EBM_0D_ice_feedback_6_1.png" />
+</div>
+</div>
+<p>So we can see that for temperatures exceeding 300K roughly, the Earth becomes ice-free and the albedo tends to a fixed values of about 0.2.  As temperature cools the ice edge moves to the south, until for conditions below Ts=225K most of the globe is frozen and the albedo tends to 0.7.</p>
+<p>So now, rather than solve the equation, we are simply going to plot the RHS to get the sign of DT/Dt</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># constants needed</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mf">5.67e-8</span> <span class="c1"># Stefan-B constant </span>
+<span class="n">eps_e</span><span class="o">=</span><span class="mf">0.61</span>    <span class="c1"># equivalent emissivity of surface: 1-eps/2</span>
+
+<span class="c1"># define the solar constant array</span>
+<span class="n">S0today</span><span class="o">=</span><span class="mi">1370</span> 
+
+<span class="c1"># define the energy balance equation in a function</span>
+<span class="k">def</span> <span class="nf">cdTdt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Temperature tendancy=F(S,T), S=Solar constant, T=temperature&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">(</span><span class="n">T</span><span class="p">))</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="n">eps_e</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S0today</span><span class="p">,</span><span class="n">Ts</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Ts (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;C DT/Dt (W m$^{-2}$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x11723ccd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/clim_EBM_0D_ice_feedback_8_1.png" src="../_images/clim_EBM_0D_ice_feedback_8_1.png" />
+</div>
+</div>
+</section>
+<section id="question-where-are-the-three-equilibria-temperatures-and-are-they-stable-or-unstable">
+<h2>Question: Where are the three equilibria temperatures and are they stable or unstable?<a class="headerlink" href="#question-where-are-the-three-equilibria-temperatures-and-are-they-stable-or-unstable" title="Permalink to this headline">#</a></h2>
+<p>When you have discussed this, we will go on to plot a contour plot of <span class="math notranslate nohighlight">\(C \frac{DT}{Dt}\)</span> for a range of values for S0 and Ts, with S0 ranging</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the solar constant array</span>
+<span class="n">S0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># make 2D arrays for contour plot:</span>
+<span class="n">T2d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">Ts</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">S0</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">S2d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S0</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">Ts</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contour plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">400</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span><span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span><span class="s2">&quot;pink&quot;</span><span class="p">])</span>
+<span class="n">X</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">400</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;S0 (Wm$^{-2}$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$T_s$ (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">S0today</span><span class="p">,</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x1173ee560&gt;
+</pre></div>
+</div>
+<img alt="../_images/clim_EBM_0D_ice_feedback_11_1.png" src="../_images/clim_EBM_0D_ice_feedback_11_1.png" />
+</div>
+</div>
+</section>
+<section id="question">
+<h2>Question:<a class="headerlink" href="#question" title="Permalink to this headline">#</a></h2>
+<p>What happens to temperature if you reduce S0 from the present day value to 1000 Wm<span class="math notranslate nohighlight">\(^{-2}\)</span>?  If you then increase S0 to 1600 W m<span class="math notranslate nohighlight">\(^{-2}\)</span>, what happens?  Does the temperature trace the same path?</p>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
+<p>Write a small python code that iterates the temperature until <span class="math notranslate nohighlight">\(\frac{Dt}{dt}=0\)</span>.  Now do the following…  Starting from <span class="math notranslate nohighlight">\(S_0=1600 W m^{-2}\)</span> calculate <span class="math notranslate nohighlight">\(T_s\)</span> (use a first guess <span class="math notranslate nohighlight">\(T_s\)</span>=320K.  Then reduce <span class="math notranslate nohighlight">\(S_0\)</span> by 20 W m<span class="math notranslate nohighlight">\(^{-2}\)</span>, find the new equilibrium (starting the iteration from the previous equilibrium value), repeat until <span class="math notranslate nohighlight">\(S_0\)</span>=1000 W m<span class="math notranslate nohighlight">\(^{-2}\)</span>, storing the equilibrium . Then reverse the process by increasing <span class="math notranslate nohighlight">\(S_0\)</span> in 20 <span class="math notranslate nohighlight">\(W m^{-2}\)</span> steps back to the present day and beyond to 1600 W m<span class="math notranslate nohighlight">\(^{-2}\)</span>.  Plot <span class="math notranslate nohighlight">\(T_s\)</span> against <span class="math notranslate nohighlight">\(S_0\)</span>.</p>
+</section>
+<section id="id1">
+<h2>Question:<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>We will now calculate the ice albedo feedback parameter.</p>
+<p>Similarly as we did for the Planck feedback, we need to calculate the rate of change of flux imbalance with respect to temperature:</p>
+<div class="math notranslate nohighlight">
+\[
+-\frac{\partial N}{\partial \alpha}\frac{\partial \alpha}{\partial T}=-\underbrace{\frac{-S0}{4}}_{\frac{\partial N}{\partial \alpha}}\underbrace{\frac{1}{4}\frac{1}{23}sech^2\frac{T-272}{23}}_{\frac{\partial \alpha}{\partial T}}
+\]</div>
+<p>which uses the trig relation <span class="math notranslate nohighlight">\(\frac{d tanh(x)}{dx}=sech^2(x)\)</span>.</p>
+<p>We can now code this up to calculate the feedback, we need the relationship for <span class="math notranslate nohighlight">\(sech^2(x)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[sech^2(x)=\left(\frac{2}{e^x+e^{-x}}\right)^2\]</div>
+<p>This gives</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">mp</span>
+
+<span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">340</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">Ts</span><span class="o">-</span><span class="mi">272</span><span class="p">)</span><span class="o">/</span><span class="mi">23</span>
+<span class="n">icefeedback</span><span class="o">=</span><span class="n">S0today</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mf">2.0</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)),</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">icefeedback</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Albedo Feedback $\lambda_</span><span class="si">{ice}</span><span class="s2">$ (Wm$^{-2}$K$^{-1}$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;T (K)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;T (K)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/clim_EBM_0D_ice_feedback_15_1.png" src="../_images/clim_EBM_0D_ice_feedback_15_1.png" />
+</div>
+</div>
+<p>Note that the magnitude of the feedback is strongly dependent on the temperature, i.e. the ice albedo feedback strength is not an absolute but depends on the current state.</p>
+</section>
+<section id="question-why-is-the-feedback-zero-at-cold-or-warm-temperatures">
+<h2>Question: Why is the feedback zero at cold or warm temperatures?<a class="headerlink" href="#question-why-is-the-feedback-zero-at-cold-or-warm-temperatures" title="Permalink to this headline">#</a></h2>
+<p>This makes sense if you think about it a little.  For example, at very cold temperatures when the world is ice covered, further decreases in temperature can not increase ice and do little to impact albedo, thus it is clear the feedback should be zero.  Likewise for warm temperatures when the world is ice free.</p>
+</section>
+<section id="question-is-the-overall-feedback-ice-albedo-ever-unstable">
+<h2>Question: Is the overall feedback (ice+albedo) ever unstable?<a class="headerlink" href="#question-is-the-overall-feedback-ice-albedo-ever-unstable" title="Permalink to this headline">#</a></h2>
+<p>Try to add the Planck feedback to the plot…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add hline for magnitude of Planck</span>
+<span class="n">planckfeedback</span><span class="o">=-</span><span class="mf">4.0</span><span class="o">*</span><span class="n">eps_e</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">icefeedback</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ice feedback&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">planckfeedback</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Planck feedback&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$\lambda$ (Wm$^{-2}$K$^{-1}$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;T (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">feedback</span><span class="o">=</span><span class="n">icefeedback</span><span class="o">+</span><span class="n">planckfeedback</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">feedback</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;T (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Total $\lambda$ (Wm$^{-2}$K$^{-1}$)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Total $\\lambda$ (Wm$^{-2}$K$^{-1}$)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/clim_EBM_0D_ice_feedback_17_1.png" src="../_images/clim_EBM_0D_ice_feedback_17_1.png" />
+</div>
+</div>
+<p>We can see that the system is indeed unstable between approximately 255K and 282 K, by finding out the lowest and highest entries where the ice albedo exceeds the Planck feedback, (although to be precise we should really solve with a root finding algorithm).</p>
+<p>This very simple model shows the essence of unstable feedback.  In the full zonal model of ice feedback we will see in fact that ice albedo feedback is actually runaway once the ice edge expands to a certain latitude, since the impact of the ice increases as you move towards the equator, which receives more solar insulation over the year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># rough estimate (to nearest 2K) of unstable regime bounds</span>
+<span class="c1">#</span>
+<span class="n">unstable_min</span><span class="o">=</span><span class="n">Ts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">feedback</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
+<span class="n">unstable_max</span><span class="o">=</span><span class="n">Ts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">feedback</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Earth system unstable between &quot;</span><span class="p">,</span><span class="n">unstable_min</span><span class="p">,</span><span class="s2">&quot; and &quot;</span><span class="p">,</span><span class="n">unstable_max</span><span class="p">,</span><span class="s2">&quot; K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Earth system unstable between  256.5656565656566  and  280.6060606060606  K
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lesson-take-home-messages">
+<h2>Lesson take home messages:<a class="headerlink" href="#lesson-take-home-messages" title="Permalink to this headline">#</a></h2>
+<ul>
+  <li>An overall positive feedback indicates an unstable system</li>
+  <li>With only the Planck feedback operating, there is only one stable equilibrium possible in the system </li>
+  <li>With a nonlinear ice albedo feedback there is the possibility of hysteresis.  For some values of solar constant there are 3 equilibrium points, 2 stable and one unstable.  As S0 reduces the Earth can flip from the upper stable branch to the lower stable branch.  As S0 increases again the switch will occur at a difference (higher) solar constant value.</li>
+  <li>Thus ice-covered states are "sticky", once the Earth is frozen, difficult to get out</li>
+  <li> We note that when climate models are discussed, we often talk about them having a positive or negative feedback, this usually refers to all the feedbacks **except** the Planck feedback.  <u>Thus a climate model with positive feedback can still be stable as long as the magnitude does not exceed that of the Planck feedback.</u> </li>  
+</ul> <p>Finally… if you enjoyed this notebook and wish to investigate further, I suggest trying out the zonal EBM notebook in Brian Rose’s coursebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ts</span><span class="o">=</span><span class="mf">320.</span> <span class="c1"># first guess initial value..., warm temperature</span>
+<span class="n">S0vec</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># vector of S0</span>
+<span class="n">Cwater</span><span class="o">=</span><span class="mi">3850</span>
+<span class="n">densityH</span><span class="o">=</span><span class="mf">1e6</span>
+<span class="n">dt</span><span class="o">=</span><span class="mi">86400</span><span class="o">*</span><span class="mi">365</span>
+<span class="n">Cddt</span><span class="o">=</span><span class="n">Cwater</span><span class="o">*</span><span class="n">densityH</span><span class="o">/</span><span class="n">dt</span>
+
+<span class="n">Tdown</span><span class="p">,</span><span class="n">Tup</span><span class="o">=</span><span class="p">[],[]</span>  <span class="c1"># simple lists to store cooling and warming branches </span>
+
+<span class="c1"># decreasing solar loop</span>
+<span class="k">for</span> <span class="n">S0</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">S0vec</span><span class="p">):</span>
+    <span class="n">deltaT</span><span class="o">=</span><span class="mf">99.</span>
+    <span class="c1"># find the equilibrium temperature </span>
+    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">deltaT</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0001</span><span class="p">:</span>
+        <span class="n">deltaT</span><span class="o">=</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span><span class="n">Ts</span><span class="p">)</span><span class="o">/</span><span class="n">Cddt</span>
+        <span class="n">Ts</span><span class="o">+=</span><span class="n">deltaT</span>
+    <span class="c1"># store Ts value</span>
+    <span class="n">Tdown</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ts</span><span class="p">)</span>
+
+<span class="c1"># increasing solar loop</span>
+<span class="k">for</span> <span class="n">S0</span> <span class="ow">in</span> <span class="n">S0vec</span><span class="p">:</span>
+    <span class="n">deltaT</span><span class="o">=</span><span class="mf">99.</span>
+    <span class="c1"># find the equilibrium temperature </span>
+    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">deltaT</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0001</span><span class="p">:</span>
+        <span class="n">deltaT</span><span class="o">=</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span><span class="n">Ts</span><span class="p">)</span><span class="o">/</span><span class="n">Cddt</span>
+        <span class="n">Ts</span><span class="o">+=</span><span class="n">deltaT</span>
+    <span class="c1"># store Ts value</span>
+    <span class="n">Tup</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ts</span><span class="p">)</span>
+    
+    <span class="c1"># then repest with the reverse array</span>
+    
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S0vec</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">Tdown</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;decreasing S0&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S0vec</span><span class="p">,</span><span class="n">Tup</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;increasing S0&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;hysteresis&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;S0 (W m$^{-2}$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ts(K) &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Ts(K) &#39;)
+</pre></div>
+</div>
+<img alt="../_images/clim_EBM_0D_ice_feedback_22_1.png" src="../_images/clim_EBM_0D_ice_feedback_22_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../content_feedbacks.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 3: Climate feedbacks</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="clim_EBM_water_vapor.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Adding water vapor feedback to the grey model of the atmosphere</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Adrian Tompkins<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
