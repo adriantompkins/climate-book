@@ -115,29 +115,19 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../content1.html">
-   Chapter 1: Climate models
+  <a class="reference internal" href="../content_thermo.html">
+   Chapter 1: Thermodynamics
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="climate-system-models.html">
-     The climate system and climate models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="advection.html">
-     Focus on advection
-    </a>
-   </li>
+  <ul class="simple">
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../content2.html">
+  <a class="reference internal" href="../content_radiation.html">
    Chapter 2: Energy Balance and Forcing
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -147,29 +137,29 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="insolation.html">
+    <a class="reference internal" href="radn_insolation.html">
      Insolation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="radeq.html">
+    <a class="reference internal" href="radn_radeq.html">
      Radiative Equilibrium
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="rce.html">
+    <a class="reference internal" href="radn_rce.html">
      Radiative-Convective Equilibrium
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="orbital.html">
+    <a class="reference internal" href="radn_orbital.html">
      Orbital variations, insolation, and the ice ages
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../content3.html">
+  <a class="reference internal" href="../content_feedbacks.html">
    Chapter 3: Climate feedbacks
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -179,22 +169,44 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="EBM_0D_ice_feedback.html">
+    <a class="reference internal" href="clim_EBM_0D_ice_feedback.html">
      Ice albedo feedback in the 0D energy balance model
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="EBM_water_vapor.html">
+    <a class="reference internal" href="clim_EBM_water_vapor.html">
      Adding water vapor feedback to the grey model of the atmosphere
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="daisy_world.html">
+    <a class="reference internal" href="clim_daisy_world.html">
      Biogeophysical feedbacks: Daisy World
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content_modelling.html">
+   Chapter 1: Climate models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="CMIP_IPCC_fun.html">
+    <a class="reference internal" href="mod_climate-system-models.html">
+     The climate system and climate models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_advection.html">
+     Focus on advection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mod_CMIP_IPCC_fun.html">
      Coupled Model Intercomparison Project (CMIP)
     </a>
    </li>
@@ -251,35 +263,6 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/notebooks/sensitivity-feedback.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -302,7 +285,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://gitlab.com/tompkins/earth-system-modelling"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -319,7 +302,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/sensitivity-feedback.html&body=Your%20issue%20content%20here."
+        <a href="https://gitlab.com/tompkins/earth-system-modelling/issues/new?title=Issue%20on%20page%20%2Fnotebooks/sensitivity-feedback.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1379,7 +1362,7 @@ parameter <span class="math notranslate nohighlight">\(\lambda_0\)</span>.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "None/None",
             ref: "master",
         },
         codeMirrorConfig: {
