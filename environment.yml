@@ -1,0 +1,16 @@
+name: my_climlab_environment
+channels:
+  - conda-forge
+dependencies:
+  # Specify the Python version
+  - python=3.10 
+  
+  # Install climlab and its dependencies from conda-forge
+  - climlab 
+  
+  # Add other packages you might need (e.g., for plotting or notebooks)
+  - jupyterlab
+  - numpy
+  - matplotlib
+  - pandas
+  
