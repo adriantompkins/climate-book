@@ -3,7 +3,10 @@ channels:
   - conda-forge
 dependencies:
   # Specify the Python version
-  - python=3.10 
+  - python=3.10
+  
+  # **Add Jupyter Book here**
+  - jupyter-book  # <-- This is the crucial missing piece
   
   # Install climlab and its dependencies from conda-forge
   - climlab 
