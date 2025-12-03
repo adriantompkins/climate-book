@@ -13,6 +13,7 @@ dependencies:
   
   # Add other packages you might need (e.g., for plotting or notebooks)
   - jupyterlab
+  - cdo 
   - numpy
   - matplotlib
   - pandas
