@@ -1,5 +1,25 @@
-format: jb-article
+format: jb-book
 root: intro
+
+parts:
+  - caption: Thermodynamics
+    chapters:
+    - file: 01_thermodynamics/intro_thermo
+    # - file: 01_thermodynamics/cloud_micro  <-- Add files here later
+
+  - caption: Radiation and Energy
+    chapters:
+    - file: 02_radiation/intro_radiation   # This points to the .md file
+      sections:
+      - file: 02_radiation/radn_insolation # This points to the .ipynb
+
+  - caption: Climate Feedbacks
+    chapters:
+    - file: 03_feedbacks/intro_feedbacks
+      sections:
+      # - file: 03_feedbacks/clim_EBM_ice
+
+
 sections:
 # CHAPTER 1: THERMODYNAMICS, CONVECTION AND CLOUDS
 #- file: content_thermo
@@ -11,18 +31,18 @@ sections:
   sections:
   - file: notebooks/radn_insolation.ipynb
   - file: notebooks/radn_radeq.ipynb
-  - file: notebooks/radn_rce.ipynb
-  - file: notebooks/radn_orbital.ipynb
+#  - file: notebooks/radn_rce.ipynb
+#  - file: notebooks/radn_orbital.ipynb
 # CHAPTER 3: CLIMATE FEEDBACKS
-- file: content_feedbacks
-  sections:
-  - file: notebooks/clim_EBM_0D_ice_feedback.ipynb
-  - file: notebooks/clim_EBM_water_vapor.ipynb
-  - file: notebooks/clim_daisy_world.ipynb
+#- file: content_feedbacks
+#  sections:
+#  - file: notebooks/clim_EBM_0D_ice_feedback.ipynb
+#  - file: notebooks/clim_EBM_water_vapor.ipynb
+#  - file: notebooks/clim_daisy_world.ipynb
 # CHAPTER 4: MODELLING
-- file: content_modelling
-  sections:
-  - file: notebooks/mod_climate-system-models.ipynb
-  - file: notebooks/mod_advection.ipynb
-  - file: notebooks/mod_CMIP_IPCC_temperature_trends.ipynb
+#- file: content_modelling
+#sections:
+#  - file: notebooks/mod_climate-system-models.ipynb
+#  - file: notebooks/mod_advection.ipynb
+#  - file: notebooks/mod_CMIP_IPCC_temperature_trends.ipynb
   
