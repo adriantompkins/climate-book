@@ -4,33 +4,73 @@ root: intro
 parts:
   - caption: Thermodynamics
     chapters:
-    - file: 01_thermodynamics/intro_thermo
+    - file: notebooks/01_thermodynamics/intro_thermo
+      sections:
+      - file: notebooks/01_thermodynamics/intro_ERA5_maps
+
+  - caption: Radiation and Energy
+    chapters:
+    - file: notebooks/04_radiation/content_radiation
+      sections:
+      - file: notebooks/04_radiation/radn_insolation
+      - file: notebooks/04_radiation/radn_radeq
+      - file: notebooks/04_radiation/radn_rce
+      - file: notebooks/04_radiation/radn_orbital
+
+  - caption: Climate Feedbacks
+    chapters:
+    - file: notebooks/05_feedbacks/content_feedbacks
+      sections:
+      - file: notebooks/05_feedbacks/clim_EBM_0D_ice_feedback
+      - file: notebooks/05_feedbacks/clim_EBM_water_vapor
+      - file: notebooks/05_feedbacks/clim_daisy_world
+
+  - caption: Modelling
+    chapters:
+    - file: notebooks/06_modelling/content_modelling
+      sections:
+      - file: notebooks/06_modelling/mod_climate-system-models
+      - file: notebooks/06_modelling/mod_advection
+      - file: notebooks/06_modelling/mod_CMIP_IPCC_temperature_trends
+
+  - caption: Appendix
+    chapters:
+    - file: markdown-notebooks
+
+
+format: jb-book
+root: intro
+
+parts:
+  #- caption: Thermodynamics
+  #  chapters:
+  #  - file: 01_thermodynamics/intro_thermo
     # - file: 01_thermodynamics/cloud_micro  <-- Add files here later
 
   - caption: Radiation and Energy
     chapters:
-    - file: 02_radiation/intro_radiation   # This points to the .md file
+    - file: notebooks/04_radiation/content_radiation   # This points to the .md file
       sections:
-      - file: 02_radiation/radn_insolation # This points to the .ipynb
+      - file: notebooks/04_radiation/radn_insolation # This points to the .ipynb
 
   - caption: Climate Feedbacks
     chapters:
-    - file: 03_feedbacks/intro_feedbacks
+    - file: notebooks/05_feedbacks/content_feedbacks
       sections:
-      # - file: 03_feedbacks/clim_EBM_ice
+       - file: notebooks/05_feedbacks/clim_EBM_0D_ice_feedback
 
 
-sections:
+#sections:
 # CHAPTER 1: THERMODYNAMICS, CONVECTION AND CLOUDS
 #- file: content_thermo
 #  sections:
   #- file: intro_ERA5_maps.ipynb
   # file for microphysics here
 # CHAPTER 2: RADIATION AND ENERGY BALANCE
-- file: content_radiation
-  sections:
-  - file: notebooks/radn_insolation.ipynb
-  - file: notebooks/radn_radeq.ipynb
+#- file: content_radiation
+#  sections:
+#  - file: notebooks/radn_insolation.ipynb
+#  - file: notebooks/radn_radeq.ipynb
 #  - file: notebooks/radn_rce.ipynb
 #  - file: notebooks/radn_orbital.ipynb
 # CHAPTER 3: CLIMATE FEEDBACKS

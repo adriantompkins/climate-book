@@ -1,8 +1,6 @@
 {
   "input": {
-    "files": [
-      "."
-    ],
+    "files": [],
     "opts": {
       "execute": false,
       "pdf": false,
