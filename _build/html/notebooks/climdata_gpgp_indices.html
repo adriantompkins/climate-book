@@ -1,0 +1,1206 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Rainfall indices based on the Indian monsoon &#8212; Earth System Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/climdata_gpgp_indices';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Earth System Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gl/tompkins%2Fearth-system-modelling/master?urlpath=tree/notebooks/climdata_gpgp_indices.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://gitlab.com/tompkins/earth-system-modelling" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-gitlab"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/climdata_gpgp_indices.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Rainfall indices based on the Indian monsoon</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Rainfall indices based on the Indian monsoon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cutting-out-areas">Cutting out areas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-files">Merging files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examine-the-files">Examine the files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-averaging">Spatial averaging</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-can-start-to-use-cdo-to-calculate-more-interesting-indices">Now we can start to use CDO to calculate more interesting indices</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-a-wet-area-index">TASK 1:  A wet area index.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-number-of-extreme-rainy-days">TASK 2: Number of extreme rainy days</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#percentiles">Percentiles.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-hands-on-homework">TASK 3 : Hands on/Homework</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-homework">TASK 4 : Homework</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="rainfall-indices-based-on-the-indian-monsoon">
+<h1>Rainfall indices based on the Indian monsoon<a class="headerlink" href="#rainfall-indices-based-on-the-indian-monsoon" title="Permalink to this heading">#</a></h1>
+<p>in this lesson we are going to apply some of the basics we have learned from the video course concerning the simple manipulation of netcdf files using cdo.  The examples are based on the analysis of the GPCP data.  To help you get the data fast to your machine I’ve placed a copy of an older version on my dods server, since accessing the latest version from NASA requires a time consuming registration process.  To see how to do this, <span class="xref myst">read this NASA page</span>. You can then replace this version of gpcp later if you desire.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># you need to install:</span>
+<span class="c1"># MAC brew install (or port install)</span>
+<span class="c1"># UBUNTU sudo apt install</span>
+<span class="c1">#</span>
+<span class="c1"># cdo</span>
+<span class="c1"># wget</span>
+<span class="c1"># ncview</span>
+<span class="c1"># netcdf-dev (ubuntu) netcdf (brew)</span>
+
+<span class="nv">year1</span><span class="o">=</span><span class="m">1998</span>
+<span class="nv">year2</span><span class="o">=</span><span class="m">2005</span>
+<span class="nv">ddir</span><span class="o">=</span><span class="s2">&quot;../../DATA/gpcp&quot;</span>
+<span class="nv">fname</span><span class="o">=</span>gpcp_v01r03_daily_
+</pre></div>
+</div>
+</div>
+</div>
+<p>here we pull the data from the ICTP server using wget…  But you can also follow my video course and write an API to get rainfall data from ERA5 or an alternative retrieval from the CDS if you prefer</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the data</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>./gpcp
+<span class="nv">stub</span><span class="o">=</span>gpcp_v01r03_daily_
+<span class="k">for</span><span class="w"> </span>year<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="si">${</span><span class="nv">year1</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">year2</span><span class="si">}</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">   </span>wget<span class="w"> </span>-P<span class="w"> </span><span class="nv">$ddir</span><span class="w"> </span>http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/<span class="si">${</span><span class="nv">stub</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>.nc
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 00:23:16--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_1998.nc
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 200 OK
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length: 94726499 (90M) [application/x-netcdf]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving to: ‘../../DATA/gpcp/gpcp_v01r03_daily_1998.nc.3’
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r   0%[                    ]       0  --.-KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0   0%[                    ]   8.37K  27.9KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03   0%[                    ]  81.89K   160KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_   0%[                    ] 194.39K   264KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d   0%[                    ] 297.41K   317KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     gpcp_v01r03_da   0%[                    ] 395.00K   342KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    gpcp_v01r03_dai   0%[                    ] 518.35K   380KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   gpcp_v01r03_dail   0%[                    ] 621.36K   397KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gpcp_v01r03_daily   0%[                    ] 716.25K   404KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> gpcp_v01r03_daily_   0%[                    ] 794.86K   403KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_1   0%[                    ] 922.28K   420KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pcp_v01r03_daily_19   1%[                    ]   1.01M   430KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp_v01r03_daily_199   1%[                    ]   1.10M   433KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p_v01r03_daily_1998   1%[                    ]   1.16M   424KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_v01r03_daily_1998.   1%[                    ]   1.23M   420KB/s    eta 3m 37s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v01r03_daily_1998.n   1%[                    ]   1.31M   391KB/s    eta 3m 37s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01r03_daily_1998.nc   1%[                    ]   1.52M   426KB/s    eta 3m 37s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1r03_daily_1998.nc.   1%[                    ]   1.59M   455KB/s    eta 3m 37s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r03_daily_1998.nc.3   1%[                    ]   1.68M   463KB/s    eta 3m 34s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03_daily_1998.nc.3    1%[                    ]   1.78M   459KB/s    eta 3m 34s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3_daily_1998.nc.3     2%[                    ]   1.88M   462KB/s    eta 3m 34s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_daily_1998.nc.3      2%[                    ]   1.97M   460KB/s    eta 3m 34s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>daily_1998.nc.3       2%[                    ]   2.05M   447KB/s    eta 3m 34s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aily_1998.nc.3        2%[                    ]   2.12M   441KB/s    eta 3m 31s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ily_1998.nc.3         2%[                    ]   2.21M   442KB/s    eta 3m 31s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ly_1998.nc.3          2%[                    ]   2.33M   450KB/s    eta 3m 31s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y_1998.nc.3           2%[                    ]   2.43M   447KB/s    eta 3m 31s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_1998.nc.3            2%[                    ]   2.53M   446KB/s    eta 3m 31s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1998.nc.3             2%[                    ]   2.63M   447KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>998.nc.3              3%[                    ]   2.72M   453KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98.nc.3               3%[                    ]   2.82M   465KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.nc.3                3%[                    ]   2.93M   504KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.nc.3                 3%[                    ]   3.04M   472KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nc.3                  3%[                    ]   3.09M   470KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c.3                   3%[                    ]   3.17M   463KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.3                    3%[                    ]   3.24M   451KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3                     3%[                    ]   3.31M   414KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      3%[                    ]   3.54M   455KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  g   4%[                    ]   3.64M   462KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 gp   4%[                    ]   3.74M   469KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                gpc   4%[                    ]   3.82M   467KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               gpcp   4%[                    ]   3.91M   458KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              gpcp_   4%[                    ]   3.99M   453KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             gpcp_v   4%[                    ]   4.08M   448KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            gpcp_v0   4%[                    ]   4.19M   449KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           gpcp_v01   4%[                    ]   4.31M   425KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r   4%[                    ]   4.50M   451KB/s    eta 3m 17s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0   5%[&gt;                   ]   4.60M   448KB/s    eta 3m 17s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03   5%[&gt;                   ]   4.68M   445KB/s    eta 3m 17s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_   5%[&gt;                   ]   4.76M   457KB/s    eta 3m 17s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d   5%[&gt;                   ]   4.85M   457KB/s    eta 3m 17s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     gpcp_v01r03_da   5%[&gt;                   ]   4.94M   463KB/s    eta 3m 16s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    gpcp_v01r03_dai   5%[&gt;                   ]   5.03M   497KB/s    eta 3m 16s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   gpcp_v01r03_dail   5%[&gt;                   ]   5.10M   452KB/s    eta 3m 16s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gpcp_v01r03_daily   5%[&gt;                   ]   5.17M   440KB/s    eta 3m 16s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> gpcp_v01r03_daily_   5%[&gt;                   ]   5.23M   433KB/s    eta 3m 16s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_1   5%[&gt;                   ]   5.30M   430KB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pcp_v01r03_daily_19   5%[&gt;                   ]   5.37M   425KB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp_v01r03_daily_199   6%[&gt;                   ]   5.45M   424KB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p_v01r03_daily_1998   6%[&gt;                   ]   5.52M   419KB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_v01r03_daily_1998.   6%[&gt;                   ]   5.59M   404KB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v01r03_daily_1998.n   6%[&gt;                   ]   5.65M   417KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01r03_daily_1998.nc   6%[&gt;                   ]   5.75M   390KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1r03_daily_1998.nc.   6%[&gt;                   ]   5.83M   382KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r03_daily_1998.nc.3   6%[&gt;                   ]   5.91M   382KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03_daily_1998.nc.3    6%[&gt;                   ]   6.00M   384KB/s    eta 3m 21s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3_daily_1998.nc.3     6%[&gt;                   ]   6.09M   383KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_daily_1998.nc.3      6%[&gt;                   ]   6.18M   383KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>daily_1998.nc.3       6%[&gt;                   ]   6.26M   383KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aily_1998.nc.3        7%[&gt;                   ]   6.36M   389KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ily_1998.nc.3         7%[&gt;                   ]   6.43M   395KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ly_1998.nc.3          7%[&gt;                   ]   6.52M   400KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y_1998.nc.3           7%[&gt;                   ]   6.60M   401KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_1998.nc.3            7%[&gt;                   ]   6.67M   400KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1998.nc.3             7%[&gt;                   ]   6.74M   400KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>998.nc.3              7%[&gt;                   ]   6.80M   396KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98.nc.3               7%[&gt;                   ]   6.87M   397KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.nc.3                7%[&gt;                   ]   6.95M   400KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.nc.3                 7%[&gt;                   ]   7.02M   394KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nc.3                  7%[&gt;                   ]   7.07M   388KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c.3                   7%[&gt;                   ]   7.13M   380KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.3                    7%[&gt;                   ]   7.21M   327KB/s    eta 3m 27s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3                     8%[&gt;                   ]   7.33M   334KB/s    eta 3m 27s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      8%[&gt;                   ]   7.46M   345KB/s    eta 3m 27s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  g   8%[&gt;                   ]   7.53M   340KB/s    eta 3m 27s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 gp   8%[&gt;                   ]   7.60M   332KB/s    eta 3m 27s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                gpc   8%[&gt;                   ]   7.66M   328KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               gpcp   8%[&gt;                   ]   7.76M   334KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              gpcp_   8%[&gt;                   ]   7.86M   340KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             gpcp_v   8%[&gt;                   ]   7.94M   343KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            gpcp_v0   8%[&gt;                   ]   8.02M   345KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           gpcp_v01   8%[&gt;                   ]   8.12M   354KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r   9%[&gt;                   ]   8.21M   358KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0   9%[&gt;                   ]   8.27M   352KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03   9%[&gt;                   ]   8.31M   344KB/s    eta 3m 23s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_   9%[&gt;                   ]   8.34M   308KB/s    eta 3m 30s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d   9%[&gt;                   ]   8.55M   344KB/s    eta 3m 30s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     gpcp_v01r03_da   9%[&gt;                   ]   8.63M   385KB/s    eta 3m 30s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    gpcp_v01r03_dai   9%[&gt;                   ]   8.71M   378KB/s    eta 3m 30s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   gpcp_v01r03_dail   9%[&gt;                   ]   8.78M   363KB/s    eta 3m 30s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gpcp_v01r03_daily   9%[&gt;                   ]   8.88M   369KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> gpcp_v01r03_daily_   9%[&gt;                   ]   8.97M   380KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_1  10%[=&gt;                  ]   9.08M   384KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pcp_v01r03_daily_19  10%[=&gt;                  ]   9.17M   383KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp_v01r03_daily_199  10%[=&gt;                  ]   9.23M   370KB/s    eta 3m 26s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p_v01r03_daily_1998  10%[=&gt;                  ]   9.27M   362KB/s    eta 3m 25s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_v01r03_daily_1998.  10%[=&gt;                  ]   9.37M   343KB/s    eta 3m 25s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v01r03_daily_1998.n  10%[=&gt;                  ]   9.50M   356KB/s    eta 3m 25s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01r03_daily_1998.nc  10%[=&gt;                  ]   9.57M   357KB/s    eta 3m 25s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1r03_daily_1998.nc.  10%[=&gt;                  ]   9.65M   366KB/s    eta 3m 24s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r03_daily_1998.nc.3  10%[=&gt;                  ]   9.75M   437KB/s    eta 3m 24s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03_daily_1998.nc.3   10%[=&gt;                  ]   9.84M   402KB/s    eta 3m 24s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3_daily_1998.nc.3    10%[=&gt;                  ]   9.93M   406KB/s    eta 3m 24s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_daily_1998.nc.3     11%[=&gt;                  ]  10.02M   410KB/s    eta 3m 24s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>daily_1998.nc.3      11%[=&gt;                  ]  10.11M   417KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aily_1998.nc.3       11%[=&gt;                  ]  10.17M   408KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ily_1998.nc.3        11%[=&gt;                  ]  10.21M   392KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ly_1998.nc.3         11%[=&gt;                  ]  10.28M   380KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y_1998.nc.3          11%[=&gt;                  ]  10.37M   381KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_1998.nc.3           11%[=&gt;                  ]  10.47M   384KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1998.nc.3            11%[=&gt;                  ]  10.56M   392KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>998.nc.3             11%[=&gt;                  ]  10.65M   416KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98.nc.3              11%[=&gt;                  ]  10.74M   428KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.nc.3               11%[=&gt;                  ]  10.82M   413KB/s    eta 3m 22s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.nc.3                12%[=&gt;                  ]  10.92M   425KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nc.3                 12%[=&gt;                  ]  11.00M   422KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c.3                  12%[=&gt;                  ]  11.08M   416KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.3                   12%[=&gt;                  ]  11.17M   412KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3                    12%[=&gt;                  ]  11.25M   411KB/s    eta 3m 20s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     12%[=&gt;                  ]  11.32M   406KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  g  12%[=&gt;                  ]  11.38M   396KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 gp  12%[=&gt;                  ]  11.42M   393KB/s    eta 3m 19s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                gpc  12%[=&gt;                  ]  11.50M   385KB/s    eta 3m 19s 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="cutting-out-areas">
+<h1>Cutting out areas<a class="headerlink" href="#cutting-out-areas" title="Permalink to this heading">#</a></h1>
+<p>first of all we need to cut out an area, what is the CDO command that is used for this ?</p>
+<details>
+<summary>Click here for answer</summary>
+The command we use is "sellonlatbox"
+</details>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Let&#39;s first cut out an area </span>
+<span class="c1">#</span>
+<span class="c1"># lon1, lon2, lat1, lat2</span>
+<span class="nv">india</span><span class="o">=</span><span class="s2">&quot;65,90,8,27&quot;</span>
+<span class="nv">wafrica</span><span class="o">=</span><span class="s2">&quot;-20,20,-5,30&quot;</span>
+
+<span class="nv">region</span><span class="o">=</span><span class="nv">$india</span>
+<span class="nv">region_tag</span><span class="o">=</span>_area<span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$region</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>,<span class="w"> </span>_<span class="k">)</span><span class="w"> </span>
+
+<span class="k">for</span><span class="w"> </span>year<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="si">${</span><span class="nv">year1</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">year2</span><span class="si">}</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nv">ifile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>.nc
+<span class="w">    </span><span class="nv">ofile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">year</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc
+<span class="w">    </span>cdo<span class="w"> </span>sellonlatbox,<span class="si">${</span><span class="nv">region</span><span class="si">}</span><span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="nv">$ofile</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 43MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 42MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 42MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 41MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 42MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 42MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 41MB]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">lon1</span><span class="o">=</span><span class="m">65</span>
+<span class="nv">lon2</span><span class="o">=</span><span class="m">90</span>
+<span class="nv">lat1</span><span class="o">=</span><span class="m">8</span>
+<span class="nv">lat2</span><span class="o">=</span><span class="m">27</span>
+
+<span class="nv">region</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">lon1</span><span class="si">}</span><span class="s2">,</span><span class="si">${</span><span class="nv">lon2</span><span class="si">}</span><span class="s2">,</span><span class="si">${</span><span class="nv">lat1</span><span class="si">}</span><span class="s2">,</span><span class="si">${</span><span class="nv">lat2</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">region_tag</span><span class="o">=</span>area_<span class="si">${</span><span class="nv">lon1</span><span class="si">}</span>_<span class="si">${</span><span class="nv">lon2</span><span class="si">}</span>_<span class="si">${</span><span class="nv">lat1</span><span class="si">}</span>_<span class="si">${</span><span class="nv">lat2</span><span class="si">}</span>
+
+<span class="k">for</span><span class="w"> </span>year<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="si">${</span><span class="nv">year1</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">year2</span><span class="si">}</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nv">ifile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>.nc
+<span class="w">    </span><span class="nv">ofile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>_<span class="si">${</span><span class="nv">region_tag</span><span class="si">}</span>.nc
+<span class="w">    </span>cdo<span class="w"> </span>sellonlatbox,<span class="si">${</span><span class="nv">region</span><span class="si">}</span><span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="nv">$ofile</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 43MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 41MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 42MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 44MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 43MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="merging-files">
+<h1>Merging files<a class="headerlink" href="#merging-files" title="Permalink to this heading">#</a></h1>
+<p>now we want to merge the files into a single file for the whole period and just select the summer months</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># now the files are much smaller, let&#39;s put them together in a single file for ease</span>
+cdo<span class="w"> </span>-O<span class="w"> </span>mergetime<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}</span>????<span class="si">${</span><span class="nv">region_tag</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc
+
+<span class="c1"># just select the summer months</span>
+cdo<span class="w"> </span>-O<span class="w"> </span>selmon,6/9<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    mergetime: </span>Processed 1519440 values from 8 variables over 2922 timesteps [0.32s 58MB]
+<span class=" -Color -Color-Green">cdo    selmonth: </span>Processed 507520 values from 1 variable over 2922 timesteps [0.17s 48MB]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="examine-the-files">
+<h1>Examine the files<a class="headerlink" href="#examine-the-files" title="Permalink to this heading">#</a></h1>
+<p>Let’s take a look at the resulting file with ncview</p>
+<p>Once you are familiar with the details, let’s start to make some more involved indices</p>
+<p>These follow <a class="reference external" href="https://arxiv.org/abs/2404.12419">https://arxiv.org/abs/2404.12419</a></p>
+<p>We first calculate the anomaly of the annual rainy season.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we have a single file, let&#39;s look at the annual anomaly</span>
+cdo<span class="w"> </span>timmean<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_timmean.nc
+cdo<span class="w"> </span>sub<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_timmean.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom.nc
+cdo<span class="w"> </span>yearmean<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom_yearmean.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo(1) timmean: </span>Process started
+<span class=" -Color -Color-Green">cdo    sub: </span>Filling up stream2 &gt;(pipe1.4)&lt; by copying the first timestep.
+<span class=" -Color -Color-Green">cdo    sub: </span>Processed 508040 values from 2 variables over 977 timesteps [0.18s 47MB]
+<span class=" -Color -Color-Green">cdo    yearmean: </span>Processed 507520 values from 1 variable over 976 timesteps [0.07s 39MB]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="spatial-averaging">
+<h1>Spatial averaging<a class="headerlink" href="#spatial-averaging" title="Permalink to this heading">#</a></h1>
+<p>The spatial average is actually not straightforward to calculate offline.  As is clear from the video, one needs to account for the grid cell size, which means with a regular lat-long grid, weighting for the cosine of the latitude. Luckily cdo accounts for different grid mesh sizes in its fldmean function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s make an all-region index</span>
+cdo<span class="w"> </span>fldmean<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom_yearmean.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom_meanindex.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    fldmean: </span>Processed 4160 values from 1 variable over 8 timesteps [0.02s 33MB]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="now-we-can-start-to-use-cdo-to-calculate-more-interesting-indices">
+<h1>Now we can start to use CDO to calculate more interesting indices<a class="headerlink" href="#now-we-can-start-to-use-cdo-to-calculate-more-interesting-indices" title="Permalink to this heading">#</a></h1>
+<section id="task-1-a-wet-area-index">
+<h2>TASK 1:  A wet area index.<a class="headerlink" href="#task-1-a-wet-area-index" title="Permalink to this heading">#</a></h2>
+<p>Take a moment to think about this before reading on. You need to use cdo to make the “wet-area” index, which is  the fraction of a region that has had a <b>positive</b> rainfall anomaly in a given particular year…</p>
+<p>In order to do this you will need to use a logical function, like</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ge</span></code> (greater than or equal) which compares two fields and produces a 1 if the first field is larger than or equal to the second, 0 otherwise, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gtc</span></code> (greater than a constant), which requires an argument (e.g. <code class="docutils literal notranslate"><span class="pre">gec,5</span></code> no spaces!) which then gives a 1 if the input field is greater than the threshold.</p></li>
+</ul>
+<details>
+<summary>Which of these two function do we need to use here?</summary>
+Either can work!  We will need *gec* if we are to see if the anomaly is above zero.  But you don't need to calculate the anomaly necessarily, you could also use ```cdo ge``` to compare the annual mean precipitation directly to the climatology!
+</details><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we can start to look at the wet area index</span>
+<span class="c1"># first we set to 1 all points that are with a positive anomaly</span>
+cdo<span class="w"> </span>gec,0<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom_yearmean.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom_binary.nc
+
+<span class="c1"># and now we can add up all the 1s to see what the wet area is</span>
+cdo<span class="w"> </span>fldmean<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom_binary.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_wetarea_index.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    gec: </span>Processed 4160 values from 1 variable over 8 timesteps [0.02s 33MB]
+<span class=" -Color -Color-Green">cdo    fldmean: </span>Processed 4160 values from 1 variable over 8 timesteps [0.02s 33MB]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-2-number-of-extreme-rainy-days">
+<h2>TASK 2: Number of extreme rainy days<a class="headerlink" href="#task-2-number-of-extreme-rainy-days" title="Permalink to this heading">#</a></h2>
+<p>In this task you will need to calculate first the 95th percentile of rainfall, and then sum up the number of days within the monsoon season each year that exceed this threshold for each location…</p>
+</section>
+<section id="percentiles">
+<h2>Percentiles.<a class="headerlink" href="#percentiles" title="Permalink to this heading">#</a></h2>
+<p>Let’s say you have a collection of <span class="math notranslate nohighlight">\(n\)</span> observations <span class="math notranslate nohighlight">\(o_i\)</span>.  The Xth percentile simply gives the threshold below which <span class="math notranslate nohighlight">\(X\)</span> % of the distribution lies.  Now if <span class="math notranslate nohighlight">\(n\)</span> is large, you could simply line up the number in ascending order and make the cut at the point where <span class="math notranslate nohighlight">\(X\)</span>% of the numbers are smaller than your chosen threshold.  However usually your sample is not large enough, in which case it is common to assume that the sampled values fit a common distribution (e.g. one might assume that they are Normally distributed).  The distribution can be fitted by various methods such as moment matching, and then the thresholds are derived from the fitted distribution.</p>
+<p>CDO has a number of built-in options that are derived from the relevant python package scipy:</p>
+<ul class="simple">
+<li><p>nrank</p></li>
+<li><p>nist</p></li>
+<li><p>rtype8</p></li>
+<li><p>linear</p></li>
+<li><p>lower</p></li>
+<li><p>higher</p></li>
+<li><p>nearest</p></li>
+<li><p>midpoint</p></li>
+<li><p>inverted_cdf</p></li>
+<li><p>averaged_inverted_cdf</p></li>
+<li><p>closest_observation</p></li>
+<li><p>interpolated_inverted_cdf</p></li>
+<li><p>hazen</p></li>
+<li><p>weibull</p></li>
+<li><p>median_unbiased</p></li>
+<li><p>normal_unbiased</p></li>
+</ul>
+<p>As you can see the list is long!  We will therefore not delve into the details here, but refer you to the <a class="reference external" href="https://code.mpimet.mpg.de/projects/cdo/embedded/index.html#x1-520001.10">cdo percentile documentation</a> for this method.  For large samples, there is very little difference between the methods. We simply use the default method in the following.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a index for extremes P95 for example</span>
+<span class="nv">ifile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc
+<span class="nv">percen</span><span class="o">=</span><span class="m">95</span>
+cdo<span class="w"> </span>timpctl,<span class="si">${</span><span class="nv">percen</span><span class="si">}</span><span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span>-timmin<span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span>-timmax<span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>.nc
+
+cdo<span class="w"> </span>ge<span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_binary.nc
+
+<span class="c1"># number of extreme rainy days per year</span>
+cdo<span class="w"> </span>yearsum<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_binary.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_nevents.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo(1) timmin: </span>Process started
+<span class=" -Color -Color-Green">cdo(2) timmax: </span>Process started
+<span class=" -Color -Color-Green">cdo    timpctl: </span>Processed 508560 values from 3 variables over 978 timesteps [0.20s 50MB]
+<span class=" -Color -Color-Green">cdo    ge: </span>Filling up stream2 &gt;../../DATA/gpcp/gpcp_v01r03_daily__area65_90_8_27_JJAS_p95.nc&lt; by copying the first timestep.
+<span class=" -Color -Color-Green">cdo    ge: </span>Processed 508040 values from 2 variables over 977 timesteps [0.11s 44MB]
+<span class=" -Color -Color-Green">cdo    yearsum: </span>Processed 507520 values from 1 variable over 976 timesteps [0.07s 38MB]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="task-3-hands-on-homework">
+<h3>TASK 3 : Hands on/Homework<a class="headerlink" href="#task-3-hands-on-homework" title="Permalink to this heading">#</a></h3>
+<p>Repeat the above exercises for another region that interests you, (e.g. West African monsoon, south American monsoon, Europe, take an area that interests you). Remember that if you cut down the seasons within the year to target the months when the rains arrive if you are focussing on a monsoon region!</p>
+</section>
+<section id="task-4-homework">
+<h3>TASK 4 : Homework<a class="headerlink" href="#task-4-homework" title="Permalink to this heading">#</a></h3>
+<p>Download from the dataserver SST data for the Pacific region, read up on the ENSO 3.4 index and think about how you could use CDO to make a simple ENSO index. This will be the topic of the next lecture, so don’t worry if you get stuck!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "None/None",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bash"
+        },
+        kernelOptions: {
+            name: "bash",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bash'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Rainfall indices based on the Indian monsoon</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cutting-out-areas">Cutting out areas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-files">Merging files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examine-the-files">Examine the files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-averaging">Spatial averaging</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-can-start-to-use-cdo-to-calculate-more-interesting-indices">Now we can start to use CDO to calculate more interesting indices</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-a-wet-area-index">TASK 1:  A wet area index.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-number-of-extreme-rainy-days">TASK 2: Number of extreme rainy days</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#percentiles">Percentiles.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-hands-on-homework">TASK 3 : Hands on/Homework</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-homework">TASK 4 : Homework</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Adrian Tompkins
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

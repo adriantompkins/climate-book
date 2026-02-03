@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Adding water vapor feedback to the grey model of the atmosphere &#8212; Earth System Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/clim_EBM_water_vapor';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Earth System Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gl/tompkins%2Fearth-system-modelling/master?urlpath=tree/notebooks/clim_EBM_water_vapor.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://gitlab.com/tompkins/earth-system-modelling" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-gitlab"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/clim_EBM_water_vapor.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Adding water vapor feedback to the grey model of the atmosphere</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments-this-notebook-borrows-material-from-lecture-notes-of-geoff-vallis-university-of-exeter-and-simona-bordoni-university-of-trento">Acknowledgments: This notebook borrows material from lecture notes of Geoff Vallis (university of Exeter) and Simona Bordoni (University of Trento)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-and-questions-to-consider">Exercises and Questions to consider:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-on-the-climate-feedback">Exercises on the climate feedback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-factor">Feedback factor</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="adding-water-vapor-feedback-to-the-grey-model-of-the-atmosphere">
+<h1>Adding water vapor feedback to the grey model of the atmosphere<a class="headerlink" href="#adding-water-vapor-feedback-to-the-grey-model-of-the-atmosphere" title="Permalink to this heading">#</a></h1>
+<section id="acknowledgments-this-notebook-borrows-material-from-lecture-notes-of-geoff-vallis-university-of-exeter-and-simona-bordoni-university-of-trento">
+<h2>Acknowledgments: This notebook borrows material from lecture notes of Geoff Vallis (university of Exeter) and Simona Bordoni (University of Trento)<a class="headerlink" href="#acknowledgments-this-notebook-borrows-material-from-lecture-notes-of-geoff-vallis-university-of-exeter-and-simona-bordoni-university-of-trento" title="Permalink to this heading">#</a></h2>
+<p>You will recall from atmospheric physics that in the <span class="math notranslate nohighlight">\(n\)</span> layer <em>black</em> body atmosphere we showed that the relationship between the surface temperature and the effective emitting temperature was</p>
+<div class="math notranslate nohighlight">
+\[
+T^4_s=(n+1)T^4_e
+\]</div>
+<p>Thus as <span class="math notranslate nohighlight">\(n\rightarrow \infty\)</span> then <span class="math notranslate nohighlight">\(T_s \rightarrow \infty\)</span>.  For a grey body atmosphere, instead, there is a finite solution. We can approximate this term in the energy balance equation by writing OLR term for the multilevel grey body model as :</p>
+<div class="math notranslate nohighlight">
+\[
+  C \frac{dT_s}{dt} = \frac{S_0}{4} [ 1 - \alpha(T_s)]  -  \frac{1}{1+\tau/2}\sigma T_s^4
+\]</div>
+<p>When <span class="math notranslate nohighlight">\(\tau=0\)</span> this reduces to the simple energy balance model with a transparent atmosphere, <span class="math notranslate nohighlight">\(T_s\)</span> then increases with <span class="math notranslate nohighlight">\(\tau\)</span> as expected from an increasing greenhouse effect, and then as <span class="math notranslate nohighlight">\(\tau \rightarrow \infty\)</span> the equations blows up and there is no solution for <span class="math notranslate nohighlight">\(T_s\)</span>!</p>
+<p>We will specify the optical depth as a temperature-dependent function that represents the increase of water vapor specific humidity with temperature added to a constant value that represents the effects of clouds and other greenhouse gases:</p>
+<p>\begin{equation}
+\tau = \tau_{co2}+\tau_{wv}=1.12 + 0.14 \exp \big [ - \frac{L_v}{R_v}  \big( \frac{1}{T} - \frac{1}{288} \big ) \big ]
+\end{equation}</p>
+<p><span class="math notranslate nohighlight">\(\tau(T)\)</span> includes a part that is constant (greenhouse gases and clouds) and a variable part that is proportional to water vapor pressure.  Remember that <span class="math notranslate nohighlight">\(R_v = 461.5\)</span> J kg<span class="math notranslate nohighlight">\(^{-1}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span> and <span class="math notranslate nohighlight">\(L_v = 2.5 \times 10^6\)</span> J kg<span class="math notranslate nohighlight">\(^{-1}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># packages needed in the notebook</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># define constants</span>
+<span class="n">Lv</span><span class="o">=</span><span class="mf">2.5e6</span>
+<span class="n">Rv</span><span class="o">=</span><span class="mf">461.5</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mf">5.67e-8</span>
+<span class="n">tauco2</span><span class="o">=</span><span class="mf">1.12</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now define the functions for the optical depth:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tauwv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;optical depth as function of surface temperature DUE to WATER VAPOR&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">fac</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">Lv</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">288</span><span class="p">)</span><span class="o">/</span><span class="n">Rv</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">tau</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tauco2</span><span class="o">+</span><span class="n">tauwv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="n">fac</span><span class="p">)</span>
+
+<span class="c1"># vector of surface temperatures</span>
+<span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span><span class="mi">320</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Ts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tau</span><span class="p">(</span><span class="n">Ts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[260 265 270 275 280 285 290 295 300 305 310 315]
+[1.13846747 1.14736118 1.15995205 1.17753935 1.20179613 1.23485246
+ 1.27939138 1.33875843 1.41708549 1.51942952 1.65192673 1.82196248]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s make a plot of Tau as a function of the surface temperature</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot Tau</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">tau</span><span class="p">(</span><span class="n">Ts</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$T_s$ (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Optical Depth ($</span><span class="se">\\</span><span class="s2">tau$)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Optical Depth ($\\tau$)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/0e30dddce6d3f687374e9c2cf52f1d526311f54c28a8fafe787fe22e7973b9f7.png" src="../_images/0e30dddce6d3f687374e9c2cf52f1d526311f54c28a8fafe787fe22e7973b9f7.png" />
+</div>
+</div>
+<p>What do you notice about the shape of the curve?</p>
+<p>The optical depth is a highly non linear function and increasing rapidly with surface temperature, why is this?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># surface albedo with ice feedback included, turned off by default</span>
+<span class="k">def</span> <span class="nf">alfa</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">lconst</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lconst</span><span class="p">:</span> 
+        <span class="n">albedo</span><span class="o">=</span><span class="mf">0.33</span>    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">albedo</span><span class="o">=</span><span class="mf">0.45</span><span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">((</span><span class="n">T</span><span class="o">-</span><span class="mi">272</span><span class="p">)</span><span class="o">/</span><span class="mi">23</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">albedo</span> 
+
+<span class="k">def</span> <span class="nf">cdTdt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">T</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;define the energy balance equation in a function&quot;&quot;&quot;</span>
+    <span class="n">vtau</span><span class="o">=</span><span class="n">tau</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alfa</span><span class="p">(</span><span class="n">T</span><span class="p">))</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tau</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+
+<span class="c1"># define the solar constant array</span>
+<span class="n">S0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">T2d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">Ts</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">S0</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">S2d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S0</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">Ts</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span>
+
+
+<span class="c1"># contour plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">X</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">,</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">400</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;S0 (Wm$^{-2}$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;T (K)&quot;</span><span class="p">)</span>
+
+<span class="n">S0today</span><span class="o">=</span><span class="mf">1370.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">S0today</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x11f581a00&gt;
+</pre></div>
+</div>
+<img alt="../_images/65a68f0b6a94372e481e2cd13bc9d8336a46813a78737306141300a217133d36.png" src="../_images/65a68f0b6a94372e481e2cd13bc9d8336a46813a78737306141300a217133d36.png" />
+</div>
+</div>
+</section>
+<section id="exercises-and-questions-to-consider">
+<h2>Exercises and Questions to consider:<a class="headerlink" href="#exercises-and-questions-to-consider" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Take today’s climate <span class="math notranslate nohighlight">\(S_0\)</span>, what is the equilibrium temperature?</p></li>
+<li><p>Let’s perturb <span class="math notranslate nohighlight">\(S_0\)</span> to 1400 W m <span class="math notranslate nohighlight">\(^{-2}\)</span>, what happens to the temperature?</p></li>
+<li><p>At what value of the solar constant does the system become unstable?</p></li>
+<li><p>What is the physics of this instability?</p></li>
+</ol>
+<p>Congratulations, you have discovered what is known as the runaway greenhouse effect, first coined by Ingersoll (82). We will discuss the physics of this in class.</p>
+</section>
+<section id="exercises-on-the-climate-feedback">
+<h2>Exercises on the climate feedback<a class="headerlink" href="#exercises-on-the-climate-feedback" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Without looking at the next section, attempt to derive the water vapor climate feedback factor <span class="math notranslate nohighlight">\(\lambda_{wv}\)</span> in this model for present day <span class="math notranslate nohighlight">\(S_0\)</span>.</p></li>
+<li><p>Is the feedback positive or negative, and do you understand why?</p></li>
+<li><p>The feedback seems to be weaker than the value derived from GCMs.  To what do you need to change the factor 0.14 to in order to get a feedback of 2.0 W m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>?  How would that revised value change the equilibrium climate for today’s solar forcing?</p></li>
+</ol>
+</section>
+<section id="feedback-factor">
+<h2>Feedback factor<a class="headerlink" href="#feedback-factor" title="Permalink to this heading">#</a></h2>
+<p>We recall that the climate feedback factor is the partial derivative of the TOA fluxes with respect to the surface temperature, changing only the parameter in question, in this case water vapour.</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial N}{\partial \tau} \frac{\partial \tau}{\partial T_s} = \frac{2\sigma T_s^4}{(2+\tau)^2} \frac{\partial \tau}{\partial T_s}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{d\tau}{dT_s}=0.14 \exp \big [ - \frac{L_v}{R_v}  \big( \frac{1}{T_s} - \frac{1}{288} \big ) \big ] \frac{L_v} {R_v T_s^2}=\tau_{wv}(T)\frac{L_v} {R_v T_s^2}
+\]</div>
+<p>Note, you can also derive the total substantive derivative of <span class="math notranslate nohighlight">\(N\)</span> and then subtract the Planck feedback, you should arrive at the approximately same answer (try it and see!):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dtaudT</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;optical depth as function of surface temperature&quot;&quot;&quot;</span>
+    <span class="n">LoR</span><span class="o">=</span><span class="n">Lv</span><span class="o">/</span><span class="n">Rv</span>
+    <span class="k">return</span> <span class="n">tauwv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="n">fac</span><span class="p">)</span><span class="o">*</span><span class="n">LoR</span><span class="o">/</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">Ts</span><span class="o">=</span><span class="mi">288</span>
+<span class="n">lamwv</span><span class="o">=</span><span class="n">dtaudT</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">tau</span><span class="p">(</span><span class="n">Ts</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;water vapour feedback for&quot;</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="s2">&quot; = &quot;</span><span class="p">,</span><span class="n">lamwv</span><span class="p">,</span><span class="s2">&quot; W m$^{-2}$ K^-1&quot;</span><span class="p">)</span>
+
+<span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span><span class="mi">380</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lamwv</span><span class="o">=</span><span class="n">dtaudT</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">tau</span><span class="p">(</span><span class="n">Ts</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">lamwv</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$T_s$ (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;WV Feedback $</span><span class="se">\\</span><span class="s2">lambda_</span><span class="si">{wv}</span><span class="s2">$ (W m$^{-2}$ K$^{-1}$)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>water vapour feedback for 288  =  0.6712111602786375  W m$^{-2}$ K^-1
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;WV Feedback $\\lambda_{wv}$ (W m$^{-2}$ K$^{-1}$)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/72d7831f693e4fcaa3eb19d8dd14962cc0cabc55833f6c5ab05ffd56894c43d6.png" src="../_images/72d7831f693e4fcaa3eb19d8dd14962cc0cabc55833f6c5ab05ffd56894c43d6.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "None/None",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments-this-notebook-borrows-material-from-lecture-notes-of-geoff-vallis-university-of-exeter-and-simona-bordoni-university-of-trento">Acknowledgments: This notebook borrows material from lecture notes of Geoff Vallis (university of Exeter) and Simona Bordoni (University of Trento)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-and-questions-to-consider">Exercises and Questions to consider:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-on-the-climate-feedback">Exercises on the climate feedback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-factor">Feedback factor</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Adrian Tompkins
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

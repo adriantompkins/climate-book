@@ -1,0 +1,1123 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to DDT analysis &#8212; Earth System Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_FFT_analysis';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="EOF analysis" href="climdata_EOF1.html" />
+    <link rel="prev" title="Correlation and Covariance" href="climdata_correlation_covariance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Earth System Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../content_radiation.html">Chapter 2: Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../content_clima_data.html">Chapter 2: Energy Balance and Forcing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">Rainfall indices based on the Indian monsoon</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">Correlation and Covariance</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction to DDT analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_EOF1.html">EOF analysis</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_linear_stability_analysis.html">Larvae-Vector System: Stability Analysis and Temperature Dependence</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../content_modelling.html">Chapter 3: Climate models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="mod_climate-system-models.html">The climate system and climate models</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/adriantompkins/climate-book.git/master?urlpath=tree/notebooks/part2_cda/climdata_FFT_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/adriantompkins/climate-book.git/blob/master/notebooks/part2_cda/climdata_FFT_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adriantompkins/climate-book.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adriantompkins/climate-book.git/issues/new?title=Issue%20on%20page%20%2Fnotebooks/part2_cda/climdata_FFT_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/part2_cda/climdata_FFT_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to DDT analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to DDT analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series">Fourier Series</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-fourier-transform-dft">Discrete Fourier transform (DFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fast-fourier-transform-fft">The Fast Fourier Transform (FFT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aliasing">Aliasing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Discussion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-ddt-analysis">
+<h1>Introduction to DDT analysis<a class="headerlink" href="#introduction-to-ddt-analysis" title="Permalink to this heading">#</a></h1>
+<p>Let’s just start this story by plotting a simple sine wave….</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">sinewave_plt</span><span class="p">(</span><span class="n">ss</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
+    <span class="c1"># Define parameters</span>
+    <span class="n">wavelength</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">amplitude</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="mi">500</span> 
+    <span class="n">samples_per_wavelength</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Increase for smoother curve</span>
+
+    <span class="n">pss</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">samples_per_wavelength</span><span class="o">/</span><span class="n">ss</span><span class="p">)</span>
+    
+    <span class="c1"># Generate x and y values</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">wavelength</span> <span class="o">*</span> <span class="n">samples_per_wavelength</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">wavelength</span><span class="p">)</span>
+    
+    <span class="c1"># Create the plot</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="c1"># Plot the sine wave</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sine Wave&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Add points to the curve</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[::</span><span class="n">pss</span><span class="p">],</span> <span class="n">y</span><span class="p">[::</span><span class="n">pss</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sample Points&#39;</span><span class="p">)</span>  <span class="c1"># Red circles, every 10th point</span>
+
+    <span class="c1"># Create grid lines at integer x values</span>
+    <span class="c1">#for i in x[::pss]:</span>
+    <span class="c1">#    ax.axvline(x=i, color=&#39;lightgray&#39;, linestyle=&#39;:&#39;)</span>
+    
+    <span class="c1"># Customize plot appearance</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X-axis&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y-axis&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Sine Wave with Grid and Points&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="c1"># Show the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span> <span class="c1"># Prevents labels from being cut off</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">sinewave_plt</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/86b680b1d54a66683e0528aae9e94fe71408199164290c66cd6d8a49960c84b5.png" src="../../_images/86b680b1d54a66683e0528aae9e94fe71408199164290c66cd6d8a49960c84b5.png" />
+</div>
+</div>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>If we have 10 waves and 25 samples per wave, how many red points are required to prepresent the series?</p></li>
+<li><p>If we instead represent the data as a sinewave how many numbers are required to represent the data?</p></li>
+</ol>
+<p>So we can represent the data either in physical space, or in Fourrier space, that is, as a sum of sine waves, each described by its amplitude and phase.</p>
+<p>Okay, this was for a single sinewave.  But what about other more generalized series and forms.  Well it turns out that any function in time (or space) can be represented by a sum of sinewaves.  (When Fourier first introduced this idea it was apparently rejected by many of the leading mathematicians of the idea for quite some time!)</p>
+<p>The functions don’t even need to be smooth (infinitely differentiable).  For example, it is possible to show that we can represent an ideal <em>square</em> wave with an amplitude of 1 as an infinite sum of sinusoidal waves:</p>
+<div class="math notranslate nohighlight">
+\[f(t) = \frac{4}{\pi} \sum_{k=1}^{n} \frac{\sin((2k - 1)ft)}{2k - 1}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(f\)</span> is the frequency in Hertz (cycles per second). The <span class="math notranslate nohighlight">\(2k-1\)</span> term in the sine means only odd cycles are used, and the denominator factor is a scale factor.</p>
+<p>Let’s try it out with a square wave of frequency of Hertz!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">square_wave</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a square wave.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">sum_of_sinusoids</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">num_terms</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Approximates a square wave using a sum of sinusoids.&quot;&quot;&quot;</span>
+    <span class="n">approximation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_terms</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">approximation</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">approximation</span>
+
+<span class="k">def</span> <span class="nf">plot_square_wave_approximation</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">square_signal</span><span class="p">,</span> <span class="n">num_terms</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plots the square wave and its sinusoidal approximation.&quot;&quot;&quot;</span>
+    <span class="n">sinusoid_approximation</span> <span class="o">=</span> <span class="n">sum_of_sinusoids</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">num_terms</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="c1"># creates subplot with one panel</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">square_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Square Wave&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sinusoid_approximation</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">num_terms</span><span class="si">}</span><span class="s1"> Terms Approximation&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Square Wave and Sinusoid Approximation&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>With start with one term by default, but try increasing this and rerunning the following code…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters</span>
+<span class="n">frequency</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Frequency of the square wave</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">frequency</span>  <span class="c1"># Period</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">period</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>  <span class="c1"># Time range for plotting</span>
+
+<span class="c1"># Generate the square wave</span>
+<span class="n">square_signal</span> <span class="o">=</span> <span class="n">square_wave</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># Plot the square wave and its approximation</span>
+<span class="n">num_terms</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Number of terms in the sinusoid approximation</span>
+<span class="n">plot_square_wave_approximation</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">square_signal</span><span class="p">,</span> <span class="n">num_terms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fb3e13a9bcd0843022c50471cacf14f7edee85b736419342bbdf6149e7bc4659.png" src="../../_images/fb3e13a9bcd0843022c50471cacf14f7edee85b736419342bbdf6149e7bc4659.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="fourier-series">
+<h1>Fourier Series<a class="headerlink" href="#fourier-series" title="Permalink to this heading">#</a></h1>
+<p>Let’s imagine then any function at all that is periodic (later we will see this holds for non periodic signals).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">generate_smooth_periodic_signal_alt</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a smooth periodic signal using different functions (no sin/cos, no noise).&quot;&quot;&quot;</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">time_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="n">phase</span> <span class="o">=</span> <span class="n">time_val</span> <span class="o">%</span> <span class="mi">4</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">phase</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">phase</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># Quadratic rise</span>
+        <span class="k">elif</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">phase</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">phase</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># Inverted quadratic peak</span>
+        <span class="k">elif</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">phase</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">phase</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># quadratic fall</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">phase</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># quadratic dip</span>
+    <span class="k">return</span> <span class="n">signal</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Period of the signal (for time range)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Time range for plotting (3 periods)</span>
+
+<span class="c1"># Generate the signal</span>
+<span class="n">smooth_periodic_signal</span> <span class="o">=</span> <span class="n">generate_smooth_periodic_signal_alt</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">smooth_periodic_signal</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Smooth Periodic Signal (Quadratic Segments)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3fe2bf2be01ce131638dc26d53dec6fb602b1e79a51b64a409dcc92ef496176f.png" src="../../_images/3fe2bf2be01ce131638dc26d53dec6fb602b1e79a51b64a409dcc92ef496176f.png" />
+</div>
+</div>
+<p>Fourier determined that such a function can be represented as a series of sines and cosines of different frequencies, called a Fourier Series.</p>
+<p>There are two common forms of the Fourier Series, “Trigonometric” and “Exponential.” These are discussed below, followed by a demonstration that the two forms are equivalent:</p>
+<p>Trigonometric Form (Sum of Sines and Cosines)
+$<span class="math notranslate nohighlight">\( x(t) = a_0 + \sum_{n=1}^{\infty} \left[ a_n \cos(n \omega_0 t) + b_n \sin(n \omega_0 t) \right] \)</span>$</p>
+<p>Complex Exponential Form (Sum of Complex Numbers)
+$<span class="math notranslate nohighlight">\(x(t) = \sum_{n=-\infty}^{\infty} c_n e^{j n \omega_0 t} \)</span>$</p>
+<p>Where <span class="math notranslate nohighlight">\(\omega_0\)</span> is the frequency of the periodic signal.</p>
+<p>So essentially Fourier suggested an incredible thing, that essentially we can represent any signal alternatively in a “frequency” (or wavelength) space, as a series of curves of a given wave length, we just need to find out how to calculate the amplitude (and phase) of each sinewave, essentially the coefficient <span class="math notranslate nohighlight">\(c_i\)</span>. This is useful because we may find that particular wavelengths/frequencies have much higher <span class="math notranslate nohighlight">\(c_i\)</span> values, implying that this frequency is particularly pronounced in the signal, something that is not always immediately obvious when looking at the original signal in space or time <span class="math notranslate nohighlight">\(x(t)\)</span>.</p>
+<p>While we will show an application in meteorology, Fourier transforms have found use in almost every field on the planet!  Here are just a couple of examples from <a class="reference external" href="http://betterexplained.com">betterexplained.com</a>:</p>
+<ul class="simple">
+<li><p><strong>Earthquakes</strong> If earthquake vibrations can be separated into “ingredients” (vibrations of different speeds &amp; amplitudes), buildings can be designed to avoid interacting with the strongest ones.</p></li>
+<li><p><strong>Filters</strong> If sound waves can be separated into ingredients (bass and treble frequencies), we can boost the parts we care about, and hide the ones we don’t. The crackle of random noise can be removed. Maybe similar “sound recipes” can be compared (music recognition services compare recipes, not the raw audio clips).</p></li>
+<li><p><strong>Compression</strong> If computer data can be represented with oscillating patterns, perhaps the least-important ones can be ignored. This “lossy compression” can drastically shrink file sizes (and why JPEG and MP3 files are much smaller than raw .bmp or .wav files).  Most compression methods in use these days use a related wavelet based approach.</p></li>
+</ul>
+<section id="discrete-fourier-transform-dft">
+<h2>Discrete Fourier transform (DFT)<a class="headerlink" href="#discrete-fourier-transform-dft" title="Permalink to this heading">#</a></h2>
+<p>The DFT of a series of <span class="math notranslate nohighlight">\(n\)</span> data points (where <span class="math notranslate nohighlight">\(n\)</span> is typically assumed to be even for simplicity, though DFTs can be calculated for odd <span class="math notranslate nohighlight">\(n\)</span>) produces <span class="math notranslate nohighlight">\(n\)</span> complex numbers. These complex numbers represent the frequency components of the signal.  Each complex number corresponds to a specific frequency. However, these frequency components aren’t just sine waves. They represent both sine and cosine waves (or, equivalently, sine waves with phase shifts).</p>
+<p>Let <span class="math notranslate nohighlight">\(x[n]\)</span> represent a discrete-time signal, where <span class="math notranslate nohighlight">\(n\)</span> is an integer index representing the time sample, and <span class="math notranslate nohighlight">\(n = 0, 1, ..., N-1\)</span>, with <span class="math notranslate nohighlight">\(N\)</span> being the total number of samples. The Discrete Fourier Transform (DFT) of <span class="math notranslate nohighlight">\(x[n]\)</span>, denoted as <span class="math notranslate nohighlight">\(X[k]\)</span>, is defined as:</p>
+<div class="math notranslate nohighlight">
+\[X[k] = \sum_{n=0}^{N-1} x[n] e^{-j 2\pi k n/N}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k = 0, 1, ..., N-1\)</span> represents the frequency index, and <span class="math notranslate nohighlight">\(j\)</span> is the imaginary unit (<span class="math notranslate nohighlight">\(j^2 = -1\)</span>). The <span class="math notranslate nohighlight">\(e^{-j 2\pi kn/N}\)</span> term represents a complex sinusoid at frequency <span class="math notranslate nohighlight">\(k/N\)</span>.  Essentially what we are doing is a <strong>convolution</strong> of the signal with the complex wave form, for each wavenumber.</p>
+<p>The DFT decomposes the signal <span class="math notranslate nohighlight">\(x[n]\)</span> into a sum of complex sinusoids, each with a specific frequency and amplitude. The output <span class="math notranslate nohighlight">\(X[k]\)</span> is a complex-valued sequence, where the magnitude <span class="math notranslate nohighlight">\(|X[k]|\)</span> represents the amplitude of the frequency component <span class="math notranslate nohighlight">\(k/N\)</span>, and the phase <span class="math notranslate nohighlight">\(\arg(X[k])\)</span> represents the phase shift of that component.</p>
+<p>So to summarize, the amplitude spectrum of the signal is obtained by computing the magnitude <span class="math notranslate nohighlight">\(|X[k]|\)</span> of the DFT coefficients and the power spectrum is given by <span class="math notranslate nohighlight">\(|X[k]|^2\)</span>.</p>
+<p>The frequency corresponding to the <span class="math notranslate nohighlight">\(k\)</span>-th DFT coefficient is:</p>
+<div class="math notranslate nohighlight">
+\[f_k = k \Delta f = \frac{k f_s}{N}\]</div>
+<p>The inverse DFT (IDFT) reconstructs the original signal <span class="math notranslate nohighlight">\(x[n]\)</span> from its DFT coefficients <span class="math notranslate nohighlight">\(X[k]\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X[k] e^{j 2\pi kn/N}\]</div>
+<p>For a <strong>real-valued input signal</strong> <span class="math notranslate nohighlight">\(x[n]\)</span>, the DFT output <span class="math notranslate nohighlight">\(X[k]\)</span> exhibits conjugate symmetry, i.e., <span class="math notranslate nohighlight">\(X[k] = X^*[N-k]\)</span>, where <span class="math notranslate nohighlight">\(*\)</span> denotes complex conjugation. This means that the negative frequency components (<span class="math notranslate nohighlight">\(k &gt; N/2\)</span>) are redundant, and we typically focus on the positive frequency components (<span class="math notranslate nohighlight">\(k \le N/2\)</span>).</p>
+<section id="the-fast-fourier-transform-fft">
+<h3>The Fast Fourier Transform (FFT)<a class="headerlink" href="#the-fast-fourier-transform-fft" title="Permalink to this heading">#</a></h3>
+<p>The FFT is an efficient algorithm to compute the DFT and IDFT. It leverages the symmetry and periodicity properties of the complex exponential term to reduce the computational complexity from <span class="math notranslate nohighlight">\(O(N^2)\)</span> for the direct DFT calculation to <span class="math notranslate nohighlight">\(O(N \log N)\)</span>.</p>
+<p>The frequency resolution <span class="math notranslate nohighlight">\(\Delta f\)</span> of the DFT is given by:</p>
+<div class="math notranslate nohighlight">
+\[\Delta f = \frac{f_s}{N}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_s\)</span> is the sampling frequency (the number of samples per unit time). The maximum frequency that can be represented without <strong>aliasing</strong> is the Nyquist frequency, which is half the sampling frequency:</p>
+<div class="math notranslate nohighlight">
+\[f_{Nyquist} = \frac{f_s}{2}\]</div>
+<p>We can illustrate this by returning to the first plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sinewave_plt</span><span class="p">(</span><span class="n">ss</span><span class="o">=</span><span class="mf">1.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3b41c07e87279b56f02deceebe75ae6b663a4b9e17cee1fc988a4c997645208c.png" src="../../_images/3b41c07e87279b56f02deceebe75ae6b663a4b9e17cee1fc988a4c997645208c.png" />
+</div>
+</div>
+<p>Essentially we need sampling at a rate of more than two points per wave.</p>
+</section>
+<section id="aliasing">
+<h3>Aliasing<a class="headerlink" href="#aliasing" title="Permalink to this heading">#</a></h3>
+<p>Aliasing occurs if we reduce the sample rate further:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sinewave_plt</span><span class="p">(</span><span class="n">ss</span><span class="o">=</span><span class="mf">1.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3b41c07e87279b56f02deceebe75ae6b663a4b9e17cee1fc988a4c997645208c.png" src="../../_images/3b41c07e87279b56f02deceebe75ae6b663a4b9e17cee1fc988a4c997645208c.png" />
+</div>
+</div>
+<p>Here we see that at a slower rate, the red dots trace a wave that has a longer wavelength than the blue line. This is known as “aliasing” where the power at one frequency is artifically projected onto a lower frequency due to undersampling.</p>
+<p>Okay, let’s try an example. Here we will analysis an hourly temperature series for Trieste that spans about ten years.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%pip install cftime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">cftime</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analyze_time_series_fft</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">units</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Analyzes a time series using FFT and returns the frequencies, periods, and amplitudes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        time_series (np.ndarray or xr.DataArray): The time series data.</span>
+<span class="sd">        time_coords (np.ndarray or xr.DataArray): Corresponding time coordinates.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (frequencies, periods, amplitudes)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+   
+
+    <span class="c1"># Calculate the sampling period in days</span>
+    <span class="n">time_diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">time_diffs</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Time coordinates must be evenly spaced.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Determine time units and convert to days</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
+        <span class="n">time_diff_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">td</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span> <span class="k">for</span> <span class="n">td</span> <span class="ow">in</span> <span class="n">time_diffs</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># units = time_coords.units</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="s2">&quot; units&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;second&#39;</span> <span class="ow">in</span> <span class="n">units</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;sec detected&quot;</span><span class="p">)</span>
+                <span class="n">time_diff_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time_diffs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;minute&#39;</span> <span class="ow">in</span> <span class="n">units</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">time_diff_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time_diffs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;hour&#39;</span> <span class="ow">in</span> <span class="n">units</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;hours detected&quot;</span><span class="p">)</span>
+                <span class="n">time_diff_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time_diffs</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span>
+            <span class="k">elif</span> <span class="s1">&#39;day&#39;</span> <span class="ow">in</span> <span class="n">units</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">time_diff_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time_diffs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">time_diff_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time_diffs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>  <span class="c1"># assume seconds if units not recognized.</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">time_diff_days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time_diffs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>  <span class="c1"># assume seconds if no units attribute.</span>
+
+    <span class="c1"># Compute the FFT</span>
+    <span class="n">fft_result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+
+    <span class="c1"># Calculate frequencies (in cycles per day)</span>
+    <span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_series</span><span class="p">),</span> <span class="n">time_diff_days</span><span class="p">)</span>
+
+    <span class="c1"># Calculate periods (in days) - handle zero frequency carefully</span>
+    <span class="n">periods</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
+
+    <span class="c1"># we only take the positive frequencies as the </span>
+    <span class="c1"># input is a real function, not complex.</span>
+    <span class="n">positive_freq_indices</span> <span class="o">=</span> <span class="n">frequencies</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">periods</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">frequencies</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">]</span>
+    <span class="n">periods</span><span class="p">[</span><span class="n">frequencies</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>  <span class="c1"># Period is infinite for zero frequency</span>
+
+    <span class="c1"># Calculate amplitudes</span>
+    <span class="n">amplitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">frequencies</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">amplitudes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will also introduce a separate plotting routine in order to keep things clean</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fft_spectrum</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">amplitudes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the frequency spectrum.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        frequencies (np.ndarray): Frequencies (cycles/day).</span>
+<span class="sd">        periods (np.ndarray): Periods (days).</span>
+<span class="sd">        amplitudes (np.ndarray): Amplitudes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">positive_freq_indices</span> <span class="o">=</span> <span class="n">frequencies</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1"># Create figure and axes</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">periods</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">],</span> <span class="n">amplitudes</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Period (days)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude (log scale)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Frequency Spectrum&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">365</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span><span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download example data</span>
+<span class="c1"># url = &quot;https://downloads.psl.noaa.gov/Datasets/era5/hourly/air.2m.2023.nc&quot;</span>
+<span class="c1"># filename = &quot;air.2m.2023.nc&quot;</span>
+<span class="c1"># urllib.request.urlretrieve(url, filename)</span>
+
+<span class="n">datadir</span><span class="o">=</span><span class="s2">&quot;/Users/tompkins/DATA/era5/hourly/&quot;</span>
+<span class="n">filename</span><span class="o">=</span><span class="n">datadir</span><span class="o">+</span><span class="s2">&quot;t2m_t.nc&quot;</span>
+
+<span class="c1"># Open the NetCDF file</span>
+<span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">decode_times</span><span class="o">=</span><span class="n">decode_times</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">decode_times</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;decode&quot;</span><span class="p">)</span>
+    <span class="n">time_units</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;valid_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
+    <span class="n">time_values</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;valid_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># Extract the base date from the time units</span>
+    <span class="n">base_date_str</span> <span class="o">=</span> <span class="n">time_units</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;since &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Convert seconds to datetime objects</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_values</span><span class="p">,</span> <span class="n">units</span> <span class="o">=</span> <span class="n">time_units</span><span class="p">,</span> <span class="n">calendar</span> <span class="o">=</span> <span class="s1">&#39;standard&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Replace the time coordinate</span>
+    <span class="c1"># ds[&#39;time&#39;] = datetimes</span>
+
+<span class="c1"># Select a specific location and time range</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="mf">45.6</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="mf">13.7</span>
+<span class="n">t2m</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;t2m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="n">lon</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="c1"># time = ds[&#39;time&#39;]</span>
+
+<span class="c1"># Perform FFT analysis</span>
+<span class="n">frequencies</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">amplitudes</span> <span class="o">=</span> <span class="n">analyze_time_series_fft</span><span class="p">(</span><span class="n">t2m</span><span class="p">,</span> <span class="n">time_values</span><span class="p">,</span> <span class="n">time_units</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_fft_spectrum</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">amplitudes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">365</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">365</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;year&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;day&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>decode
+seconds since 1970-01-01  units
+sec detected
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(1, 1, &#39;day&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/598fca48d5e4fdb3024bbf87e4d5101e40239017cd4d469baa877755ff544ba1.png" src="../../_images/598fca48d5e4fdb3024bbf87e4d5101e40239017cd4d469baa877755ff544ba1.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Discussion<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What do you notice about the general slope, what period general has more power?  This is an example of a <strong>red</strong> spectrum</p></li>
+<li><p>Do you notice any spectral peaks that stand out?  Are they there by chance do you think, or do they have physical significance?  Did you expect these peaks?</p></li>
+<li><p>What about the sub-daily peaks?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">savgol_filter</span>
+
+<span class="k">def</span> <span class="nf">calculate_significant_peaks_smoothed</span><span class="p">(</span><span class="n">amplitudes</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">threshold_factor</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates significant peaks by comparing amplitudes to a smoothed spectrum.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        amplitudes (np.ndarray): The FFT amplitudes.</span>
+<span class="sd">        window_length (int): Length of the smoothing window (must be odd).</span>
+<span class="sd">        polyorder (int): Order of the polynomial used in smoothing.</span>
+<span class="sd">        threshold_factor (float): Factor to multiply the smoothed amplitudes for threshold.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: Boolean array indicating significant peaks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Smooth the amplitudes using Savitzky-Golay filter</span>
+    <span class="n">smoothed_amplitudes</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">amplitudes</span><span class="p">,</span> <span class="n">window_length</span><span class="p">,</span> <span class="n">polyorder</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the significance threshold</span>
+    <span class="n">significance_threshold</span> <span class="o">=</span> <span class="n">smoothed_amplitudes</span> <span class="o">*</span> <span class="n">threshold_factor</span>
+
+    <span class="c1"># Determine significant peaks</span>
+    <span class="n">significant_peaks</span> <span class="o">=</span> <span class="n">amplitudes</span> <span class="o">&gt;</span> <span class="n">significance_threshold</span>
+
+    <span class="k">return</span> <span class="n">significant_peaks</span><span class="p">,</span> <span class="n">significance_threshold</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#sig_peaks=calculate_significant_peaks(amplitudes)</span>
+<span class="n">sig_peaks</span><span class="p">,</span><span class="n">thresh</span><span class="o">=</span><span class="n">calculate_significant_peaks_smoothed</span><span class="p">(</span><span class="n">amplitudes</span><span class="p">,</span><span class="n">window_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">threshold_factor</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_fft_spectrum</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">amplitudes</span><span class="p">)</span>
+
+<span class="c1"># Plot vertical lines at significant peaks</span>
+<span class="n">positive_freq_indices</span> <span class="o">=</span> <span class="n">frequencies</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">peak_periods</span> <span class="o">=</span> <span class="n">periods</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">][</span><span class="n">sig_peaks</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">]]</span>
+<span class="n">peak_amplitudes</span> <span class="o">=</span> <span class="n">amplitudes</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">][</span><span class="n">sig_peaks</span><span class="p">[</span><span class="n">positive_freq_indices</span><span class="p">]]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+<span class="k">for</span> <span class="n">period</span><span class="p">,</span> <span class="n">amplitude</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">peak_periods</span><span class="p">,</span> <span class="n">peak_amplitudes</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># add vertical lines</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span> <span class="c1"># add red dot on peak</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+           <span class="o">^</span>
+<span class="ne">SyntaxError</span>: &#39;(&#39; was never closed
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "adriantompkins/climate-book.git",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda"
+        },
+        kernelOptions: {
+            name: "conda",
+            path: "./notebooks/part2_cda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="climdata_correlation_covariance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Correlation and Covariance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="climdata_EOF1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">EOF analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to DDT analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-series">Fourier Series</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-fourier-transform-dft">Discrete Fourier transform (DFT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fast-fourier-transform-fft">The Fast Fourier Transform (FFT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aliasing">Aliasing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Discussion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Adrian Tompkins
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

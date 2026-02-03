@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "/Users/tompkins/miniconda3/envs/book/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/tompkins/miniconda3/envs/book/lib/python3.12/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tompkins/miniconda3/envs/book/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tompkins/miniconda3/envs/book/lib/python3.12/asyncio/base_events.py", line 664, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/tompkins/miniconda3/envs/book/lib/python3.12/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/tompkins/miniconda3/envs/book/lib/python3.12/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/tompkins/miniconda3/envs/book/lib/python3.12/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#%pip install wget
+import wget
+import os.path
+datadir="/Users/tompkins/v_test/run2/"
+url="http://clima-dods.ictp.it/Users/tompkins/monsoons/india/"
+files=["IMD_india_rain_1x1.nc","IMD_india_t2m_1x1.nc","india_pop_1x1.nc"]
+for file in files:
+    if not os.path.isfile(datadir+file):
+        wget.download(url+file,out=datadir)
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 2[0m
+[1;32m      1[0m [38;5;66;03m#%pip install wget[39;00m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mwget[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mos[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpath[39;00m
+[1;32m      4[0m datadir[38;5;241m=[39m[38;5;124m"[39m[38;5;124m/Users/tompkins/v_test/run2/[39m[38;5;124m"[39m
+
+[0;31mModuleNotFoundError[0m: No module named 'wget'
+

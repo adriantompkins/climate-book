@@ -1,0 +1,1525 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Breakpoint analysis (segmentation analysis) &#8212; Earth System Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_breakpoint_analysis';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Rainfall indices based on the Indian monsoon" href="climdata_gpgp_indices.html" />
+    <link rel="prev" title="Trend derivation" href="climdata_trends_timeseries.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Earth System Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../content_radiation.html">Chapter 2: Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../content_clima_data.html">Chapter 2: Energy Balance and Forcing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Breakpoint analysis (segmentation analysis)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">Rainfall indices based on the Indian monsoon</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">Correlation and Covariance</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_FFT_analysis.html">Introduction to DDT analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_EOF1.html">EOF analysis</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_linear_stability_analysis.html">Larvae-Vector System: Stability Analysis and Temperature Dependence</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../content_modelling.html">Chapter 3: Climate models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="mod_climate-system-models.html">The climate system and climate models</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/adriantompkins/climate-book.git/master?urlpath=tree/notebooks/part2_cda/climdata_breakpoint_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/adriantompkins/climate-book.git/blob/master/notebooks/part2_cda/climdata_breakpoint_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adriantompkins/climate-book.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adriantompkins/climate-book.git/issues/new?title=Issue%20on%20page%20%2Fnotebooks/part2_cda/climdata_breakpoint_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/part2_cda/climdata_breakpoint_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Breakpoint analysis (segmentation analysis)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Breakpoint analysis (segmentation analysis)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-why-are-we-doing-this">Aside: Why are we doing this?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-analysis">Segmentation Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-all-minimize">let’s all… minimize…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#davies-test-for-breakpoint-significance">Davies’ Test for Breakpoint Significance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-and-discuss">Play and Discuss</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monsoon-onset"><strong>Monsoon Onset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion"><strong>Discussion</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-walker-bordoni-onset-index">The Walker-Bordoni onset index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Discussion</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wb16-onset-definition"><strong>WB16 onset definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Discussion</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Discussion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises"><strong>Exercises</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic">Basic:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate">Intermediate:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced">Advanced:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cessation-dates-clues">4 Cessation Dates Clues</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-projects"><strong>Potential Projects</strong></a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="breakpoint-analysis-segmentation-analysis">
+<h1>Breakpoint analysis (segmentation analysis)<a class="headerlink" href="#breakpoint-analysis-segmentation-analysis" title="Permalink to this heading">#</a></h1>
+<p>Breakpoint analysis using segmentation aims to identify points in a dataset where the underlying trend or pattern changes significantly. It’s particularly useful for time series data or data ordered along a single dimension.</p>
+<p><strong>How it works:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Segmentation:</strong> The dataset is divided into segments. The goal is to find the optimal segmentation that minimizes the within-segment variability and maximizes the between-segment variability.</p></li>
+<li><p><strong>Cost Function:</strong> A cost function is used to evaluate the quality of each segmentation. This function often measures the error or variance within each segment.</p></li>
+<li><p><strong>Optimization:</strong> An optimization algorithm (e.g., dynamic programming, binary segmentation) is used to find the segmentation that minimizes the total cost. This involves exploring different segmentations and selecting the one with the lowest cost.</p></li>
+<li><p><strong>Breakpoint Identification:</strong> The boundaries between the identified segments are considered breakpoints, indicating points of significant change.</p></li>
+</ol>
+<p><strong>Key features:</strong></p>
+<ul class="simple">
+<li><p><strong>Identifying change points:</strong> Reveals when significant shifts occur in data trends.</p></li>
+<li><p><strong>Flexibility:</strong> Can be used with various cost functions and optimization algorithms.</p></li>
+<li><p><strong>Applications:</strong> Useful in fields like finance, climate science, and signal processing.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<p>Imagine a time series of temperature data. Segmentation might identify breakpoints where the temperature trend changes from a gradual increase to a more rapid increase, or where the data undergoes an offset due to the relocation of the weather station to a nearby location at a different altitude!</p>
+<p>Let’s make an artificial dataset of n=100 points to explain. In it we make two linear sloped data with some normally distributed noise added. That is, in each segment, we make a data set with</p>
+<div class="math notranslate nohighlight">
+\[ y_i = m x_i +c + \epsilon_i \]</div>
+<p>To make life easier, we will also include the plot routine here :-)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">generate_segmented_data</span><span class="p">(</span><span class="n">split_point</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">noise_std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates two linear series with added noise, split at a given point.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        split_point (int): The x-coordinate where the series are split.</span>
+<span class="sd">        m1 (float): Slope of the first linear series.</span>
+<span class="sd">        c1 (float): Intercept of the first linear series.</span>
+<span class="sd">        m2 (float): Slope of the second linear series.</span>
+<span class="sd">        c2 (float): Intercept of the second linear series.</span>
+<span class="sd">        noise_std (float): Standard deviation of the added noise.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing x-coordinates, y-coordinates, and the two linear lines.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">npts</span><span class="o">=</span><span class="mi">100</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">npts</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">npts</span><span class="p">)</span>
+    
+    <span class="c1"># NOISE is normally distributed:</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise_std</span><span class="p">,</span> <span class="n">npts</span><span class="p">)</span>
+
+    <span class="n">y</span><span class="p">[:</span><span class="n">split_point</span><span class="p">]</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:</span><span class="n">split_point</span><span class="p">]</span> <span class="o">+</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">eps</span><span class="p">[:</span><span class="n">split_point</span><span class="p">]</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">split_point</span><span class="p">:]</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">split_point</span><span class="p">:]</span> <span class="o">+</span> <span class="n">c2</span> <span class="o">+</span> <span class="n">eps</span><span class="p">[</span><span class="n">split_point</span><span class="p">:]</span>
+
+    <span class="n">line1</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:</span><span class="n">split_point</span><span class="p">]</span> <span class="o">+</span> <span class="n">c1</span>
+    <span class="n">line2</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">split_point</span><span class="p">:]</span> <span class="o">+</span> <span class="n">c2</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span>
+
+
+<span class="k">def</span> <span class="nf">plot_segmented_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">split_point</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the segmented data and the linear lines.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (numpy.ndarray): x-coordinates.</span>
+<span class="sd">        y (numpy.ndarray): y-coordinates.</span>
+<span class="sd">        line1 (numpy.ndarray): y-coordinates of the first linear line.</span>
+<span class="sd">        line2 (numpy.ndarray): y-coordinates of the second linear line.</span>
+<span class="sd">        split_point (int): The x-coordinate where the series are split.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data Points&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="n">split_point</span><span class="p">],</span> <span class="n">line1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True line 1&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">split_point</span><span class="p">:],</span> <span class="n">line2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True line 2&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">split_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Split Point&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Segmented Linear Data with Noise&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s give it a try!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage:</span>
+<span class="n">split_point</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="mf">0.53</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="n">xpts</span><span class="p">,</span> <span class="n">ypts</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span> <span class="o">=</span> <span class="n">generate_segmented_data</span><span class="p">(</span><span class="n">split_point</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">noise_std</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_segmented_data</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span> <span class="n">ypts</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">split_point</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a8f681b9eedc960675013085d539da127f6d7b682a80ef96057a5b8fcbda69e3.png" src="../../_images/a8f681b9eedc960675013085d539da127f6d7b682a80ef96057a5b8fcbda69e3.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aside-why-are-we-doing-this">
+<h1>Aside: Why are we doing this?<a class="headerlink" href="#aside-why-are-we-doing-this" title="Permalink to this heading">#</a></h1>
+<summary>
+    <details>
+        <div class="alert alert-block alert-info"> 
+<b>Why ? </b> We could have downloaded a dataset of temperature or rainfall, written our breakpoint code and gone ahead.  However,  in science (and coding!) it is always a really good idea to test your theory (or code!) against a use case where you KNOW THE ANSWER!!!  This could be a simple boundary condition when solving equations, or in this case it is by inventing data where we know the answer.  This also allows you to play with the data, making variance larger or the slopes more similar in order to challenge the algorithm and see how it performs, or eventually fails!  Always do this for code you are developing whenever possible.
+</div>
+    </details>
+</summary>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="segmentation-analysis">
+<h1>Segmentation Analysis<a class="headerlink" href="#segmentation-analysis" title="Permalink to this heading">#</a></h1>
+<p>The idea is simple; one chooses an arbitrary point to split the time series, and two separate linear regression fits are made to the data prior to and after this point in time.  The mean square error is calculated between this fit and the original data, as a measure to how well this fit is; this is our “cost function” mentioned above.  By cycling through all possible breakpoints to identify the closest fit, we find the breakpoint.  Don’t worry if you didn’t understand this, we will go through it step by step.</p>
+<p>To carry this out we will define some functions:</p>
+<ul class="simple">
+<li><p><strong>Split</strong>: simply splits a timeseries at an arbitrary given time point and returns the two segments.</p></li>
+<li><p><strong>piecewise_polyfit</strong>: fits the (linear) regression lines to the two portions (code can also perform higher order fits)</p></li>
+<li><p><strong>find_changepoint</strong>: Cycles through the series using the above functions to split at each point and chooses the “best” one.</p></li>
+</ul>
+<p>We start with the first two functions in this list…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span> <span class="c1">#</span>
+
+<span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="c1"># split a series at point n</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">:]</span>
+
+<span class="k">def</span> <span class="nf">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+    <span class="c1"># split x and y at point n </span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="c1"># fit nth order (default=1) fit to two parts</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+
+    <span class="c1"># check for errors:</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;NaN for polyfit coeffs. Check data.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># make the series based on the two piecewise fits</span>
+    <span class="n">ypred1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="n">ypred2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+    <span class="n">ypred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ypred1</span><span class="p">,</span> <span class="n">ypred2</span><span class="p">])</span>
+
+    <span class="c1"># calculate the Mean Square error of the piecewise fit to the</span>
+    <span class="c1"># original data, and return fit and RSS</span>
+    <span class="n">rss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">ypred</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ypred</span><span class="p">,</span> <span class="n">rss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>let’s try this first, fitting two lines to our data, let’s pretend we “know” that the series break at x=40</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">ypred</span><span class="p">,</span><span class="n">rss</span><span class="o">=</span><span class="n">piecewise_polyfit</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span> <span class="n">ypts</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_segmented_data</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span> <span class="n">ypts</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">split_point</span><span class="p">)</span>
+
+<span class="c1"># now we add the fit lines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span><span class="n">ypred</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fitted lines&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1172745f0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/c5a8ba54764a14eef3d36ee74c1eaf69d34a128302c8702422a4d2bbdecb359f.png" src="../../_images/c5a8ba54764a14eef3d36ee74c1eaf69d34a128302c8702422a4d2bbdecb359f.png" />
+</div>
+</div>
+<p>Ok, the fit was pretty good, but that is because we “knew” the answer!  Let’s say we just took a guess at x=50 for the break, what do you think will happen? Edit <span class="math notranslate nohighlight">\(n\)</span> and try! What happened to the error between the fit and the data, did it grow or reduce?</p>
+<section id="let-s-all-minimize">
+<h2>let’s all… minimize…<a class="headerlink" href="#let-s-all-minimize" title="Permalink to this heading">#</a></h2>
+<p>Okay I think we got the concept, now all we need to do is cycle through the data point by point and try to find the break that minimizes the error!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="k">def</span> <span class="nf">find_changepoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">rss</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">buffer</span><span class="o">=</span><span class="mi">20</span>
+    <span class="n">breaklist</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span> <span class="n">buffer</span><span class="p">))</span>
+    
+    <span class="c1"># swoop through the series, calculating RSS for each break point    </span>
+    <span class="c1"># start can&#39;t be 2 for the covariance calculation, </span>
+    <span class="c1"># let&#39;s assume we need at least 10 datapoints anyway to get a reasonable fit</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">breaklist</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">rssval</span> <span class="o">=</span> <span class="n">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+        <span class="n">rss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rssval</span><span class="p">)</span>
+    
+    <span class="c1"># x0 is the onset time from the minimum RSS</span>
+    <span class="n">n0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanargmin</span><span class="p">(</span><span class="n">rss</span><span class="p">)</span>
+    <span class="n">brk_point</span><span class="o">=</span><span class="n">breaklist</span><span class="p">[</span><span class="n">n0</span><span class="p">]</span>
+
+    <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">brk_point</span><span class="p">)</span> <span class="c1">#renamed breakpoint to split_point</span>
+    <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">brk_point</span><span class="p">)</span> <span class="c1">#renamed breakpoint to split_point</span>
+    <span class="n">p1_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    <span class="n">p2_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;split &quot;</span><span class="p">,</span><span class="n">split_point</span><span class="p">)</span>
+    <span class="n">ypred</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">brk_point</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span> <span class="c1">#renamed breakpoint to split_point</span>
+
+    <span class="k">return</span> <span class="n">brk_point</span><span class="p">,</span> <span class="n">ypred</span><span class="p">,</span> <span class="n">rss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try it out!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">breakpt</span><span class="p">,</span><span class="n">ypred</span><span class="p">,</span><span class="n">rss</span> <span class="o">=</span> <span class="n">find_changepoint</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span><span class="n">ypts</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;break point is &quot;</span><span class="p">,</span><span class="n">breakpt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>split  70
+break point is  70
+</pre></div>
+</div>
+</div>
+</div>
+<p>that’s pretty close, let’s take a look at the chosen fit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plot_segmented_data</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span> <span class="n">ypts</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">split_point</span><span class="p">)</span>
+
+<span class="c1"># now we add the fit lines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span><span class="n">ypred</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fitted lines&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">breakpt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Chosen breakpoint&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x143787860&gt;
+</pre></div>
+</div>
+<img alt="../../_images/0ab0201ccd7b35398c0319cf184ac9d8fb10361883f155f9d9ec6f32dc9d2cec.png" src="../../_images/0ab0201ccd7b35398c0319cf184ac9d8fb10361883f155f9d9ec6f32dc9d2cec.png" />
+</div>
+</div>
+</section>
+<section id="davies-test-for-breakpoint-significance">
+<h2>Davies’ Test for Breakpoint Significance<a class="headerlink" href="#davies-test-for-breakpoint-significance" title="Permalink to this heading">#</a></h2>
+<p>The Davies’ test is a statistical method used to assess the significance of a breakpoint identified through segmentation methods, particularly when using linear regression.</p>
+<p>When performing segmented linear regression, we aim to find a breakpoint that best divides the data into two or more linear segments. However, simply finding a breakpoint that minimizes the residual sum of squares (RSS) doesn’t guarantee its statistical significance. The Davies’ test addresses this by providing a framework to determine if the observed breakpoint is likely due to chance or reflects a genuine change in the data’s underlying relationship.</p>
+<p>The standard hypothesis testing procedures are not readily applicable to breakpoint detection because:</p>
+<ul class="simple">
+<li><p><strong>Non-standard hypothesis:</strong> The breakpoint is not pre-specified but rather determined by the data itself.</p></li>
+<li><p><strong>Multiple comparisons:</strong> Searching through many potential breakpoints increases the risk of finding a “significant” breakpoint by chance (we’ll come back to this point in the regression lesson next)</p></li>
+<li><p><strong>Non-standard distribution:</strong> The distribution of the test statistic related to the breakpoint is often unknown or complex.</p></li>
+</ul>
+<p><strong>Davies’ Test</strong></p>
+<p>The Davies’ test tackles these issues by comparing the goodness of fit of a segmented regression model with that of a single linear regression model.</p>
+<p><strong>Hypotheses:</strong></p>
+<ul class="simple">
+<li><p><strong>Null Hypothesis (H0):</strong> There is no significant breakpoint in the data.</p></li>
+<li><p><strong>Alternative Hypothesis (H1):</strong> There is a significant breakpoint in the data.</p></li>
+</ul>
+<p><strong>Procedure:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Fit a Single Linear Regression:</strong>
+Just as we did with the double segment  regression, we will fit a standard linear regression model to the entire dataset: <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1x + \epsilon\)</span> using the same approach and calculate the residual sum of squares (RSS_single).</p></li>
+<li><p><strong>Calculate the Test Statistic:</strong>
+We now need to calculate the test statistic, which Davies defines as the log ratio of the two fits: <span class="math notranslate nohighlight">\(t= n log(rss_{single} / rss_{piecewise})\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the number of datapoints.</p></li>
+<li><p><strong>Calculate the degrees of freedome:</strong>
+We also have to calculate the degrees of freedom. Which, different to the regression test we will see next, is <em>not</em> related to <span class="math notranslate nohighlight">\(n\)</span>.  The number of data points (n) influence the power of the test (its ability to correctly reject the null hypothesis when it’s actually false), but not the degrees of freedom. More data points generally lead to more precise parameter estimates and a higher likelihood of detecting a true effect. Degrees of freedom (df) relate to the number of parameters in the models being compared.  Its a tricky nuance because we will see that for correlation tests, the degrees of freedom <em>are</em> related to <span class="math notranslate nohighlight">\(n\)</span></p></li>
+</ol>
+<p>In the Davies test therefore the number of degrees of freedom is the extra number of parameters we need to fit for the segmentation breakpoint method. As we are using simple linear fits with two parameters (offset and slope), then simply:</p>
+<p><span class="math notranslate nohighlight">\(DF = 4 - 2 = 2\)</span></p>
+<ol class="arabic simple" start="5">
+<li><p><strong>Determine the P-Value:</strong></p></li>
+</ol>
+<p>The Davies’ test addresses the non-standard distribution of the test statistic by using simulations or asymptotic approximations to determine the p-value. for this assumption to be valid we need to be fitting to at least This p-value indicates the probability of observing the observed difference in RSS if there were no actual breakpoint.</p>
+<ol class="arabic simple" start="7">
+<li><p><strong>Make a Decision:</strong></p>
+<ul class="simple">
+<li><p>If the p-value is less than the significance level (e.g., 0.05 for a 95% confidence level), reject the null hypothesis and conclude that the breakpoint is statistically significant.</p></li>
+<li><p>If the p-value is greater than the significance level, fail to reject the null hypothesis, suggesting that the breakpoint may be due to chance.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>  <span class="c1"># Import chi2 from scipy.stats</span>
+
+<span class="k">def</span> <span class="nf">davies_test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">breakpoint</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements a simplified Davies&#39; test for breakpoint significance.&quot;&quot;&quot;</span>
+
+    <span class="n">ypred_piecewise</span><span class="p">,</span> <span class="n">rss_piecewise</span> <span class="o">=</span> <span class="n">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">breakpoint</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+
+    <span class="n">p_single</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    <span class="n">ypred_single</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p_single</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">rss_single</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">ypred_single</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">k_single</span> <span class="o">=</span> <span class="n">order</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Number of parameters in single regression</span>
+    <span class="n">k_piecewise</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Number of parameters in piecewise regression</span>
+
+    <span class="c1"># Calculate the test statistic (likelihood ratio test)</span>
+    <span class="k">if</span> <span class="n">rss_piecewise</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span> <span class="c1"># to avoid divide by zero errors.</span>
+    <span class="n">test_statistic</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">rss_single</span> <span class="o">/</span> <span class="n">rss_piecewise</span><span class="p">)</span>
+
+    <span class="c1"># Calculate degrees of freedom</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">k_piecewise</span> <span class="o">-</span> <span class="n">k_single</span>
+
+    <span class="c1"># Calculate p-value using chi-squared distribution</span>
+    <span class="n">p_value</span> <span class="o">=</span> <span class="n">chi2</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">test_statistic</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">p_value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#breakpoint, rss_values = find_changepoint(xpts, ypts)</span>
+
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">davies_test</span><span class="p">(</span><span class="n">xpts</span><span class="p">,</span> <span class="n">ypts</span><span class="p">,</span> <span class="n">breakpt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Breakpoint:&quot;</span><span class="p">,</span> <span class="n">breakpt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-value:&quot;</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Breakpoint is significant&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Breakpoint is not significant&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Breakpoint: 70
+P-value: 2.3918854002261832e-35
+Breakpoint is significant
+</pre></div>
+</div>
+</div>
+</div>
+<section id="play-and-discuss">
+<h3>Play and Discuss<a class="headerlink" href="#play-and-discuss" title="Permalink to this heading">#</a></h3>
+<p>Before we move on to a concrete application of the method, get into groups to play with the method. This example was easy, the break very clear, and the algorithm got it spot on. Now try out different values for the slopes and try to break the algorithm!!! For example, give both segments the same slope but different offsets (the kind of change that might happen if a weather station is moved for example).  What are the characteristics that challenge the algorithm ? Does the significance fail when you expect it to?</p>
+</section>
+</section>
+<section id="monsoon-onset">
+<h2><strong>Monsoon Onset</strong><a class="headerlink" href="#monsoon-onset" title="Permalink to this heading">#</a></h2>
+<p>In this example we are going to use the onset index of <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016GL071026">Walker and Bordoni (2016)</a>, hereafter WB16.</p>
+<p>Let’s start by taking a look at the IMD onset monitoring from 2024.</p>
+<img src="https://mausam.imd.gov.in/ClimateInformation/imdweb/DAY_WEEK/onset_SW.gif" width=500 />
+<p>We notice that the monsoon progresses northwestward and thus the <em>local</em> onset of rains is latitude dependent.
+Keeping this in mind, in this paper we will be attempting to derive a mean onset date for all-India.</p>
+<p>Let’s start by looking at the mean precipitation for the box 10–30°N, 60–100°E, a large region that encompasses the Indian subcontinent and is frequently used domain for the South Asian summer Monsoon (SASM). We will simply use ERA5 here.  You will learn how to make this plot later…</p>
+<img src="images/ERA5_precip_2000.jpg" width="500" />
+<div class="alert alert-block alert-info">
+</section>
+<section id="discussion">
+<h2><strong>Discussion</strong><a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
+<p>Break out into groups and quickly discuss these questions.</p>
+<ul class="simple">
+<li><p>Does the plot based on ERA5 resemble the paper plot using MERRA/GPCP?</p></li>
+<li><p>Look at the precipation graph, roughly at what day would you define the monsoon onset?</p></li>
+<li><p>What are the difficulties of using this field to define the onset?</p></li>
+<li><p>If you were to use a threshold rainfall event, how would you set it?</p></li>
+</ul>
+</div><section id="the-walker-bordoni-onset-index">
+<h3>The Walker-Bordoni onset index<a class="headerlink" href="#the-walker-bordoni-onset-index" title="Permalink to this heading">#</a></h3>
+<p>The key concept of this paper is that rather than assessing the onset date for the monsoon based directly on the precipitation, it instead employed the large scale column water budget, which constrains net precipitation. This builds on Walker et al. 2015, who used a similar index for interannual variability.</p>
+<p>For a given region, we can write an equation for the rate of change of the total column water vapor <span class="math notranslate nohighlight">\(W\)</span> (sometimes referred to as the “precipitable water”, or referred to as TCWV in ECMWF grib table 128),  which is defined as <span class="math notranslate nohighlight">\( W = \int ^0_{p_0} q_v \frac{dp}{g}\)</span>.</p>
+<p>The rate of change of <span class="math notranslate nohighlight">\(W\)</span> is simply a sum of the atmospheric sources and sinks:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial W}{\partial t} = MFC - P + E \]</div>
+<p>where <span class="math notranslate nohighlight">\(P\)</span> is precipitation, <span class="math notranslate nohighlight">\(E\)</span> total surface evaporation, and <span class="math notranslate nohighlight">\(MFC\)</span> is the moisture flux convergence, given by</p>
+<div class="math notranslate nohighlight">
+\[ MFC = - \int^{p_s}_{0} \nabla . (u q_v) \frac{dp}{g} \]</div>
+<p>where <span class="math notranslate nohighlight">\(u\)</span> is the horizontal wind vector and <span class="math notranslate nohighlight">\(q_v\)</span> is the specific humidity.</p>
+<p>They show these terms in their Figure 1 for the year 2000, (panel a) for the region 10–30°N, 60–100°E, a large region that encompasses the Indian subcontinent and is frequently used domain for the South Asian summer Monsoon (SASM). Remember, each of these terms is calculated as an <em>area average</em>.  SB16 use MERRA reanalysis combined with GPCP for precipitation.</p>
+<p>Ignore the red line for now - we will explain what this is later on…</p>
+<img src="images/SB16_fig1.jpg" width="500" height="300" />
+<div class="alert alert-block alert-info">
+</section>
+</section>
+<section id="id1">
+<h2>Discussion<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>What are the key features of the precipitation, evaporation and storage?</p>
+</div>
+<p>What do we see?</p>
+<ul class="simple">
+<li><p><strong>Precipitation</strong>:  The field is quite noisy in time, and starts to increase around day 150.</p></li>
+<li><p><strong>Evaporation</strong>: This exceeds the precipitation at the start of the year, when precipitation is essentially zero.  It increases in the rainy season as the soil moisture increases but the seasonal variation is much less than that of the precipitation. Note that we do not expect P~E over land averaged over time, why not?</p></li>
+<li><p><strong>Storage</strong>: The <span class="math notranslate nohighlight">\(\frac{\partial W}{\partial t}\)</span> storage term oscillates around zero; storage is not that important it seems! (This is not always so true for other monsoon systems).  Thus the divergence of water over the region is approximately in balance with <span class="math notranslate nohighlight">\(P-E\)</span>. In fact, as pointed out by WB16: <em>“With negligible storage <span class="math notranslate nohighlight">\(\frac{\partial W}{\partial t}\)</span>, the dominant balance in the SASM region is between MFC and net precipitation (P-E). Thus, positive (negative) values of MFC correspond to positive (negative) net precipitation.”</em></p></li>
+</ul>
+<p>We will now examine these timeseries, trying to recreate this plot using ERA5 reanalysis data.</p>
+<p>If you are not familiar with netcdf file formats or the command line tool cdo (<a class="reference external" href="https://code.mpimet.mpg.de/projects/cdo">climate data operators</a>) we suggest you follow the video series of <a class="reference external" href="https://www.youtube.com/&#64;climateunboxed">ClimateUnboxed</a>.  The following box would allow you to download the data to your laptop and calculate the box averages.</p>
+<p>On the Copernicus Climate Data store for ERA5, these are the names of the variables:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>eqn</p></th>
+<th class="head"><p>long name</p></th>
+<th class="head"><p>ECMWF name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(P\)</span></p></td>
+<td><p>total_precipitation</p></td>
+<td><p>tp</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(E\)</span></p></td>
+<td><p>evaporation</p></td>
+<td><p>e</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\frac{\partial W}{\partial t}\)</span></p></td>
+<td><p>vertical_integeration_of_moisture_divergence</p></td>
+<td><p>VIMD</p></td>
+</tr>
+</tbody>
+</table>
+<p>VIMD is available from the reanalysis, but is usually not saved as a forecast product. We will return to this in the exercises.</p>
+<p>But before we start let’s just import a few packages we will be needing and show you how to install others if any of them are missing in the box below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span><span class="o">=</span><span class="s2">&quot;india&quot;</span> <span class="c1"># india, nam...  </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># you ONLY need these packages if you want to download the data yourself... </span>
+<span class="c1"># Uncomment these lines if so </span>
+<span class="c1">#</span>
+<span class="c1">### pip install matplotlib</span>
+<span class="c1">### import cdsapi</span>
+<span class="c1">### from cdo import Cdo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-warning">
+**NOTE**
+As the CDS is extremely slow at the moment, we prepared the timeseries data which can directly download using wget, or simply access directory online from the python netCDF4 utility, which is how this notebook operates
+</div>
+<p>If you want to use the retrieve script later on, so you can change your data, you can watch the video tutorials on “ClimateUnboxed” and <a class="reference external" href="https://cds.climate.copernicus.eu/how-to-api">see the instructions here</a></p>
+<p>In this case set get_cds to True!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_cds</span><span class="o">=</span><span class="kc">False</span> <span class="c1"># we will use the pre-prepared datasets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># This shows you how to get the data yourself if you want to have the files locally</span>
+<span class="c1">#</span>
+<span class="k">if</span> <span class="n">get_cds</span><span class="p">:</span>
+    <span class="n">locdir</span><span class="o">=</span><span class="s2">&quot;./&quot;</span> <span class="c1"># where you want to put the data</span>
+
+    <span class="c1"># make incidence </span>
+    <span class="n">client</span><span class="o">=</span><span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+    <span class="n">cdo</span><span class="o">=</span><span class="n">Cdo</span><span class="p">()</span>
+    
+    <span class="c1"># dataset we are using:</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;derived-era5-single-levels-daily-statistics&quot;</span>
+    
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1961</span><span class="p">,</span><span class="mi">1971</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;total_precipitation&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;evaporation&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vertical_integral_of_divergence_of_moisture_flux&quot;</span>
+        <span class="p">]:</span>
+            
+            <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="s2">&quot;reanalysis&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="n">var</span><span class="p">,</span>
+        <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span>  <span class="c1"># recall that the year needs to be a string!</span>
+        <span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="s2">&quot;02&quot;</span><span class="p">,</span> <span class="s2">&quot;03&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;04&quot;</span><span class="p">,</span> <span class="s2">&quot;05&quot;</span><span class="p">,</span> <span class="s2">&quot;06&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;07&quot;</span><span class="p">,</span> <span class="s2">&quot;08&quot;</span><span class="p">,</span> <span class="s2">&quot;09&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;12&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;day&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="s2">&quot;02&quot;</span><span class="p">,</span> <span class="s2">&quot;03&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;04&quot;</span><span class="p">,</span> <span class="s2">&quot;05&quot;</span><span class="p">,</span> <span class="s2">&quot;06&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;07&quot;</span><span class="p">,</span> <span class="s2">&quot;08&quot;</span><span class="p">,</span> <span class="s2">&quot;09&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;13&quot;</span><span class="p">,</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> <span class="s2">&quot;15&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;16&quot;</span><span class="p">,</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;21&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;22&quot;</span><span class="p">,</span> <span class="s2">&quot;23&quot;</span><span class="p">,</span> <span class="s2">&quot;24&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;25&quot;</span><span class="p">,</span> <span class="s2">&quot;26&quot;</span><span class="p">,</span> <span class="s2">&quot;27&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;28&quot;</span><span class="p">,</span> <span class="s2">&quot;29&quot;</span><span class="p">,</span> <span class="s2">&quot;30&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;31&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;daily_statistic&quot;</span><span class="p">:</span> <span class="s2">&quot;daily_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;time_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;utc+00:00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="s2">&quot;1_hourly&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">180</span><span class="p">]</span>
+    <span class="p">}</span>
+    
+            <span class="n">ifile</span><span class="o">=</span><span class="n">locdir</span><span class="o">+</span><span class="s2">&quot;era5_daily_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">var</span><span class="o">+</span><span class="s2">&quot;.nc&quot;</span>
+            <span class="n">ofile</span><span class="o">=</span><span class="n">locdir</span><span class="o">+</span><span class="s2">&quot;era5_ts_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">var</span><span class="o">+</span><span class="s2">&quot;.nc&quot;</span>
+            <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">ifile</span><span class="p">)</span>
+            <span class="n">cdo</span><span class="o">.</span><span class="n">fldmean</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;-sellonlatbox,60,100,10,30 &quot;</span><span class="o">+</span><span class="n">ifile</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="n">ofile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>alternative shortcut - prepared online data</strong></p>
+<p>as the CDS has issues at the moment rendering it very slow, here we have prepared the files offline.</p>
+<p>You can open <a class="reference external" href="http://clima-dods.ictp.it/Users/tompkins/monsoons/data/">this URL</a> in a browser to see the file list.</p>
+<p><em>Note that evaporation has been multiplied by -1 so that all terms are <strong>positive</strong> (negative) for atmospheric <strong>sinks</strong> (sources).</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Let&#39;s just plot the moisture flux convergence. </span>
+<span class="c1"># this is fudge for datafile naming convention (ugh)</span>
+<span class="c1">#</span>
+<span class="k">def</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">region</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">datadir</span><span class="o">=</span><span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/monsoons/data/&quot;</span>
+    <span class="k">if</span> <span class="n">region</span><span class="o">==</span><span class="s2">&quot;india&quot;</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">=</span><span class="n">datadir</span><span class="o">+</span><span class="n">var</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_asia_sn10_30_we60_100.nc&quot;</span>
+    <span class="k">if</span> <span class="n">region</span><span class="o">==</span><span class="s2">&quot;nam&quot;</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">=</span><span class="n">datadir</span><span class="o">+</span><span class="s2">&quot;era5_p_e_vimd_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_daysum_NAM.nc&quot;</span>
+    <span class="k">if</span> <span class="n">region</span><span class="o">==</span><span class="s2">&quot;cumnam&quot;</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">=</span><span class="n">datadir</span><span class="o">+</span><span class="s2">&quot;era5_p_e_vimd_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_daysum_NAM_timcumsum.nc&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">file</span><span class="o">+</span><span class="s1">&#39;#mode=bytes&#39;</span><span class="p">)</span>
+    <span class="n">dset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">dset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># move the getting of data here to speed things up, </span>
+<span class="c1"># otherwise need to read in everytime we plot. </span>
+<span class="c1"># lets read into a dictory or a list of numpy arrays</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">dlist</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">fldname</span><span class="p">,</span><span class="n">sf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
+    <span class="c1">#ds=get_file(var,year)</span>
+    <span class="n">region</span><span class="o">=</span><span class="s2">&quot;india&quot;</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">get_file</span><span class="p">(</span><span class="n">region</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">fld</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">fldname</span><span class="p">])</span><span class="o">*</span><span class="n">sf</span>
+    <span class="n">dlist</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;var&quot;</span><span class="p">:</span><span class="n">var</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="p">:</span><span class="n">fld</span><span class="p">,</span><span class="s2">&quot;year&quot;</span><span class="p">:</span><span class="n">year</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">dlist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fldnames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tp&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">,</span><span class="s2">&quot;vimd&quot;</span><span class="p">]</span>
+<span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;prec&quot;</span><span class="p">,</span><span class="s2">&quot;evap&quot;</span><span class="p">,</span><span class="s2">&quot;vimd&quot;</span><span class="p">]</span>
+<span class="n">sf</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">dlist</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">year</span><span class="o">=</span><span class="mi">2000</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># Cycle through the fields and add each dataset as a dictionary to the list</span>
+<span class="c1"># </span>
+<span class="k">for</span> <span class="n">ivar</span><span class="p">,</span><span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">vars</span><span class="p">):</span>
+    <span class="n">dlist</span><span class="o">=</span><span class="n">get_data</span><span class="p">(</span><span class="n">dlist</span><span class="p">,</span><span class="nb">vars</span><span class="p">[</span><span class="n">ivar</span><span class="p">],</span><span class="n">fldnames</span><span class="p">[</span><span class="n">ivar</span><span class="p">],</span><span class="n">sf</span><span class="o">=</span><span class="n">sf</span><span class="p">[</span><span class="n">ivar</span><span class="p">],</span><span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a simple line plot for the 3 styles</span>
+<span class="k">def</span> <span class="nf">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="c1"># hard wired </span>
+    <span class="n">lstyles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span><span class="s2">&quot;solid&quot;</span><span class="p">,</span><span class="s2">&quot;solid&quot;</span><span class="p">]</span>
+    <span class="n">lwidths</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">lcols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">]</span>
+    <span class="n">tick_spacing</span><span class="o">=</span><span class="mi">20</span>
+    
+    <span class="c1"># fudge to correct labels to something nicer</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;evap&quot;</span><span class="p">:</span><span class="s2">&quot;evaporation&quot;</span><span class="p">,</span><span class="s2">&quot;prec&quot;</span><span class="p">:</span><span class="s2">&quot;precipitation&quot;</span><span class="p">,</span><span class="s2">&quot;vimd&quot;</span><span class="p">:</span><span class="s2">&quot;MFC&quot;</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">ivar</span><span class="p">,</span><span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dlist</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span>
+                <span class="n">linestyle</span><span class="o">=</span><span class="n">lstyles</span><span class="p">[</span><span class="n">ivar</span><span class="p">],</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">lwidths</span><span class="p">[</span><span class="n">ivar</span><span class="p">],</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">lcols</span><span class="p">[</span><span class="n">ivar</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">var</span><span class="p">[</span><span class="s2">&quot;var&quot;</span><span class="p">]])</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;day of year&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;(mm/day)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;year &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="n">tick_spacing</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=-</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span> <span class="c1"># vertical lines</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;precip.jpg&quot;</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3eaefc65a27de14a7c5ff92c4ca31aea19f799fdac76258a6de40984a4a6ab90.png" src="../../_images/3eaefc65a27de14a7c5ff92c4ca31aea19f799fdac76258a6de40984a4a6ab90.png" />
+</div>
+</div>
+<div class="alert alert-block alert-info">
+</section>
+<section id="id2">
+<h2><strong>Discussion</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Break out into groups and quickly discuss these questions.</p>
+<ul class="simple">
+<li><p>Does the plot based on ERA5 resemble the paper plot using MERRA/GPCP?</p></li>
+<li><p>Can you think of any issues with using reanalysis for the budget calculations?</p></li>
+</ul>
+</div>
+</section>
+<section id="wb16-onset-definition">
+<h2><strong>WB16 onset definition</strong><a class="headerlink" href="#wb16-onset-definition" title="Permalink to this heading">#</a></h2>
+<p>WB16 noted that the precipitation and divergence were quite noisy fields, making it difficult to use them to define a threshold for monsoon onset.  This is why often you will find onset definitions have a lot of “bolt-ons”, that is, <em>“it needs to rain at least X much, for Y consecutive days and… and… “</em></p>
+<p>WB16 thus decided to use the <strong>cumulative</strong> water budget for the onset, which in fact is inspired by some onset definitions that are based on cumulative precipitation.  This is the origin of the <strong>red line</strong> in panel a above, which was labled CMFC, which in turn stood for <em>Cumulative Moisture Flux Convergence</em>.  Let’s take a look at this.  The VIMD parameter is simply summed using the function</p>
+<p><strong>cdo timcumsum <a class="reference external" href="http://in.nc">in.nc</a> <a class="reference external" href="http://out.nc">out.nc</a></strong></p>
+<p>We’ve already calculated this for you, so let’s just add it to the graph!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#first let&#39;s get the cmfc, only one field so we we extract </span>
+<span class="c1"># it from the list and only keep the data</span>
+<span class="c1">#cmfc=get_data([],var=&quot;cum_vimd&quot;,fldname=&quot;vimd&quot;,year=year)[0][&quot;data&quot;]</span>
+<span class="n">cmfc</span><span class="o">=</span><span class="n">get_data</span><span class="p">([],</span><span class="n">var</span><span class="o">=</span><span class="s2">&quot;cum_vimd&quot;</span><span class="p">,</span><span class="n">fldname</span><span class="o">=</span><span class="s2">&quot;vimd&quot;</span><span class="p">,</span><span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">)</span>
+
+<span class="c1"># add CMFC on rh y axis</span>
+<span class="n">ax2</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmfc</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;CMFC&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Day of Year&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CMFC (mm)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5f68af136b7319df703777631050ce05d8fea8c80d0fe687ba9c53b3099f0042.png" src="../../_images/5f68af136b7319df703777631050ce05d8fea8c80d0fe687ba9c53b3099f0042.png" />
+</div>
+</div>
+<div class="alert alert-block alert-info">
+</section>
+<section id="id3">
+<h2><strong>Discussion</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Can you think of a way to use the cumulative moisture divergence instead ? How would this compare to your earlier estimate using the precipitation only?</p></li>
+</ul>
+</div>
+<p>WB16 suggested that the minimum of CMFC was a good metric of the monsoon onset; this is the point when the atmospheric moisture budget flips from net <strong>export</strong> to net <strong>import</strong> of water vapor in the broad monsoon region, again assuming negligible storage!</p>
+<p>Now it remains to find a simple algorithm to identify the minimum in CMFC.
+WB16 tackle this by using a method known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Segmented_regression">segmented regression</a> breakpoint analysis.</p>
+<p>Here we will show the method with an arbirtary split at day=140.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first we define the number of time steps</span>
+<span class="n">ntim</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">cmfc</span><span class="p">)</span>
+<span class="c1"># let&#39;s test an arbitrary break at day=140</span>
+<span class="n">pt</span><span class="o">=</span><span class="mi">140</span> 
+<span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ntim</span><span class="p">))</span>
+<span class="n">ypred</span><span class="p">,</span><span class="n">rssval</span> <span class="o">=</span> <span class="n">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">cmfc</span><span class="p">,</span><span class="n">pt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">)</span>
+
+<span class="c1"># add CMFC on rh y axis</span>
+<span class="n">ax2</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmfc</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;CMFC&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Day of Year&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CMFC (mm)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b0edd58e95d071edad23e8a54639564ef40783e000fecf8859b1053806051530.png" src="../../_images/b0edd58e95d071edad23e8a54639564ef40783e000fecf8859b1053806051530.png" />
+</div>
+</div>
+<p>Okay… well this worked okay… ish, but…</p>
+<div class="alert alert-block alert-info">
+<p><strong>QUESTION</strong></p>
+<p>what do you think causes the poor fit for the second segment and what would be a quick easy fix?</p>
+</div><p>The issue is that we are fitting just two linear segments, and after around day 250-300 when the monsoon is coming to an end, the CMFC slope becomes negative again and  the fit is thus quite poor (there are actually 3 segments in other words if we consider calendar years)…  We could try to do a 3-part fit, but an easier solution is to truncate the series at day 250 or so.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff</span><span class="o">=</span><span class="mi">250</span>
+<span class="n">ypred_s</span><span class="p">,</span><span class="n">rssval</span> <span class="o">=</span> <span class="n">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">cutoff</span><span class="p">],</span><span class="n">cmfc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">cutoff</span><span class="p">],</span><span class="n">pt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">)</span>
+
+<span class="c1"># add CMFC on rh y axis</span>
+<span class="n">ax2</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmfc</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;CMFC&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Day of Year&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CMFC (mm)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ypred_s</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f5112a48405ffc940f694f0970b430a8d2304993dcd7bd75b8ca3161f4cfce27.png" src="../../_images/f5112a48405ffc940f694f0970b430a8d2304993dcd7bd75b8ca3161f4cfce27.png" />
+</div>
+</div>
+<p>Okay, that’s much better now!  So now let’s cycle over the series and minimize the RSS to find the breakpoint.  For that we define the third routine listed above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day_onset</span><span class="p">,</span><span class="n">ypred_best</span><span class="p">,</span><span class="n">rss</span> <span class="o">=</span> <span class="n">find_changepoint</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">cutoff</span><span class="p">],</span><span class="n">cmfc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">cutoff</span><span class="p">])</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot; The onset date is predicted to be at day &quot;</span><span class="p">,</span><span class="n">day_onset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>split  70
+ The onset date is predicted to be at day  125
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">)</span>
+
+
+<span class="c1"># add CMFC on rh y axis</span>
+<span class="n">ax2</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmfc</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;CMFC&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Day of Year&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CMFC (mm)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ypred_best</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># add vertical line at onset date</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">day_onset</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">day_onset</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">day_onset</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="s2">&quot;Onset&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/abec2dcded6c8a0ccf9defef8128dc27d8d03914ea68998ee4f74aa704cb59f3.png" src="../../_images/abec2dcded6c8a0ccf9defef8128dc27d8d03914ea68998ee4f74aa704cb59f3.png" />
+</div>
+</div>
+<div class="alert alert-block alert-info">
+<section id="id4">
+<h3>Discussion<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Why is the piece-wise segmentation regression better (clue = more “robust”) than simply finding the minimum of the CMFC?</p></li>
+<li><p>How does this breakpoint based onset compare to your initial estimate based on the precipitation timeseries? Is it earlier or later?  Why do you think this is?</p></li>
+</ul>
+</div>   </section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercises">
+<h1><strong>Exercises</strong><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<section id="basic">
+<h2>Basic:<a class="headerlink" href="#basic" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>The above exercise was conducted for the year 2000, which was the year used in fig 1 of WB16.  Repeat the above exercise for a few other years (include 2012 for example) so you get a feeling of the year to year variability in the time series.  Discuss within your groups, what are the robust features that stand out?  Are there any very abnormal years you can find?  Make a quick google search for exceptional years where the onset was particularly delayed or advanced, does this metric seem to agree?</p></li>
+</ol>
+</section>
+<section id="intermediate">
+<h2>Intermediate:<a class="headerlink" href="#intermediate" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple" start="2">
+<li><p>You have seen how to calculate the onset for a given year, now loop over all years on line and calculate the onset for each year. Make a timeseries plot to show the interannual variability in the onset dates.</p></li>
+<li><p>Earlier you tried to estimate an onset date simply using a precipitation threshold.  Try to make a timeseries of onset dates using this threshold and see how it compares to the CMFC one.</p></li>
+<li><p>Modify the code to detect the cessation dates. Is there a correlation between cessation anomaly and onset anomaly?</p></li>
+</ol>
+</section>
+<section id="advanced">
+<h2>Advanced:<a class="headerlink" href="#advanced" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple" start="5">
+<li><p>For many forecast systems, such as the operational forecasts on the CDS, the divergence is not calculated and stored.  In Fig 1 of WB16 we saw that <span class="math notranslate nohighlight">\(\frac{dW}{dt}\)</span> is very limited.  You can calculate the storage term as a residual of <span class="math notranslate nohighlight">\(MFC\)</span>, <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(E\)</span>.  Do this with the ERA data and convince yourself that the term is small. If you are convinced we can neglect it and assume no changes in atmospheric storage, then <span class="math notranslate nohighlight">\(MFC=P-E\)</span>.  Try out this approximation by recalculating the onset date using the approximation of the cumulative <span class="math notranslate nohighlight">\(P-E\)</span>. Make a scatter plot of  CMFC-based onset day and cumulative (P-E) onset day. What is the correlation?</p></li>
+</ol>
+</section>
+<section id="cessation-dates-clues">
+<h2>4 Cessation Dates Clues<a class="headerlink" href="#cessation-dates-clues" title="Permalink to this heading">#</a></h2>
+<summary>
+    <details>
+        <code>
+cess_start=160  # why 160???
+day_cess,ypred_best,rss,t_trend,p_trend,t_offset,p_offset=find_changepoint(x[cess_start:],cmfc[cess_start:])
+day_cess+=cess_start
+seas_len=day_cess-day_onset
+        </code>
+  </details>
+</summary>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="potential-projects">
+<h1><strong>Potential Projects</strong><a class="headerlink" href="#potential-projects" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Do you notice any trends in onset date? if you get the ERA5 retrievals working, try to go back to 1941 to the present</p></li>
+<li><p>If you have your favourite onset definition in a datafile somewhere, try to read it in and make a comparison.</p></li>
+<li><p>seasonal forecast?  Take a look at the ECMWF Sys 5 forecasts, do they have any skill in predicting onset day?</p></li>
+<li><p>What about the CMIP6 ensemble, look at integrated P-E based onset and see if there are any trends that are clear by 2100?</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "adriantompkins/climate-book.git",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda"
+        },
+        kernelOptions: {
+            name: "conda",
+            path: "./notebooks/part2_cda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="climdata_trends_timeseries.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Trend derivation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="climdata_gpgp_indices.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Rainfall indices based on the Indian monsoon</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Breakpoint analysis (segmentation analysis)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-why-are-we-doing-this">Aside: Why are we doing this?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-analysis">Segmentation Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-all-minimize">let’s all… minimize…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#davies-test-for-breakpoint-significance">Davies’ Test for Breakpoint Significance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-and-discuss">Play and Discuss</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monsoon-onset"><strong>Monsoon Onset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion"><strong>Discussion</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-walker-bordoni-onset-index">The Walker-Bordoni onset index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>Discussion</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wb16-onset-definition"><strong>WB16 onset definition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>Discussion</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Discussion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises"><strong>Exercises</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic">Basic:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate">Intermediate:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced">Advanced:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cessation-dates-clues">4 Cessation Dates Clues</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#potential-projects"><strong>Potential Projects</strong></a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Adrian Tompkins
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -21,7 +21,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://gitlab.com/tompkins/earth-system-modelling  # Online location of your book
+  url: https://github.com/adriantompkins/climate-book.git
 
 # Jekyll theme required even if not used to build:
 theme: jekyll-theme-minimal
@@ -42,3 +42,13 @@ exclude_patterns:
   - _build
   - .ipynb_checkpoints
   - '**/_build'
+
+parse:
+  exclude_patterns:
+    - "01_thermodynamics"
+    - "02_convection"
+    - "03_clouds"
+    - "07_data_analysis"  # Assuming this is also empty or unused
+    - "*~"                 # This ignores backup files like content_thermo.md~
+    - "_build"
+    - "keep_toc_file"
