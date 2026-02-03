@@ -2,17 +2,13 @@
 
 Jupyter book for Earth System Modelling course:
 
-Static version of this book is viewable here.
+Static version of this book is viewable here: 
 
 ## Run this book on binder
 
 GITHUB (use this):
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/adriantompkins/climate-book/HEAD)
-
-GITLAB (not maintained):
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gl/tompkins%2Fearth-system-modelling/HEAD)
-
 
 ## Add your files
 
