@@ -22,7 +22,7 @@ jobs:
           pip install jupyter-book
           # Add any climate libraries you need to run your notebooks here
           pip install numpy pandas matplotlib xarray scipy netCDF4 metpy
-	  pip install fsspec climlab Ipython 
+          pip install fsspec climlab Ipython 
       - name: Build the book
         run: |
           python -m jupyter_book build .
