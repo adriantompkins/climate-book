@@ -31,6 +31,8 @@ theme: jekyll-theme-minimal
 html:
   use_issues_button: true
   use_repository_button: true
+  extra_css:
+    - _static/custom.css
 
 launch_buttons:
   notebook_interface: "classic" # "jupyterlab"  # or "classic"

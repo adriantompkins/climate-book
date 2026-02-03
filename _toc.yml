@@ -6,7 +6,7 @@ parts:
       - file: markdown/content_radiation.md
         sections:
           - file: notebooks/part1_tpa/radn_orbital.ipynb
-          - file: notebooks/part1_tpa/radn_isolation.ipynb
+          - file: notebooks/part1_tpa/radn_insolation.ipynb
           - file: notebooks/part1_tpa/radn_radeq.ipynb
           - file: notebooks/part1_tpa/radn_rce.ipynb
       - file: markdown/content_microphysics.md

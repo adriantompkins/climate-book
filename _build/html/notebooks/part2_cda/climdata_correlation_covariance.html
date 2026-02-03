@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -159,14 +160,15 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    Welcome to your Jupyter Book
+                    Atmospheric Physics and Data Analysis
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../content_radiation.html">Chapter 2: Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
 </ul>
@@ -174,11 +176,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../content_clima_data.html">Chapter 2: Energy Balance and Forcing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
+
 
 
 
@@ -207,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../content_modelling.html">Chapter 3: Climate models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
 
@@ -607,7 +610,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e14c58e2ece8a6a14a709ee6c401d5b52d8a84c36b02ea2d296cdf1352367bba.png" src="../../_images/e14c58e2ece8a6a14a709ee6c401d5b52d8a84c36b02ea2d296cdf1352367bba.png" />
+<img alt="../../_images/6765aee7985f78533c18acde640ea2e2e73aeb57e068146b7a268619259cd244.png" src="../../_images/6765aee7985f78533c18acde640ea2e2e73aeb57e068146b7a268619259cd244.png" />
 </div>
 </div>
 <div class="alert alert-block alert-info">
@@ -649,8 +652,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 2.622239949214352
-Covariance (np.cov): 2.627494939092537
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 2.4469041855455944
+Covariance (np.cov): 2.4518078011478894
 </pre></div>
 </div>
 </div>
@@ -711,9 +714,9 @@ Dividing by n - 1 corrects for the fact that the sample mean is used to calculat
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from whole population): 2.622239949214352
-Covariance (from samples): 2.627494939092537
-Covariance (np.cov): 2.627494939092537
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from whole population): 2.4469041855455944
+Covariance (from samples): 2.4518078011478903
+Covariance (np.cov): 2.4518078011478894
 </pre></div>
 </div>
 </div>
@@ -732,12 +735,12 @@ Covariance (np.cov): 2.627494939092537
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noise mag:0, Covariance: 24.5
-Noise mag:0.2, Covariance: 24.657865705480535
-Noise mag:0.5, Covariance: 24.472774810899036
-Noise mag:1, Covariance: 25.45941394651748
-Noise mag:2, Covariance: 23.932447310959475
-Noise mag:4, Covariance: 23.0932213898072
-Noise mag:8, Covariance: 27.733096964255424
+Noise mag:0.2, Covariance: 24.577696793549187
+Noise mag:0.5, Covariance: 24.38483821959599
+Noise mag:1, Covariance: 24.670061137809736
+Noise mag:2, Covariance: 23.233073625680905
+Noise mag:4, Covariance: 24.152612370779767
+Noise mag:8, Covariance: 24.629771321061376
 </pre></div>
 </div>
 </div>
@@ -921,15 +924,15 @@ Correlation: 0.0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Y = X + Gaussian Noise ---
-Covariance: 8.600476423882045
-Correlation: 0.956135367610899
+Covariance: 8.479102295320594
+Correlation: 0.9448567796938689
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 600x500 with 1 Axes&gt;,
  &lt;Axes: title={&#39;center&#39;: &#39;Y = X + Gaussian Noise&#39;}, xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/a7a7247b06535b48906f7cb44a57f616246e4e5cd5e1bb7725d00cc95702ba00.png" src="../../_images/a7a7247b06535b48906f7cb44a57f616246e4e5cd5e1bb7725d00cc95702ba00.png" />
+<img alt="../../_images/912a54f621f682606a157379d9e7eb07950503df2a23be69788ea49bfe651da9.png" src="../../_images/912a54f621f682606a157379d9e7eb07950503df2a23be69788ea49bfe651da9.png" />
 </div>
 </div>
 </section>
@@ -954,14 +957,14 @@ Correlation: 0.956135367610899
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Y = X + Gaussian Noise ---
-Covariance: 6.675075219578435
-Correlation: 0.11074703792794874
+Covariance: 7.585887521942114
+Correlation: 0.12360148416392307
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x124180830&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14d833800&gt;
 </pre></div>
 </div>
-<img alt="../../_images/c33ece19924a82df7c4b8e2846e9115fb4061ec878800cffe24efd6726797a4b.png" src="../../_images/c33ece19924a82df7c4b8e2846e9115fb4061ec878800cffe24efd6726797a4b.png" />
+<img alt="../../_images/f027966b26c8571c9294b2a47583142fa80da495046fcabe08d8d0b2896f0774.png" src="../../_images/f027966b26c8571c9294b2a47583142fa80da495046fcabe08d8d0b2896f0774.png" />
 </div>
 </div>
 </section>
@@ -1013,7 +1016,7 @@ Correlation: 0.11074703792794874
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2697524058457985
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.061816886013195495
 </pre></div>
 </div>
 </div>
@@ -1072,108 +1075,108 @@ Correlation: 0.11074703792794874
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: -0.420 T-statistic: -1.311
-Correlation coefficient: 0.028 T-statistic: 0.080
-Correlation coefficient: -0.397 T-statistic: -1.224
-Correlation coefficient: 0.150 T-statistic: 0.429
-Correlation coefficient: -0.602 T-statistic: -2.134
-Correlation coefficient: 0.230 T-statistic: 0.668
-Correlation coefficient: 0.382 T-statistic: 1.169
-Correlation coefficient: -0.100 T-statistic: -0.284
-Correlation coefficient: -0.288 T-statistic: -0.852
-Correlation coefficient: 0.203 T-statistic: 0.585
-Correlation coefficient: 0.034 T-statistic: 0.097
-Correlation coefficient: 0.578 T-statistic: 2.004
-Correlation coefficient: -0.484 T-statistic: -1.563
-Correlation coefficient: -0.057 T-statistic: -0.163
-Correlation coefficient: 0.287 T-statistic: 0.847
-Correlation coefficient: -0.141 T-statistic: -0.402
-Correlation coefficient: 0.426 T-statistic: 1.333
-Correlation coefficient: 0.230 T-statistic: 0.670
-Correlation coefficient: -0.514 T-statistic: -1.696
-Correlation coefficient: -0.212 T-statistic: -0.615
-Correlation coefficient: -0.362 T-statistic: -1.098
-Correlation coefficient: -0.561 T-statistic: -1.917
-Correlation coefficient: 0.555 T-statistic: 1.889
-Correlation coefficient: -0.082 T-statistic: -0.231
-Correlation coefficient: 0.598 T-statistic: 2.110
-Correlation coefficient: -0.247 T-statistic: -0.721
-Correlation coefficient: -0.162 T-statistic: -0.464
-Correlation coefficient: -0.367 T-statistic: -1.115
-Correlation coefficient: -0.158 T-statistic: -0.452
-Correlation coefficient: -0.230 T-statistic: -0.668
-Correlation coefficient: 0.186 T-statistic: 0.536
-Correlation coefficient: -0.436 T-statistic: -1.369
-Correlation coefficient: -0.015 T-statistic: -0.042
-Correlation coefficient: 0.418 T-statistic: 1.301
-Correlation coefficient: -0.166 T-statistic: -0.477
-Correlation coefficient: 0.065 T-statistic: 0.186
-Correlation coefficient: 0.292 T-statistic: 0.863
-Correlation coefficient: 0.388 T-statistic: 1.190
-Correlation coefficient: 0.508 T-statistic: 1.669
-Correlation coefficient: 0.102 T-statistic: 0.289
-Correlation coefficient: 0.274 T-statistic: 0.806
-Correlation coefficient: 0.226 T-statistic: 0.657
-Correlation coefficient: -0.349 T-statistic: -1.054
-Correlation coefficient: 0.211 T-statistic: 0.611
-Correlation coefficient: -0.667 T-statistic: -2.531
-Correlation coefficient: -0.481 T-statistic: -1.550
-Correlation coefficient: -0.055 T-statistic: -0.155
-Correlation coefficient: -0.574 T-statistic: -1.980
-Correlation coefficient: -0.561 T-statistic: -1.918
-Correlation coefficient: 0.361 T-statistic: 1.094
-Correlation coefficient: -0.422 T-statistic: -1.318
-Correlation coefficient: 0.686 T-statistic: 2.664
-Correlation coefficient: -0.447 T-statistic: -1.413
-Correlation coefficient: -0.085 T-statistic: -0.241
-Correlation coefficient: 0.143 T-statistic: 0.409
-Correlation coefficient: 0.190 T-statistic: 0.548
-Correlation coefficient: 0.099 T-statistic: 0.281
-Correlation coefficient: 0.052 T-statistic: 0.147
-Correlation coefficient: 0.015 T-statistic: 0.041
-Correlation coefficient: -0.152 T-statistic: -0.436
-Correlation coefficient: -0.141 T-statistic: -0.401
-Correlation coefficient: 0.215 T-statistic: 0.623
-Correlation coefficient: 0.239 T-statistic: 0.695
-Correlation coefficient: 0.352 T-statistic: 1.063
-Correlation coefficient: 0.427 T-statistic: 1.336
-Correlation coefficient: 0.011 T-statistic: 0.030
-Correlation coefficient: -0.041 T-statistic: -0.115
-Correlation coefficient: -0.468 T-statistic: -1.497
-Correlation coefficient: 0.024 T-statistic: 0.069
-Correlation coefficient: -0.175 T-statistic: -0.502
-Correlation coefficient: -0.094 T-statistic: -0.266
-Correlation coefficient: 0.275 T-statistic: 0.810
-Correlation coefficient: -0.089 T-statistic: -0.254
-Correlation coefficient: 0.345 T-statistic: 1.041
-Correlation coefficient: 0.365 T-statistic: 1.109
-Correlation coefficient: -0.136 T-statistic: -0.388
-Correlation coefficient: 0.368 T-statistic: 1.119
-Correlation coefficient: 0.240 T-statistic: 0.699
-Correlation coefficient: 0.049 T-statistic: 0.138
-Correlation coefficient: 0.038 T-statistic: 0.108
-Correlation coefficient: -0.081 T-statistic: -0.230
-Correlation coefficient: 0.258 T-statistic: 0.755
-Correlation coefficient: 0.479 T-statistic: 1.542
-Correlation coefficient: 0.454 T-statistic: 1.441
-Correlation coefficient: -0.098 T-statistic: -0.278
-Correlation coefficient: -0.346 T-statistic: -1.042
-Correlation coefficient: -0.151 T-statistic: -0.433
-Correlation coefficient: -0.254 T-statistic: -0.742
-Correlation coefficient: 0.631 T-statistic: 2.298
-Correlation coefficient: -0.265 T-statistic: -0.779
-Correlation coefficient: 0.100 T-statistic: 0.283
-Correlation coefficient: -0.137 T-statistic: -0.392
-Correlation coefficient: 0.614 T-statistic: 2.199
-Correlation coefficient: 0.637 T-statistic: 2.337
-Correlation coefficient: 0.136 T-statistic: 0.389
-Correlation coefficient: 0.664 T-statistic: 2.514
-Correlation coefficient: -0.325 T-statistic: -0.973
-Correlation coefficient: -0.221 T-statistic: -0.642
-Correlation coefficient: 0.869 T-statistic: 4.956
-Correlation coefficient: 0.068 T-statistic: 0.193
-Out of 100 trials, the correlation was statistically significant in 5 cases.
-Proportion of significant results: 0.05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: 0.409 T-statistic: 1.268
+Correlation coefficient: 0.104 T-statistic: 0.296
+Correlation coefficient: 0.148 T-statistic: 0.424
+Correlation coefficient: -0.386 T-statistic: -1.185
+Correlation coefficient: -0.283 T-statistic: -0.833
+Correlation coefficient: 0.160 T-statistic: 0.457
+Correlation coefficient: -0.253 T-statistic: -0.739
+Correlation coefficient: -0.213 T-statistic: -0.616
+Correlation coefficient: 0.053 T-statistic: 0.151
+Correlation coefficient: 0.089 T-statistic: 0.252
+Correlation coefficient: -0.074 T-statistic: -0.211
+Correlation coefficient: -0.570 T-statistic: -1.964
+Correlation coefficient: 0.440 T-statistic: 1.385
+Correlation coefficient: 0.153 T-statistic: 0.438
+Correlation coefficient: 0.066 T-statistic: 0.188
+Correlation coefficient: -0.255 T-statistic: -0.746
+Correlation coefficient: 0.352 T-statistic: 1.065
+Correlation coefficient: -0.128 T-statistic: -0.365
+Correlation coefficient: -0.573 T-statistic: -1.975
+Correlation coefficient: -0.156 T-statistic: -0.448
+Correlation coefficient: -0.530 T-statistic: -1.768
+Correlation coefficient: 0.252 T-statistic: 0.738
+Correlation coefficient: -0.161 T-statistic: -0.461
+Correlation coefficient: 0.212 T-statistic: 0.613
+Correlation coefficient: 0.440 T-statistic: 1.387
+Correlation coefficient: -0.368 T-statistic: -1.119
+Correlation coefficient: 0.195 T-statistic: 0.562
+Correlation coefficient: -0.101 T-statistic: -0.287
+Correlation coefficient: 0.183 T-statistic: 0.526
+Correlation coefficient: 0.550 T-statistic: 1.864
+Correlation coefficient: -0.229 T-statistic: -0.665
+Correlation coefficient: 0.478 T-statistic: 1.540
+Correlation coefficient: -0.194 T-statistic: -0.559
+Correlation coefficient: -0.132 T-statistic: -0.376
+Correlation coefficient: 0.284 T-statistic: 0.839
+Correlation coefficient: 0.167 T-statistic: 0.478
+Correlation coefficient: -0.199 T-statistic: -0.574
+Correlation coefficient: -0.491 T-statistic: -1.593
+Correlation coefficient: 0.153 T-statistic: 0.437
+Correlation coefficient: -0.104 T-statistic: -0.296
+Correlation coefficient: 0.156 T-statistic: 0.447
+Correlation coefficient: -0.114 T-statistic: -0.325
+Correlation coefficient: -0.339 T-statistic: -1.019
+Correlation coefficient: -0.246 T-statistic: -0.717
+Correlation coefficient: -0.281 T-statistic: -0.828
+Correlation coefficient: -0.337 T-statistic: -1.012
+Correlation coefficient: -0.533 T-statistic: -1.783
+Correlation coefficient: -0.382 T-statistic: -1.167
+Correlation coefficient: -0.503 T-statistic: -1.646
+Correlation coefficient: 0.238 T-statistic: 0.692
+Correlation coefficient: 0.364 T-statistic: 1.106
+Correlation coefficient: -0.089 T-statistic: -0.252
+Correlation coefficient: 0.143 T-statistic: 0.410
+Correlation coefficient: 0.237 T-statistic: 0.691
+Correlation coefficient: 0.281 T-statistic: 0.828
+Correlation coefficient: 0.075 T-statistic: 0.213
+Correlation coefficient: -0.312 T-statistic: -0.927
+Correlation coefficient: 0.212 T-statistic: 0.613
+Correlation coefficient: -0.195 T-statistic: -0.563
+Correlation coefficient: 0.152 T-statistic: 0.434
+Correlation coefficient: -0.021 T-statistic: -0.059
+Correlation coefficient: 0.161 T-statistic: 0.463
+Correlation coefficient: -0.513 T-statistic: -1.691
+Correlation coefficient: -0.406 T-statistic: -1.257
+Correlation coefficient: -0.479 T-statistic: -1.542
+Correlation coefficient: -0.108 T-statistic: -0.307
+Correlation coefficient: -0.147 T-statistic: -0.419
+Correlation coefficient: -0.020 T-statistic: -0.057
+Correlation coefficient: 0.406 T-statistic: 1.256
+Correlation coefficient: 0.226 T-statistic: 0.656
+Correlation coefficient: 0.585 T-statistic: 2.042
+Correlation coefficient: -0.014 T-statistic: -0.040
+Correlation coefficient: -0.265 T-statistic: -0.777
+Correlation coefficient: 0.473 T-statistic: 1.518
+Correlation coefficient: -0.387 T-statistic: -1.187
+Correlation coefficient: 0.282 T-statistic: 0.831
+Correlation coefficient: -0.655 T-statistic: -2.451
+Correlation coefficient: 0.467 T-statistic: 1.494
+Correlation coefficient: 0.519 T-statistic: 1.718
+Correlation coefficient: -0.052 T-statistic: -0.148
+Correlation coefficient: 0.324 T-statistic: 0.970
+Correlation coefficient: -0.310 T-statistic: -0.922
+Correlation coefficient: 0.070 T-statistic: 0.199
+Correlation coefficient: -0.587 T-statistic: -2.053
+Correlation coefficient: -0.229 T-statistic: -0.665
+Correlation coefficient: 0.137 T-statistic: 0.391
+Correlation coefficient: -0.441 T-statistic: -1.389
+Correlation coefficient: -0.024 T-statistic: -0.068
+Correlation coefficient: -0.103 T-statistic: -0.294
+Correlation coefficient: -0.419 T-statistic: -1.306
+Correlation coefficient: 0.349 T-statistic: 1.052
+Correlation coefficient: 0.136 T-statistic: 0.388
+Correlation coefficient: -0.198 T-statistic: -0.572
+Correlation coefficient: 0.625 T-statistic: 2.265
+Correlation coefficient: 0.285 T-statistic: 0.841
+Correlation coefficient: 0.189 T-statistic: 0.545
+Correlation coefficient: -0.154 T-statistic: -0.440
+Correlation coefficient: 0.259 T-statistic: 0.759
+Correlation coefficient: 0.692 T-statistic: 2.708
+Correlation coefficient: -0.270 T-statistic: -0.792
+Out of 100 trials, the correlation was statistically significant in 2 cases.
+Proportion of significant results: 0.02
 </pre></div>
 </div>
 </div>

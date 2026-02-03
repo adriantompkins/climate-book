@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -155,14 +156,15 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    Welcome to your Jupyter Book
+                    Atmospheric Physics and Data Analysis
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../content_radiation.html">Chapter 2: Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
 </ul>
@@ -170,11 +172,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../content_clima_data.html">Chapter 2: Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_trends_timeseries.html">Trend derivation</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
+
 
 
 
@@ -203,7 +206,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../content_modelling.html">Chapter 3: Climate models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/mod_advection.html">Focus on advection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
 
@@ -533,7 +536,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Rainfall&#39;, ylabel=&#39;Frequency&#39;&gt;
 </pre></div>
 </div>
-<img alt="../../_images/0566c7e4563e327120f5d786f0b57cf86b2d1e773359894e05c80f40c5a82e17.png" src="../../_images/0566c7e4563e327120f5d786f0b57cf86b2d1e773359894e05c80f40c5a82e17.png" />
+<img alt="../../_images/8d5c5f0855ef170390c5c5f36269cafd99bd8a8a3591540fd1682c9df97b79d9.png" src="../../_images/8d5c5f0855ef170390c5c5f36269cafd99bd8a8a3591540fd1682c9df97b79d9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -608,11 +611,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.70956132] [7.70956132]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10.56863952] [10.56863952]
 Stored &#39;ax&#39; (Axes)
 </pre></div>
 </div>
-<img alt="../../_images/cc018c2c6b4021660cc43d522cc01bf7290f62cdcadff314e4595cb5c17ed5c8.png" src="../../_images/cc018c2c6b4021660cc43d522cc01bf7290f62cdcadff314e4595cb5c17ed5c8.png" />
+<img alt="../../_images/b3584eec7cf15c1874b464c7a27670aeeac6226b9697d6e1d5a277106474fa25.png" src="../../_images/b3584eec7cf15c1874b464c7a27670aeeac6226b9697d6e1d5a277106474fa25.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -634,10 +637,10 @@ Stored &#39;ax&#39; (Axes)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.07588138108835
 </pre></div>
 </div>
-<img alt="../../_images/a2c53cf68f2d9dd536f40b17ba354cc6a52afa1cb88cfe2f0852304c59bb9362.png" src="../../_images/a2c53cf68f2d9dd536f40b17ba354cc6a52afa1cb88cfe2f0852304c59bb9362.png" />
+<img alt="../../_images/bfc845c696e8f3e85062e4a8e3d4b8b1eca1051befb6ac09a28d2810158dd5f9.png" src="../../_images/bfc845c696e8f3e85062e4a8e3d4b8b1eca1051befb6ac09a28d2810158dd5f9.png" />
 </div>
 </div>
 </section>

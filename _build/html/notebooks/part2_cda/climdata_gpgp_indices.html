@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -159,14 +160,15 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../intro.html">
-                    Welcome to your Jupyter Book
+                    Atmospheric Physics and Data Analysis
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../content_radiation.html">Chapter 2: Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
 </ul>
@@ -174,11 +176,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../content_clima_data.html">Chapter 2: Energy Balance and Forcing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
+
 
 
 
@@ -207,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../content_modelling.html">Chapter 3: Climate models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
 
@@ -517,7 +520,7 @@ document.write(`
 
 <span class="nv">year1</span><span class="o">=</span><span class="m">1998</span>
 <span class="nv">year2</span><span class="o">=</span><span class="m">2005</span>
-<span class="nv">ddir</span><span class="o">=</span><span class="s2">&quot;../../DATA/gpcp&quot;</span>
+<span class="nv">ddir</span><span class="o">=</span><span class="s2">&quot;../../../DATA/gpcp&quot;</span><span class="w">  </span><span class="c1"># this is above the level of the python book, to not ad files to git</span>
 <span class="nv">fname</span><span class="o">=</span>gpcp_v01r03_daily_
 </pre></div>
 </div>
@@ -528,16 +531,18 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the data</span>
 
-mkdir<span class="w"> </span>-p<span class="w"> </span>./gpcp
 <span class="nv">stub</span><span class="o">=</span>gpcp_v01r03_daily_
 <span class="k">for</span><span class="w"> </span>year<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="si">${</span><span class="nv">year1</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">year2</span><span class="si">}</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">   </span>wget<span class="w"> </span>-P<span class="w"> </span><span class="nv">$ddir</span><span class="w"> </span>http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/<span class="si">${</span><span class="nv">stub</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>.nc
+<span class="w">   </span><span class="nv">file</span><span class="o">=</span><span class="si">${</span><span class="nv">stub</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>.nc
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILE_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">       </span>wget<span class="w"> </span>-c<span class="w"> </span>-P<span class="w"> </span><span class="nv">$ddir</span><span class="w"> </span>http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/<span class="si">${</span><span class="nv">stub</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>.nc
+<span class="w">   </span><span class="k">fi</span>
 <span class="k">done</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 14:15:34--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_1998.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_1998.nc
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
@@ -546,187 +551,19 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>./gpcp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 200 OK
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length: 94726499 (90M) [application/x-netcdf]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving to: ‘../../DATA/gpcp/gpcp_v01r03_daily_1998.nc.4’
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r   0%[                    ]       0  --.-KB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0   0%[                    ] 603.39K  2.95MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03   1%[                    ]   1.78M  4.37MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_   3%[                    ]   3.14M  5.18MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d   4%[                    ]   4.29M  4.99MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     gpcp_v01r03_da   6%[&gt;                   ]   6.27M  5.92MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    gpcp_v01r03_dai   8%[&gt;                   ]   7.61M  6.05MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   gpcp_v01r03_dail   9%[&gt;                   ]   8.92M  6.11MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gpcp_v01r03_daily  11%[=&gt;                  ]  10.26M  6.18MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> gpcp_v01r03_daily_  12%[=&gt;                  ]  11.08M  5.88MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_1  14%[=&gt;                  ]  13.01M  6.23MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pcp_v01r03_daily_19  15%[==&gt;                 ]  14.29M  6.25MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp_v01r03_daily_199  17%[==&gt;                 ]  15.41M  6.19MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p_v01r03_daily_1998  18%[==&gt;                 ]  16.74M  6.22MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_v01r03_daily_1998.  20%[===&gt;                ]  18.77M  6.49MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v01r03_daily_1998.n  23%[===&gt;                ]  20.87M  6.75MB/s    eta 10s    
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01r03_daily_1998.nc  25%[====&gt;               ]  22.99M  7.22MB/s    eta 10s    
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1r03_daily_1998.nc.  28%[====&gt;               ]  25.32M  7.57MB/s    eta 10s    
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r03_daily_1998.nc.4  30%[=====&gt;              ]  27.73M  7.91MB/s    eta 10s    
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03_daily_1998.nc.4   32%[=====&gt;              ]  29.36M  8.03MB/s    eta 10s    
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3_daily_1998.nc.4    33%[=====&gt;              ]  30.43M  7.75MB/s    eta 8s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_daily_1998.nc.4     34%[=====&gt;              ]  31.22M  7.65MB/s    eta 8s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>daily_1998.nc.4      35%[======&gt;             ]  32.42M  7.58MB/s    eta 8s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aily_1998.nc.4       37%[======&gt;             ]  34.23M  7.72MB/s    eta 8s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ily_1998.nc.4        40%[=======&gt;            ]  36.20M  8.18MB/s    eta 8s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ly_1998.nc.4         42%[=======&gt;            ]  38.17M  8.15MB/s    eta 7s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y_1998.nc.4          44%[=======&gt;            ]  40.13M  8.37MB/s    eta 7s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_1998.nc.4           46%[========&gt;           ]  41.99M  8.67MB/s    eta 7s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1998.nc.4            48%[========&gt;           ]  44.00M  8.85MB/s    eta 7s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>998.nc.4             50%[=========&gt;          ]  45.95M  8.90MB/s    eta 7s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98.nc.4              52%[=========&gt;          ]  47.34M  8.63MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.nc.4               54%[=========&gt;          ]  49.16M  8.53MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.nc.4                56%[==========&gt;         ]  51.25M  8.46MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nc.4                 58%[==========&gt;         ]  52.83M  8.18MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c.4                  60%[===========&gt;        ]  55.02M  8.33MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.4                   63%[===========&gt;        ]  57.24M  8.59MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4                    65%[============&gt;       ]  59.38M  9.27MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     67%[============&gt;       ]  61.20M  9.45MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  g  70%[=============&gt;      ]  63.29M  9.62MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 gp  73%[=============&gt;      ]  65.96M  9.86MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                gpc  75%[==============&gt;     ]  68.45M  10.0MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               gpcp  77%[==============&gt;     ]  70.30M  10.0MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              gpcp_  79%[==============&gt;     ]  71.87M  9.86MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             gpcp_v  82%[===============&gt;    ]  74.11M  9.99MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            gpcp_v0  84%[===============&gt;    ]  76.30M  10.1MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           gpcp_v01  86%[================&gt;   ]  78.43M  10.1MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r  89%[================&gt;   ]  80.60M  10.4MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0  90%[=================&gt;  ]  82.07M  10.2MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03  92%[=================&gt;  ]  83.97M  10.2MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_  94%[=================&gt;  ]  85.66M  10.1MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d  97%[==================&gt; ]  88.22M  10.3MB/s    eta 0s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_1 100%[===================&gt;]  90.34M  10.4MB/s    in 10s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2026-02-03 14:15:44 (8.72 MB/s) - ‘../../DATA/gpcp/gpcp_v01r03_daily_1998.nc.4’ saved [94726499/94726499]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 14:15:44--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_1999.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_1999.nc
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
@@ -735,160 +572,19 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>./gpcp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 200 OK
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length: 94726499 (90M) [application/x-netcdf]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving to: ‘../../DATA/gpcp/gpcp_v01r03_daily_1999.nc.2’
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r   0%[                    ]       0  --.-KB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0   1%[                    ]   1.30M  6.41MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03   3%[                    ]   3.47M  8.59MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_   6%[&gt;                   ]   5.75M  9.52MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d   9%[&gt;                   ]   8.26M  10.3MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     gpcp_v01r03_da  11%[=&gt;                  ]  10.61M  10.6MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    gpcp_v01r03_dai  13%[=&gt;                  ]  12.07M  9.90MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   gpcp_v01r03_dail  15%[==&gt;                 ]  13.76M  9.70MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gpcp_v01r03_daily  17%[==&gt;                 ]  15.47M  9.56MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> gpcp_v01r03_daily_  19%[==&gt;                 ]  17.97M  9.88MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_1  22%[===&gt;                ]  20.46M  10.1MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pcp_v01r03_daily_19  25%[====&gt;               ]  22.72M  10.2MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp_v01r03_daily_199  27%[====&gt;               ]  24.96M  10.3MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p_v01r03_daily_1999  29%[====&gt;               ]  26.32M  10.0MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_v01r03_daily_1999.  31%[=====&gt;              ]  28.56M  10.1MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v01r03_daily_1999.n  34%[=====&gt;              ]  30.74M  10.1MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01r03_daily_1999.nc  36%[======&gt;             ]  33.07M  10.2MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1r03_daily_1999.nc.  39%[======&gt;             ]  35.57M  10.6MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r03_daily_1999.nc.2  41%[=======&gt;            ]  37.32M  10.5MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03_daily_1999.nc.2   42%[=======&gt;            ]  38.71M  10.2MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3_daily_1999.nc.2    45%[========&gt;           ]  40.93M  10.1MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_daily_1999.nc.2     48%[========&gt;           ]  43.63M  10.2MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>daily_1999.nc.2      50%[=========&gt;          ]  45.81M  10.5MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aily_1999.nc.2       53%[=========&gt;          ]  48.18M  10.8MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ily_1999.nc.2        55%[==========&gt;         ]  50.54M  10.9MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ly_1999.nc.2         58%[==========&gt;         ]  53.15M  10.9MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y_1999.nc.2          61%[===========&gt;        ]  55.61M  10.9MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_1999.nc.2           63%[===========&gt;        ]  57.77M  10.9MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1999.nc.2            66%[============&gt;       ]  59.98M  10.9MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>999.nc.2             68%[============&gt;       ]  62.14M  11.1MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99.nc.2              71%[=============&gt;      ]  64.15M  11.1MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.nc.2               73%[=============&gt;      ]  66.20M  11.0MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.nc.2                75%[==============&gt;     ]  68.46M  10.9MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nc.2                 78%[==============&gt;     ]  70.61M  10.9MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c.2                  80%[===============&gt;    ]  72.71M  11.1MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.2                   82%[===============&gt;    ]  74.82M  11.3MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2                    85%[================&gt;   ]  77.48M  11.3MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     88%[================&gt;   ]  79.81M  11.2MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  g  90%[=================&gt;  ]  82.16M  11.3MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 gp  93%[=================&gt;  ]  84.36M  11.2MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                gpc  95%[==================&gt; ]  86.47M  11.1MB/s    eta 0s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               gpcp  98%[==================&gt; ]  88.66M  10.9MB/s    eta 0s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_1 100%[===================&gt;]  90.34M  11.0MB/s    in 8.4s    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2026-02-03 14:15:52 (10.7 MB/s) - ‘../../DATA/gpcp/gpcp_v01r03_daily_1999.nc.2’ saved [94726499/94726499]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 14:15:52--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2000.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2000.nc
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
@@ -897,166 +593,19 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>./gpcp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 200 OK
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length: 94985781 (91M) [application/x-netcdf]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving to: ‘../../DATA/gpcp/gpcp_v01r03_daily_2000.nc.1’
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r   0%[                    ]       0  --.-KB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0   0%[                    ] 899.31K  4.35MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03   2%[                    ]   2.68M  6.59MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_   4%[                    ]   4.17M  6.85MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d   6%[&gt;                   ]   6.17M  7.63MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     gpcp_v01r03_da   9%[&gt;                   ]   8.41M  8.33MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    gpcp_v01r03_dai  11%[=&gt;                  ]  10.86M  8.98MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   gpcp_v01r03_dail  14%[=&gt;                  ]  13.22M  9.37MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gpcp_v01r03_daily  15%[==&gt;                 ]  14.41M  8.92MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> gpcp_v01r03_daily_  17%[==&gt;                 ]  15.87M  8.74MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_2  19%[==&gt;                 ]  17.53M  8.69MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pcp_v01r03_daily_20  22%[===&gt;                ]  20.00M  9.01MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cp_v01r03_daily_200  24%[===&gt;                ]  22.43M  9.27MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p_v01r03_daily_2000  27%[====&gt;               ]  24.88M  9.50MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_v01r03_daily_2000.  30%[=====&gt;              ]  27.27M  9.67MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v01r03_daily_2000.n  32%[=====&gt;              ]  29.02M  9.59MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01r03_daily_2000.nc  33%[=====&gt;              ]  30.12M  9.33MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1r03_daily_2000.nc.  34%[=====&gt;              ]  31.27M  9.44MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r03_daily_2000.nc.1  37%[======&gt;             ]  33.54M  9.60MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>03_daily_2000.nc.1   39%[======&gt;             ]  36.03M  9.89MB/s    eta 6s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3_daily_2000.nc.1    42%[=======&gt;            ]  38.42M  9.96MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_daily_2000.nc.1     45%[========&gt;           ]  40.84M  10.0MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>daily_2000.nc.1      47%[========&gt;           ]  43.00M  9.96MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aily_2000.nc.1       48%[========&gt;           ]  44.17M  9.75MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ily_2000.nc.1        50%[=========&gt;          ]  46.11M  9.86MB/s    eta 5s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ly_2000.nc.1         53%[=========&gt;          ]  48.41M  10.2MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y_2000.nc.1          56%[==========&gt;         ]  50.81M  10.2MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_2000.nc.1           58%[==========&gt;         ]  53.31M  10.3MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000.nc.1            61%[===========&gt;        ]  55.70M  10.3MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>000.nc.1             63%[===========&gt;        ]  57.75M  10.1MB/s    eta 4s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>00.nc.1              65%[============&gt;       ]  59.31M  9.84MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.nc.1               67%[============&gt;       ]  60.97M  9.92MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.nc.1                68%[============&gt;       ]  62.40M  10.1MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nc.1                 71%[=============&gt;      ]  64.70M  10.4MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c.1                  73%[=============&gt;      ]  67.01M  10.4MB/s    eta 3s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.1                   76%[==============&gt;     ]  69.44M  10.4MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1                    79%[==============&gt;     ]  71.87M  10.3MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     81%[===============&gt;    ]  74.22M  10.3MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  g  84%[===============&gt;    ]  76.62M  10.5MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 gp  87%[================&gt;   ]  78.96M  10.9MB/s    eta 2s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                gpc  89%[================&gt;   ]  81.33M  10.9MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               gpcp  92%[=================&gt;  ]  83.68M  11.0MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              gpcp_  94%[=================&gt;  ]  86.03M  10.9MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             gpcp_v  97%[==================&gt; ]  88.33M  10.9MB/s    eta 1s     
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpcp_v01r03_daily_2 100%[===================&gt;]  90.58M  10.8MB/s    in 8.9s    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2026-02-03 14:16:01 (10.2 MB/s) - ‘../../DATA/gpcp/gpcp_v01r03_daily_2000.nc.1’ saved [94985781/94985781]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 14:16:01--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2001.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2001.nc
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
@@ -1065,49 +614,100 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>./gpcp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 200 OK
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length: 94726499 (90M) [application/x-netcdf]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving to: ‘../../DATA/gpcp/gpcp_v01r03_daily_2001.nc.1’
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          gpcp_v01r   0%[                    ]       0  --.-KB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2002.nc
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         gpcp_v01r0   1%[                    ] 980.24K  4.79MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        gpcp_v01r03   3%[                    ]   3.00M  7.49MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       gpcp_v01r03_   5%[&gt;                   ]   5.29M  8.80MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      gpcp_v01r03_d   8%[&gt;                   ]   7.71M  9.63MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     gpcp_v01r03_da  10%[=&gt;                  ]   9.91M  9.88MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    gpcp_v01r03_dai  12%[=&gt;                  ]  11.71M  9.69MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   gpcp_v01r03_dail  13%[=&gt;                  ]  12.53M  8.85MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2003.nc
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gpcp_v01r03_daily  15%[==&gt;                 ]  13.89M  8.58MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> gpcp_v01r03_daily_  17%[==&gt;                 ]  15.50M  8.52MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2004.nc
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-02-03 17:36:45--  http://clima-dods.ictp.it/Users/tompkins/Observations/GPCP/v1.3/gpcp_v01r03_daily_2005.nc
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resolving clima-dods.ictp.it (clima-dods.ictp.it)... 140.105.16.180
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting to clima-dods.ictp.it (clima-dods.ictp.it)|140.105.16.180|:80... connected.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 416 Requested Range Not Satisfiable
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    The file is already fully retrieved; nothing to do.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1141,14 +741,28 @@ The command we use is "sellonlatbox"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 43MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 42MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 42MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 41MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 42MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 42MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 41MB]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.10s 94MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 71MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.09s 74MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.09s 97MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 72MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 73MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.09s 93MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.09s 86MB]
 </pre></div>
 </div>
 </div>
@@ -1172,14 +786,28 @@ The command we use is "sellonlatbox"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 43MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 41MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 42MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 44MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.07s 43MB]
-<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 43MB]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.09s 84MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 99MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.08s 99MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.09s 103MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 86MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 88MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.08s 84MB]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.08s 80MB]
 </pre></div>
 </div>
 </div>
@@ -1199,8 +827,19 @@ cdo<span class="w"> </span>-O<span class="w"> </span>selmon,6/9<span class="w"> 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    mergetime: </span>Processed 1519440 values from 8 variables over 2922 timesteps [0.32s 58MB]
-<span class=" -Color -Color-Green">cdo    selmonth: </span>Processed 507520 values from 1 variable over 2922 timesteps [0.17s 48MB]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">cdo    mergetime: </span>Open failed on &gt;../../../DATA/gpcp/gpcp_v01r03_daily_????area_65_90_8_27.nc&lt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  No such file or directory
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">cdo    selmonth: </span>Open failed on &gt;../../../DATA/gpcp/gpcp_v01r03_daily_area_65_90_8_27.nc&lt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 No such file or directory
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
