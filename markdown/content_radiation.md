@@ -1,4 +1,4 @@
-Energy Balance and Forcing
+Radiative Transfer
 ============================
 
-Here we will cover Radiative Transfer in the atmosphere. 
+Here we will cover Radiative Transfer in the atmosphere and radiative and radiative-convective equilibrium. 

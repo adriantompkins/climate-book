@@ -11,15 +11,20 @@ parts:
           - file: notebooks/part1_tpa/radn_rce.ipynb
       - file: markdown/content_microphysics.md
         sections:
-          - file: notebooks/part1_tpa/cld_precip.ipynb
+          - file: notebooks/part1_tpa/cloud_accretion_squ.ipynb
+      - file: markdown/content_climate_sens.md
+        sections:
+          - file: notebooks/part1_tpa/clim_daisy_world.ipynb
+          - file: notebooks/part1_tpa/clim_EBM_0D_ice_feedback.ipynb
+          - file: notebooks/part1_tpa/clim_EBM_water_vapor.ipynb
 
   - caption: Climate Data Analysis
     chapters:
       - file: markdown/content_clima_data.md
         sections:
+          - file: notebooks/part2_cda/climdata_gpgp_indices.ipynb
           - file: notebooks/part2_cda/climdata_trends_timeseries.ipynb
           - file: notebooks/part2_cda/climdata_breakpoint_analysis.ipynb
-          - file: notebooks/part2_cda/climdata_gpgp_indices.ipynb
           - file: notebooks/part2_cda/climdata_correlation_covariance.ipynb
           - file: notebooks/part2_cda/climdata_FFT_analysis.ipynb
           - file: notebooks/part2_cda/climdata_EOF1.ipynb
@@ -29,3 +34,11 @@ parts:
           - file: notebooks/part2_cda/mod_advection.ipynb
           - file: notebooks/part2_cda/mod_CMIP_IPCC_temperature_trends.ipynb
           - file: notebooks/part2_cda/mod_climate-system-models.ipynb
+  - caption: Misc fun
+    chapters:
+      - file: markdown/content_misc.md
+        sections:
+          - file: notebooks/part3_misc/stochastic_model.ipynb
+          - file: notebooks/part3_misc/ensembles_forecasting_game.ipynb
+          - file: notebooks/part3_misc/VECTRI_overview.ipynb
+ 
