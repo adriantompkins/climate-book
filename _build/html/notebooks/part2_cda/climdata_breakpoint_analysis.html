@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_breakpoint_analysis';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Rainfall indices based on the Indian monsoon" href="climdata_gpgp_indices.html" />
+    <link rel="next" title="Correlation and Covariance" href="climdata_correlation_covariance.html" />
     <link rel="prev" title="Trend derivation" href="climdata_trends_timeseries.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -166,27 +166,37 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Radiative Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_microphysics.html">Microphysics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/cloud_accretion_squ.html">Cloud Accretion Simulation: The “Warm Rain” Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_climate_sens.html">Climate Feedbacks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_daisy_world.html">Biogeophysical feedbacks: Daisy World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_0D_ice_feedback.html">Ice albedo feedback in the 0D energy balance model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_water_vapor.html">Adding water vapor feedback to the grey model of the atmosphere</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">Rainfall indices based on the Indian monsoon</a></li>
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
 
 
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Breakpoint analysis (segmentation analysis)</a></li>
-
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">Rainfall indices based on the Indian monsoon</a></li>
 
 
 
@@ -210,11 +220,21 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="mod_climate-system-models.html">The climate system and climate models</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc fun</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_misc.html">Random Stuff</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part3_misc/stochastic_model.html">Stochastic Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part3_misc/ensembles_forecasting_game.html">Forecasting game.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part3_misc/VECTRI_overview.html">VECTRI India experiment</a></li>
+
 </ul>
 </li>
 </ul>
@@ -622,7 +642,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/80fe780aa34ef99ef2c2e67627971be151f27173b7546fd6a33d973ca19b80bc.png" src="../../_images/80fe780aa34ef99ef2c2e67627971be151f27173b7546fd6a33d973ca19b80bc.png" />
+<img alt="../../_images/a83d8d93d23f7045a2795a2562cf64dff1bfa919124633862e2cb1799438f503.png" src="../../_images/a83d8d93d23f7045a2795a2562cf64dff1bfa919124633862e2cb1799438f503.png" />
 </div>
 </div>
 </section>
@@ -696,10 +716,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10ff813d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10ff97e90&gt;
 </pre></div>
 </div>
-<img alt="../../_images/6718376dd6727fbd5b63581d97741b4ea64275642adb0b64a10ac7a4e81a9a32.png" src="../../_images/6718376dd6727fbd5b63581d97741b4ea64275642adb0b64a10ac7a4e81a9a32.png" />
+<img alt="../../_images/d5438be5986884f4da5137874552c5dd16d7eed0c27953e071191782070642f1.png" src="../../_images/d5438be5986884f4da5137874552c5dd16d7eed0c27953e071191782070642f1.png" />
 </div>
 </div>
 <p>Ok, the fit was pretty good, but that is because we “knew” the answer!  Let’s say we just took a guess at x=50 for the break, what do you think will happen? Edit <span class="math notranslate nohighlight">\(n\)</span> and try! What happened to the error between the fit and the data, did it grow or reduce?</p>
@@ -767,10 +787,10 @@ break point is  70
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14763f920&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x146297800&gt;
 </pre></div>
 </div>
-<img alt="../../_images/f2da2a828ff4a3eb4d19cd001219f1a19358cae47ad07a493fc8a34bd71d8111.png" src="../../_images/f2da2a828ff4a3eb4d19cd001219f1a19358cae47ad07a493fc8a34bd71d8111.png" />
+<img alt="../../_images/4ca263d1b4f1a466b7aa8e6bf1d436df1a3fa4013a616bbbd92c97e260afacfa.png" src="../../_images/4ca263d1b4f1a466b7aa8e6bf1d436df1a3fa4013a616bbbd92c97e260afacfa.png" />
 </div>
 </div>
 </section>
@@ -864,7 +884,7 @@ We also have to calculate the degrees of freedom. Which, different to the regres
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Breakpoint: 70
-P-value: 4.1281878875597643e-35
+P-value: 3.687150663848927e-34
 Breakpoint is significant
 </pre></div>
 </div>
@@ -1236,9 +1256,9 @@ ax2.legend()</p>
 <p>Okay… well this worked okay… ish, but…</p>
 <section id="question">
 <h2><strong>Question</strong><a class="headerlink" href="#question" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>what do you think causes the poor fit for the second segment and what would be a quick easy fix?</p></li>
-</ul>
+<div class="alert alert-block alert-info">
+What do you think causes the poor fit for the second segment and what would be a quick easy fix?
+</div
 <p>The issue is that we are fitting just two linear segments, and after around day 250-300 when the monsoon is coming to an end, the CMFC slope becomes negative again and  the fit is thus quite poor (there are actually 3 segments in other words if we consider calendar years)…  We could try to do a 3-part fit, but an easier solution is to truncate the series at day 250 or so.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1360,13 +1380,14 @@ seas_len=day_cess-day_onset
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="potential-projects">
 <h1><strong>Potential Projects</strong><a class="headerlink" href="#potential-projects" title="Permalink to this heading">#</a></h1>
+<div class="alert alert-block alert-info">
 <ul class="simple">
 <li><p>Do you notice any trends in onset date? if you get the ERA5 retrievals working, try to go back to 1941 to the present</p></li>
 <li><p>If you have your favourite onset definition in a datafile somewhere, try to read it in and make a comparison.</p></li>
 <li><p>seasonal forecast?  Take a look at the ECMWF Sys 5 forecasts, do they have any skill in predicting onset day?</p></li>
 <li><p>What about the CMIP6 ensemble, look at integrated P-E based onset and see if there are any trends that are clear by 2100?</p></li>
 </ul>
-</section>
+</div></section>
 
     <script type="text/x-thebe-config">
     {
@@ -1408,11 +1429,11 @@ seas_len=day_cess-day_onset
       </div>
     </a>
     <a class="right-next"
-       href="climdata_gpgp_indices.html"
+       href="climdata_correlation_covariance.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Rainfall indices based on the Indian monsoon</p>
+        <p class="prev-next-title">Correlation and Covariance</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
