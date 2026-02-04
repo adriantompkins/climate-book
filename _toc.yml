@@ -40,5 +40,4 @@ parts:
         sections:
           - file: notebooks/part3_misc/stochastic_model.ipynb
           - file: notebooks/part3_misc/ensembles_forecasting_game.ipynb
-          - file: notebooks/part3_misc/VECTRI_overview.ipynb
  
