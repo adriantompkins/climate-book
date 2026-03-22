@@ -21,12 +21,6 @@ repository:
   path_to_book: "" # Leave empty if _config.yml is in the root
   branch: main
 
-# Launch button configuration
-launch_buttons:
-  binderhub_url: "https://mybinder.org"
-  notebook_interface: "jupyterlab" # Options: "classic" or "jupyterlab"
-  collapse_navigation: true
-
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
