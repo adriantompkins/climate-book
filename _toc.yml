@@ -3,41 +3,42 @@ root: intro
 parts:
   - caption: Thermodynamics and Physics
     chapters:
-      - file: markdown/content_radiation.md
+      - file: markdown/content_radiation
         sections:
-          - file: notebooks/part1_tpa/radn_orbital.ipynb
-          - file: notebooks/part1_tpa/radn_insolation.ipynb
-          - file: notebooks/part1_tpa/radn_radeq.ipynb
-          - file: notebooks/part1_tpa/radn_rce.ipynb
-      - file: markdown/content_microphysics.md
+          - file: notebooks/part1_tpa/radn_orbital
+          - file: notebooks/part1_tpa/radn_insolation
+          - file: notebooks/part1_tpa/radn_radeq
+          - file: notebooks/part1_tpa/radn_rce
+      - file: markdown/content_microphysics
         sections:
-          - file: notebooks/part1_tpa/cloud_accretion_squ.ipynb
-      - file: markdown/content_climate_sens.md
+          - file: notebooks/part1_tpa/cloud_accretion_squ
+      - file: markdown/content_climate_sens
         sections:
-          - file: notebooks/part1_tpa/clim_daisy_world.ipynb
-          - file: notebooks/part1_tpa/clim_EBM_0D_ice_feedback.ipynb
-          - file: notebooks/part1_tpa/clim_EBM_water_vapor.ipynb
+          - file: notebooks/part1_tpa/clim_daisy_world
+          - file: notebooks/part1_tpa/clim_EBM_0D_ice_feedback
+          - file: notebooks/part1_tpa/clim_EBM_water_vapor
 
   - caption: Climate Data Analysis
     chapters:
-      - file: markdown/content_clima_data.md
+      - file: markdown/content_clima_data
         sections:
-          - file: notebooks/part2_cda/climdata_gpgp_indices.ipynb
-          - file: notebooks/part2_cda/climdata_trends_timeseries.ipynb
-          - file: notebooks/part2_cda/climdata_breakpoint_analysis.ipynb
-          - file: notebooks/part2_cda/climdata_correlation_covariance.ipynb
-          - file: notebooks/part2_cda/climdata_FFT_analysis.ipynb
-          - file: notebooks/part2_cda/climdata_EOF1.ipynb
-          - file: notebooks/part2_cda/climdata_linear_stability_analysis.ipynb
-      - file: markdown/content_modelling.md
+          - file: notebooks/part2_cda/climdata_gpgp_indices
+          - file: notebooks/part2_cda/climdata_trends_timeseries
+          - file: notebooks/part2_cda/climdata_correlation_covariance
+          - file: notebooks/part2_cda/climdata_breakpoint_analysis
+          - file: notebooks/part2_cda/climdata_FFT_analysis
+          - file: notebooks/part2_cda/climdata_wavelet_analysis
+          - file: notebooks/part2_cda/climdata_EOF1
+          - file: notebooks/part2_cda/climdata_linear_stability_analysis
+      - file: markdown/content_modelling
         sections:
-          - file: notebooks/part2_cda/mod_advection.ipynb
-          - file: notebooks/part2_cda/mod_CMIP_IPCC_temperature_trends.ipynb
-          - file: notebooks/part2_cda/mod_climate-system-models.ipynb
+          - file: notebooks/part2_cda/mod_advection
+          - file: notebooks/part2_cda/mod_CMIP_IPCC_temperature_trends
+          - file: notebooks/part2_cda/mod_climate-system-models
+
   - caption: Misc fun
     chapters:
-      - file: markdown/content_misc.md
+      - file: markdown/content_misc
         sections:
-          - file: notebooks/part3_misc/stochastic_model.ipynb
-          - file: notebooks/part3_misc/ensembles_forecasting_game.ipynb
- 
+          - file: notebooks/part3_misc/stochastic_model
+          - file: notebooks/part3_misc/ensembles_forecasting_game

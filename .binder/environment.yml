@@ -9,6 +9,7 @@ dependencies:
   - netcdf4
   - scipy
   - matplotlib
+  - cdo 
   - cartopy
   - scikit-learn
   - jupyterlab

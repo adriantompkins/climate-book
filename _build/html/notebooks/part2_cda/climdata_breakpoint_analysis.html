@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Breakpoint analysis (segmentation analysis) &#8212; Earth System Modelling</title>
   
@@ -15,63 +14,63 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d58c46d9" />
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_breakpoint_analysis';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Correlation and Covariance" href="climdata_correlation_covariance.html" />
-    <link rel="prev" title="Trend derivation" href="climdata_trends_timeseries.html" />
+    <link rel="next" title="Fourrier Analysis" href="climdata_FFT_analysis.html" />
+    <link rel="prev" title="Correlation and Covariance" href="climdata_correlation_covariance.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,32 +78,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -112,7 +95,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -120,16 +102,25 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -142,6 +133,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../intro.html">
@@ -154,7 +148,14 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">Earth System Modelling</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -166,28 +167,28 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Radiative Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Radiative Transfer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_microphysics.html">Microphysics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_microphysics.html">Microphysics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/cloud_accretion_squ.html">Cloud Accretion Simulation: The “Warm Rain” Process</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_climate_sens.html">Climate Feedbacks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_climate_sens.html">Climate Feedbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_daisy_world.html">Biogeophysical feedbacks: Daisy World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_0D_ice_feedback.html">Ice albedo feedback in the 0D energy balance model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_water_vapor.html">Adding water vapor feedback to the grey model of the atmosphere</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">Rainfall indices based on the Indian monsoon</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">CDA1: Manipulating gridded datasets</a></li>
 
 
 
@@ -196,20 +197,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Breakpoint analysis (segmentation analysis)</a></li>
-
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">Correlation and Covariance</a></li>
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="climdata_FFT_analysis.html">Introduction to DDT analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Breakpoint analysis (segmentation analysis)</a></li>
 
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_FFT_analysis.html">Fourrier Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_wavelet_analysis.html">Wavelet Analysis: Theory and Application to African Easterly Waves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="climdata_EOF1.html">EOF analysis</a></li>
 
 
@@ -219,24 +221,22 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="mod_climate-system-models.html">The climate system and climate models</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc fun</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_misc.html">Random Stuff</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_misc.html">Random Stuff</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part3_misc/stochastic_model.html">Stochastic Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part3_misc/ensembles_forecasting_game.html">Forecasting game.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../part3_misc/VECTRI_overview.html">VECTRI India experiment</a></li>
-
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -245,14 +245,19 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -261,14 +266,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -293,14 +298,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/adriantompkins/climate-book.git/master?urlpath=tree/notebooks/part2_cda/climdata_breakpoint_analysis.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -311,14 +316,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/adriantompkins/climate-book.git/blob/master/notebooks/part2_cda/climdata_breakpoint_analysis.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -444,7 +449,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -457,26 +462,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -539,10 +538,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="breakpoint-analysis-segmentation-analysis">
-<h1>Breakpoint analysis (segmentation analysis)<a class="headerlink" href="#breakpoint-analysis-segmentation-analysis" title="Permalink to this heading">#</a></h1>
+<h1>Breakpoint analysis (segmentation analysis)<a class="headerlink" href="#breakpoint-analysis-segmentation-analysis" title="Link to this heading">#</a></h1>
 <p>Breakpoint analysis using segmentation aims to identify points in a dataset where the underlying trend or pattern changes significantly. It’s particularly useful for time series data or data ordered along a single dimension.</p>
 <p><strong>How it works:</strong></p>
 <ol class="arabic simple">
@@ -557,18 +556,21 @@ document.write(`
 <li><p><strong>Flexibility:</strong> Can be used with various cost functions and optimization algorithms.</p></li>
 <li><p><strong>Applications:</strong> Useful in fields like finance, climate science, and signal processing.</p></li>
 </ul>
+<div class="alert alert-info">
 <p><strong>Example:</strong></p>
 <p>Imagine a time series of temperature data. Segmentation might identify breakpoints where the temperature trend changes from a gradual increase to a more rapid increase, or where the data undergoes an offset due to the relocation of the weather station to a nearby location at a different altitude!</p>
+</div>
+<p><strong>Let’s get started</strong></p>
 <p>Let’s make an artificial dataset of n=100 points to explain. In it we make two linear sloped data with some normally distributed noise added. That is, in each segment, we make a data set with</p>
 <div class="math notranslate nohighlight">
 \[ y_i = m x_i +c + \epsilon_i \]</div>
 <p>To make life easier, we will also include the plot routine here :-)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="k">def</span> <span class="nf">generate_segmented_data</span><span class="p">(</span><span class="n">split_point</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">noise_std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_segmented_data</span><span class="p">(</span><span class="n">split_point</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">noise_std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates two linear series with added noise, split at a given point.</span>
 
@@ -599,7 +601,7 @@ document.write(`
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span>
 
 
-<span class="k">def</span> <span class="nf">plot_segmented_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">split_point</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_segmented_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">split_point</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots the segmented data and the linear lines.</span>
 
@@ -642,12 +644,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a83d8d93d23f7045a2795a2562cf64dff1bfa919124633862e2cb1799438f503.png" src="../../_images/a83d8d93d23f7045a2795a2562cf64dff1bfa919124633862e2cb1799438f503.png" />
+<img alt="../../_images/50ae01839afa76924ee2feca197fb0c3bd39cafa616ba572ff356690638db7db.png" src="../../_images/50ae01839afa76924ee2feca197fb0c3bd39cafa616ba572ff356690638db7db.png" />
 </div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="aside-why-are-we-doing-this">
-<h1>Aside: Why are we doing this?<a class="headerlink" href="#aside-why-are-we-doing-this" title="Permalink to this heading">#</a></h1>
+<h1>Aside: Why are we doing this?<a class="headerlink" href="#aside-why-are-we-doing-this" title="Link to this heading">#</a></h1>
 <details>
     <summary style="cursor: pointer;"><b>Why? (Click to expand)</b></summary>
     <div class="alert alert-block alert-info" style="margin-top: 10px;">
@@ -656,7 +658,7 @@ document.write(`
 </details>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="segmentation-analysis">
-<h1>Segmentation Analysis<a class="headerlink" href="#segmentation-analysis" title="Permalink to this heading">#</a></h1>
+<h1>Segmentation Analysis<a class="headerlink" href="#segmentation-analysis" title="Link to this heading">#</a></h1>
 <p>The idea is simple; one chooses an arbitrary point to split the time series, and two separate linear regression fits are made to the data prior to and after this point in time.  The mean square error is calculated between this fit and the original data, as a measure to how well this fit is; this is our “cost function” mentioned above.  By cycling through all possible breakpoints to identify the closest fit, we find the breakpoint.  Don’t worry if you didn’t understand this, we will go through it step by step.</p>
 <p>To carry this out we will define some functions:</p>
 <ul class="simple">
@@ -667,13 +669,13 @@ document.write(`
 <p>We start with the first two functions in this list…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span> <span class="c1">#</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span> <span class="c1">#</span>
 
-<span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="c1"># split a series at point n</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">:]</span>
 
-<span class="k">def</span> <span class="nf">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
 
@@ -716,20 +718,20 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10ff97e90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11f50c510&gt;
 </pre></div>
 </div>
-<img alt="../../_images/d5438be5986884f4da5137874552c5dd16d7eed0c27953e071191782070642f1.png" src="../../_images/d5438be5986884f4da5137874552c5dd16d7eed0c27953e071191782070642f1.png" />
+<img alt="../../_images/26169f8c5e523685243f1f23409a0e79fbf961d6104a3422b35722d54575ac4f.png" src="../../_images/26169f8c5e523685243f1f23409a0e79fbf961d6104a3422b35722d54575ac4f.png" />
 </div>
 </div>
 <p>Ok, the fit was pretty good, but that is because we “knew” the answer!  Let’s say we just took a guess at x=50 for the break, what do you think will happen? Edit <span class="math notranslate nohighlight">\(n\)</span> and try! What happened to the error between the fit and the data, did it grow or reduce?</p>
 <section id="let-s-all-minimize">
-<h2>let’s all… minimize…<a class="headerlink" href="#let-s-all-minimize" title="Permalink to this heading">#</a></h2>
+<h2>let’s all… minimize…<a class="headerlink" href="#let-s-all-minimize" title="Link to this heading">#</a></h2>
 <p>Okay I think we got the concept, now all we need to do is cycle through the data point by point and try to find the break that minimizes the error!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="k">def</span> <span class="nf">find_changepoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_changepoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">rss</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">buffer</span><span class="o">=</span><span class="mi">20</span>
     <span class="n">breaklist</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span> <span class="n">buffer</span><span class="p">))</span>
@@ -787,15 +789,15 @@ break point is  70
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x146297800&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x143a76c90&gt;
 </pre></div>
 </div>
-<img alt="../../_images/4ca263d1b4f1a466b7aa8e6bf1d436df1a3fa4013a616bbbd92c97e260afacfa.png" src="../../_images/4ca263d1b4f1a466b7aa8e6bf1d436df1a3fa4013a616bbbd92c97e260afacfa.png" />
+<img alt="../../_images/a5089a03c4a24d78ae3cf9666615e99757bd24ea50ccd7db765f33b4c72d8b8c.png" src="../../_images/a5089a03c4a24d78ae3cf9666615e99757bd24ea50ccd7db765f33b4c72d8b8c.png" />
 </div>
 </div>
 </section>
 <section id="davies-test-for-breakpoint-significance">
-<h2>Davies’ Test for Breakpoint Significance<a class="headerlink" href="#davies-test-for-breakpoint-significance" title="Permalink to this heading">#</a></h2>
+<h2>Davies’ Test for Breakpoint Significance<a class="headerlink" href="#davies-test-for-breakpoint-significance" title="Link to this heading">#</a></h2>
 <p>The Davies’ test is a statistical method used to assess the significance of a breakpoint identified through segmentation methods, particularly when using linear regression.</p>
 <p>When performing segmented linear regression, we aim to find a breakpoint that best divides the data into two or more linear segments. However, simply finding a breakpoint that minimizes the residual sum of squares (RSS) doesn’t guarantee its statistical significance. The Davies’ test addresses this by providing a framework to determine if the observed breakpoint is likely due to chance or reflects a genuine change in the data’s underlying relationship.</p>
 <p>The standard hypothesis testing procedures are not readily applicable to breakpoint detection because:</p>
@@ -836,9 +838,9 @@ We also have to calculate the degrees of freedom. Which, different to the regres
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>  <span class="c1"># Import chi2 from scipy.stats</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">chi2</span>  <span class="c1"># Import chi2 from scipy.stats</span>
 
-<span class="k">def</span> <span class="nf">davies_test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">breakpoint</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">davies_test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">breakpoint</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements a simplified Davies&#39; test for breakpoint significance.&quot;&quot;&quot;</span>
 
     <span class="n">ypred_piecewise</span><span class="p">,</span> <span class="n">rss_piecewise</span> <span class="o">=</span> <span class="n">piecewise_polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">breakpoint</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
@@ -884,19 +886,19 @@ We also have to calculate the degrees of freedom. Which, different to the regres
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Breakpoint: 70
-P-value: 3.687150663848927e-34
+P-value: 3.483689788339108e-31
 Breakpoint is significant
 </pre></div>
 </div>
 </div>
 </div>
 <section id="play-and-discuss">
-<h3>Play and Discuss<a class="headerlink" href="#play-and-discuss" title="Permalink to this heading">#</a></h3>
+<h3>Play and Discuss<a class="headerlink" href="#play-and-discuss" title="Link to this heading">#</a></h3>
 <p>Before we move on to a concrete application of the method, get into groups to play with the method. This example was easy, the break very clear, and the algorithm got it spot on. Now try out different values for the slopes and try to break the algorithm!!! For example, give both segments the same slope but different offsets (the kind of change that might happen if a weather station is moved for example).  What are the characteristics that challenge the algorithm ? Does the significance fail when you expect it to?</p>
 </section>
 </section>
 <section id="monsoon-onset">
-<h2><strong>Monsoon Onset</strong><a class="headerlink" href="#monsoon-onset" title="Permalink to this heading">#</a></h2>
+<h2><strong>Monsoon Onset</strong><a class="headerlink" href="#monsoon-onset" title="Link to this heading">#</a></h2>
 <p>In this example we are going to use the onset index of <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016GL071026">Walker and Bordoni (2016)</a>, hereafter WB16.</p>
 <p>Let’s start by taking a look at the IMD onset monitoring from 2024.</p>
 <img src="https://mausam.imd.gov.in/ClimateInformation/imdweb/DAY_WEEK/onset_SW.gif" width=500 />
@@ -906,7 +908,7 @@ Keeping this in mind, in this paper we will be attempting to derive a mean onset
 <img src="images/ERA5_precip_2000.jpg" width="500" />
 </section>
 <section id="discussion">
-<h2><strong>Discussion</strong><a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
+<h2><strong>Discussion</strong><a class="headerlink" href="#discussion" title="Link to this heading">#</a></h2>
 <div class="alert alert-block alert-info">
 Break out into groups and quickly discuss these questions.
 <ul class="simple">
@@ -916,7 +918,7 @@ Break out into groups and quickly discuss these questions.
 <li><p>If you were to use a threshold rainfall event, how would you set it?</p></li>
 </ul>
 </div><section id="the-walker-bordoni-onset-index">
-<h3>The Walker-Bordoni onset index<a class="headerlink" href="#the-walker-bordoni-onset-index" title="Permalink to this heading">#</a></h3>
+<h3>The Walker-Bordoni onset index<a class="headerlink" href="#the-walker-bordoni-onset-index" title="Link to this heading">#</a></h3>
 <p>The key concept of this paper is that rather than assessing the onset date for the monsoon based directly on the precipitation, it instead employed the large scale column water budget, which constrains net precipitation. This builds on Walker et al. 2015, who used a similar index for interannual variability.</p>
 <p>For a given region, we can write an equation for the rate of change of the total column water vapor <span class="math notranslate nohighlight">\(W\)</span> (sometimes referred to as the “precipitable water”, or referred to as TCWV in ECMWF grib table 128),  which is defined as <span class="math notranslate nohighlight">\( W = \int ^0_{p_0} q_v \frac{dp}{g}\)</span>.</p>
 <p>The rate of change of <span class="math notranslate nohighlight">\(W\)</span> is simply a sum of the atmospheric sources and sinks:</p>
@@ -932,7 +934,7 @@ Break out into groups and quickly discuss these questions.
 </section>
 </section>
 <section id="id1">
-<h2>Discussion<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2>Discussion<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="alert alert-block alert-info">
 What are the key features of the precipitation, evaporation and storage?
 </div><ul class="simple">
@@ -943,7 +945,7 @@ What are the key features of the precipitation, evaporation and storage?
 <p>We will now examine these timeseries, trying to recreate this plot using ERA5 reanalysis data.</p>
 <p>If you are not familiar with netcdf file formats or the command line tool cdo (<a class="reference external" href="https://code.mpimet.mpg.de/projects/cdo">climate data operators</a>) we suggest you follow the video series of <a class="reference external" href="https://www.youtube.com/&#64;climateunboxed">ClimateUnboxed</a>.  The following box would allow you to download the data to your laptop and calculate the box averages.</p>
 <p>On the Copernicus Climate Data store for ERA5, these are the names of the variables:</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>eqn</p></th>
 <th class="head"><p>long name</p></th>
@@ -965,14 +967,15 @@ What are the key features of the precipitation, evaporation and storage?
 </tr>
 </tbody>
 </table>
+</div>
 <p>VIMD is available from the reanalysis, but is usually not saved as a forecast product. We will return to this in the exercises.</p>
 <p>But before we start let’s just import a few packages we will be needing and show you how to install others if any of them are missing in the box below</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
-<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
 </pre></div>
 </div>
 </div>
@@ -1079,7 +1082,7 @@ What are the key features of the precipitation, evaporation and storage?
 <span class="c1"># Let&#39;s just plot the moisture flux convergence. </span>
 <span class="c1"># this is fudge for datafile naming convention (ugh)</span>
 <span class="c1">#</span>
-<span class="k">def</span> <span class="nf">get_file</span><span class="p">(</span><span class="n">region</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_file</span><span class="p">(</span><span class="n">region</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">year</span><span class="p">):</span>
     <span class="n">datadir</span><span class="o">=</span><span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/monsoons/data/&quot;</span>
     <span class="k">if</span> <span class="n">region</span><span class="o">==</span><span class="s2">&quot;india&quot;</span><span class="p">:</span>
         <span class="n">file</span><span class="o">=</span><span class="n">datadir</span><span class="o">+</span><span class="n">var</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_asia_sn10_30_we60_100.nc&quot;</span>
@@ -1099,7 +1102,7 @@ What are the key features of the precipitation, evaporation and storage?
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># move the getting of data here to speed things up, </span>
 <span class="c1"># otherwise need to read in everytime we plot. </span>
 <span class="c1"># lets read into a dictory or a list of numpy arrays</span>
-<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">dlist</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">fldname</span><span class="p">,</span><span class="n">sf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="n">dlist</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">fldname</span><span class="p">,</span><span class="n">sf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
     <span class="c1">#ds=get_file(var,year)</span>
     <span class="n">region</span><span class="o">=</span><span class="s2">&quot;india&quot;</span>
     <span class="n">ds</span><span class="o">=</span><span class="n">get_file</span><span class="p">(</span><span class="n">region</span><span class="p">,</span><span class="n">var</span><span class="p">,</span><span class="n">year</span><span class="p">)</span>
@@ -1131,7 +1134,7 @@ What are the key features of the precipitation, evaporation and storage?
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a simple line plot for the 3 styles</span>
-<span class="k">def</span> <span class="nf">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plotyear</span><span class="p">(</span><span class="n">dlist</span><span class="p">):</span>
     <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
     <span class="c1"># hard wired </span>
@@ -1170,12 +1173,12 @@ What are the key features of the precipitation, evaporation and storage?
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3eaefc65a27de14a7c5ff92c4ca31aea19f799fdac76258a6de40984a4a6ab90.png" src="../../_images/3eaefc65a27de14a7c5ff92c4ca31aea19f799fdac76258a6de40984a4a6ab90.png" />
+<img alt="../../_images/315f2afe6cfebd84f6586dcb7af1a91bbb584375e3d5dc42ea83d6c6e4a5767e.png" src="../../_images/315f2afe6cfebd84f6586dcb7af1a91bbb584375e3d5dc42ea83d6c6e4a5767e.png" />
 </div>
 </div>
 </section>
 <section id="id2">
-<h2><strong>Discussion</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><strong>Discussion</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <div class="alert alert-block alert-info">
 <p>Break out into groups and quickly discuss these questions.</p>
 <ul class="simple">
@@ -1185,7 +1188,7 @@ What are the key features of the precipitation, evaporation and storage?
 </div>
 </section>
 <section id="wb16-onset-definition">
-<h2><strong>WB16 onset definition</strong><a class="headerlink" href="#wb16-onset-definition" title="Permalink to this heading">#</a></h2>
+<h2><strong>WB16 onset definition</strong><a class="headerlink" href="#wb16-onset-definition" title="Link to this heading">#</a></h2>
 <p>WB16 noted that the precipitation and divergence were quite noisy fields, making it difficult to use them to define a threshold for monsoon onset.  This is why often you will find onset definitions have a lot of “bolt-ons”, that is, <em>“it needs to rain at least X much, for Y consecutive days and… and… “</em></p>
 <p>WB16 thus decided to use the <strong>cumulative</strong> water budget for the onset, which in fact is inspired by some onset definitions that are based on cumulative precipitation.  This is the origin of the <strong>red line</strong> in panel a above, which was labled CMFC, which in turn stood for <em>Cumulative Moisture Flux Convergence</em>.  Let’s take a look at this.  The VIMD parameter is simply summed using the function</p>
 <p><strong>cdo timcumsum <a class="reference external" href="http://in.nc">in.nc</a> <a class="reference external" href="http://out.nc">out.nc</a></strong></p>
@@ -1221,7 +1224,7 @@ What are the key features of the precipitation, evaporation and storage?
 </div>
 </section>
 <section id="id3">
-<h2>Discussion<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2>Discussion<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <div class="alert alert-block alert-info">
 - Can you think of a way to use the cumulative moisture divergence instead? How would this compare to your earlier estimate using the precipitation only?
 </div>
@@ -1245,7 +1248,7 @@ WB16 tackle this by using a method known as a <a class="reference external" href
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="add-cmfc-on-rh-y-axis">
-<h1>add CMFC on rh y axis<a class="headerlink" href="#add-cmfc-on-rh-y-axis" title="Permalink to this heading">#</a></h1>
+<h1>add CMFC on rh y axis<a class="headerlink" href="#add-cmfc-on-rh-y-axis" title="Link to this heading">#</a></h1>
 <p>ax2=ax.twinx()
 ax2.plot(cmfc,label=”CMFC”,color=”red”)
 ax.set_xlabel(“Day of Year”)
@@ -1255,7 +1258,7 @@ ax2.legend()</p>
 <p>plt.show()</p>
 <p>Okay… well this worked okay… ish, but…</p>
 <section id="question">
-<h2><strong>Question</strong><a class="headerlink" href="#question" title="Permalink to this heading">#</a></h2>
+<h2><strong>Question</strong><a class="headerlink" href="#question" title="Link to this heading">#</a></h2>
 <div class="alert alert-block alert-info">
 What do you think causes the poor fit for the second segment and what would be a quick easy fix?
 </div
@@ -1334,7 +1337,7 @@ What do you think causes the poor fit for the second segment and what would be a
 </div>
 </section>
 <section id="id4">
-<h2>Discussion<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2>Discussion<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <div class="alert alert-block alert-info">
 <ul class="simple">
 <li><p>Why is the piece-wise segmentation regression better (clue = more “robust”) than simply finding the minimum of the CMFC?</p></li>
@@ -1343,15 +1346,15 @@ What do you think causes the poor fit for the second segment and what would be a
 </div></section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1><strong>Exercises</strong><a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<h1><strong>Exercises</strong><a class="headerlink" href="#exercises" title="Link to this heading">#</a></h1>
 <section id="basic">
-<h2>Basic:<a class="headerlink" href="#basic" title="Permalink to this heading">#</a></h2>
+<h2>Basic:<a class="headerlink" href="#basic" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>The above exercise was conducted for the year 2000, which was the year used in fig 1 of WB16.  Repeat the above exercise for a few other years (include 2012 for example) so you get a feeling of the year to year variability in the time series.  Discuss within your groups, what are the robust features that stand out?  Are there any very abnormal years you can find?  Make a quick google search for exceptional years where the onset was particularly delayed or advanced, does this metric seem to agree?</p></li>
 </ol>
 </section>
 <section id="intermediate">
-<h2>Intermediate:<a class="headerlink" href="#intermediate" title="Permalink to this heading">#</a></h2>
+<h2>Intermediate:<a class="headerlink" href="#intermediate" title="Link to this heading">#</a></h2>
 <ol class="arabic simple" start="2">
 <li><p>You have seen how to calculate the onset for a given year, now loop over all years on line and calculate the onset for each year. Make a timeseries plot to show the interannual variability in the onset dates.</p></li>
 <li><p>Earlier you tried to estimate an onset date simply using a precipitation threshold.  Try to make a timeseries of onset dates using this threshold and see how it compares to the CMFC one.</p></li>
@@ -1359,13 +1362,13 @@ What do you think causes the poor fit for the second segment and what would be a
 </ol>
 </section>
 <section id="advanced">
-<h2>Advanced:<a class="headerlink" href="#advanced" title="Permalink to this heading">#</a></h2>
+<h2>Advanced:<a class="headerlink" href="#advanced" title="Link to this heading">#</a></h2>
 <ol class="arabic simple" start="5">
 <li><p>For many forecast systems, such as the operational forecasts on the CDS, the divergence is not calculated and stored.  In Fig 1 of WB16 we saw that <span class="math notranslate nohighlight">\(\frac{dW}{dt}\)</span> is very limited.  You can calculate the storage term as a residual of <span class="math notranslate nohighlight">\(MFC\)</span>, <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(E\)</span>.  Do this with the ERA data and convince yourself that the term is small. If you are convinced we can neglect it and assume no changes in atmospheric storage, then <span class="math notranslate nohighlight">\(MFC=P-E\)</span>.  Try out this approximation by recalculating the onset date using the approximation of the cumulative <span class="math notranslate nohighlight">\(P-E\)</span>. Make a scatter plot of  CMFC-based onset day and cumulative (P-E) onset day. What is the correlation?</p></li>
 </ol>
 </section>
 <section id="cessation-dates-clues">
-<h2>4 Cessation Dates Clues<a class="headerlink" href="#cessation-dates-clues" title="Permalink to this heading">#</a></h2>
+<h2>4 Cessation Dates Clues<a class="headerlink" href="#cessation-dates-clues" title="Link to this heading">#</a></h2>
 <summary>
     <details>
         <code>
@@ -1379,7 +1382,7 @@ seas_len=day_cess-day_onset
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="potential-projects">
-<h1><strong>Potential Projects</strong><a class="headerlink" href="#potential-projects" title="Permalink to this heading">#</a></h1>
+<h1><strong>Potential Projects</strong><a class="headerlink" href="#potential-projects" title="Link to this heading">#</a></h1>
 <div class="alert alert-block alert-info">
 <ul class="simple">
 <li><p>Do you notice any trends in onset date? if you get the ERA5 retrievals working, try to go back to 1941 to the present</p></li>
@@ -1398,16 +1401,16 @@ seas_len=day_cess-day_onset
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda"
+            mode: "python"
         },
         kernelOptions: {
-            name: "conda",
+            name: "python3",
             path: "./notebooks/part2_cda"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -1416,24 +1419,24 @@ seas_len=day_cess-day_onset
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
-       href="climdata_trends_timeseries.html"
+       href="climdata_correlation_covariance.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Trend derivation</p>
+        <p class="prev-next-title">Correlation and Covariance</p>
       </div>
     </a>
     <a class="right-next"
-       href="climdata_correlation_covariance.html"
+       href="climdata_FFT_analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Correlation and Covariance</p>
+        <p class="prev-next-title">Fourrier Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1444,13 +1447,16 @@ seas_len=day_cess-day_onset
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Breakpoint analysis (segmentation analysis)</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-why-are-we-doing-this">Aside: Why are we doing this?</a></li>
@@ -1506,9 +1512,10 @@ By Adrian Tompkins
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1532,8 +1539,8 @@ By Adrian Tompkins
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

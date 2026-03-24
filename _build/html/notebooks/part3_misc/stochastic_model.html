@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Stochastic Model &#8212; Earth System Modelling</title>
   
@@ -15,54 +14,53 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d58c46d9" />
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part3_misc/stochastic_model';</script>
@@ -72,6 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="Random Stuff" href="../../markdown/content_misc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,32 +78,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -112,7 +95,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -120,16 +102,25 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -142,6 +133,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../intro.html">
@@ -154,7 +148,14 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">Earth System Modelling</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -166,28 +167,28 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Radiative Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Radiative Transfer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_microphysics.html">Microphysics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_microphysics.html">Microphysics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/cloud_accretion_squ.html">Cloud Accretion Simulation: The “Warm Rain” Process</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_climate_sens.html">Climate Feedbacks</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_climate_sens.html">Climate Feedbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_daisy_world.html">Biogeophysical feedbacks: Daisy World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_0D_ice_feedback.html">Ice albedo feedback in the 0D energy balance model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_water_vapor.html">Adding water vapor feedback to the grey model of the atmosphere</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_gpgp_indices.html">Rainfall indices based on the Indian monsoon</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_gpgp_indices.html">CDA1: Manipulating gridded datasets</a></li>
 
 
 
@@ -196,20 +197,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_trends_timeseries.html">Trend derivation</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
-
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_correlation_covariance.html">Correlation and Covariance</a></li>
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_FFT_analysis.html">Introduction to DDT analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
 
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_FFT_analysis.html">Fourrier Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_wavelet_analysis.html">Wavelet Analysis: Theory and Application to African Easterly Waves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/climdata_EOF1.html">EOF analysis</a></li>
 
 
@@ -219,24 +221,22 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/mod_advection.html">Focus on advection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../part2_cda/mod_climate-system-models.html">The climate system and climate models</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc fun</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_misc.html">Random Stuff</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_misc.html">Random Stuff</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Stochastic Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ensembles_forecasting_game.html">Forecasting game.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VECTRI_overview.html">VECTRI India experiment</a></li>
-
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -245,14 +245,19 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -261,14 +266,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -293,14 +298,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/adriantompkins/climate-book.git/master?urlpath=tree/notebooks/part3_misc/stochastic_model.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -311,14 +316,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/adriantompkins/climate-book.git/blob/master/notebooks/part3_misc/stochastic_model.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -444,7 +449,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -457,26 +462,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -517,10 +516,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="stochastic-model">
-<h1>Stochastic Model<a class="headerlink" href="#stochastic-model" title="Permalink to this heading">#</a></h1>
+<h1>Stochastic Model<a class="headerlink" href="#stochastic-model" title="Link to this heading">#</a></h1>
 <p>In this notebook we will make some investigations of the simple coarsening model presented in <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022MS003231">Biagioli and Tompkins (2023)</a>.  Briefly, this model integrates a very simple equation for the column relative humidity <span class="math notranslate nohighlight">\(R\)</span> defined as</p>
 <div class="math notranslate nohighlight">
 \[    R =\frac{\int{\rho(q_v+q_l+q_i)dz}}{\int \rho q_s dz }. \]</div>
@@ -534,24 +533,24 @@ document.write(`
 <p>before we start let’s see the packages we will need:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage.filters</span> <span class="kn">import</span> <span class="n">uniform_filter1d</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">spatial</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve_circulant</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
-<span class="kn">import</span> <span class="nn">ast</span> 
-<span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage.filters</span><span class="w"> </span><span class="kn">import</span> <span class="n">uniform_filter1d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">spatial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_circulant</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/5f/gmzfbr6d0cbb3tn3_mkpdfnh0000gq/T/ipykernel_88876/1655216334.py:2: DeprecationWarning: Please import `uniform_filter1d` from the `scipy.ndimage` namespace; the `scipy.ndimage.filters` namespace is deprecated and will be removed in SciPy 2.0.0.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/5f/gmzfbr6d0cbb3tn3_mkpdfnh0000gq/T/ipykernel_64101/1655216334.py:2: DeprecationWarning: Please import `uniform_filter1d` from the `scipy.ndimage` namespace; the `scipy.ndimage.filters` namespace is deprecated and will be removed in SciPy 2.0.0.
   from scipy.ndimage.filters import uniform_filter1d
 </pre></div>
 </div>
@@ -560,7 +559,7 @@ document.write(`
 <p>here we define the default values used in the model. Each parameter is described, hopefully they are self-explanatory</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">defaults</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">defaults</span><span class="p">():</span>
     <span class="n">pars</span><span class="o">=</span><span class="p">{}</span>
 
     <span class="c1"># set this to a directory if you want an output netcdf file to play with </span>
@@ -636,7 +635,7 @@ document.write(`
 <p>This is the ADI routine used for diffusion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ADI</span><span class="p">(</span><span class="n">fld</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ADI</span><span class="p">(</span><span class="n">fld</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
         <span class="n">f</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">a0</span><span class="p">)</span><span class="o">*</span><span class="n">fld</span><span class="o">+</span><span class="n">a1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fld</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="n">a1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">fld</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
             <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span><span class="o">=</span><span class="n">solve_circulant</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">,:])</span>
@@ -651,7 +650,7 @@ document.write(`
 <p>and this is the main code block…  we won’t go into details here…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">srdm</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">srdm</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
     
     <span class="c1">#This option allows to test the ADI scheme with initial top-hat CRH profile</span>
     <span class="n">ltest</span><span class="o">=</span><span class="kc">False</span>
@@ -1066,7 +1065,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_slice</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">it</span><span class="p">,</span><span class="n">itime</span><span class="p">,</span><span class="n">time_ax</span><span class="p">,</span><span class="n">x_ax</span><span class="p">,</span><span class="n">y_ax</span><span class="p">,</span><span class="n">ts_avg</span><span class="p">,</span><span class="n">ts_std</span><span class="p">,</span><span class="n">map_var</span><span class="p">,</span><span class="n">cnvdst</span><span class="p">,</span><span class="n">hdisplay</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_slice</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">it</span><span class="p">,</span><span class="n">itime</span><span class="p">,</span><span class="n">time_ax</span><span class="p">,</span><span class="n">x_ax</span><span class="p">,</span><span class="n">y_ax</span><span class="p">,</span><span class="n">ts_avg</span><span class="p">,</span><span class="n">ts_std</span><span class="p">,</span><span class="n">map_var</span><span class="p">,</span><span class="n">cnvdst</span><span class="p">,</span><span class="n">hdisplay</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
 
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
@@ -1106,11 +1105,11 @@ document.write(`
 </div>
 </div>
 <section id="offline-users">
-<h2>Offline users:<a class="headerlink" href="#offline-users" title="Permalink to this heading">#</a></h2>
+<h2>Offline users:<a class="headerlink" href="#offline-users" title="Link to this heading">#</a></h2>
 <p>If you change the “pars[outdir]” fron None to a directory you will get the output stored into two netcdf files. The first one, <strong>td_stats</strong>, contains the time series of several variables of interest, such as the domain-mean and spatial standard deviation of <span class="math notranslate nohighlight">\(R\)</span> or the statistics of the distribution of distances to the nearest convection. The second one, <strong>td_maps</strong>, instead stores spatial maps of <span class="math notranslate nohighlight">\(R\)</span> and of the distance to the nearest convection. The files can be opened with \texttt{ncview}.  By default, this notebook just plots the standard deviation of CRH timeseries and hourly maps of CRH.</p>
 </section>
 <section id="let-s-run">
-<h2>Let’s run!<a class="headerlink" href="#let-s-run" title="Permalink to this heading">#</a></h2>
+<h2>Let’s run!<a class="headerlink" href="#let-s-run" title="Link to this heading">#</a></h2>
 <p>This is how we run an integration</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1120,7 +1119,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/faec83eaf00f32c42eac6211ec017d520853ca915dea0da71af4725b18e00dc9.png" src="../../_images/faec83eaf00f32c42eac6211ec017d520853ca915dea0da71af4725b18e00dc9.png" />
+<img alt="../../_images/9d1169961ddfa16304c29a165abb8aad3d7c841e5c1baf296836ef097b29ec07.png" src="../../_images/9d1169961ddfa16304c29a165abb8aad3d7c841e5c1baf296836ef097b29ec07.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>toy_diffusion_2d model of atmosphere
 ------------
 - RUN PARS -
@@ -1151,222 +1150,12 @@ ldst = False
 -----------
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">pars</span><span class="o">=</span><span class="n">defaults</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">srdm</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
-
-<span class="nn">Cell In[4], line 405,</span> in <span class="ni">srdm</span><span class="nt">(pars)</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="k">if</span> <span class="n">pars</span><span class="p">[</span><span class="s2">&quot;lplot&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span>             <span class="c1"># pass the map variables that you want to map:</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span>             <span class="c1"># crh</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>             <span class="n">itime</span><span class="o">=</span><span class="n">it</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">3600</span>
-<span class="ne">--&gt; </span><span class="mi">405</span>             <span class="n">plot_slice</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">it</span><span class="p">,</span><span class="n">itime</span><span class="p">,</span><span class="n">ts_time</span><span class="p">,</span><span class="n">x1d</span><span class="p">,</span><span class="n">y1d</span><span class="p">,</span><span class="n">ts_crh_avg</span><span class="p">,</span><span class="n">ts_crh_std</span><span class="p">,</span><span class="n">crh</span><span class="p">,</span><span class="n">cnvdst</span><span class="p">,</span><span class="n">hdisplay</span><span class="p">,</span><span class="n">pars</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span> <span class="k">if</span> <span class="n">pars</span><span class="p">[</span><span class="s2">&quot;outdir&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span>     <span class="n">nc1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">Cell In[5], line 34,</span> in <span class="ni">plot_slice</span><span class="nt">(fig, ax, ax2, it, itime, time_ax, x_ax, y_ax, ts_avg, ts_std, map_var, cnvdst, hdisplay, pars)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;K:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s2">&quot;diffK&quot;</span><span class="p">],</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>                 <span class="s2">&quot; ad:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s2">&quot;crh_ad&quot;</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>                 <span class="s2">&quot; Tsub:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s2">&quot;tau_sub&quot;</span><span class="p">],</span><span class="mi">1</span><span class="p">)))</span>
-<span class="ne">---&gt; </span><span class="mi">34</span> <span class="n">hdisplay</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/IPython/core/display_functions.py:374,</span> in <span class="ni">DisplayHandle.update</span><span class="nt">(self, obj, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">364</span> <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Update existing displays with my id</span>
-<span class="g g-Whitespace">    </span><span class="mi">366</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">367</span><span class="sd">     Parameters</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">372</span><span class="sd">         additional keyword arguments passed to update_display</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">374</span>     <span class="n">update_display</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">display_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">display_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/IPython/core/display_functions.py:326,</span> in <span class="ni">update_display</span><span class="nt">(obj, display_id, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Update an existing display by id</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span><span class="sd"> Parameters</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span><span class="sd"> :func:`display`</span>
-<span class="g g-Whitespace">    </span><span class="mi">324</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;update&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="ne">--&gt; </span><span class="mi">326</span> <span class="n">display</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">display_id</span><span class="o">=</span><span class="n">display_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/IPython/core/display_functions.py:298,</span> in <span class="ni">display</span><span class="nt">(include, exclude, metadata, transient, display_id, raw, clear, *objs, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="n">publish_display_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">298</span>     <span class="n">format_dict</span><span class="p">,</span> <span class="n">md_dict</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">format_dict</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="c1"># nothing to display (e.g. _ipython_display_ took over)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="k">continue</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/IPython/core/formatters.py:238,</span> in <span class="ni">DisplayFormatter.format</span><span class="nt">(self, obj, include, exclude)</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span> <span class="n">md</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">238</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">formatter</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="k">except</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span>     <span class="c1"># FIXME: log the exception</span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span>     <span class="k">raise</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/decorator.py:232,</span> in <span class="ni">decorate.&lt;locals&gt;.fun</span><span class="nt">(*args, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">kwsyntax</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>     <span class="n">args</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">fix</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">232</span> <span class="k">return</span> <span class="n">caller</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">extras</span> <span class="o">+</span> <span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/IPython/core/formatters.py:282,</span> in <span class="ni">catch_format_error</span><span class="nt">(method, self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">280</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;show traceback on failed format call&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">281</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">282</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="c1"># don&#39;t warn on NotImplementedErrors</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_return</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/IPython/core/formatters.py:402,</span> in <span class="ni">BaseFormatter.__call__</span><span class="nt">(self, obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="k">pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">402</span>     <span class="k">return</span> <span class="n">printer</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span> <span class="c1"># Finally look for special method names</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span> <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/IPython/core/pylabtools.py:170,</span> in <span class="ni">print_figure</span><span class="nt">(fig, fmt, bbox_inches, base64, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>     <span class="kn">from</span> <span class="nn">matplotlib.backend_bases</span> <span class="kn">import</span> <span class="n">FigureCanvasBase</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="n">FigureCanvasBase</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">170</span> <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">print_figure</span><span class="p">(</span><span class="n">bytes_io</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="n">data</span> <span class="o">=</span> <span class="n">bytes_io</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">if</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;svg&#39;</span><span class="p">:</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/backend_bases.py:2178,</span> in <span class="ni">FigureCanvasBase.print_figure</span><span class="nt">(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, pad_inches, bbox_extra_artists, backend, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2176</span> <span class="k">if</span> <span class="n">bbox_inches</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2177</span>     <span class="k">if</span> <span class="n">bbox_inches</span> <span class="o">==</span> <span class="s2">&quot;tight&quot;</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2178</span>         <span class="n">bbox_inches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">get_tightbbox</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2179</span>             <span class="n">renderer</span><span class="p">,</span> <span class="n">bbox_extra_artists</span><span class="o">=</span><span class="n">bbox_extra_artists</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2180</span>         <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">layout_engine</span><span class="p">,</span> <span class="n">ConstrainedLayoutEngine</span><span class="p">)</span> <span class="ow">and</span>
-<span class="g g-Whitespace">   </span><span class="mi">2181</span>                 <span class="n">pad_inches</span> <span class="o">==</span> <span class="s2">&quot;layout&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2182</span>             <span class="n">h_pad</span> <span class="o">=</span> <span class="n">layout_engine</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="s2">&quot;h_pad&quot;</span><span class="p">]</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/_api/deprecation.py:457,</span> in <span class="ni">make_keyword_only.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">name_idx</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">452</span>     <span class="n">warn_deprecated</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">453</span>         <span class="n">since</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Passing the </span><span class="si">%(name)s</span><span class="s2"> </span><span class="si">%(obj_type)s</span><span class="s2"> &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">454</span>         <span class="s2">&quot;positionally is deprecated since Matplotlib </span><span class="si">%(since)s</span><span class="s2">; the &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">455</span>         <span class="s2">&quot;parameter will become keyword-only </span><span class="si">%(removal)s</span><span class="s2">.&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">obj_type</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;parameter of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">()&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">457</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/figure.py:1787,</span> in <span class="ni">FigureBase.get_tightbbox</span><span class="nt">(self, renderer, bbox_extra_artists)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1783</span> <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_visible</span><span class="p">():</span>
-<span class="g g-Whitespace">   </span><span class="mi">1784</span>     <span class="c1"># some Axes don&#39;t take the bbox_extra_artists kwarg so we</span>
-<span class="g g-Whitespace">   </span><span class="mi">1785</span>     <span class="c1"># need this conditional....</span>
-<span class="g g-Whitespace">   </span><span class="mi">1786</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1787</span>         <span class="n">bbox</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_tightbbox</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1788</span>             <span class="n">renderer</span><span class="p">,</span> <span class="n">bbox_extra_artists</span><span class="o">=</span><span class="n">bbox_extra_artists</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1789</span>     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1790</span>         <span class="n">bbox</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_tightbbox</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/_api/deprecation.py:457,</span> in <span class="ni">make_keyword_only.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">name_idx</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">452</span>     <span class="n">warn_deprecated</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">453</span>         <span class="n">since</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Passing the </span><span class="si">%(name)s</span><span class="s2"> </span><span class="si">%(obj_type)s</span><span class="s2"> &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">454</span>         <span class="s2">&quot;positionally is deprecated since Matplotlib </span><span class="si">%(since)s</span><span class="s2">; the &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">455</span>         <span class="s2">&quot;parameter will become keyword-only </span><span class="si">%(removal)s</span><span class="s2">.&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">obj_type</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;parameter of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">()&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">457</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/axes/_base.py:4476,</span> in <span class="ni">_AxesBase.get_tightbbox</span><span class="nt">(self, renderer, call_axes_locator, bbox_extra_artists, for_layout_only)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4474</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis_map</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-<span class="g g-Whitespace">   </span><span class="mi">4475</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">axison</span> <span class="ow">and</span> <span class="n">axis</span><span class="o">.</span><span class="n">get_visible</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">4476</span>         <span class="n">ba</span> <span class="o">=</span> <span class="n">martist</span><span class="o">.</span><span class="n">_get_tightbbox_for_layout_only</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">renderer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4477</span>         <span class="k">if</span> <span class="n">ba</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4478</span>             <span class="n">bb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ba</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/artist.py:1410,</span> in <span class="ni">_get_tightbbox_for_layout_only</span><span class="nt">(obj, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1404</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1405</span><span class="sd"> Matplotlib&#39;s `.Axes.get_tightbbox` and `.Axis.get_tightbbox` support a</span>
-<span class="g g-Whitespace">   </span><span class="mi">1406</span><span class="sd"> *for_layout_only* kwarg; this helper tries to use the kwarg but skips it</span>
-<span class="g g-Whitespace">   </span><span class="mi">1407</span><span class="sd"> when encountering third-party subclasses that do not support it.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1408</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1409</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1410</span>     <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_tightbbox</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="s2">&quot;for_layout_only&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
-<span class="g g-Whitespace">   </span><span class="mi">1411</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1412</span>     <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_tightbbox</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/axis.py:1372,</span> in <span class="ni">Axis.get_tightbbox</span><span class="nt">(self, renderer, for_layout_only)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1369</span>     <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">_get_renderer</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1370</span> <span class="n">ticks_to_draw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_ticks</span><span class="p">()</span>
-<span class="ne">-&gt; </span><span class="mi">1372</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_label_position</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1374</span> <span class="c1"># go back to just this axis&#39;s tick labels</span>
-<span class="g g-Whitespace">   </span><span class="mi">1375</span> <span class="n">tlb1</span><span class="p">,</span> <span class="n">tlb2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_ticklabel_bboxes</span><span class="p">(</span><span class="n">ticks_to_draw</span><span class="p">,</span> <span class="n">renderer</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/axis.py:2654,</span> in <span class="ni">YAxis._update_label_position</span><span class="nt">(self, renderer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2650</span>     <span class="k">return</span>
-<span class="g g-Whitespace">   </span><span class="mi">2652</span> <span class="c1"># get bounding boxes for this axis and any siblings</span>
-<span class="g g-Whitespace">   </span><span class="mi">2653</span> <span class="c1"># that have been set by `fig.align_ylabels()`</span>
-<span class="ne">-&gt; </span><span class="mi">2654</span> <span class="n">bboxes</span><span class="p">,</span> <span class="n">bboxes2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tick_boxes_siblings</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2655</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">2656</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_position</span> <span class="o">==</span> <span class="s1">&#39;left&#39;</span><span class="p">:</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/axis.py:2206,</span> in <span class="ni">Axis._get_tick_boxes_siblings</span><span class="nt">(self, renderer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2204</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">_axis_map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">2205</span> <span class="n">ticks_to_draw</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">_update_ticks</span><span class="p">()</span>
-<span class="ne">-&gt; </span><span class="mi">2206</span> <span class="n">tlb</span><span class="p">,</span> <span class="n">tlb2</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">_get_ticklabel_bboxes</span><span class="p">(</span><span class="n">ticks_to_draw</span><span class="p">,</span> <span class="n">renderer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2207</span> <span class="n">bboxes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tlb</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2208</span> <span class="n">bboxes2</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tlb2</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/axis.py:1353,</span> in <span class="ni">Axis._get_ticklabel_bboxes</span><span class="nt">(self, ticks, renderer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1349</span> <span class="k">if</span> <span class="n">renderer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1350</span>     <span class="n">renderer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">_get_renderer</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1351</span> <span class="k">return</span> <span class="p">([</span><span class="n">tick</span><span class="o">.</span><span class="n">label1</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1352</span>          <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">ticks</span> <span class="k">if</span> <span class="n">tick</span><span class="o">.</span><span class="n">label1</span><span class="o">.</span><span class="n">get_visible</span><span class="p">()],</span>
-<span class="ne">-&gt; </span><span class="mi">1353</span>         <span class="p">[</span><span class="n">tick</span><span class="o">.</span><span class="n">label2</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span>
-<span class="nn">   1354          for tick</span> in <span class="ni">ticks if tick.label2.get_visible</span><span class="nt">()])</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/text.py:959,</span> in <span class="ni">Text.get_window_extent</span><span class="nt">(self, renderer, dpi)</span>
-<span class="g g-Whitespace">    </span><span class="mi">954</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">955</span>         <span class="s2">&quot;Cannot get window extent of text w/o renderer. You likely &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">956</span>         <span class="s2">&quot;want to call &#39;figure.draw_without_rendering()&#39; first.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">958</span> <span class="k">with</span> <span class="n">cbook</span><span class="o">.</span><span class="n">_setattr_cm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">959</span>     <span class="n">bbox</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">descent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_layout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_renderer</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">960</span>     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unitless_position</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">961</span>     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_transform</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/text.py:381,</span> in <span class="ni">Text._get_layout</span><span class="nt">(self, renderer)</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span> <span class="n">clean_line</span><span class="p">,</span> <span class="n">ismath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_math</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span> <span class="k">if</span> <span class="n">clean_line</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">381</span>     <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">_get_text_metrics_with_cache</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span>         <span class="n">renderer</span><span class="p">,</span> <span class="n">clean_line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fontproperties</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span>         <span class="n">ismath</span><span class="o">=</span><span class="n">ismath</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span>     <span class="n">w</span> <span class="o">=</span> <span class="n">h</span> <span class="o">=</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/text.py:69,</span> in <span class="ni">_get_text_metrics_with_cache</span><span class="nt">(renderer, text, fontprop, ismath, dpi)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Call ``renderer.get_text_width_height_descent``, caching the results.&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="c1"># Cached based on a copy of fontprop so that later in-place mutations of</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1"># the passed-in argument do not mess up the cache.</span>
-<span class="ne">---&gt; </span><span class="mi">69</span> <span class="k">return</span> <span class="n">_get_text_metrics_with_cache_impl</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">renderer</span><span class="p">),</span> <span class="n">text</span><span class="p">,</span> <span class="n">fontprop</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">ismath</span><span class="p">,</span> <span class="n">dpi</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/lib/python3.12/site-packages/matplotlib/font_manager.py:645,</span> in <span class="ni">FontProperties.__hash__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">643</span>         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">arg</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">645</span> <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">646</span>     <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_family</span><span class="p">()),</span>
-<span class="g g-Whitespace">    </span><span class="mi">647</span>          <span class="bp">self</span><span class="o">.</span><span class="n">get_slant</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">648</span>          <span class="bp">self</span><span class="o">.</span><span class="n">get_variant</span><span class="p">(),</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">652</span>          <span class="bp">self</span><span class="o">.</span><span class="n">get_file</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">653</span>          <span class="bp">self</span><span class="o">.</span><span class="n">get_math_fontfamily</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">654</span>     <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-<img alt="../../_images/67ec5b7901306443cdfd1688e623c1203264f77b5d4c7ca187c038d4f7778b58.png" src="../../_images/67ec5b7901306443cdfd1688e623c1203264f77b5d4c7ca187c038d4f7778b58.png" />
+<img alt="../../_images/9d1169961ddfa16304c29a165abb8aad3d7c841e5c1baf296836ef097b29ec07.png" src="../../_images/9d1169961ddfa16304c29a165abb8aad3d7c841e5c1baf296836ef097b29ec07.png" />
 </div>
 </div>
 </section>
 <section id="changing-parameters">
-<h2>Changing parameters<a class="headerlink" href="#changing-parameters" title="Permalink to this heading">#</a></h2>
+<h2>Changing parameters<a class="headerlink" href="#changing-parameters" title="Link to this heading">#</a></h2>
 <p>It is straightforward to change model parameters and rerun the code.  For example the first experiment was with a small 100x100km2 domain. Now let’s try a larger domain.  If you forget what the parameters are called just take a look at the variable pars.  Okay, here we go…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1412,7 +1201,7 @@ ldst = False
 </div>
 <div class="alert alert-block alert-warning">
 <section id="remember">
-<h3>remember!<a class="headerlink" href="#remember" title="Permalink to this heading">#</a></h3>
+<h3>remember!<a class="headerlink" href="#remember" title="Link to this heading">#</a></h3>
 <p>that your pars dictionary now contains the new value for domain size. If you change another parameter, say, resolution, both changes will be in the simulation. If you want to change just one parameter, you can always reset the defaults easily with a renewed call to the default function like this:</p>
 </div>
 <div class="cell docutils container">
@@ -1471,9 +1260,9 @@ resolution = 2000
 </section>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <section id="model-parameters">
-<h3>Model Parameters<a class="headerlink" href="#model-parameters" title="Permalink to this heading">#</a></h3>
+<h3>Model Parameters<a class="headerlink" href="#model-parameters" title="Link to this heading">#</a></h3>
 <p>The main input parameters we will play with today are:</p>
 <ul class="simple">
 <li><p><strong>diffK</strong> the horizontal moisture transport efficiency <span class="math notranslate nohighlight">\(K\)</span>, assumed to be the same in both directions. 	Units m<span class="math notranslate nohighlight">\(^2\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>, default value <span class="math notranslate nohighlight">\(10^4\)</span> m<span class="math notranslate nohighlight">\(^2\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>.</p></li>
@@ -1487,7 +1276,7 @@ resolution = 2000
 </ul>
 </section>
 <section id="questions">
-<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this heading">#</a></h3>
+<h3>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>What do you think is happening if we set <span class="math notranslate nohighlight">\(a_d = 0\)</span>? What does it mean in practice? Do we promote or prevent self-aggregation?</p></li>
 <li><p>Equation (17) in the <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022MS003231">paper</a> predicts that aggregation is more likely at coarser resolutions, or larger domain sizes, or weaker diffusion, or stronger subsidence, or stronger convection-vapour feedback. Can you confirm some of these sensitivities with some experiments?</p></li>
@@ -1525,8 +1314,8 @@ resolution = 2000
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../../markdown/content_misc.html"
@@ -1553,13 +1342,16 @@ resolution = 2000
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#offline-users">Offline users:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-run">Let’s run!</a></li>
@@ -1593,9 +1385,10 @@ By Adrian Tompkins
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1619,8 +1412,8 @@ By Adrian Tompkins
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

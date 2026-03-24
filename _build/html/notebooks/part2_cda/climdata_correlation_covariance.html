@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Correlation and Covariance &#8212; Earth System Modelling</title>
   
@@ -15,63 +14,63 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d58c46d9" />
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_correlation_covariance';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introduction to DDT analysis" href="climdata_FFT_analysis.html" />
-    <link rel="prev" title="Rainfall indices based on the Indian monsoon" href="climdata_gpgp_indices.html" />
+    <link rel="next" title="Breakpoint analysis (segmentation analysis)" href="climdata_breakpoint_analysis.html" />
+    <link rel="prev" title="Trend derivation" href="climdata_trends_timeseries.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,32 +78,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -112,7 +95,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -120,16 +102,25 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -142,6 +133,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../intro.html">
@@ -154,7 +148,14 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">Earth System Modelling</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -166,30 +167,34 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Energy Balance and Forcing</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Radiative Transfer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
 </ul>
-</li>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_microphysics.html">Microphysics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/cloud_accretion_squ.html">Cloud Accretion Simulation: The “Warm Rain” Process</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_climate_sens.html">Climate Feedbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_daisy_world.html">Biogeophysical feedbacks: Daisy World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_0D_ice_feedback.html">Ice albedo feedback in the 0D energy balance model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_water_vapor.html">Adding water vapor feedback to the grey model of the atmosphere</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">CDA1: Manipulating gridded datasets</a></li>
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
-
-
-<li class="toctree-l2"><a class="reference internal" href="climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
-
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="climdata_gpgp_indices.html">Rainfall indices based on the Indian monsoon</a></li>
-
-
-
 
 
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Correlation and Covariance</a></li>
@@ -198,8 +203,15 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="climdata_FFT_analysis.html">Introduction to DDT analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climdata_breakpoint_analysis.html">Breakpoint analysis (segmentation analysis)</a></li>
 
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_FFT_analysis.html">Fourrier Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="climdata_wavelet_analysis.html">Wavelet Analysis: Theory and Application to African Easterly Waves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="climdata_EOF1.html">EOF analysis</a></li>
 
 
@@ -209,14 +221,22 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="mod_climate-system-models.html">The climate system and climate models</a></li>
 </ul>
-</li>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc fun</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_misc.html">Random Stuff</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part3_misc/stochastic_model.html">Stochastic Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part3_misc/ensembles_forecasting_game.html">Forecasting game.</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -225,14 +245,19 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -241,14 +266,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -273,14 +298,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/adriantompkins/climate-book.git/master?urlpath=tree/notebooks/part2_cda/climdata_correlation_covariance.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -291,14 +316,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/adriantompkins/climate-book.git/blob/master/notebooks/part2_cda/climdata_correlation_covariance.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -424,7 +449,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -437,26 +462,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -501,7 +520,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-and-causality">correlation and causality</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-regression">link to regression</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-of-determination">Coefficient of determination</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercise</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework:</a></li>
 </ul>
 
             </nav>
@@ -512,12 +531,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="correlation-and-covariance">
-<h1>Correlation and Covariance<a class="headerlink" href="#correlation-and-covariance" title="Permalink to this heading">#</a></h1>
+<h1>Correlation and Covariance<a class="headerlink" href="#correlation-and-covariance" title="Link to this heading">#</a></h1>
 <section id="covariance">
-<h2>Covariance<a class="headerlink" href="#covariance" title="Permalink to this heading">#</a></h2>
+<h2>Covariance<a class="headerlink" href="#covariance" title="Link to this heading">#</a></h2>
 <p>Covariance measures how much two random variables change together. In other words, it assesses whether larger values of one variable tend to correspond to larger or smaller values of the other variable.</p>
 <p>The formula for covariance between two variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is:</p>
 <p><span class="math notranslate nohighlight">\(cov(X, Y) = \overline{(x_i - \bar{x})  (y_i - \bar{y})}\)</span></p>
@@ -538,15 +557,15 @@ document.write(`
 <p>Let’s make up a dummy pair of datasets based on a sinewave with added noise…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen_noisy_sinewaves</span><span class="p">(</span><span class="n">num_points</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">mag1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">mag2</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">noise_magnitude</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gen_noisy_sinewaves</span><span class="p">(</span><span class="n">num_points</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">mag1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">mag2</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">noise_magnitude</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    generates two sine waves with different magnitudes and added white noise.</span>
 
@@ -574,7 +593,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_noisy_sinewaves</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_noisy_sinewaves</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots two sine waves with different magnitudes and added white noise.</span>
 
@@ -610,12 +629,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6765aee7985f78533c18acde640ea2e2e73aeb57e068146b7a268619259cd244.png" src="../../_images/6765aee7985f78533c18acde640ea2e2e73aeb57e068146b7a268619259cd244.png" />
+<img alt="../../_images/9e5d4dbd884e62cde62ea9f6c616f1e56a67303af3967f4e97b13f1f9e44145f.png" src="../../_images/9e5d4dbd884e62cde62ea9f6c616f1e56a67303af3967f4e97b13f1f9e44145f.png" />
 </div>
 </div>
-<div class="alert alert-block alert-info">
+<div class="alert alert-info">
 <section id="discussion">
-<h3>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h3>
+<h3>Discussion<a class="headerlink" href="#discussion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Is the covariance positive, negative or close to zero in your opinion ?</p></li>
 <li><p>How will increasing or decreasing the noise magnitude change the covariance ?</p></li>
@@ -625,7 +644,7 @@ document.write(`
 <p>Let’s code up that relationship for the covariance and find out what it was…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_covariance_pop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_covariance_pop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates covariance between two arrays using only np.mean.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input arrays must have the same length.&quot;</span><span class="p">)</span>
@@ -642,38 +661,58 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate covariance using the custom function</span>
-<span class="n">cov_scratch</span> <span class="o">=</span> <span class="n">calculate_covariance_pop</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance (from definition):&quot;</span><span class="p">,</span> <span class="n">cov_scratch</span><span class="p">)</span>
 
-<span class="c1"># Calculate covariance using np.cov</span>
-<span class="n">cov_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># [0, 1] extracts the covariance value check the help page</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance (np.cov):&quot;</span><span class="p">,</span> <span class="n">cov_np</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_cov</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">):</span>
+    <span class="n">cov_scratch</span> <span class="o">=</span> <span class="n">calculate_covariance_pop</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance (from definition):&quot;</span><span class="p">,</span> <span class="n">cov_scratch</span><span class="p">)</span>
+ 
+    <span class="c1"># Calculate covariance using np.cov</span>
+    <span class="n">cov_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># [0, 1] extracts the covariance value check the help page</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance (np.cov):&quot;</span><span class="p">,</span> <span class="n">cov_np</span><span class="p">)</span>
+
+<span class="n">calc_cov</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 2.4469041855455944
-Covariance (np.cov): 2.4518078011478894
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 2.6427765549350375
+Covariance (np.cov): 2.752892244723997
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="what-has-happened">
-<h3>what has happened?<a class="headerlink" href="#what-has-happened" title="Permalink to this heading">#</a></h3>
+<h3>what has happened?<a class="headerlink" href="#what-has-happened" title="Link to this heading">#</a></h3>
 <p>These values are <em>almost</em> the same but not quite.  Why is there a difference?</p>
 </section>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
 <p>Rerun the generation function to make two new series, but reduce the number of points to 25 (argument num_points=25).  Recalculate the two covariances.  Did the difference between the two methods increase, decrease or stay the same ?  what do you think might be going on?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="o">=</span><span class="n">gen_noisy_sinewaves</span><span class="p">(</span><span class="n">mag1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">mag2</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">noise_magnitude</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">num_points</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">plot_noisy_sinewaves</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span>
+<span class="n">calc_cov</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/62d445b2298ca880228ebef61d94b279c99ef9478a88652e4e03fe0939b43c4f.png" src="../../_images/62d445b2298ca880228ebef61d94b279c99ef9478a88652e4e03fe0939b43c4f.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 1.834384072495078
+Covariance (np.cov): 1.910816742182373
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="population-versus-sample-covariance">
-<h1>Population versus Sample Covariance<a class="headerlink" href="#population-versus-sample-covariance" title="Permalink to this heading">#</a></h1>
+<h1>Population versus Sample Covariance<a class="headerlink" href="#population-versus-sample-covariance" title="Link to this heading">#</a></h1>
 <p>The definition of covariance we have is for the case where you have the entire population of data. In this case you would divide the sum by n (the total number of data points) and use the mean. This gives you the population covariance. But often this is not the case and your data is a sample.</p>
 <section id="sample-covariance">
-<h2>Sample Covariance:<a class="headerlink" href="#sample-covariance" title="Permalink to this heading">#</a></h2>
+<h2>Sample Covariance:<a class="headerlink" href="#sample-covariance" title="Link to this heading">#</a></h2>
 <p>If you have a sample of data (a subset of the population), you should divide the sum by n - 1.
 This gives you the sample covariance, which is an unbiased estimate of the population covariance.  
 Dividing by n - 1 corrects for the fact that the sample mean is used to calculate the deviations, which reduces the degrees of freedom.</p>
@@ -682,7 +721,7 @@ Dividing by n - 1 corrects for the fact that the sample mean is used to calculat
 <p><span class="math notranslate nohighlight">\(cov(X, Y) = 1/(n-1) * \Sigma [(x_i - \bar{x})  (y_i - \bar{y})]\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_covariance_sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_covariance_sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates covariance between two arrays using only np.mean.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input arrays must have the same length.&quot;</span><span class="p">)</span>
@@ -714,16 +753,16 @@ Dividing by n - 1 corrects for the fact that the sample mean is used to calculat
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from whole population): 2.4469041855455944
-Covariance (from samples): 2.4518078011478903
-Covariance (np.cov): 2.4518078011478894
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from whole population): 1.834384072495078
+Covariance (from samples): 1.910816742182373
+Covariance (np.cov): 1.910816742182373
 </pre></div>
 </div>
 </div>
 </div>
 <p>As we now see the answer is the same as the numpy package, at least down to rounding error.</p>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Try changing the noise on the calculation how does it change the covariance?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -735,19 +774,19 @@ Covariance (np.cov): 2.4518078011478894
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noise mag:0, Covariance: 24.5
-Noise mag:0.2, Covariance: 24.577696793549187
-Noise mag:0.5, Covariance: 24.38483821959599
-Noise mag:1, Covariance: 24.670061137809736
-Noise mag:2, Covariance: 23.233073625680905
-Noise mag:4, Covariance: 24.152612370779767
-Noise mag:8, Covariance: 24.629771321061376
+Noise mag:0.2, Covariance: 24.469089967544708
+Noise mag:0.5, Covariance: 24.544842760477017
+Noise mag:1, Covariance: 24.339860087296515
+Noise mag:2, Covariance: 23.794870895200603
+Noise mag:4, Covariance: 24.268525561404633
+Noise mag:8, Covariance: 20.75490286240458
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="exercise-cont">
-<h3>Exercise (cont)<a class="headerlink" href="#exercise-cont" title="Permalink to this heading">#</a></h3>
+<h3>Exercise (cont)<a class="headerlink" href="#exercise-cont" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>what do you notice about the covariance as a function of the noise?</p></li>
 <li><p>Run it again, and again, and again?  How do the values change?</p></li>
@@ -757,7 +796,7 @@ Noise mag:8, Covariance: 24.629771321061376
 </section>
 </section>
 <section id="correlation">
-<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this heading">#</a></h2>
+<h2>Correlation<a class="headerlink" href="#correlation" title="Link to this heading">#</a></h2>
 <p>Correlation measures the strength and direction of the <strong>linear</strong> relationship between two variables. It is simply a <strong>normalized</strong> version of covariance, making it easier to compare relationships across different datasets.</p>
 <p>The most common type of correlation is the Pearson correlation coefficient, calculated as:</p>
 <p><span class="math notranslate nohighlight">\(r = cov(x, y) / (\sigma_x \sigma_y)  \)</span></p>
@@ -776,15 +815,15 @@ Noise mag:8, Covariance: 24.629771321061376
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">correlation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">correlation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">correlation</span>
     
-<span class="k">def</span> <span class="nf">analyze_and_plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">analyze_and_plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates covariance and correlation, and generates a single scatter plot</span>
 <span class="sd">    using the subplots structure (even though it&#39;s one plot).</span>
@@ -819,7 +858,7 @@ Noise mag:8, Covariance: 24.629771321061376
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># Example 1: Positive Correlation</span>
 <span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
@@ -841,7 +880,7 @@ Correlation: 0.7745966692414834
  &lt;Axes: title={&#39;center&#39;: &#39;Positive Correlation&#39;}, xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/9bc10799bf111268150d50da17c66c0cfd2a54b26f50c0e3ce94ddcc80bf9597.png" src="../../_images/9bc10799bf111268150d50da17c66c0cfd2a54b26f50c0e3ce94ddcc80bf9597.png" />
+<img alt="../../_images/9d365ae8c5f5dea988eaff6ed7828fb21dbae0a39e1b47bd7645162479ebc88c.png" src="../../_images/9d365ae8c5f5dea988eaff6ed7828fb21dbae0a39e1b47bd7645162479ebc88c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -862,7 +901,7 @@ Correlation: -0.9999999999999999
  &lt;Axes: title={&#39;center&#39;: &#39;Negative Correlation&#39;}, xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/0528322d9326c45ae4d9048f6258240454f35a386711d570148d45b7f0596dca.png" src="../../_images/0528322d9326c45ae4d9048f6258240454f35a386711d570148d45b7f0596dca.png" />
+<img alt="../../_images/aa7e9e6da479b46cd93303862be4536442817ba3c51eb4387c1df61f24808044.png" src="../../_images/aa7e9e6da479b46cd93303862be4536442817ba3c51eb4387c1df61f24808044.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -883,7 +922,7 @@ Correlation: 0.0
  &lt;Axes: title={&#39;center&#39;: &#39;No Correlation&#39;}, xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/6506c81b9a8a8413b83434daeebf32f86b6e3f9e1cdf5c86eaee331a78541985.png" src="../../_images/6506c81b9a8a8413b83434daeebf32f86b6e3f9e1cdf5c86eaee331a78541985.png" />
+<img alt="../../_images/c7554d099168133fabedfe980f9666b49d0a762cd75a595d86af3db36040be6d.png" src="../../_images/c7554d099168133fabedfe980f9666b49d0a762cd75a595d86af3db36040be6d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -904,7 +943,7 @@ Correlation: 0.0
  &lt;Axes: title={&#39;center&#39;: &#39;Non-linear relationship&#39;}, xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/2da0be27adab3dc192f2f4d5bed0f40bdff7edacb7d309721d8ae1d9aa501180.png" src="../../_images/2da0be27adab3dc192f2f4d5bed0f40bdff7edacb7d309721d8ae1d9aa501180.png" />
+<img alt="../../_images/2e0f2d1383eba5644154980bd02de125ed95ec27b1bd7db49aecac67add6b915.png" src="../../_images/2e0f2d1383eba5644154980bd02de125ed95ec27b1bd7db49aecac67add6b915.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -924,24 +963,24 @@ Correlation: 0.0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Y = X + Gaussian Noise ---
-Covariance: 8.479102295320594
-Correlation: 0.9448567796938689
+Covariance: 8.666966697762573
+Correlation: 0.9629712706143485
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 600x500 with 1 Axes&gt;,
  &lt;Axes: title={&#39;center&#39;: &#39;Y = X + Gaussian Noise&#39;}, xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/912a54f621f682606a157379d9e7eb07950503df2a23be69788ea49bfe651da9.png" src="../../_images/912a54f621f682606a157379d9e7eb07950503df2a23be69788ea49bfe651da9.png" />
+<img alt="../../_images/77210b9e1f288e4aa221ac72e2b0ccc564d23d4f8bb20d02bdc6a3b3eb90cc80.png" src="../../_images/77210b9e1f288e4aa221ac72e2b0ccc564d23d4f8bb20d02bdc6a3b3eb90cc80.png" />
 </div>
 </div>
 </section>
 <section id="id2">
-<h2>exercise<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>exercise<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>if you want to apply what you learnt earlier, you can add the regression line to the plot and see how close it is to the 1-1 line</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">linregress</span>
 <span class="n">slope_scipy</span><span class="p">,</span> <span class="n">intercept_scipy</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">std_err</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">y_pred_scipy</span> <span class="o">=</span> <span class="n">slope_scipy</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">intercept_scipy</span>
 
@@ -957,19 +996,19 @@ Correlation: 0.9448567796938689
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Y = X + Gaussian Noise ---
-Covariance: 7.585887521942114
-Correlation: 0.12360148416392307
+Covariance: 0.40875139411128497
+Correlation: 0.006864006936443938
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14d833800&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1690f4c50&gt;
 </pre></div>
 </div>
-<img alt="../../_images/f027966b26c8571c9294b2a47583142fa80da495046fcabe08d8d0b2896f0774.png" src="../../_images/f027966b26c8571c9294b2a47583142fa80da495046fcabe08d8d0b2896f0774.png" />
+<img alt="../../_images/1145fc387e6e05c6337eb9af736a1af85fc1b31e2248add49b39170a51d953b5.png" src="../../_images/1145fc387e6e05c6337eb9af736a1af85fc1b31e2248add49b39170a51d953b5.png" />
 </div>
 </div>
 </section>
 <section id="statistical-significance-of-correlation">
-<h2>Statistical Significance of Correlation<a class="headerlink" href="#statistical-significance-of-correlation" title="Permalink to this heading">#</a></h2>
+<h2>Statistical Significance of Correlation<a class="headerlink" href="#statistical-significance-of-correlation" title="Link to this heading">#</a></h2>
 <p>While the correlation coefficient (r) measures the strength and direction of a linear relationship, it doesn’t tell us if that relationship is statistically significant. Statistical significance indicates whether the observed correlation is likely a true relationship in the population or simply due to random chance in our sample.</p>
 <p><strong>Hypothesis Testing</strong></p>
 <p>To determine statistical significance, we perform hypothesis testing:</p>
@@ -1016,16 +1055,16 @@ Correlation: 0.12360148416392307
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.061816886013195495
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.39620217890052783
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 
-<span class="k">def</span> <span class="nf">test_correlation_significance</span><span class="p">(</span><span class="n">npts</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_correlation_significance</span><span class="p">(</span><span class="n">npts</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates two random number series, calculates correlation, </span>
 <span class="sd">    and performs a significance test. Returns True if significant, False otherwise.</span>
@@ -1075,108 +1114,108 @@ Correlation: 0.12360148416392307
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: 0.409 T-statistic: 1.268
-Correlation coefficient: 0.104 T-statistic: 0.296
-Correlation coefficient: 0.148 T-statistic: 0.424
-Correlation coefficient: -0.386 T-statistic: -1.185
-Correlation coefficient: -0.283 T-statistic: -0.833
-Correlation coefficient: 0.160 T-statistic: 0.457
-Correlation coefficient: -0.253 T-statistic: -0.739
-Correlation coefficient: -0.213 T-statistic: -0.616
-Correlation coefficient: 0.053 T-statistic: 0.151
-Correlation coefficient: 0.089 T-statistic: 0.252
-Correlation coefficient: -0.074 T-statistic: -0.211
-Correlation coefficient: -0.570 T-statistic: -1.964
-Correlation coefficient: 0.440 T-statistic: 1.385
-Correlation coefficient: 0.153 T-statistic: 0.438
-Correlation coefficient: 0.066 T-statistic: 0.188
-Correlation coefficient: -0.255 T-statistic: -0.746
-Correlation coefficient: 0.352 T-statistic: 1.065
-Correlation coefficient: -0.128 T-statistic: -0.365
-Correlation coefficient: -0.573 T-statistic: -1.975
-Correlation coefficient: -0.156 T-statistic: -0.448
-Correlation coefficient: -0.530 T-statistic: -1.768
-Correlation coefficient: 0.252 T-statistic: 0.738
-Correlation coefficient: -0.161 T-statistic: -0.461
-Correlation coefficient: 0.212 T-statistic: 0.613
-Correlation coefficient: 0.440 T-statistic: 1.387
-Correlation coefficient: -0.368 T-statistic: -1.119
-Correlation coefficient: 0.195 T-statistic: 0.562
-Correlation coefficient: -0.101 T-statistic: -0.287
-Correlation coefficient: 0.183 T-statistic: 0.526
-Correlation coefficient: 0.550 T-statistic: 1.864
-Correlation coefficient: -0.229 T-statistic: -0.665
-Correlation coefficient: 0.478 T-statistic: 1.540
-Correlation coefficient: -0.194 T-statistic: -0.559
-Correlation coefficient: -0.132 T-statistic: -0.376
-Correlation coefficient: 0.284 T-statistic: 0.839
-Correlation coefficient: 0.167 T-statistic: 0.478
-Correlation coefficient: -0.199 T-statistic: -0.574
-Correlation coefficient: -0.491 T-statistic: -1.593
-Correlation coefficient: 0.153 T-statistic: 0.437
-Correlation coefficient: -0.104 T-statistic: -0.296
-Correlation coefficient: 0.156 T-statistic: 0.447
-Correlation coefficient: -0.114 T-statistic: -0.325
-Correlation coefficient: -0.339 T-statistic: -1.019
-Correlation coefficient: -0.246 T-statistic: -0.717
-Correlation coefficient: -0.281 T-statistic: -0.828
-Correlation coefficient: -0.337 T-statistic: -1.012
-Correlation coefficient: -0.533 T-statistic: -1.783
-Correlation coefficient: -0.382 T-statistic: -1.167
-Correlation coefficient: -0.503 T-statistic: -1.646
-Correlation coefficient: 0.238 T-statistic: 0.692
-Correlation coefficient: 0.364 T-statistic: 1.106
-Correlation coefficient: -0.089 T-statistic: -0.252
-Correlation coefficient: 0.143 T-statistic: 0.410
-Correlation coefficient: 0.237 T-statistic: 0.691
-Correlation coefficient: 0.281 T-statistic: 0.828
-Correlation coefficient: 0.075 T-statistic: 0.213
-Correlation coefficient: -0.312 T-statistic: -0.927
-Correlation coefficient: 0.212 T-statistic: 0.613
-Correlation coefficient: -0.195 T-statistic: -0.563
-Correlation coefficient: 0.152 T-statistic: 0.434
-Correlation coefficient: -0.021 T-statistic: -0.059
-Correlation coefficient: 0.161 T-statistic: 0.463
-Correlation coefficient: -0.513 T-statistic: -1.691
-Correlation coefficient: -0.406 T-statistic: -1.257
-Correlation coefficient: -0.479 T-statistic: -1.542
-Correlation coefficient: -0.108 T-statistic: -0.307
-Correlation coefficient: -0.147 T-statistic: -0.419
-Correlation coefficient: -0.020 T-statistic: -0.057
-Correlation coefficient: 0.406 T-statistic: 1.256
-Correlation coefficient: 0.226 T-statistic: 0.656
-Correlation coefficient: 0.585 T-statistic: 2.042
-Correlation coefficient: -0.014 T-statistic: -0.040
-Correlation coefficient: -0.265 T-statistic: -0.777
-Correlation coefficient: 0.473 T-statistic: 1.518
-Correlation coefficient: -0.387 T-statistic: -1.187
-Correlation coefficient: 0.282 T-statistic: 0.831
-Correlation coefficient: -0.655 T-statistic: -2.451
-Correlation coefficient: 0.467 T-statistic: 1.494
-Correlation coefficient: 0.519 T-statistic: 1.718
-Correlation coefficient: -0.052 T-statistic: -0.148
-Correlation coefficient: 0.324 T-statistic: 0.970
-Correlation coefficient: -0.310 T-statistic: -0.922
-Correlation coefficient: 0.070 T-statistic: 0.199
-Correlation coefficient: -0.587 T-statistic: -2.053
-Correlation coefficient: -0.229 T-statistic: -0.665
-Correlation coefficient: 0.137 T-statistic: 0.391
-Correlation coefficient: -0.441 T-statistic: -1.389
-Correlation coefficient: -0.024 T-statistic: -0.068
-Correlation coefficient: -0.103 T-statistic: -0.294
-Correlation coefficient: -0.419 T-statistic: -1.306
-Correlation coefficient: 0.349 T-statistic: 1.052
-Correlation coefficient: 0.136 T-statistic: 0.388
-Correlation coefficient: -0.198 T-statistic: -0.572
-Correlation coefficient: 0.625 T-statistic: 2.265
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: 0.043 T-statistic: 0.121
+Correlation coefficient: -0.344 T-statistic: -1.038
+Correlation coefficient: -0.315 T-statistic: -0.938
+Correlation coefficient: 0.207 T-statistic: 0.597
+Correlation coefficient: -0.594 T-statistic: -2.088
+Correlation coefficient: 0.088 T-statistic: 0.250
+Correlation coefficient: -0.266 T-statistic: -0.779
+Correlation coefficient: 0.536 T-statistic: 1.795
+Correlation coefficient: -0.280 T-statistic: -0.825
+Correlation coefficient: 0.201 T-statistic: 0.582
+Correlation coefficient: -0.009 T-statistic: -0.025
+Correlation coefficient: -0.347 T-statistic: -1.047
+Correlation coefficient: -0.300 T-statistic: -0.890
+Correlation coefficient: 0.280 T-statistic: 0.826
+Correlation coefficient: 0.109 T-statistic: 0.311
+Correlation coefficient: -0.380 T-statistic: -1.162
+Correlation coefficient: 0.408 T-statistic: 1.264
+Correlation coefficient: 0.377 T-statistic: 1.150
+Correlation coefficient: -0.333 T-statistic: -0.999
+Correlation coefficient: 0.624 T-statistic: 2.259
+Correlation coefficient: 0.708 T-statistic: 2.834
+Correlation coefficient: 0.671 T-statistic: 2.562
+Correlation coefficient: -0.625 T-statistic: -2.266
+Correlation coefficient: -0.309 T-statistic: -0.919
+Correlation coefficient: 0.171 T-statistic: 0.490
+Correlation coefficient: -0.247 T-statistic: -0.720
+Correlation coefficient: 0.078 T-statistic: 0.222
+Correlation coefficient: 0.357 T-statistic: 1.080
+Correlation coefficient: 0.445 T-statistic: 1.407
+Correlation coefficient: 0.574 T-statistic: 1.981
+Correlation coefficient: 0.511 T-statistic: 1.680
+Correlation coefficient: -0.037 T-statistic: -0.104
+Correlation coefficient: -0.608 T-statistic: -2.168
+Correlation coefficient: 0.174 T-statistic: 0.501
+Correlation coefficient: 0.234 T-statistic: 0.680
+Correlation coefficient: 0.297 T-statistic: 0.881
+Correlation coefficient: -0.044 T-statistic: -0.124
+Correlation coefficient: -0.467 T-statistic: -1.492
+Correlation coefficient: 0.400 T-statistic: 1.235
+Correlation coefficient: -0.181 T-statistic: -0.521
+Correlation coefficient: -0.224 T-statistic: -0.650
+Correlation coefficient: 0.340 T-statistic: 1.023
+Correlation coefficient: 0.463 T-statistic: 1.479
+Correlation coefficient: 0.366 T-statistic: 1.114
+Correlation coefficient: 0.275 T-statistic: 0.810
+Correlation coefficient: 0.116 T-statistic: 0.329
+Correlation coefficient: -0.023 T-statistic: -0.065
+Correlation coefficient: 0.028 T-statistic: 0.080
+Correlation coefficient: 0.303 T-statistic: 0.898
+Correlation coefficient: 0.580 T-statistic: 2.013
+Correlation coefficient: 0.062 T-statistic: 0.176
+Correlation coefficient: -0.608 T-statistic: -2.166
+Correlation coefficient: 0.087 T-statistic: 0.247
+Correlation coefficient: 0.018 T-statistic: 0.051
+Correlation coefficient: -0.123 T-statistic: -0.351
+Correlation coefficient: 0.384 T-statistic: 1.177
+Correlation coefficient: 0.421 T-statistic: 1.313
+Correlation coefficient: -0.185 T-statistic: -0.532
+Correlation coefficient: 0.456 T-statistic: 1.449
+Correlation coefficient: 0.143 T-statistic: 0.408
+Correlation coefficient: 0.405 T-statistic: 1.253
+Correlation coefficient: -0.228 T-statistic: -0.664
+Correlation coefficient: 0.035 T-statistic: 0.099
+Correlation coefficient: 0.193 T-statistic: 0.558
+Correlation coefficient: 0.175 T-statistic: 0.503
+Correlation coefficient: -0.223 T-statistic: -0.648
+Correlation coefficient: -0.340 T-statistic: -1.021
+Correlation coefficient: -0.606 T-statistic: -2.157
+Correlation coefficient: -0.242 T-statistic: -0.706
+Correlation coefficient: 0.216 T-statistic: 0.626
+Correlation coefficient: 0.461 T-statistic: 1.471
+Correlation coefficient: 0.385 T-statistic: 1.178
 Correlation coefficient: 0.285 T-statistic: 0.841
-Correlation coefficient: 0.189 T-statistic: 0.545
-Correlation coefficient: -0.154 T-statistic: -0.440
-Correlation coefficient: 0.259 T-statistic: 0.759
-Correlation coefficient: 0.692 T-statistic: 2.708
-Correlation coefficient: -0.270 T-statistic: -0.792
-Out of 100 trials, the correlation was statistically significant in 2 cases.
-Proportion of significant results: 0.02
+Correlation coefficient: -0.455 T-statistic: -1.446
+Correlation coefficient: 0.124 T-statistic: 0.353
+Correlation coefficient: -0.244 T-statistic: -0.712
+Correlation coefficient: 0.913 T-statistic: 6.347
+Correlation coefficient: 0.869 T-statistic: 4.971
+Correlation coefficient: 0.579 T-statistic: 2.009
+Correlation coefficient: 0.775 T-statistic: 3.467
+Correlation coefficient: 0.454 T-statistic: 1.443
+Correlation coefficient: 0.024 T-statistic: 0.067
+Correlation coefficient: -0.095 T-statistic: -0.269
+Correlation coefficient: 0.599 T-statistic: 2.118
+Correlation coefficient: 0.289 T-statistic: 0.855
+Correlation coefficient: -0.223 T-statistic: -0.647
+Correlation coefficient: -0.150 T-statistic: -0.428
+Correlation coefficient: 0.434 T-statistic: 1.362
+Correlation coefficient: -0.047 T-statistic: -0.132
+Correlation coefficient: 0.286 T-statistic: 0.844
+Correlation coefficient: 0.610 T-statistic: 2.177
+Correlation coefficient: 0.377 T-statistic: 1.150
+Correlation coefficient: -0.528 T-statistic: -1.759
+Correlation coefficient: 0.187 T-statistic: 0.539
+Correlation coefficient: 0.055 T-statistic: 0.157
+Correlation coefficient: -0.158 T-statistic: -0.451
+Correlation coefficient: 0.341 T-statistic: 1.025
+Correlation coefficient: 0.538 T-statistic: 1.806
+Correlation coefficient: 0.228 T-statistic: 0.663
+Correlation coefficient: -0.210 T-statistic: -0.609
+Out of 100 trials, the correlation was statistically significant in 5 cases.
+Proportion of significant results: 0.05
 </pre></div>
 </div>
 </div>
@@ -1185,18 +1224,18 @@ Proportion of significant results: 0.02
 <p>You can get a significant result by accident.</p>
 </section>
 <section id="important-note-on-degrees-of-freedom-please-read">
-<h2>Important note on degrees of freedom (please read!!!)<a class="headerlink" href="#important-note-on-degrees-of-freedom-please-read" title="Permalink to this heading">#</a></h2>
+<h2>Important note on degrees of freedom (please read!!!)<a class="headerlink" href="#important-note-on-degrees-of-freedom-please-read" title="Link to this heading">#</a></h2>
 <p>The degrees of freedom is set to n-2 assuming that the observations are INDEPENDENT… One of the most common errors in significance testing is people applying the test to a timeseries with a significant temporal autocorrelation and assuming the degrees of freedom to be n-2. This can overestimate, sometimes drastically, the degrees of freedom, and thus sets the “bar” for significance much lower than it actually should be.</p>
 <p>We can demonstrate this by using a pair of timeseries which are correlated with an amount of noise added to them.  If we take a running mean, we still have the same number of points almost but the degrees of freedom are much less.</p>
 <p>NOTE TO SELF: INSERT MAP OF CORRELATION HERE FOR SST AND INDEX AND SHOW HOW POOR DEFINITION OF DOF INFLATES SIGNIFICANCE…</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="correlation-and-causality">
-<h1>correlation and causality<a class="headerlink" href="#correlation-and-causality" title="Permalink to this heading">#</a></h1>
+<h1>correlation and causality<a class="headerlink" href="#correlation-and-causality" title="Link to this heading">#</a></h1>
 <p>Beware of attributing causality to relationships found. This can be the case but be careful to think about the processes involved. The reason we are stating this is because the next use example will allow us to assess the impact of ENSO on global weather.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="link-to-regression">
-<h1>link to regression<a class="headerlink" href="#link-to-regression" title="Permalink to this heading">#</a></h1>
+<h1>link to regression<a class="headerlink" href="#link-to-regression" title="Link to this heading">#</a></h1>
 <p>Recall our linear regression equation, we found that the least squared minimisation gave a fit to the slope:</p>
 <div class="math notranslate nohighlight">
 \[m = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}\]</div>
@@ -1208,16 +1247,16 @@ Proportion of significant results: 0.02
 \[ m = r \frac{\sigma(y)}{\sigma(x)} \]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="coefficient-of-determination">
-<h1>Coefficient of determination<a class="headerlink" href="#coefficient-of-determination" title="Permalink to this heading">#</a></h1>
+<h1>Coefficient of determination<a class="headerlink" href="#coefficient-of-determination" title="Link to this heading">#</a></h1>
 <p>If <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> are the fit of points, then <span class="math notranslate nohighlight">\(R^2\)</span>, the coefficient of determination, gives the amount of explained variance:</p>
 <div class="math notranslate nohighlight">
 \[ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2} \]</div>
 <p>in linear regression <span class="math notranslate nohighlight">\(r^2=R^2\)</span></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id3">
-<h1>Exercise<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="homework">
+<h1>Homework:<a class="headerlink" href="#homework" title="Link to this heading">#</a></h1>
 <p>Get together in groups and look at the definitions of correlation and covariance. If I were to ask you to calculate how much ENSO impacts temperature or rainfall globally, how could you do this with either of these functions?</p>
-<p>Rather than do this in python, we will work through the example using CDO to show you how quickly this can be done.</p>
+<p>Write a script in CDO to calculate the impact (covariance) of ENSO on rainfall in the month of July and the month of January (units mm/time).  Use today’s lesson to think how you will do this.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1229,16 +1268,16 @@ Proportion of significant results: 0.02
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda"
+            mode: "climlab"
         },
         kernelOptions: {
-            name: "conda",
+            name: "climlab",
             path: "./notebooks/part2_cda"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda'</script>
+    <script>kernelName = 'climlab'</script>
 
                 </article>
               
@@ -1247,24 +1286,24 @@ Proportion of significant results: 0.02
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
-       href="climdata_gpgp_indices.html"
+       href="climdata_trends_timeseries.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Rainfall indices based on the Indian monsoon</p>
+        <p class="prev-next-title">Trend derivation</p>
       </div>
     </a>
     <a class="right-next"
-       href="climdata_FFT_analysis.html"
+       href="climdata_breakpoint_analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to DDT analysis</p>
+        <p class="prev-next-title">Breakpoint analysis (segmentation analysis)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1275,13 +1314,16 @@ Proportion of significant results: 0.02
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Correlation and Covariance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a><ul class="nav section-nav flex-column">
@@ -1307,7 +1349,7 @@ Proportion of significant results: 0.02
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-and-causality">correlation and causality</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-regression">link to regression</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-of-determination">Coefficient of determination</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercise</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework:</a></li>
 </ul>
 
   </nav></div>
@@ -1330,9 +1372,10 @@ By Adrian Tompkins
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1356,8 +1399,8 @@ By Adrian Tompkins
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
