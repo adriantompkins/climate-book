@@ -66,7 +66,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_gpgp_indices';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Trend derivation" href="climdata_trends_timeseries.html" />
+    <link rel="next" title="CDA2: Trend derivation" href="climdata_trends_timeseries.html" />
     <link rel="prev" title="Climate data analysis" href="../../markdown/content_clima_data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -194,10 +194,9 @@
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">CDA2: Trend derivation</a></li>
 
-
-<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">Correlation and Covariance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">CDA2: Correlation and Covariance</a></li>
 
 
 
@@ -593,8 +592,20 @@ The command we use is "sellonlatbox"
 <span class="k">for</span><span class="w"> </span>year<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="si">${</span><span class="nv">year1</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">year2</span><span class="si">}</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
 <span class="w">    </span><span class="nv">ifile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">year</span><span class="si">}</span>.nc
 <span class="w">    </span><span class="nv">ofile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">year</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc
-<span class="w">    </span>cdo<span class="w"> </span>-s<span class="w"> </span>sellonlatbox,<span class="si">${</span><span class="nv">region</span><span class="si">}</span><span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="nv">$ofile</span>
+<span class="w">    </span>cdo<span class="w"> </span>sellonlatbox,<span class="si">${</span><span class="nv">region</span><span class="si">}</span><span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="nv">$ofile</span>
 <span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.07s 33MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.05s 34MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.06s 34MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 34MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.05s 34MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.05s 33MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23716800 values from 1 variable over 366 timesteps [0.06s 34MB]
+<span class=" -Color -Color-Green">cdo    sellonlatbox: </span>Processed 23652000 values from 1 variable over 365 timesteps [0.06s 33MB]
 </pre></div>
 </div>
 </div>
@@ -607,10 +618,16 @@ The command we use is "sellonlatbox"
 <div class="cell_input docutils container">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># now the files are much smaller, let&#39;s put them together in a single file for ease</span>
 <span class="w">    </span>
-cdo<span class="w"> </span>-s<span class="w"> </span>-O<span class="w"> </span>mergetime<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}</span>????<span class="si">${</span><span class="nv">region_tag</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc
+cdo<span class="w">  </span>-O<span class="w"> </span>mergetime<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}</span>????<span class="si">${</span><span class="nv">region_tag</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc
 
 <span class="c1"># just select the summer months</span>
-cdo<span class="w"> </span>-s<span class="w"> </span>-O<span class="w"> </span>selmon,6/9<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc
+cdo<span class="w">  </span>-O<span class="w"> </span>selmon,6/9<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    mergetime: </span>Processed 1519440 values from 8 variables over 2922 timesteps [0.17s 49MB]
+<span class=" -Color -Color-Green">cdo    selmonth: </span>Processed 507520 values from 1 variable over 2922 timesteps [0.08s 38MB]
 </pre></div>
 </div>
 </div>
@@ -625,8 +642,19 @@ cdo<span class="w"> </span>-s<span class="w"> </span>-O<span class="w"> </span>s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we have a single file, let&#39;s look at the annual anomaly</span>
-cdo<span class="w"> </span>-s<span class="w"> </span>timmean<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_timmean.nc
-cdo<span class="w"> </span>-s<span class="w"> </span>sub<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_timmean.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom.nc
+cdo<span class="w"> </span>timmean<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_timmean.nc
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo    timmean: </span>Processed 507520 values from 1 variable over 976 timesteps [0.05s 29MB]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cdo<span class="w"> </span>-s<span class="w"> </span>sub<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_timmean.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom.nc
 cdo<span class="w"> </span>-s<span class="w"> </span>yearmean<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_anom_yearmean.nc
 </pre></div>
 </div>
@@ -713,23 +741,25 @@ cdo<span class="w"> </span>fldmean<span class="w"> </span><span class="si">${</s
 <div class="cell_input docutils container">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a index for extremes P95 for example</span>
 <span class="nv">ifile</span><span class="o">=</span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS.nc
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$ifile</span>
 <span class="nv">percen</span><span class="o">=</span><span class="m">95</span>
 cdo<span class="w"> </span>timpctl,<span class="si">${</span><span class="nv">percen</span><span class="si">}</span><span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span>-timmin<span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span>-timmax<span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>.nc
 
 cdo<span class="w"> </span>ge<span class="w"> </span><span class="nv">$ifile</span><span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_binary.nc
 
 <span class="c1"># number of extreme rainy days per year</span>
-cdo<span class="w"> </span>yearsum<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_binary.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_nevents.nc
+<span class="nb">echo</span><span class="w"> </span>cdo<span class="w"> </span>yearsum<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_binary.nc<span class="w"> </span><span class="si">${</span><span class="nv">ddir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fname</span><span class="si">}${</span><span class="nv">region_tag</span><span class="si">}</span>_JJAS_p<span class="si">${</span><span class="nv">percen</span><span class="si">}</span>_nevents.nc
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">cdo(1) timmin: </span>Process started
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../../DATA/gpcp/gpcp_v01r03_daily__area65_90_8_27_JJAS.nc
+<span class=" -Color -Color-Green">cdo(1) timmin: </span>Process started
 <span class=" -Color -Color-Green">cdo(2) timmax: </span>Process started
-<span class=" -Color -Color-Green">cdo    timpctl: </span>Processed 508560 values from 3 variables over 978 timesteps [0.10s 33MB]
+<span class=" -Color -Color-Green">cdo    timpctl: </span>Processed 508560 values from 3 variables over 978 timesteps [0.09s 33MB]
 <span class=" -Color -Color-Green">cdo    ge: </span>Filling up stream2 &gt;../../../DATA/gpcp/gpcp_v01r03_daily__area65_90_8_27_JJAS_p95.nc&lt; by copying the first timestep.
 <span class=" -Color -Color-Green">cdo    ge: </span>Processed 508040 values from 2 variables over 977 timesteps [0.06s 36MB]
-<span class=" -Color -Color-Green">cdo    yearsum: </span>Processed 507520 values from 1 variable over 976 timesteps [0.04s 29MB]
+cdo yearsum ../../../DATA/gpcp/gpcp_v01r03_daily__area65_90_8_27_JJAS_p95_binary.nc ../../../DATA/gpcp/gpcp_v01r03_daily__area65_90_8_27_JJAS_p95_nevents.nc
 </pre></div>
 </div>
 </div>
@@ -789,7 +819,7 @@ cdo<span class="w"> </span>yearsum<span class="w"> </span><span class="si">${</s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Trend derivation</p>
+        <p class="prev-next-title">CDA2: Trend derivation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

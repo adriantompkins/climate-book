@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Correlation and Covariance &#8212; Earth System Modelling</title>
+    <title>CDA2: Correlation and Covariance &#8212; Earth System Modelling</title>
   
   
   
@@ -67,7 +67,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Breakpoint analysis (segmentation analysis)" href="climdata_breakpoint_analysis.html" />
-    <link rel="prev" title="Trend derivation" href="climdata_trends_timeseries.html" />
+    <link rel="prev" title="CDA2: Trend derivation" href="climdata_trends_timeseries.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -194,10 +194,9 @@
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">Trend derivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climdata_trends_timeseries.html">CDA2: Trend derivation</a></li>
 
-
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Correlation and Covariance</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">CDA2: Correlation and Covariance</a></li>
 
 
 
@@ -486,7 +485,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Correlation and Covariance</h1>
+    <h1>CDA2: Correlation and Covariance</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -496,7 +495,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Correlation and Covariance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CDA2: Correlation and Covariance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-has-happened">what has happened?</a></li>
@@ -514,7 +513,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">exercise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-significance-of-correlation">Statistical Significance of Correlation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-on-degrees-of-freedom-please-read">Important note on degrees of freedom (please read!!!)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-on-degrees-of-freedom">Important note on degrees of freedom</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-and-causality">correlation and causality</a></li>
@@ -533,15 +532,15 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="correlation-and-covariance">
-<h1>Correlation and Covariance<a class="headerlink" href="#correlation-and-covariance" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="cda2-correlation-and-covariance">
+<h1>CDA2: Correlation and Covariance<a class="headerlink" href="#cda2-correlation-and-covariance" title="Link to this heading">#</a></h1>
 <section id="covariance">
 <h2>Covariance<a class="headerlink" href="#covariance" title="Link to this heading">#</a></h2>
 <p>Covariance measures how much two random variables change together. In other words, it assesses whether larger values of one variable tend to correspond to larger or smaller values of the other variable.</p>
 <p>The formula for covariance between two variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is:</p>
 <p><span class="math notranslate nohighlight">\(cov(X, Y) = \overline{(x_i - \bar{x})  (y_i - \bar{y})}\)</span></p>
 <p>which for a dataset of <span class="math notranslate nohighlight">\(n\)</span> points is:</p>
-<p><span class="math notranslate nohighlight">\(cov(X, Y) = 1/n * \Sigma [(x_i - \bar{x})  (y_i - \bar{y})]\)</span></p>
+<p><span class="math notranslate nohighlight">\(cov(X, Y) = \frac{1}{n} \Sigma [(x_i - \bar{x})  (y_i - \bar{y})]\)</span></p>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span> are the individual data points</p></li>
@@ -629,7 +628,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9e5d4dbd884e62cde62ea9f6c616f1e56a67303af3967f4e97b13f1f9e44145f.png" src="../../_images/9e5d4dbd884e62cde62ea9f6c616f1e56a67303af3967f4e97b13f1f9e44145f.png" />
+<img alt="../../_images/9c37d1289e5fbd88297773e7a606dbd85d2209f3d2e48ea4f506b48368540a19.png" src="../../_images/9c37d1289e5fbd88297773e7a606dbd85d2209f3d2e48ea4f506b48368540a19.png" />
 </div>
 </div>
 <div class="alert alert-info">
@@ -675,8 +674,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 2.6427765549350375
-Covariance (np.cov): 2.752892244723997
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 2.4172410416175767
+Covariance (np.cov): 2.4220852120416607
 </pre></div>
 </div>
 </div>
@@ -698,9 +697,9 @@ Covariance (np.cov): 2.752892244723997
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/62d445b2298ca880228ebef61d94b279c99ef9478a88652e4e03fe0939b43c4f.png" src="../../_images/62d445b2298ca880228ebef61d94b279c99ef9478a88652e4e03fe0939b43c4f.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 1.834384072495078
-Covariance (np.cov): 1.910816742182373
+<img alt="../../_images/bf1b49d773baf9eba6a3da43541c83cfd8d9aa16c55b8f41f4bc2642975bd6d5.png" src="../../_images/bf1b49d773baf9eba6a3da43541c83cfd8d9aa16c55b8f41f4bc2642975bd6d5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from definition): 1.8925137861907126
+Covariance (np.cov): 1.9713685272819923
 </pre></div>
 </div>
 </div>
@@ -718,7 +717,7 @@ This gives you the sample covariance, which is an unbiased estimate of the popul
 Dividing by n - 1 corrects for the fact that the sample mean is used to calculate the deviations, which reduces the degrees of freedom.</p>
 <p>Why n - 1?  When you calculate the sample mean, you lose one degree of freedom.  Using n - 1 in the denominator corrects for this loss and provides a more accurate estimate of the population covariance.</p>
 <p>Thus for a sample covariance the correct definition is</p>
-<p><span class="math notranslate nohighlight">\(cov(X, Y) = 1/(n-1) * \Sigma [(x_i - \bar{x})  (y_i - \bar{y})]\)</span></p>
+<p><span class="math notranslate nohighlight">\(cov(X, Y) = \frac{1}{(n-1)} \Sigma [(x_i - \bar{x})  (y_i - \bar{y})]\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_covariance_sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -753,9 +752,9 @@ Dividing by n - 1 corrects for the fact that the sample mean is used to calculat
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from whole population): 1.834384072495078
-Covariance (from samples): 1.910816742182373
-Covariance (np.cov): 1.910816742182373
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance (from whole population): 1.8925137861907126
+Covariance (from samples): 1.9713685272819923
+Covariance (np.cov): 1.9713685272819923
 </pre></div>
 </div>
 </div>
@@ -774,12 +773,12 @@ Covariance (np.cov): 1.910816742182373
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Noise mag:0, Covariance: 24.5
-Noise mag:0.2, Covariance: 24.469089967544708
-Noise mag:0.5, Covariance: 24.544842760477017
-Noise mag:1, Covariance: 24.339860087296515
-Noise mag:2, Covariance: 23.794870895200603
-Noise mag:4, Covariance: 24.268525561404633
-Noise mag:8, Covariance: 20.75490286240458
+Noise mag:0.2, Covariance: 24.546219729659203
+Noise mag:0.5, Covariance: 24.627126050370972
+Noise mag:1, Covariance: 24.42059453868397
+Noise mag:2, Covariance: 25.46506965714744
+Noise mag:4, Covariance: 24.175757428681045
+Noise mag:8, Covariance: 31.355779189618907
 </pre></div>
 </div>
 </div>
@@ -963,21 +962,21 @@ Correlation: 0.0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Y = X + Gaussian Noise ---
-Covariance: 8.666966697762573
-Correlation: 0.9629712706143485
+Covariance: 8.708430326483661
+Correlation: 0.9424012803266335
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 600x500 with 1 Axes&gt;,
  &lt;Axes: title={&#39;center&#39;: &#39;Y = X + Gaussian Noise&#39;}, xlabel=&#39;X&#39;, ylabel=&#39;Y&#39;&gt;)
 </pre></div>
 </div>
-<img alt="../../_images/77210b9e1f288e4aa221ac72e2b0ccc564d23d4f8bb20d02bdc6a3b3eb90cc80.png" src="../../_images/77210b9e1f288e4aa221ac72e2b0ccc564d23d4f8bb20d02bdc6a3b3eb90cc80.png" />
+<img alt="../../_images/a7ee3dc4390acfd6d6d1daadaf869e23e720107ffe005744a19ea01391a92e2a.png" src="../../_images/a7ee3dc4390acfd6d6d1daadaf869e23e720107ffe005744a19ea01391a92e2a.png" />
 </div>
 </div>
 </section>
 <section id="id2">
 <h2>exercise<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>if you want to apply what you learnt earlier, you can add the regression line to the plot and see how close it is to the 1-1 line</p>
+<p>after the next lesson, you can add the regression line to the plot and see how close it is to the 1-1 line</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">linregress</span>
@@ -996,14 +995,14 @@ Correlation: 0.9629712706143485
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Y = X + Gaussian Noise ---
-Covariance: 0.40875139411128497
-Correlation: 0.006864006936443938
+Covariance: 16.139161937535903
+Correlation: 0.28117414490955817
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1690f4c50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x30138c950&gt;
 </pre></div>
 </div>
-<img alt="../../_images/1145fc387e6e05c6337eb9af736a1af85fc1b31e2248add49b39170a51d953b5.png" src="../../_images/1145fc387e6e05c6337eb9af736a1af85fc1b31e2248add49b39170a51d953b5.png" />
+<img alt="../../_images/2e707d18e9486622b0555add4e48b7767241bf089d33c4bbb680c3fc490743f4.png" src="../../_images/2e707d18e9486622b0555add4e48b7767241bf089d33c4bbb680c3fc490743f4.png" />
 </div>
 </div>
 </section>
@@ -1055,7 +1054,7 @@ Correlation: 0.006864006936443938
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.39620217890052783
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.7273049637422285
 </pre></div>
 </div>
 </div>
@@ -1114,108 +1113,108 @@ Correlation: 0.006864006936443938
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: 0.043 T-statistic: 0.121
-Correlation coefficient: -0.344 T-statistic: -1.038
-Correlation coefficient: -0.315 T-statistic: -0.938
-Correlation coefficient: 0.207 T-statistic: 0.597
-Correlation coefficient: -0.594 T-statistic: -2.088
-Correlation coefficient: 0.088 T-statistic: 0.250
-Correlation coefficient: -0.266 T-statistic: -0.779
-Correlation coefficient: 0.536 T-statistic: 1.795
-Correlation coefficient: -0.280 T-statistic: -0.825
-Correlation coefficient: 0.201 T-statistic: 0.582
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation coefficient: -0.296 T-statistic: -0.878
+Correlation coefficient: -0.022 T-statistic: -0.063
+Correlation coefficient: -0.555 T-statistic: -1.887
+Correlation coefficient: 0.391 T-statistic: 1.201
+Correlation coefficient: -0.138 T-statistic: -0.395
+Correlation coefficient: -0.033 T-statistic: -0.095
+Correlation coefficient: 0.339 T-statistic: 1.020
+Correlation coefficient: -0.689 T-statistic: -2.688
+Correlation coefficient: 0.616 T-statistic: 2.214
+Correlation coefficient: -0.394 T-statistic: -1.214
+Correlation coefficient: -0.128 T-statistic: -0.365
+Correlation coefficient: -0.081 T-statistic: -0.229
+Correlation coefficient: 0.017 T-statistic: 0.047
+Correlation coefficient: 0.034 T-statistic: 0.097
+Correlation coefficient: 0.327 T-statistic: 0.979
+Correlation coefficient: 0.060 T-statistic: 0.170
+Correlation coefficient: 0.329 T-statistic: 0.984
+Correlation coefficient: -0.275 T-statistic: -0.809
+Correlation coefficient: -0.523 T-statistic: -1.737
+Correlation coefficient: 0.170 T-statistic: 0.488
+Correlation coefficient: -0.782 T-statistic: -3.543
+Correlation coefficient: -0.395 T-statistic: -1.218
+Correlation coefficient: 0.163 T-statistic: 0.467
+Correlation coefficient: -0.078 T-statistic: -0.221
+Correlation coefficient: -0.445 T-statistic: -1.404
+Correlation coefficient: -0.053 T-statistic: -0.150
+Correlation coefficient: 0.161 T-statistic: 0.461
+Correlation coefficient: -0.201 T-statistic: -0.582
+Correlation coefficient: -0.118 T-statistic: -0.337
+Correlation coefficient: 0.233 T-statistic: 0.679
+Correlation coefficient: -0.080 T-statistic: -0.227
+Correlation coefficient: -0.031 T-statistic: -0.087
+Correlation coefficient: 0.404 T-statistic: 1.249
+Correlation coefficient: -0.552 T-statistic: -1.875
+Correlation coefficient: 0.064 T-statistic: 0.180
+Correlation coefficient: 0.124 T-statistic: 0.352
+Correlation coefficient: 0.833 T-statistic: 4.258
+Correlation coefficient: 0.276 T-statistic: 0.811
+Correlation coefficient: -0.085 T-statistic: -0.242
+Correlation coefficient: -0.405 T-statistic: -1.254
+Correlation coefficient: 0.014 T-statistic: 0.041
+Correlation coefficient: -0.220 T-statistic: -0.639
+Correlation coefficient: 0.587 T-statistic: 2.050
+Correlation coefficient: 0.060 T-statistic: 0.170
+Correlation coefficient: -0.708 T-statistic: -2.833
+Correlation coefficient: -0.014 T-statistic: -0.040
+Correlation coefficient: 0.308 T-statistic: 0.915
+Correlation coefficient: -0.240 T-statistic: -0.700
+Correlation coefficient: -0.554 T-statistic: -1.884
+Correlation coefficient: 0.233 T-statistic: 0.678
+Correlation coefficient: -0.153 T-statistic: -0.439
+Correlation coefficient: -0.298 T-statistic: -0.885
+Correlation coefficient: 0.700 T-statistic: 2.774
+Correlation coefficient: 0.421 T-statistic: 1.311
+Correlation coefficient: 0.119 T-statistic: 0.339
+Correlation coefficient: -0.582 T-statistic: -2.022
+Correlation coefficient: 0.361 T-statistic: 1.097
+Correlation coefficient: 0.661 T-statistic: 2.488
+Correlation coefficient: 0.387 T-statistic: 1.186
+Correlation coefficient: -0.161 T-statistic: -0.460
+Correlation coefficient: 0.035 T-statistic: 0.100
+Correlation coefficient: 0.350 T-statistic: 1.056
+Correlation coefficient: 0.337 T-statistic: 1.013
+Correlation coefficient: 0.308 T-statistic: 0.915
+Correlation coefficient: 0.101 T-statistic: 0.288
+Correlation coefficient: 0.628 T-statistic: 2.285
+Correlation coefficient: 0.347 T-statistic: 1.047
+Correlation coefficient: -0.468 T-statistic: -1.498
+Correlation coefficient: -0.068 T-statistic: -0.193
+Correlation coefficient: -0.415 T-statistic: -1.289
+Correlation coefficient: 0.485 T-statistic: 1.570
+Correlation coefficient: -0.117 T-statistic: -0.332
+Correlation coefficient: 0.499 T-statistic: 1.628
+Correlation coefficient: -0.526 T-statistic: -1.751
+Correlation coefficient: 0.417 T-statistic: 1.299
+Correlation coefficient: 0.093 T-statistic: 0.264
+Correlation coefficient: -0.060 T-statistic: -0.171
+Correlation coefficient: 0.514 T-statistic: 1.697
+Correlation coefficient: -0.131 T-statistic: -0.373
+Correlation coefficient: 0.358 T-statistic: 1.086
+Correlation coefficient: 0.215 T-statistic: 0.624
+Correlation coefficient: 0.558 T-statistic: 1.900
+Correlation coefficient: 0.031 T-statistic: 0.089
+Correlation coefficient: -0.082 T-statistic: -0.233
+Correlation coefficient: 0.280 T-statistic: 0.825
+Correlation coefficient: -0.267 T-statistic: -0.784
+Correlation coefficient: 0.078 T-statistic: 0.221
+Correlation coefficient: 0.452 T-statistic: 1.434
 Correlation coefficient: -0.009 T-statistic: -0.025
-Correlation coefficient: -0.347 T-statistic: -1.047
-Correlation coefficient: -0.300 T-statistic: -0.890
-Correlation coefficient: 0.280 T-statistic: 0.826
-Correlation coefficient: 0.109 T-statistic: 0.311
-Correlation coefficient: -0.380 T-statistic: -1.162
-Correlation coefficient: 0.408 T-statistic: 1.264
-Correlation coefficient: 0.377 T-statistic: 1.150
-Correlation coefficient: -0.333 T-statistic: -0.999
-Correlation coefficient: 0.624 T-statistic: 2.259
-Correlation coefficient: 0.708 T-statistic: 2.834
-Correlation coefficient: 0.671 T-statistic: 2.562
-Correlation coefficient: -0.625 T-statistic: -2.266
-Correlation coefficient: -0.309 T-statistic: -0.919
-Correlation coefficient: 0.171 T-statistic: 0.490
-Correlation coefficient: -0.247 T-statistic: -0.720
-Correlation coefficient: 0.078 T-statistic: 0.222
-Correlation coefficient: 0.357 T-statistic: 1.080
-Correlation coefficient: 0.445 T-statistic: 1.407
-Correlation coefficient: 0.574 T-statistic: 1.981
-Correlation coefficient: 0.511 T-statistic: 1.680
-Correlation coefficient: -0.037 T-statistic: -0.104
-Correlation coefficient: -0.608 T-statistic: -2.168
-Correlation coefficient: 0.174 T-statistic: 0.501
-Correlation coefficient: 0.234 T-statistic: 0.680
-Correlation coefficient: 0.297 T-statistic: 0.881
-Correlation coefficient: -0.044 T-statistic: -0.124
-Correlation coefficient: -0.467 T-statistic: -1.492
-Correlation coefficient: 0.400 T-statistic: 1.235
-Correlation coefficient: -0.181 T-statistic: -0.521
-Correlation coefficient: -0.224 T-statistic: -0.650
-Correlation coefficient: 0.340 T-statistic: 1.023
-Correlation coefficient: 0.463 T-statistic: 1.479
-Correlation coefficient: 0.366 T-statistic: 1.114
-Correlation coefficient: 0.275 T-statistic: 0.810
-Correlation coefficient: 0.116 T-statistic: 0.329
-Correlation coefficient: -0.023 T-statistic: -0.065
-Correlation coefficient: 0.028 T-statistic: 0.080
-Correlation coefficient: 0.303 T-statistic: 0.898
-Correlation coefficient: 0.580 T-statistic: 2.013
-Correlation coefficient: 0.062 T-statistic: 0.176
-Correlation coefficient: -0.608 T-statistic: -2.166
-Correlation coefficient: 0.087 T-statistic: 0.247
-Correlation coefficient: 0.018 T-statistic: 0.051
-Correlation coefficient: -0.123 T-statistic: -0.351
-Correlation coefficient: 0.384 T-statistic: 1.177
-Correlation coefficient: 0.421 T-statistic: 1.313
-Correlation coefficient: -0.185 T-statistic: -0.532
-Correlation coefficient: 0.456 T-statistic: 1.449
-Correlation coefficient: 0.143 T-statistic: 0.408
-Correlation coefficient: 0.405 T-statistic: 1.253
-Correlation coefficient: -0.228 T-statistic: -0.664
-Correlation coefficient: 0.035 T-statistic: 0.099
-Correlation coefficient: 0.193 T-statistic: 0.558
-Correlation coefficient: 0.175 T-statistic: 0.503
-Correlation coefficient: -0.223 T-statistic: -0.648
-Correlation coefficient: -0.340 T-statistic: -1.021
-Correlation coefficient: -0.606 T-statistic: -2.157
-Correlation coefficient: -0.242 T-statistic: -0.706
-Correlation coefficient: 0.216 T-statistic: 0.626
-Correlation coefficient: 0.461 T-statistic: 1.471
-Correlation coefficient: 0.385 T-statistic: 1.178
-Correlation coefficient: 0.285 T-statistic: 0.841
-Correlation coefficient: -0.455 T-statistic: -1.446
-Correlation coefficient: 0.124 T-statistic: 0.353
-Correlation coefficient: -0.244 T-statistic: -0.712
-Correlation coefficient: 0.913 T-statistic: 6.347
-Correlation coefficient: 0.869 T-statistic: 4.971
-Correlation coefficient: 0.579 T-statistic: 2.009
-Correlation coefficient: 0.775 T-statistic: 3.467
-Correlation coefficient: 0.454 T-statistic: 1.443
-Correlation coefficient: 0.024 T-statistic: 0.067
-Correlation coefficient: -0.095 T-statistic: -0.269
-Correlation coefficient: 0.599 T-statistic: 2.118
-Correlation coefficient: 0.289 T-statistic: 0.855
-Correlation coefficient: -0.223 T-statistic: -0.647
-Correlation coefficient: -0.150 T-statistic: -0.428
-Correlation coefficient: 0.434 T-statistic: 1.362
-Correlation coefficient: -0.047 T-statistic: -0.132
-Correlation coefficient: 0.286 T-statistic: 0.844
-Correlation coefficient: 0.610 T-statistic: 2.177
-Correlation coefficient: 0.377 T-statistic: 1.150
-Correlation coefficient: -0.528 T-statistic: -1.759
-Correlation coefficient: 0.187 T-statistic: 0.539
-Correlation coefficient: 0.055 T-statistic: 0.157
-Correlation coefficient: -0.158 T-statistic: -0.451
-Correlation coefficient: 0.341 T-statistic: 1.025
-Correlation coefficient: 0.538 T-statistic: 1.806
-Correlation coefficient: 0.228 T-statistic: 0.663
-Correlation coefficient: -0.210 T-statistic: -0.609
-Out of 100 trials, the correlation was statistically significant in 5 cases.
-Proportion of significant results: 0.05
+Correlation coefficient: 0.432 T-statistic: 1.354
+Correlation coefficient: 0.440 T-statistic: 1.387
+Correlation coefficient: -0.299 T-statistic: -0.886
+Correlation coefficient: -0.129 T-statistic: -0.367
+Correlation coefficient: -0.157 T-statistic: -0.451
+Correlation coefficient: 0.331 T-statistic: 0.991
+Correlation coefficient: 0.065 T-statistic: 0.183
+Correlation coefficient: 0.367 T-statistic: 1.116
+Correlation coefficient: -0.112 T-statistic: -0.318
+Correlation coefficient: 0.244 T-statistic: 0.711
+Correlation coefficient: 0.158 T-statistic: 0.452
+Out of 100 trials, the correlation was statistically significant in 6 cases.
+Proportion of significant results: 0.06
 </pre></div>
 </div>
 </div>
@@ -1223,11 +1222,10 @@ Proportion of significant results: 0.05
 <p>Notice how many times the correlation comes up as significant?</p>
 <p>You can get a significant result by accident.</p>
 </section>
-<section id="important-note-on-degrees-of-freedom-please-read">
-<h2>Important note on degrees of freedom (please read!!!)<a class="headerlink" href="#important-note-on-degrees-of-freedom-please-read" title="Link to this heading">#</a></h2>
+<section id="important-note-on-degrees-of-freedom">
+<h2>Important note on degrees of freedom<a class="headerlink" href="#important-note-on-degrees-of-freedom" title="Link to this heading">#</a></h2>
 <p>The degrees of freedom is set to n-2 assuming that the observations are INDEPENDENT… One of the most common errors in significance testing is people applying the test to a timeseries with a significant temporal autocorrelation and assuming the degrees of freedom to be n-2. This can overestimate, sometimes drastically, the degrees of freedom, and thus sets the “bar” for significance much lower than it actually should be.</p>
 <p>We can demonstrate this by using a pair of timeseries which are correlated with an amount of noise added to them.  If we take a running mean, we still have the same number of points almost but the degrees of freedom are much less.</p>
-<p>NOTE TO SELF: INSERT MAP OF CORRELATION HERE FOR SST AND INDEX AND SHOW HOW POOR DEFINITION OF DOF INFLATES SIGNIFICANCE…</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="correlation-and-causality">
@@ -1295,7 +1293,7 @@ Proportion of significant results: 0.05
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Trend derivation</p>
+        <p class="prev-next-title">CDA2: Trend derivation</p>
       </div>
     </a>
     <a class="right-next"
@@ -1325,7 +1323,7 @@ Proportion of significant results: 0.05
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Correlation and Covariance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CDA2: Correlation and Covariance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-has-happened">what has happened?</a></li>
@@ -1343,7 +1341,7 @@ Proportion of significant results: 0.05
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">exercise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-significance-of-correlation">Statistical Significance of Correlation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-on-degrees-of-freedom-please-read">Important note on degrees of freedom (please read!!!)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-on-degrees-of-freedom">Important note on degrees of freedom</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-and-causality">correlation and causality</a></li>

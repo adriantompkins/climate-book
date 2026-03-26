@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Trend derivation &#8212; Earth System Modelling</title>
+    <title>CDA2: Trend derivation &#8212; Earth System Modelling</title>
   
   
   
@@ -66,7 +66,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_trends_timeseries';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Correlation and Covariance" href="climdata_correlation_covariance.html" />
+    <link rel="next" title="CDA2: Correlation and Covariance" href="climdata_correlation_covariance.html" />
     <link rel="prev" title="CDA1: Manipulating gridded datasets" href="climdata_gpgp_indices.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -194,10 +194,9 @@
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Trend derivation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">CDA2: Trend derivation</a></li>
 
-
-<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">Correlation and Covariance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">CDA2: Correlation and Covariance</a></li>
 
 
 
@@ -486,7 +485,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Trend derivation</h1>
+    <h1>CDA2: Trend derivation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -496,21 +495,60 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Trend derivation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-with-least-squares-fit">Linear Regression with Least Squares Fit</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CDA2: Trend derivation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-with-least-squares-fit">Linear Regression with Least Squares Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivative-with-respect-to-c">Partial Derivative with respect to <span class="math notranslate nohighlight">\(c\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivative-with-respect-to-m">Partial Derivative with respect to <span class="math notranslate nohighlight">\(m\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-identity">Helpful Identity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-for-the-slope-m">Solving for the Slope (<span class="math notranslate nohighlight">\(m\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-slope-and-intercept-estimators">Summary of slope and intercept estimators</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression">Derivation of Standard Errors for Intercept and Slope in Linear Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-slope-m">Variance of the Slope (<span class="math notranslate nohighlight">\(m\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-intercept-c">Variance of the Intercept (<span class="math notranslate nohighlight">\(c\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causes-of-uncertainty">Causes of uncertainty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-of-the-uncertainty">Results of the uncertainty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-var-hat-m">Derivation of <span class="math notranslate nohighlight">\(Var(\hat{m})\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simplify-the-slope-formula">Simplify the Slope Formula</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-variance-property">Apply the Variance Property</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-the-error-variance-sigma-2">Substitute the Error Variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expand-the-weights-w-i">Expand the Weights (<span class="math notranslate nohighlight">\(w_i\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-final-variance-formula">The Final Variance Formula</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-variance-from-data">Estimating the Variance from Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-se-of-hat-m">Standard Error (<span class="math notranslate nohighlight">\(SE\)</span>) of <span class="math notranslate nohighlight">\(\hat{m}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-intercept-c">Variance of the Intercept (<span class="math notranslate nohighlight">\(c\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#express-as-a-variance-of-a-sum">Express as a Variance of a Sum</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-individual-components">Calculate the Individual Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-variance-of-the-mean-var-overline-y-frac-sigma-2-n">a) Variance of the mean:** <span class="math notranslate nohighlight">\(Var(\overline{y}) = \frac{\sigma^2}{n}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-variance-operator">Apply the Variance Operator</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-out-the-constant">Pull out the Constant</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-variances">Sum of Variances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-the-constant-variance-sigma-2">Substitute the Constant Variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intuitive-takeaway">Intuitive Takeaway:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-variance-of-the-slope">b) Variance of the slope:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-handle-the-covariance-term">c) Handle the Covariance Term</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-back-into-the-equation">Substitute back into the Equation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-out-sigma-2">Factor out <span class="math notranslate nohighlight">\(\sigma^2\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-standard-error">Estimating the Standard Error</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-se-of-hat-c">Standard Error (<span class="math notranslate nohighlight">\(SE\)</span>) of <span class="math notranslate nohighlight">\(\hat{c}\)</span></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-confidence-interval-ci">Constructing the Confidence Interval (CI)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-of-the-fitted-linear-slope">Uncertainty of the Fitted Linear Slope</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-cru-temperature-data">Application to CRU temperature data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-a-grid-point">extracting a grid point</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-from-here-on-application-to-cru-temperature-data">DELETE from here on Application to CRU temperature data</a></li>
 </ul>
 
             </nav>
@@ -523,8 +561,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="trend-derivation">
-<h1>Trend derivation<a class="headerlink" href="#trend-derivation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="cda2-trend-derivation">
+<h1>CDA2: Trend derivation<a class="headerlink" href="#cda2-trend-derivation" title="Link to this heading">#</a></h1>
 <p>In this Lesson we will learn some basic techniques of timeseries analysis.</p>
 <section id="linear-regression-with-least-squares-fit">
 <h2>Linear Regression with Least Squares Fit<a class="headerlink" href="#linear-regression-with-least-squares-fit" title="Link to this heading">#</a></h2>
@@ -547,27 +585,79 @@
 <p>The sum of squared errors (SSE) is:</p>
 <p><span class="math notranslate nohighlight">\(SSE = \sum (y_i - (m x_i + c))^2  \)</span></p>
 <p>To minimize SSE, we take the partial derivatives with respect to <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">c</span></code> and set them to zero:</p>
-<p><span class="math notranslate nohighlight">\(\partial (SSE) / \partial m = 0\)</span></p>
 <p><span class="math notranslate nohighlight">\(\partial (SSE) / \partial c = 0\)</span></p>
-<p>Solving these equations yields the following formulas for <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">c</span></code>:</p>
-<p>We estimate <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> using the method of least squares, which minimizes the sum of squared residuals. This yields the following estimators:</p>
+<p>and for <span class="math notranslate nohighlight">\(m\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\partial (SSE) / \partial m = 0\)</span></p>
+<section id="partial-derivative-with-respect-to-c">
+<h3>Partial Derivative with respect to <span class="math notranslate nohighlight">\(c\)</span><a class="headerlink" href="#partial-derivative-with-respect-to-c" title="Link to this heading">#</a></h3>
+<p>To find the minimum, we take the partial derivative with respect to the intercept <span class="math notranslate nohighlight">\(c\)</span> and set it to zero:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial SSE}{\partial c} = -2 \sum_{i=1}^{n} (y_i - mx_i - c) = 0\]</div>
+<p>Divide by <span class="math notranslate nohighlight">\(-2\)</span> and distribute the summation:</p>
+<div class="math notranslate nohighlight">
+\[\sum y_i - m \sum x_i - \sum c = 0\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} c = nc\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[nc = \sum y_i - m \sum x_i\]</div>
+<p>Dividing by <span class="math notranslate nohighlight">\(n\)</span> gives the estimator for the intercept:</p>
+<div class="math notranslate nohighlight">
+\[\hat{c} = \bar{y} - m\bar{x}\]</div>
+</section>
+<section id="partial-derivative-with-respect-to-m">
+<h3>Partial Derivative with respect to <span class="math notranslate nohighlight">\(m\)</span><a class="headerlink" href="#partial-derivative-with-respect-to-m" title="Link to this heading">#</a></h3>
+<p>Now, we take the partial derivative with respect to the slope <span class="math notranslate nohighlight">\(m\)</span> and set it to zero:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial SSE}{\partial m} = -2 \sum_{i=1}^{n} x_i (y_i - mx_i - c) = 0\]</div>
+<p>Divide by <span class="math notranslate nohighlight">\(-2\)</span> and substitute the expression for <span class="math notranslate nohighlight">\(c\)</span> (<span class="math notranslate nohighlight">\(\bar{y} - m\bar{x}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\sum x_i (y_i - mx_i - (\bar{y} - m\bar{x})) = 0\]</div>
+<p>Rearrange the terms inside the parentheses:</p>
+<div class="math notranslate nohighlight">
+\[\sum x_i ((y_i - \bar{y}) - m(x_i - \bar{x})) = 0\]</div>
+<p>Distribute <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sum x_i(y_i - \bar{y}) - m \sum x_i(x_i - \bar{x}) = 0\]</div>
+</section>
+<section id="helpful-identity">
+<h3>Helpful Identity<a class="headerlink" href="#helpful-identity" title="Link to this heading">#</a></h3>
+<p>The identity <span class="math notranslate nohighlight">\(\sum x_i(y_i - \bar{y}) = \sum (x_i - \bar{x})(y_i - \overline{y})\)</span> holds true because subtracting the mean <span class="math notranslate nohighlight">\(\overline{x}\)</span> from <span class="math notranslate nohighlight">\(x_i\)</span> introduces a term that sums to zero.</p>
+<p>To show this, we start by expanding the right-hand side:
+$<span class="math notranslate nohighlight">\(\sum (x_i - \overline{x})(y_i - \overline{y}) = \sum [x_i(y_i - \overline{y}) - \overline{x}(y_i - \overline{y})]\)</span>$</p>
+<p>Distribute the summation sign:
+$<span class="math notranslate nohighlight">\(\sum x_i(y_i - \overline{y}) - \sum \overline{x}(y_i - \overline{y})\)</span>$</p>
+<p>Since <span class="math notranslate nohighlight">\(\overline{x}\)</span> is a constant (it doesn’t depend on <span class="math notranslate nohighlight">\(i\)</span>), we can pull it out of the second summation:
+$<span class="math notranslate nohighlight">\(\sum x_i(y_i - \overline{y}) - \overline{x} \sum (y_i - \overline{y})\)</span>$</p>
+<p>Look at the term <span class="math notranslate nohighlight">\(\sum (y_i - \overline{y})\)</span>. By the definition of the arithmetic mean:
+$<span class="math notranslate nohighlight">\(\sum (y_i - \overline{y}) = \sum y_i - \sum \overline{y} = \sum y_i - n\overline{y}\)</span><span class="math notranslate nohighlight">\(
+Since \)</span>n\overline{y} = \sum y_i<span class="math notranslate nohighlight">\(, this becomes:
+\)</span><span class="math notranslate nohighlight">\(\sum y_i - \sum y_i = 0\)</span>$</p>
+<p>…and thus
+$<span class="math notranslate nohighlight">\(\sum x_i(y_i - \overline{y}) - \overline{x}(0) = \sum x_i(y_i - \overline{y})\)</span>$</p>
+<p>This trick allows us to transition from raw values to <em>deviations from the mean</em>.</p>
+</section>
+<section id="solving-for-the-slope-m">
+<h3>Solving for the Slope (<span class="math notranslate nohighlight">\(m\)</span>)<a class="headerlink" href="#solving-for-the-slope-m" title="Link to this heading">#</a></h3>
+<p>Using the mathematical identity where <span class="math notranslate nohighlight">\(\sum x_i(y_i - \bar{y}) = \sum (x_i - \bar{x})(y_i - \bar{y})\)</span> and <span class="math notranslate nohighlight">\(\sum x_i(x_i - \bar{x}) = \sum (x_i - \bar{x})^2\)</span>, we isolate <span class="math notranslate nohighlight">\(m\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[m \sum (x_i - \bar{x})^2 = \sum (x_i - \bar{x})(y_i - \bar{y})\]</div>
+<p>The final estimator for the slope is:</p>
+<div class="math notranslate nohighlight">
+\[\hat{m} = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}\]</div>
+</section>
+<section id="summary-of-slope-and-intercept-estimators">
+<h3>Summary of slope and intercept estimators<a class="headerlink" href="#summary-of-slope-and-intercept-estimators" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Slope:
-$<span class="math notranslate nohighlight">\(m = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}\)</span>$</p></li>
+\begin{equation}
+\hat{m} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}   \tag{1}
+\end{equation}</p></li>
 <li><p>Intercept:
-$<span class="math notranslate nohighlight">\(c = \bar{y} - m \bar{x}\)</span>$</p></li>
+\begin{equation}
+\hat{c} = \bar{y} - \hat{m} \bar{x}    \tag{2}
+\end{equation}</p></li>
 </ul>
 <p>Where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the sample means of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, respectively.</p>
-<p>If <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are unknown, then the following formula can be applied</p>
-<p><span class="math notranslate nohighlight">\(m = (n \sum (x_i y_i) - \sum (x_i) \sum(y_i)) / (n \sum(x_i^2) - ( \sum(x_i))^2)\)</span></p>
-<p><span class="math notranslate nohighlight">\(c = (\sum(y_i) - m \sum(x_i)) / n\)</span></p>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\sum(x_i)\)</span> is the sum of all <code class="docutils literal notranslate"><span class="pre">x</span></code> values.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sum(y_i)\)</span> is the sum of all <code class="docutils literal notranslate"><span class="pre">y</span></code> values.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sum(x_i y_i)\)</span> is the sum of the products of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> values.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sum(x_i^2)\)</span> is the sum of the squares of <code class="docutils literal notranslate"><span class="pre">x</span></code> values.</p></li>
-</ul>
+<p>Let’s code this up from scratch (we will compare this to the scipy package calculation next)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -595,8 +685,13 @@ $<span class="math notranslate nohighlight">\(c = \bar{y} - m \bar{x}\)</span>$<
     <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_y</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="n">sum_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
 
     <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span>
-
-<span class="c1"># Example data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example data</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 
@@ -683,9 +778,34 @@ Y-intercept (c): 0.3
 </div>
 </div>
 </section>
+</section>
 <section id="derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression">
 <h2>Derivation of Standard Errors for Intercept and Slope in Linear Regression<a class="headerlink" href="#derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression" title="Link to this heading">#</a></h2>
-<p>In the above we simply assumes a linear model without recourse to uncertainty in the data. In order to consider this we need to make further assumptions about the data, we now generalize the equation to account for uncertainty.  In the following <span class="math notranslate nohighlight">\(x\)</span> refers to our explaining variable, often referred to as the independent variable.  We assume that our dependent variable <span class="math notranslate nohighlight">\(y\)</span> is related to <span class="math notranslate nohighlight">\(x\)</span> linearly, but now subject to an error, or uncertainty, which we represent by <span class="math notranslate nohighlight">\(\epsilon\)</span>. This uncertainty could have many sources. It could be partly due, for example, to measurement uncertainty in either variable.  Alternatively, <span class="math notranslate nohighlight">\(y\)</span> could have multiple explaining variables, some of which are unknown or unobserved.  For example, ice cream sales are likely to be a function of temperature, but also population density and also the state of the economy, which also change in time and location.  Thus relating the former only to temperature will neglect the latter two which will introduce “spread” in the ice cream-temperature relationship.</p>
+<p>In the above we simply assumes a linear model without recourse to uncertainty in the data. In order to consider this we need to make further assumptions about the data, we now generalize the equation to account for uncertainty.</p>
+<p>In the following <span class="math notranslate nohighlight">\(x\)</span> refers to our explaining variable, often referred to as the <strong>independent variable</strong>.  We assume that our <strong>dependent variable</strong> <span class="math notranslate nohighlight">\(y\)</span> is related to <span class="math notranslate nohighlight">\(x\)</span> linearly, but now subject to an error, or <strong>uncertainty</strong>, which we represent by <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<section id="causes-of-uncertainty">
+<h3>Causes of uncertainty<a class="headerlink" href="#causes-of-uncertainty" title="Link to this heading">#</a></h3>
+<p>This uncertainty could have many sources. It could include all the following:</p>
+<ul class="simple">
+<li><p><strong>measurement uncertainty</strong> in the independent and/or dependent variable; instrument accuracy for example.</p></li>
+<li><p><strong>multiple explaining variables</strong>: the dependent variable could have multiple explaining variables, some of which are <em>unknown</em> or <em>unobserved/unobservable</em>.  For example, ice cream sales are likely to be a function of temperature, but also of population density and also the state of the economy, which also change in time and location.  Thus relating the former only to temperature will neglect the latter two which will introduce <strong>spread</strong> in the ice cream-temperature relationship.</p></li>
+<li><p><strong>Nonlinearity</strong> Lastly of course, recall that we are assuming the relational is linear, whereas in reality the relationship is often nonlinear and more complicated.</p></li>
+</ul>
+</section>
+<section id="results-of-the-uncertainty">
+<h3>Results of the uncertainty<a class="headerlink" href="#results-of-the-uncertainty" title="Link to this heading">#</a></h3>
+<p>This uncertainty means that the slope (and intercept) estimated from a sample will be subject to uncertainty, due to the limited and imperfect sample we have. If we took a different sample of the same size, we’d likely get a slightly different <span class="math notranslate nohighlight">\(m\)</span> due to the uncertainty.  Thus we need to estimate the variance of the slope, to tell us how much that <span class="math notranslate nohighlight">\(m\)</span> is expected to change across different samples.</p>
+<p>In other words, if we collected a new set of data <span class="math notranslate nohighlight">\(y_i\)</span> for the same <span class="math notranslate nohighlight">\(x_i\)</span> values, we would get a slightly different <span class="math notranslate nohighlight">\(\hat{m}\)</span>. To understand how reliable our estimate is, we must ask:</p>
+<blockquote>
+<div><p><strong>Is our estimate precise?</strong> A low variance means our calculated slope is likely very close to the “true” population slope <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>How can we perform hypothesis testing?</strong> To test if <span class="math notranslate nohighlight">\(x\)</span> actually affects <span class="math notranslate nohighlight">\(y\)</span> (i.e., testing if <span class="math notranslate nohighlight">\(m \neq 0\)</span>), we need to know the standard deviation of our estimate.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>How do we build confidence intervals?</strong> We need the variance to say, “We are 95% confident the true slope is between <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span>.”</p>
+</div></blockquote>
+<p>Therefore, we must derive the <strong>Variance of the Slope</strong>, denoted as <span class="math notranslate nohighlight">\(Var(\hat{m})\)</span>, by propagating the variance of the error terms (<span class="math notranslate nohighlight">\(\sigma^2\)</span>) through our slope formula.</p>
 <p>Thus we write</p>
 <div class="math notranslate nohighlight">
 \[y_i = c + m x_i + \epsilon_i\]</div>
@@ -693,8 +813,8 @@ Y-intercept (c): 0.3
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(y_i\)</span> is the dependent variable for the <span class="math notranslate nohighlight">\(i\)</span>-th observation.</p></li>
 <li><p><span class="math notranslate nohighlight">\(x_i\)</span> is the independent variable for the <span class="math notranslate nohighlight">\(i\)</span>-th observation.</p></li>
-<li><p><span class="math notranslate nohighlight">\(c\)</span> is the true intercept.</p></li>
-<li><p><span class="math notranslate nohighlight">\(m\)</span> is the true slope.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span> is the “true” intercept.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m\)</span> is the “true” slope.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\epsilon_i\)</span> is the error term for the <span class="math notranslate nohighlight">\(i\)</span>-th observation.</p></li>
 </ul>
 <p>We make the following assumptions about the error terms:</p>
@@ -704,27 +824,211 @@ Y-intercept (c): 0.3
 <li><p><span class="math notranslate nohighlight">\(\epsilon_i\)</span> are independent.</p></li>
 <li><p>In general, we need to assume <span class="math notranslate nohighlight">\(\epsilon_i\)</span> are normally distributed.</p></li>
 </ul>
-<section id="variance-of-the-slope-m">
-<h3>Variance of the Slope (<span class="math notranslate nohighlight">\(m\)</span>)<a class="headerlink" href="#variance-of-the-slope-m" title="Link to this heading">#</a></h3>
-<p>To derive <span class="math notranslate nohighlight">\(Var(m)\)</span>, we substitute the linear model into the formula for <span class="math notranslate nohighlight">\(m\)</span> and apply the properties of variance. After algebraic manipulations, we get:</p>
+<p>We defined the variance for the error term <span class="math notranslate nohighlight">\(\epsilon_i\)</span>, but it turns out that we can also assume this variance for the dependent variable <span class="math notranslate nohighlight">\(y_i\)</span>, i.e. in reality, they are the same.</p>
+<p>Recall our model equation:
+$<span class="math notranslate nohighlight">\(y_i = mx_i + c + \epsilon_i\)</span>$</p>
+<p>In this model, we treat <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(m\)</span>, and <span class="math notranslate nohighlight">\(c\)</span> as <strong>fixed constants</strong> for a specific observation. The only “random” part of <span class="math notranslate nohighlight">\(y_i\)</span> comes from the error term <span class="math notranslate nohighlight">\(\epsilon_i\)</span>.</p>
+<p>Using the properties of variance:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(Var(y_i) = Var(mx_i + c + \epsilon_i)\)</span></p></li>
+<li><p>Since <span class="math notranslate nohighlight">\(mx_i + c\)</span> is a constant, its variance is <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>Therefore: <span class="math notranslate nohighlight">\(Var(y_i) = Var(\epsilon_i) = \sigma^2\)</span></p></li>
+</ol>
+</section>
+<section id="derivation-of-var-hat-m">
+<h3>Derivation of <span class="math notranslate nohighlight">\(Var(\hat{m})\)</span><a class="headerlink" href="#derivation-of-var-hat-m" title="Link to this heading">#</a></h3>
+<p>To find the variance of the slope, we treat the <span class="math notranslate nohighlight">\(x_i\)</span> values as fixed constants and the <span class="math notranslate nohighlight">\(y_i\)</span> values as random variables.</p>
+<section id="simplify-the-slope-formula">
+<h4>Simplify the Slope Formula<a class="headerlink" href="#simplify-the-slope-formula" title="Link to this heading">#</a></h4>
+<p>Recall the estimator for <span class="math notranslate nohighlight">\(m\)</span>:
+$<span class="math notranslate nohighlight">\(\hat{m} = \frac{\sum (x_i - \overline{x})(y_i - \overline{y})}{\sum (x_i - \overline{x})^2}\)</span>$</p>
+<p>To make the math easier, let <span class="math notranslate nohighlight">\(w_i = \frac{(x_i - \overline{x})}{\sum (x_i - \overline{x})^2}\)</span>. These are our “weights.”
+Now we can write the slope as a linear combination of <span class="math notranslate nohighlight">\(y_i\)</span>:
+$<span class="math notranslate nohighlight">\(\hat{m} = \sum w_i y_i\)</span>$</p>
+</section>
+<section id="apply-the-variance-property">
+<h4>Apply the Variance Property<a class="headerlink" href="#apply-the-variance-property" title="Link to this heading">#</a></h4>
+<p>Since the <span class="math notranslate nohighlight">\(y_i\)</span> are independent, the variance of the sum is the sum of the variances. Also, recall that <span class="math notranslate nohighlight">\(Var(a \cdot Y) = a^2 \cdot Var(Y)\)</span>:
+$<span class="math notranslate nohighlight">\(Var(\hat{m}) = Var\left( \sum w_i y_i \right) = \sum w_i^2 Var(y_i)\)</span>$</p>
+</section>
+<section id="substitute-the-error-variance-sigma-2">
+<h4>Substitute the Error Variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>)<a class="headerlink" href="#substitute-the-error-variance-sigma-2" title="Link to this heading">#</a></h4>
+<p>In the standard regression model, recall that we assume <span class="math notranslate nohighlight">\(Var(y_i) = \sigma^2\)</span> for all <span class="math notranslate nohighlight">\(i\)</span> (homoscedasticity):
+\begin{equation}
+Var(\hat{m}) = \sum w_i^2 \sigma^2 = \sigma^2 \sum w_i^2  \tag{3}
+\end{equation}</p>
+</section>
+<section id="expand-the-weights-w-i">
+<h4>Expand the Weights (<span class="math notranslate nohighlight">\(w_i\)</span>)<a class="headerlink" href="#expand-the-weights-w-i" title="Link to this heading">#</a></h4>
+<p>Now we substitute <span class="math notranslate nohighlight">\(w_i\)</span> back into the equation:
+$<span class="math notranslate nohighlight">\(\sum w_i^2 = \sum \left[ \frac{(x_i - \overline{x})}{\sum (x_j - \overline{x})^2} \right]^2 = \frac{\sum (x_i - \overline{x})^2}{\left[ \sum (x_i - \overline{x})^2 \right]^2}\)</span>$</p>
+<p>One of the terms in the numerator cancels out one in the denominator:
+$<span class="math notranslate nohighlight">\(\sum w_i^2 = \frac{1}{\sum (x_i - \overline{x})^2}\)</span>$</p>
+</section>
+<section id="the-final-variance-formula">
+<h4>The Final Variance Formula<a class="headerlink" href="#the-final-variance-formula" title="Link to this heading">#</a></h4>
+<p>Substituting this back into eqn. 3 we get the theoretical variance:</p>
+<p>\begin{equation}
+Var(\hat{m}) = \frac{\sigma^2}{\sum (x_i - \overline{x})^2} \tag{4}
+\end{equation}</p>
+</section>
+</section>
+<section id="estimating-the-variance-from-data">
+<h3>Estimating the Variance from Data<a class="headerlink" href="#estimating-the-variance-from-data" title="Link to this heading">#</a></h3>
+<p>Since we don’t know the true population variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>, we use the <strong>Mean Squared Error (MSE)</strong> as an unbiased estimator:</p>
 <div class="math notranslate nohighlight">
-\[Var(m) = \frac{\sigma^2}{\sum (x_i - \bar{x})^2}\]</div>
-<p>Since <span class="math notranslate nohighlight">\(\sigma^2\)</span> is usually unknown, we estimate it using the residual mean square (MSE):</p>
-<div class="math notranslate nohighlight">
-\[MSE = \frac{\sum (y_i - \hat{y}_i)^2}{n - 2}\]</div>
-<p>Where <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> are the predicted values.</p>
-<p>The standard error of <span class="math notranslate nohighlight">\(m\)</span> is the square root of its variance:</p>
-<div class="math notranslate nohighlight">
-\[SE(m) = \sqrt{\frac{\sum(y_i - \hat{y}_i)^2}{(n-2)\sum (x_i - \bar{x})^2}}\]</div>
+\[\hat{s}^2 = MSE = \frac{\sum (y_i - \hat{y}_i)^2}{n - 2}\]</div>
+<p><em>Note: We divide by <span class="math notranslate nohighlight">\(n-2\)</span> because we estimated two parameters (<span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span>), losing two degrees of freedom.</em></p>
+<section id="standard-error-se-of-hat-m">
+<h4>Standard Error (<span class="math notranslate nohighlight">\(SE\)</span>) of <span class="math notranslate nohighlight">\(\hat{m}\)</span><a class="headerlink" href="#standard-error-se-of-hat-m" title="Link to this heading">#</a></h4>
+<p>The Standard Error is simply the square root of our estimated variance:
+\begin{equation}
+SE(\hat{m}) = \sqrt{\frac{MSE}{\sum (x_i - \overline{x})^2}} = \sqrt{\frac{\sum(y_i - \hat{y}_i)^2}{(n-2)\sum (x_i - \overline{x})^2}} \tag{5}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s calculate that</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_se_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the Standard Error of the slope (m).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># 1. Calculate Predicted Y and Residuals</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span>
+    
+    <span class="c1"># 2. Calculate Mean Squared Error (MSE) - using n-2 degrees of freedom</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residuals</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># 3. Calculate Sum of Squares for x (Denominator)</span>
+    <span class="n">ssx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># 4. Standard Error of m</span>
+    <span class="n">se_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span> <span class="o">/</span> <span class="n">ssx</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">se_m</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="variance-of-the-intercept-c">
 <h3>Variance of the Intercept (<span class="math notranslate nohighlight">\(c\)</span>)<a class="headerlink" href="#variance-of-the-intercept-c" title="Link to this heading">#</a></h3>
-<p>Similarly, we derive <span class="math notranslate nohighlight">\(Var(c)\)</span>:</p>
+<p>To find the variance of the intercept, we start with the estimator we derived earlier:
+$<span class="math notranslate nohighlight">\(\hat{c} = \overline{y} - \hat{m}\overline{x}\)</span>$</p>
+<section id="express-as-a-variance-of-a-sum">
+<h4>Express as a Variance of a Sum<a class="headerlink" href="#express-as-a-variance-of-a-sum" title="Link to this heading">#</a></h4>
+<p>Using the property <span class="math notranslate nohighlight">\(Var(A - B) = Var(A) + Var(B) - 2Cov(A, B)\)</span>, we write:
+$<span class="math notranslate nohighlight">\(Var(\hat{c}) = Var(\overline{y} - \hat{m}\overline{x}) = Var(\overline{y}) + \overline{x}^2 Var(\hat{m}) - 2\overline{x} Cov(\overline{y}, \hat{m})\)</span>$</p>
+</section>
+</section>
+<section id="calculate-the-individual-components">
+<h3>Calculate the Individual Components<a class="headerlink" href="#calculate-the-individual-components" title="Link to this heading">#</a></h3>
+<p>Let’s look at these 3 terms in turn.</p>
+<p>Firstly</p>
+</section>
+<section id="a-variance-of-the-mean-var-overline-y-frac-sigma-2-n">
+<h3>a) Variance of the mean:** <span class="math notranslate nohighlight">\(Var(\overline{y}) = \frac{\sigma^2}{n}\)</span><a class="headerlink" href="#a-variance-of-the-mean-var-overline-y-frac-sigma-2-n" title="Link to this heading">#</a></h3>
+<p>To get this, we start with the definition of the sample mean:
+$<span class="math notranslate nohighlight">\(\overline{y} = \frac{1}{n} \sum_{i=1}^{n} y_i\)</span>$</p>
+<section id="apply-the-variance-operator">
+<h4>Apply the Variance Operator<a class="headerlink" href="#apply-the-variance-operator" title="Link to this heading">#</a></h4>
+<p>Take the variance of both sides:
+$<span class="math notranslate nohighlight">\(Var(\overline{y}) = Var\left( \frac{1}{n} \sum_{i=1}^{n} y_i \right)\)</span>$</p>
+</section>
+<section id="pull-out-the-constant">
+<h4>Pull out the Constant<a class="headerlink" href="#pull-out-the-constant" title="Link to this heading">#</a></h4>
+<p>Recall the variance property: <span class="math notranslate nohighlight">\(Var(aX) = a^2 Var(X)\)</span>. Here, our constant <span class="math notranslate nohighlight">\(a\)</span> is <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>:
+$<span class="math notranslate nohighlight">\(Var(\overline{y}) = \left( \frac{1}{n} \right)^2 Var\left( \sum_{i=1}^{n} y_i \right)\)</span>$</p>
+</section>
+<section id="sum-of-variances">
+<h4>Sum of Variances<a class="headerlink" href="#sum-of-variances" title="Link to this heading">#</a></h4>
+<p>Because our observations <span class="math notranslate nohighlight">\(y_i\)</span> are assumed to be <strong>independent</strong>, the variance of a sum is equal to the sum of the individual variances:
+$<span class="math notranslate nohighlight">\(Var(\overline{y}) = \frac{1}{n^2} \sum_{i=1}^{n} Var(y_i)\)</span>$</p>
+</section>
+<section id="substitute-the-constant-variance-sigma-2">
+<h4>Substitute the Constant Variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>)<a class="headerlink" href="#substitute-the-constant-variance-sigma-2" title="Link to this heading">#</a></h4>
+<p>Under our regression assumptions (<strong>Homoscedasticity</strong>), every observation <span class="math notranslate nohighlight">\(y_i\)</span> has the same variance, <span class="math notranslate nohighlight">\(\sigma^2\)</span>:
+$<span class="math notranslate nohighlight">\(Var(\overline{y}) = \frac{1}{n^2} \sum_{i=1}^{n} \sigma^2\)</span>$</p>
+<p>Since we are adding <span class="math notranslate nohighlight">\(\sigma^2\)</span> to itself <span class="math notranslate nohighlight">\(n\)</span> times:
+$<span class="math notranslate nohighlight">\(\sum_{i=1}^{n} \sigma^2 = n\sigma^2\)</span>$</p>
+<p>Substitute this back into the equation:
+$<span class="math notranslate nohighlight">\(Var(\overline{y}) = \frac{1}{n^2} (n\sigma^2) = \frac{n\sigma^2}{n^2}\)</span>$</p>
+<p>this gives
+$<span class="math notranslate nohighlight">\(Var(\overline{y}) = \frac{\sigma^2}{n}\)</span>$</p>
+</section>
+</section>
+<section id="intuitive-takeaway">
+<h3>Intuitive Takeaway:<a class="headerlink" href="#intuitive-takeaway" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(n=1\)</span>, the variance of the mean is just the variance of that single point (<span class="math notranslate nohighlight">\(\sigma^2\)</span>).</p></li>
+<li><p>As <span class="math notranslate nohighlight">\(n \to \infty\)</span>, the variance of the mean approaches <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>This shows that <strong>larger samples provide a much more reliable estimate of the average</strong> than small samples.</p></li>
+</ul>
+</section>
+<section id="b-variance-of-the-slope">
+<h3>b) Variance of the slope:<a class="headerlink" href="#b-variance-of-the-slope" title="Link to this heading">#</a></h3>
+<p>** This is from equation 4 above: <span class="math notranslate nohighlight">\(Var(\hat{m}) = \frac{\sigma^2}{\sum (x_i - \overline{x})^2}\)</span></p>
+</section>
+<section id="c-handle-the-covariance-term">
+<h3>c) Handle the Covariance Term<a class="headerlink" href="#c-handle-the-covariance-term" title="Link to this heading">#</a></h3>
+<p>It can be shown that in simple linear regression, the covariance between the sample mean <span class="math notranslate nohighlight">\(\overline{y}\)</span> and the slope <span class="math notranslate nohighlight">\(\hat{m}\)</span> is zero</p>
 <div class="math notranslate nohighlight">
-\[Var(c) = \sigma^2 \left( \frac{1}{n} + \frac{\bar{x}^2}{\sum (x_i - \bar{x})^2} \right)\]</div>
-<p>Replacing <span class="math notranslate nohighlight">\(\sigma^2\)</span> with <span class="math notranslate nohighlight">\(s^2\)</span> and taking the square root, we get the standard error of <span class="math notranslate nohighlight">\(c\)</span>:</p>
+\[Cov(\overline{y}, \hat{m}) = 0\]</div>
+<p>This is because <span class="math notranslate nohighlight">\(\hat{m}\)</span> depends on the deviations <span class="math notranslate nohighlight">\((y_i - \overline{y})\)</span>, which are independent of the mean <span class="math notranslate nohighlight">\(\overline{y}\)</span> itself.</p>
+<section id="substitute-back-into-the-equation">
+<h4>Substitute back into the Equation<a class="headerlink" href="#substitute-back-into-the-equation" title="Link to this heading">#</a></h4>
+<p>Now we substitute these
+$<span class="math notranslate nohighlight">\(Var(\hat{c}) = \frac{\sigma^2}{n} + \overline{x}^2 \left( \frac{\sigma^2}{\sum (x_i - \overline{x})^2} \right)\)</span>$</p>
+</section>
+<section id="factor-out-sigma-2">
+<h4>Factor out <span class="math notranslate nohighlight">\(\sigma^2\)</span><a class="headerlink" href="#factor-out-sigma-2" title="Link to this heading">#</a></h4>
+<p>To get the final standard form, we factor out the common error variance:
+$<span class="math notranslate nohighlight">\(Var(\hat{c}) = \sigma^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \overline{x})^2} \right)\)</span>$</p>
+</section>
+</section>
+<section id="estimating-the-standard-error">
+<h3>Estimating the Standard Error<a class="headerlink" href="#estimating-the-standard-error" title="Link to this heading">#</a></h3>
+<p>Since <span class="math notranslate nohighlight">\(\sigma^2\)</span> is unknown, we substitute it with the <strong>Mean Squared Error (MSE)</strong>,  denoted as <span class="math notranslate nohighlight">\(s^2\)</span> (<em>as already given above</em>), but to remind ourselves:</p>
 <div class="math notranslate nohighlight">
-\[SE(c) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\bar{x}^2}{\sum (x_i - \bar{x})^2} \right)}\]</div>
+\[s^2 = MSE = \frac{\sum (y_i - \hat{y}_i)^2}{n - 2}\]</div>
+<section id="standard-error-se-of-hat-c">
+<h4>Standard Error (<span class="math notranslate nohighlight">\(SE\)</span>) of <span class="math notranslate nohighlight">\(\hat{c}\)</span><a class="headerlink" href="#standard-error-se-of-hat-c" title="Link to this heading">#</a></h4>
+<p>Taking the square root gives us the standard error used for hypothesis testing on the intercept:
+\begin{equation}
+SE(\hat{c}) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \overline{x})^2} \right)} \tag{6}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s code it up!</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_se_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the Standard Error of the intercept (c).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># 1. Calculate Predicted Y and Residuals</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span>
+    
+    <span class="c1"># 2. Calculate Mean Squared Error (MSE)</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residuals</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># 3. Calculate Sum of Squares for x</span>
+    <span class="n">ssx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_mean</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># 4. Standard Error of c</span>
+    <span class="n">se_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_mean</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">ssx</span><span class="p">)))</span>
+    
+    <span class="k">return</span> <span class="n">se_c</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="summary">
 <h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
@@ -738,228 +1042,180 @@ Y-intercept (c): 0.3
 <li><p>The spread of the <span class="math notranslate nohighlight">\(x\)</span> values.</p></li>
 </ul>
 </li>
-<li><p>The <span class="math notranslate nohighlight">\((n-2)\)</span> term in the MSE accounts for the degrees of freedom lost during estimat</p></li>
+<li><p>The <span class="math notranslate nohighlight">\((n-2)\)</span> term in the MSE accounts for the degrees of freedom lost during estimate.</p></li>
 </ul>
 </section>
+<section id="constructing-the-confidence-interval-ci">
+<h3>Constructing the Confidence Interval (CI)<a class="headerlink" href="#constructing-the-confidence-interval-ci" title="Link to this heading">#</a></h3>
+<p>We use the <strong>t-statistic</strong> corresponding to our desired confidence level (<span class="math notranslate nohighlight">\(\alpha\)</span>) and our degrees of freedom (<span class="math notranslate nohighlight">\(df = n - 2\)</span>).</p>
+<p>For any confidence level (e.g., 95%, where <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>), the interval for the slope <span class="math notranslate nohighlight">\(m\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\text{CI(m)} = \hat{m} \pm \left( t_{\alpha/2, n-2} \times SE(\hat{m}) \right)\]</div>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\hat{m}\)</span></strong>: Our calculated sample slope.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(t_{\alpha/2, n-2}\)</span></strong>: The critical value from the t-distribution table.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(SE(\hat{m})\)</span></strong>: The standard error we derived.</p></li>
+<li><p><strong>Small Samples:</strong> For small <span class="math notranslate nohighlight">\(n\)</span>, the t-distribution has “fatter tails” than the normal distribution, meaning our uncertainty is higher, and the multiplier will be <strong>larger</strong> than <span class="math notranslate nohighlight">\(1.96\)</span>.</p></li>
+<li><p><strong>Large Samples (<span class="math notranslate nohighlight">\(n \to \infty\)</span>):</strong> As the sample size grows, the t-distribution converges to the standard normal distribution. For a 95% confidence level, the value <span class="math notranslate nohighlight">\(t_{0.025, n-2}\)</span> approaches <strong>1.96</strong>.  In practice, any sample of roughly <span class="math notranslate nohighlight">\(n\ge 30\)</span> is large enough to use a normal distribution z statistic.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{95\% CI(m)} = \hat{m} \pm (1.96 \times SE(\hat{m}))\]</div>
+<p><em>If this interval <strong>does not</strong> include zero, we can confidently say that <span class="math notranslate nohighlight">\(x\)</span> has a statistically significant effect on <span class="math notranslate nohighlight">\(y\)</span>.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tstatistic</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="c1"># For 95% confidence and n=20 (df=18)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span>
+    <span class="n">t_crit</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">t_crit</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_significance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">se</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates t-statistic and returns if significant (True/False)&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span>
+    <span class="n">t_stat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">val</span> <span class="o">/</span> <span class="n">se</span><span class="p">)</span>
+    <span class="n">t_crit</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+    <span class="n">is_significant</span> <span class="o">=</span> <span class="n">t_stat</span> <span class="o">&gt;</span> <span class="n">t_crit</span>
+    <span class="k">return</span> <span class="n">t_stat</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">is_significant</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">tstatistic</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.048407141795245
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="uncertainty-of-the-fitted-linear-slope">
-<h1>Uncertainty of the Fitted Linear Slope<a class="headerlink" href="#uncertainty-of-the-fitted-linear-slope" title="Link to this heading">#</a></h1>
-<p>When performing linear regression, it’s not enough to simply find the best-fit slope and intercept. We also need to understand the uncertainty associated with these parameters.</p>
-<p><strong>1. Understanding Uncertainty</strong></p>
-<p>The uncertainty in the slope arises from the inherent noise and variability in the data. Even if the underlying relationship between <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> is perfectly linear, random fluctuations in the measurements will cause the fitted slope to deviate slightly from the true value.</p>
-<p><strong>2. Standard Error of the Slope</strong></p>
-<p>A common measure of the uncertainty in the slope is its <em>standard error</em>. The standard error of the slope (often denoted as <span class="math notranslate nohighlight">\(\epsilon_m\)</span>) quantifies the typical deviation of the fitted slope from the true slope. A smaller standard error indicates a more precise estimate of the slope.</p>
-<p><strong>3. Formula for the Standard Error of the Slope</strong></p>
-<p>The standard error of the slope can be estimated using the following formula:</p>
-<p><span class="math notranslate nohighlight">\(\epsilon_m = \sqrt{\frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{(n-2) \sum_{i=1}^{n} (x_i - \bar{x})^2}}\)</span>
-Where:</p>
-<p><span class="math notranslate nohighlight">\(y_i\)</span> are the observed y-values.</p>
-<p><span class="math notranslate nohighlight">\(\hat{y}_i\)</span> are the predicted y-values from the fitted line.</p>
-<p><span class="math notranslate nohighlight">\(n\)</span> is the number of data points.</p>
-<p><span class="math notranslate nohighlight">\(\bar{x}\)</span> is the mean of the x-values.</p>
-<p>Explanation of the Formula:</p>
-<p>Numerator: The numerator involves the sum of squared residuals, which represents the overall variability of the data around the fitted line. n-2 is the number of degrees of freedom of the sample data, and thus to get the variance we divide by n-2.
-Denominator: The denominator involves the sum of squared deviations of the x-values from their mean. A larger spread in the x-values leads to a smaller standard error of the slope, indicating a more precise estimate.</p>
-<p><strong>4. Confidence Intervals</strong></p>
-<p>The standard error can be used to construct confidence intervals for the slope. A (1 - α) confidence interval for the slope is given by:</p>
-<p><span class="math notranslate nohighlight">\(m +/- t_{\alpha/2, n-2} \epsilon_m\)</span></p>
-<p>Where:</p>
-<p><span class="math notranslate nohighlight">\(m\)</span> is the fitted slope. <span class="math notranslate nohighlight">\(t_{\alpha/2, n-2}\)</span> is the critical t-value from the t-distribution with n-2 degrees of freedom, corresponding to a significance level of α.
-<span class="math notranslate nohighlight">\(\epsilon_m\)</span> is the standard error of the slope.
-A 95% confidence interval (<span class="math notranslate nohighlight">\(\alpha\)</span> = 0.05) means that we are 95% confident that the true slope lies within the calculated interval.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="application-to-cru-temperature-data">
-<h1>Application to CRU temperature data<a class="headerlink" href="#application-to-cru-temperature-data" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="delete-from-here-on-application-to-cru-temperature-data">
+<h1>DELETE from here on Application to CRU temperature data<a class="headerlink" href="#delete-from-here-on-application-to-cru-temperature-data" title="Link to this heading">#</a></h1>
 <p>We will know apply these methods to temperature data from CRU to calculate mean temperature trends.  First let’s get a file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">num2date</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">download_file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Downloads a file from a URL using wget.</span>
+<span class="c1"># --- 1. Custom Statistical Routines ---</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        url: The URL of the file to download.</span>
-<span class="sd">        output_path: The path where the file should be saved. If None, the file</span>
-<span class="sd">                     is saved in the current directory with its original name.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Construct the wget command</span>
-        <span class="k">if</span> <span class="n">output_path</span><span class="p">:</span>
-            <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;wget&quot;</span><span class="p">,</span> <span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;-O&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">url</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;wget&quot;</span><span class="p">,</span> <span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">linear_regression</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="c1"># y is the 3D data array (time, lat, lon)</span>
+    <span class="n">x_adj</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">sum_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">sum_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sum_xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x_adj</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sum_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">sum_xy</span> <span class="o">-</span> <span class="n">sum_x</span> <span class="o">*</span> <span class="n">sum_y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">sum_x2</span> <span class="o">-</span> <span class="n">sum_x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_y</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="n">sum_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span>
 
-        <span class="c1"># Run the wget command</span>
-        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_se</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ssx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_mean</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">x_adj</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x_adj</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="c1"># MSE using masked array sum to ignore oceans</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span> <span class="o">/</span> <span class="n">ssx</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">output_path</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File downloaded successfully to: </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File downloaded successfully.&quot;</span><span class="p">)</span>
+<span class="c1"># --- 2. Data Loading &amp; Fixes ---</span>
 
-    <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error downloading file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wget command not found. Make sure it&#39;s installed and in your PATH.&quot;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage:</span>
-<span class="n">datadir</span><span class="o">=</span><span class="s2">&quot;/Users/tompkins/DATA/CRU/&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/data/cru/cru_tmax_yearmean.nc&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloading from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
-<span class="n">filename</span><span class="o">=</span><span class="s2">&quot;cru_ts4.08.1901.2023.tmx.dat.nc&quot;</span> <span class="c1"># TMAX</span>
-<span class="c1">#filename=&quot;cru_ts4.08.1901.2023.tmp.dat.nc&quot; #TMEAN</span>
-<span class="n">url_to_download</span> <span class="o">=</span> <span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/Observations/CRU/CRU_TS4.08/&quot;</span><span class="o">+</span><span class="n">filename</span> 
-<span class="n">output_file_path</span> <span class="o">=</span> <span class="n">datadir</span><span class="o">+</span><span class="n">filename</span>
+<span class="k">with</span> <span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;buffer.nc&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variables found in file:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    
+    <span class="c1"># Identify the main data variable (it&#39;s usually the one that isn&#39;t lat, lon, or time)</span>
+    <span class="n">potential_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tmax&#39;</span><span class="p">,</span> <span class="s1">&#39;tmp&#39;</span><span class="p">,</span> <span class="s1">&#39;tmx&#39;</span><span class="p">,</span> <span class="s1">&#39;temp&#39;</span><span class="p">]</span>
+    <span class="n">vname</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">potential_names</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">vname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Fallback: take the last variable in the list which is usually the data</span>
+        <span class="n">vname</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using variable: &#39;</span><span class="si">{</span><span class="n">vname</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    
+    <span class="n">lats</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
+    <span class="n">tmax_raw</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">vname</span><span class="p">][:]</span> 
+    
+    <span class="c1"># Fix 1: Handle Years accurately</span>
+    <span class="n">time_var</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">num2date</span><span class="p">(</span><span class="n">time_var</span><span class="p">[:],</span> <span class="n">units</span><span class="o">=</span><span class="n">time_var</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+    <span class="n">years</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">year</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
-<span class="n">download_file</span><span class="p">(</span><span class="n">url_to_download</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">)</span> <span class="c1">#or download_file(url_to_download)</span>
+<span class="c1"># Fix 2: Longitude Alignment (The &quot;Europe/America Fix&quot;)</span>
+<span class="c1"># We check if lons go from 0-360. If so, we shift them to -180/180.</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lons</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Re-aligning longitudes for global view...&quot;</span><span class="p">)</span>
+    <span class="c1"># Find the index where lons cross 180</span>
+    <span class="n">shift_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lons</span> <span class="o">-</span> <span class="mi">180</span><span class="p">))</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lons</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">,</span> <span class="n">lons</span> <span class="o">-</span> <span class="mi">360</span><span class="p">,</span> <span class="n">lons</span><span class="p">)</span>
+    
+    <span class="c1"># Sort lons and roll data accordingly</span>
+    <span class="n">sort_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">lons</span><span class="p">)</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="n">lons</span><span class="p">[</span><span class="n">sort_idx</span><span class="p">]</span>
+    <span class="n">tmax_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">tmax_raw</span><span class="p">,</span> <span class="n">sort_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># --- 3. Run Analysis ---</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing global trends...&quot;</span><span class="p">)</span>
+<span class="n">m_map</span><span class="p">,</span> <span class="n">c_map</span> <span class="o">=</span> <span class="n">linear_regression</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">tmax_raw</span><span class="p">)</span>
+<span class="n">se_m_map</span> <span class="o">=</span> <span class="n">calculate_se</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">tmax_raw</span><span class="p">,</span> <span class="n">m_map</span><span class="p">,</span> <span class="n">c_map</span><span class="p">)</span>
+
+<span class="c1"># Significance assessment</span>
+<span class="n">t_stats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m_map</span> <span class="o">/</span> <span class="n">se_m_map</span><span class="p">)</span>
+<span class="n">t_crit</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.05</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">years</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sig_mask</span> <span class="o">=</span> <span class="n">t_stats</span> <span class="o">&gt;</span> <span class="n">t_crit</span>
+
+<span class="c1"># Plotting</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">trend_decade</span> <span class="o">=</span> <span class="n">m_map</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="c1"># Plot the trends</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">trend_decade</span><span class="p">,</span> 
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+
+<span class="c1"># Apply the Grey Mask for non-significant land</span>
+<span class="c1"># We check the .mask property of the netcdf data to identify ocean</span>
+<span class="n">is_land</span> <span class="o">=</span> <span class="o">~</span><span class="n">m_map</span><span class="o">.</span><span class="n">mask</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m_map</span><span class="p">,</span> <span class="s1">&#39;mask&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">m_map</span><span class="p">)</span>
+<span class="n">grey_overlay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">~</span><span class="n">sig_mask</span> <span class="o">&amp;</span> <span class="n">is_land</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">grey_overlay</span><span class="p">,</span> 
+               <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Trend (°C / decade)&#39;</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual </span><span class="si">{</span><span class="n">vname</span><span class="si">}</span><span class="s2"> Trends (</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">years</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">years</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span>
+          <span class="s2">&quot;Grey = Not Significant | White = Ocean/Missing&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Longitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Latitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File downloaded successfully to: /Users/tompkins/DATA/CRU/cru_ts4.08.1901.2023.tmx.dat.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading from http://clima-dods.ictp.it/Users/tompkins/data/cru/cru_tmax_yearmean.nc...
+Variables found in file: [&#39;time&#39;, &#39;time_bnds&#39;, &#39;lon&#39;, &#39;lat&#39;, &#39;tmx&#39;, &#39;stn&#39;]
+Using variable: &#39;tmx&#39;
+Processing global trends...
 </pre></div>
 </div>
-</div>
-</div>
-<section id="extracting-a-grid-point">
-<h2>extracting a grid point<a class="headerlink" href="#extracting-a-grid-point" title="Link to this heading">#</a></h2>
-<details>
-<summary>
-If you have been following my video course, you will know how to use cdo to extract a grid point.
-</summary>
-We use cdo remapnn for nerest neighbour remapping, followed by a coordinate argument ",lon=X/lat=Y".
-</details>
-<p>Actually not, changed my mind, let’s keep this for a later lesson(!)</p>
-<p>We are going to implement this showing you how the use cdo embedded in python</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cdo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cdo</span>
-<span class="n">cdo</span><span class="o">=</span><span class="n">Cdo</span> <span class="c1"># cdo instance </span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">cdo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cdo</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">cdo</span><span class="o">=</span><span class="n">Cdo</span> <span class="c1"># cdo instance </span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;cdo&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ofilename</span><span class="o">=</span><span class="s2">&quot;cru_ts4.08.1901.2023.tmx.year.nc&quot;</span>
-<span class="n">input_file</span> <span class="o">=</span> <span class="n">datadir</span><span class="o">+</span><span class="n">filename</span>
-<span class="n">cru_file</span> <span class="o">=</span> <span class="n">datadir</span><span class="o">+</span><span class="n">ofilename</span>
-<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;19500101&quot;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;20250101&quot;</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">cdo</span><span class="o">.</span><span class="n">yearmean</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;-seldate,</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">cru_file</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CDO command executed successfully. Output written to </span><span class="si">{</span><span class="n">cru_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="n">cdo</span><span class="o">.</span><span class="n">CdoError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CDO command failed with error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CDO executable not found. Make sure it&#39;s in your PATH.&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># cdo -yearmean -seldate,19500101,20250101 cru_ts4.08.1901.2023.tmx.dat.nc cru_ts4.08.1901.2023.tmx.year.nc</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-
-<span class="k">with</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">cru_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ncfile</span><span class="p">:</span>
-    <span class="n">time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:]</span>
-    <span class="n">temp</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;tmx&#39;</span><span class="p">][:]</span>  <span class="c1"># Temperature data</span>
-    <span class="n">lat</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
-    <span class="n">lon</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
-
-<span class="c1"># Convert time to years</span>
-    <span class="c1">#units = ncfile.variables[&#39;time&#39;].units</span>
-    <span class="c1">#calendar = ncfile.variables[&#39;time&#39;].calendar if &#39;calendar&#39; in ncfile.variables[&#39;time&#39;].ncattrs() else &quot;standard&quot;</span>
-    <span class="c1">#years = netCDF4.num2date(time, units=units, calendar=calendar).astype(&#39;datetime64[Y]&#39;).astype(int)</span>
-           
-    <span class="c1"># Convert time to datetime objects and extract years</span>
-    <span class="n">units</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
-    <span class="n">calendar</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">calendar</span> <span class="k">if</span> <span class="s1">&#39;calendar&#39;</span> <span class="ow">in</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ncattrs</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;standard&quot;</span>
-    <span class="n">datetime_objects</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">calendar</span><span class="p">)</span>
-    <span class="n">years</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">datetime_objects</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate trend</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">linregress</span>
-
-<span class="n">trend_file</span><span class="o">=</span><span class="s1">&#39;trend_cru_t.nc&#39;</span>
-
-<span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">slope_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lon</span><span class="p">)))</span>
-    <span class="n">std_err_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lon</span><span class="p">)))</span>
-    <span class="n">r_value_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lon</span><span class="p">)))</span>
-    <span class="n">p_value_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">lat</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lon</span><span class="p">)))</span>
-
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lat_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lat</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">lon_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lon</span><span class="p">):</span>
-            <span class="n">timeseries</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
-            <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">std_err</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">timeseries</span><span class="p">)</span>
-            <span class="n">slope_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope</span>
-            <span class="n">std_err_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">std_err</span>
-            <span class="n">r_value_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">r_value</span>
-            <span class="n">p_value_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_value</span>
-
-    <span class="c1"># Write to NetCDF</span>
-    <span class="k">with</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">datadir</span><span class="o">+</span><span class="n">trend_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ncfile_out</span><span class="p">:</span>
-        <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lat</span><span class="p">))</span>
-        <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lon</span><span class="p">))</span>
-
-        <span class="n">lat_var</span> <span class="o">=</span> <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,))</span>
-        <span class="n">lon_var</span> <span class="o">=</span> <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
-        <span class="n">slope_var</span> <span class="o">=</span> <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;slope&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">))</span>
-        <span class="n">std_err_var</span> <span class="o">=</span> <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;std_err&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">))</span>
-        <span class="n">r_value_var</span> <span class="o">=</span> <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;r_value&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">))</span>
-        <span class="n">p_value_var</span> <span class="o">=</span> <span class="n">ncfile_out</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;p_value&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">))</span>
-
-        <span class="n">lat_var</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">lat</span>
-        <span class="n">lon_var</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">lon</span>
-        <span class="n">slope_var</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">slope_data</span>
-        <span class="n">std_err_var</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">std_err_data</span>
-        <span class="n">r_value_var</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">r_value_data</span>
-        <span class="n">p_value_var</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">p_value_data</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trend calculation successful. Results written to </span><span class="si">{</span><span class="n">trend_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<img alt="../../_images/ad3dfc85a525bed382f890c8d96285d3397c01bd97351c42ce09fa4a6a1a497d.png" src="../../_images/ad3dfc85a525bed382f890c8d96285d3397c01bd97351c42ce09fa4a6a1a497d.png" />
 </div>
 </div>
 <summary>
@@ -968,69 +1224,6 @@ We use cdo remapnn for nerest neighbour remapping, followed by a coordinate argu
         cdo trend in.nc out.nc
     </details>
 </summary>
-<p>Shall we make a map of the trend in python too?</p>
-<p>For this we use cartopy (replaced basemap).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.feature</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cfeature</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_temperature_trend</span><span class="p">(</span><span class="n">netcdf_file</span><span class="p">,</span><span class="n">max_val</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plots pre-calculated global temperature trends from a NetCDF file,</span>
-<span class="sd">    assuming the trend is stored in a variable named &#39;slope&#39;.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        netcdf_file (str): Path to the NetCDF file.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Open the NetCDF file using xarray</span>
-        <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">netcdf_file</span><span class="p">)</span>
-
-        <span class="c1"># Check if the &#39;slope&#39; variable exists</span>
-        <span class="k">if</span> <span class="s1">&#39;slope&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: &#39;slope&#39; variable not found in the NetCDF file.&quot;</span><span class="p">)</span>
-            <span class="k">return</span>
-
-        <span class="n">slope</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;slope&#39;</span><span class="p">]</span>
-
-        <span class="n">vmax</span> <span class="o">=</span> <span class="n">max_val</span>
-        <span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="n">max_val</span>
-        <span class="c1"># Plot the trend on a global map using Cartopy</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-
-        <span class="n">slope</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span> <span class="n">cbar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shrink&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span><span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="s1">&#39;(K/year)&#39;</span><span class="p">},</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Global Annual Temperature Trend&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: NetCDF file &#39;</span><span class="si">{</span><span class="n">netcdf_file</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mplot</span><span class="o">=</span><span class="n">plot_temperature_trend</span><span class="p">(</span><span class="n">datadir</span><span class="o">+</span><span class="n">trend_file</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1077,7 +1270,7 @@ We use cdo remapnn for nerest neighbour remapping, followed by a coordinate argu
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Correlation and Covariance</p>
+        <p class="prev-next-title">CDA2: Correlation and Covariance</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1099,21 +1292,60 @@ We use cdo remapnn for nerest neighbour remapping, followed by a coordinate argu
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Trend derivation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-with-least-squares-fit">Linear Regression with Least Squares Fit</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CDA2: Trend derivation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-with-least-squares-fit">Linear Regression with Least Squares Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivative-with-respect-to-c">Partial Derivative with respect to <span class="math notranslate nohighlight">\(c\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivative-with-respect-to-m">Partial Derivative with respect to <span class="math notranslate nohighlight">\(m\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-identity">Helpful Identity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-for-the-slope-m">Solving for the Slope (<span class="math notranslate nohighlight">\(m\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-slope-and-intercept-estimators">Summary of slope and intercept estimators</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression">Derivation of Standard Errors for Intercept and Slope in Linear Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-slope-m">Variance of the Slope (<span class="math notranslate nohighlight">\(m\)</span>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-intercept-c">Variance of the Intercept (<span class="math notranslate nohighlight">\(c\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causes-of-uncertainty">Causes of uncertainty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-of-the-uncertainty">Results of the uncertainty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-var-hat-m">Derivation of <span class="math notranslate nohighlight">\(Var(\hat{m})\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simplify-the-slope-formula">Simplify the Slope Formula</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-variance-property">Apply the Variance Property</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-the-error-variance-sigma-2">Substitute the Error Variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expand-the-weights-w-i">Expand the Weights (<span class="math notranslate nohighlight">\(w_i\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-final-variance-formula">The Final Variance Formula</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-variance-from-data">Estimating the Variance from Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-se-of-hat-m">Standard Error (<span class="math notranslate nohighlight">\(SE\)</span>) of <span class="math notranslate nohighlight">\(\hat{m}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-the-intercept-c">Variance of the Intercept (<span class="math notranslate nohighlight">\(c\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#express-as-a-variance-of-a-sum">Express as a Variance of a Sum</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-individual-components">Calculate the Individual Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-variance-of-the-mean-var-overline-y-frac-sigma-2-n">a) Variance of the mean:** <span class="math notranslate nohighlight">\(Var(\overline{y}) = \frac{\sigma^2}{n}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-variance-operator">Apply the Variance Operator</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-out-the-constant">Pull out the Constant</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-variances">Sum of Variances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-the-constant-variance-sigma-2">Substitute the Constant Variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intuitive-takeaway">Intuitive Takeaway:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-variance-of-the-slope">b) Variance of the slope:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-handle-the-covariance-term">c) Handle the Covariance Term</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-back-into-the-equation">Substitute back into the Equation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-out-sigma-2">Factor out <span class="math notranslate nohighlight">\(\sigma^2\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-standard-error">Estimating the Standard Error</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-error-se-of-hat-c">Standard Error (<span class="math notranslate nohighlight">\(SE\)</span>) of <span class="math notranslate nohighlight">\(\hat{c}\)</span></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-confidence-interval-ci">Constructing the Confidence Interval (CI)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-of-the-fitted-linear-slope">Uncertainty of the Fitted Linear Slope</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-cru-temperature-data">Application to CRU temperature data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-a-grid-point">extracting a grid point</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-from-here-on-application-to-cru-temperature-data">DELETE from here on Application to CRU temperature data</a></li>
 </ul>
 
   </nav></div>
