@@ -66,7 +66,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/climdata_trends_timeseries';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="CDA2: Correlation and Covariance" href="climdata_correlation_covariance.html" />
+    <link rel="next" title="CDA3: Correlation and Covariance" href="climdata_correlation_covariance.html" />
     <link rel="prev" title="CDA1: Manipulating gridded datasets" href="climdata_gpgp_indices.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -196,8 +196,7 @@
 
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">CDA2: Trend derivation</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">CDA2: Correlation and Covariance</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="climdata_correlation_covariance.html">CDA3: Correlation and Covariance</a></li>
 
 
 
@@ -502,8 +501,13 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-identity">Helpful Identity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-for-the-slope-m">Solving for the Slope (<span class="math notranslate nohighlight">\(m\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-slope-and-intercept-estimators">Summary of slope and intercept estimators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-package">Scipy package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-investigation-where-we-know-the-answer">EXERCISES: Investigation where we “know” the answer</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-coefficient-of-determination-r-2">Defining the Coefficient of Determination (<span class="math notranslate nohighlight">\(r^2\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-r-2-to-pearson-s-r">3. Connecting <span class="math notranslate nohighlight">\(R^2\)</span> to Pearson’s <span class="math notranslate nohighlight">\(r\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-conclusion">4. Final Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression">Derivation of Standard Errors for Intercept and Slope in Linear Regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causes-of-uncertainty">Causes of uncertainty</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-of-the-uncertainty">Results of the uncertainty</a></li>
@@ -548,7 +552,7 @@
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-from-here-on-application-to-cru-temperature-data">DELETE from here on Application to CRU temperature data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-cru-temperature-data">Application to CRU temperature data</a></li>
 </ul>
 
             </nav>
@@ -681,10 +685,31 @@ $<span class="math notranslate nohighlight">\(\sum x_i(y_i - \overline{y}) - \ov
     <span class="n">sum_xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
     <span class="n">sum_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">sum_xy</span> <span class="o">-</span> <span class="n">sum_x</span> <span class="o">*</span> <span class="n">sum_y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">sum_x2</span> <span class="o">-</span> <span class="n">sum_x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_y</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="n">sum_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># slow way</span>
 
+    <span class="c1"># equivalent form which is faster and more concise (add to lecture equations)</span>
+    <span class="c1"># m = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x**2)</span>
+    
+    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_y</span> <span class="o">-</span> <span class="n">m</span> <span class="o">*</span> <span class="n">sum_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    
     <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">):</span>
+
+    <span class="c1"># Plot the data and the regression line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Linear fit: y = </span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear Regression&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -701,14 +726,7 @@ $<span class="math notranslate nohighlight">\(\sum x_i(y_i - \overline{y}) - \ov
 <span class="c1"># Generate predicted y values</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
 
-<span class="c1"># Plot the data and the regression line</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Linear fit: y = </span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear Regression&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plot_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slope (m): </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y-intercept (c): </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -723,6 +741,10 @@ Y-intercept (c): 0.3
 </div>
 </div>
 </div>
+</section>
+<section id="scipy-package">
+<h3>Scipy package<a class="headerlink" href="#scipy-package" title="Link to this heading">#</a></h3>
+<p>Let’s do a quick cross check that the scipy package gives the same result:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">linregress</span>
@@ -744,6 +766,52 @@ Y-intercept (c): 0.3
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/14ea2f9f79dc07ed1c6f180a433f264cea655da128a4903d63178796dc9cb8c5.png" src="../../_images/14ea2f9f79dc07ed1c6f180a433f264cea655da128a4903d63178796dc9cb8c5.png" />
+</div>
+</div>
+</section>
+<section id="exercises-investigation-where-we-know-the-answer">
+<h3>EXERCISES: Investigation where we “know” the answer<a class="headerlink" href="#exercises-investigation-where-we-know-the-answer" title="Link to this heading">#</a></h3>
+<p>Let’s try that again but rather than a set of datapoints with an unknown relationship, here we will make up a dataset where we <em>know</em> the answer by defining an artificial dataset according to $<span class="math notranslate nohighlight">\( y_i = m x_i + c + \epsilon_i \)</span><span class="math notranslate nohighlight">\( where \)</span>\epsilon$ is a Gaussian random variable of a magnitude to be defined.</p>
+<div class="alert alert-info">
+<p>Investigation:</p>
+<ul class="simple">
+<li><p>What happens if you set the noise magnitude to ZERO?  you could get a perfect regression line hopefully</p></li>
+<li><p>Increase the magnitude of the noise (e.g. to 5) - how close is the prediction line to the true value?</p></li>
+<li><p>Run it again! Is the regression line the same as it was the previous time?</p></li>
+<li><p>Investigate how the “uncertainty” of the slope and intercept fits changes as a function of 1) Noise magnitude 2) true slope 3) dataset size and 4) the xrange…</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Define the properties of the line</span>
+
+<span class="n">npt</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">noise_mag</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">true_slope</span><span class="o">=</span><span class="mf">0.2</span> <span class="c1"># m</span>
+<span class="n">true_offset</span><span class="o">=</span><span class="mi">4</span> <span class="c1"># c</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">npt</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">true_slope</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">true_offset</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">noise_mag</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">npt</span><span class="p">)</span>
+
+<span class="c1"># Calculate slope and intercept</span>
+<span class="n">m</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">linear_regression</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Generate predicted y values</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
+
+<span class="n">plot_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slope (m): </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y-intercept (c): </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c66ca4466fda4a3da687041cc798c8e8b50f35e01f0ef3b187d77a9e051a36cd.png" src="../../_images/c66ca4466fda4a3da687041cc798c8e8b50f35e01f0ef3b187d77a9e051a36cd.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Slope (m): 0.2380824749097804
+Y-intercept (c): 1.4598004328912588
+</pre></div>
+</div>
 </div>
 </div>
 <p>we can subtract the fit line to get a plot of the residual</p>
@@ -774,10 +842,58 @@ Y-intercept (c): 0.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/35f9f17f443fde5ab606302fd527e4aa7624c3a38b7a708f12021556134ddf0a.png" src="../../_images/35f9f17f443fde5ab606302fd527e4aa7624c3a38b7a708f12021556134ddf0a.png" />
+<img alt="../../_images/e59ceb3a96d6f0bb3e6b938e85ffc9e3fd3c7c927e3c9173f44e3e73fe9a89cb.png" src="../../_images/e59ceb3a96d6f0bb3e6b938e85ffc9e3fd3c7c927e3c9173f44e3e73fe9a89cb.png" />
 </div>
 </div>
 </section>
+</section>
+<section id="defining-the-coefficient-of-determination-r-2">
+<h2>Defining the Coefficient of Determination (<span class="math notranslate nohighlight">\(r^2\)</span>)<a class="headerlink" href="#defining-the-coefficient-of-determination-r-2" title="Link to this heading">#</a></h2>
+<p>By definition, the proportion of the total variation explained by the model is:
+$<span class="math notranslate nohighlight">\(r^2 = \frac{SS_{reg}}{SS_{tot}}\)</span>$</p>
+<p>Substituting <span class="math notranslate nohighlight">\(SS_{reg} = SS_{tot} - SS_{res}\)</span>:
+$<span class="math notranslate nohighlight">\(r^2 = 1 - \frac{SS_{res}}{SS_{tot}}\)</span>$</p>
+</section>
+<hr class="docutils" />
+<section id="connecting-r-2-to-pearson-s-r">
+<h2>3. Connecting <span class="math notranslate nohighlight">\(R^2\)</span> to Pearson’s <span class="math notranslate nohighlight">\(r\)</span><a class="headerlink" href="#connecting-r-2-to-pearson-s-r" title="Link to this heading">#</a></h2>
+<p>To prove that this <span class="math notranslate nohighlight">\(R^2\)</span> is exactly the square of the Pearson correlation (<span class="math notranslate nohighlight">\(r\)</span>), we use the linear model <span class="math notranslate nohighlight">\(\hat{y}_i = \hat{m}x_i + \hat{c}\)</span>.</p>
+<p>Recall the relationship derived earlier:
+$<span class="math notranslate nohighlight">\(\hat{y}_i - \bar{y} = \hat{m}(x_i - \bar{x})\)</span>$</p>
+<p>Substitute this into the <span class="math notranslate nohighlight">\(SS_{reg}\)</span> formula:
+$<span class="math notranslate nohighlight">\(SS_{reg} = \sum (\hat{m}(x_i - \bar{x}))^2 = \hat{m}^2 \sum (x_i - \bar{x})^2\)</span>$</p>
+<p>From our previous derivation, we know <span class="math notranslate nohighlight">\(\hat{m} = r \frac{s_y}{s_x}\)</span>. Squaring it gives:
+$<span class="math notranslate nohighlight">\(\hat{m}^2 = r^2 \frac{s_y^2}{s_x^2}\)</span>$</p>
+<p>Now substitute <span class="math notranslate nohighlight">\(\hat{m}^2\)</span> into the <span class="math notranslate nohighlight">\(SS_{reg}\)</span> equation:
+$<span class="math notranslate nohighlight">\(SS_{reg} = \left( r^2 \frac{s_y^2}{s_x^2} \right) \sum (x_i - \bar{x})^2\)</span>$</p>
+<p>Since <span class="math notranslate nohighlight">\(s_x^2 = \frac{\sum (x_i - \bar{x})^2}{n-1}\)</span>, then <span class="math notranslate nohighlight">\(\sum (x_i - \bar{x})^2 = (n-1)s_x^2\)</span>:
+$<span class="math notranslate nohighlight">\(SS_{reg} = r^2 \frac{s_y^2}{s_x^2} \cdot (n-1)s_x^2\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(SS_{reg} = r^2 \cdot (n-1)s_y^2\)</span>$</p>
+<p>Since <span class="math notranslate nohighlight">\((n-1)s_y^2\)</span> is exactly <span class="math notranslate nohighlight">\(SS_{tot}\)</span>, we get:
+$<span class="math notranslate nohighlight">\(SS_{reg} = r^2 \cdot SS_{tot}\)</span>$</p>
+<p>Dividing both sides by <span class="math notranslate nohighlight">\(SS_{tot}\)</span>:
+$<span class="math notranslate nohighlight">\(\frac{SS_{reg}}{SS_{tot}} = r^2\)</span>$</p>
+</section>
+<hr class="docutils" />
+<section id="final-conclusion">
+<h2>4. Final Conclusion<a class="headerlink" href="#final-conclusion" title="Link to this heading">#</a></h2>
+<p>The square of the Pearson correlation coefficient (<span class="math notranslate nohighlight">\(r^2\)</span>) is identically equal to the proportion of variance in <span class="math notranslate nohighlight">\(Y\)</span> that is explained by the linear relationship with <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Component</p></th>
+<th class="head text-left"><p>Proportion of Variance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Explained (<span class="math notranslate nohighlight">\(SS_{reg}\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(r^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Unexplained (<span class="math notranslate nohighlight">\(SS_{res}\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1 - r^2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression">
 <h2>Derivation of Standard Errors for Intercept and Slope in Linear Regression<a class="headerlink" href="#derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression" title="Link to this heading">#</a></h2>
@@ -844,7 +960,8 @@ $<span class="math notranslate nohighlight">\(y_i = mx_i + c + \epsilon_i\)</spa
 $<span class="math notranslate nohighlight">\(\hat{m} = \frac{\sum (x_i - \overline{x})(y_i - \overline{y})}{\sum (x_i - \overline{x})^2}\)</span>$</p>
 <p>To make the math easier, let <span class="math notranslate nohighlight">\(w_i = \frac{(x_i - \overline{x})}{\sum (x_i - \overline{x})^2}\)</span>. These are our “weights.”
 Now we can write the slope as a linear combination of <span class="math notranslate nohighlight">\(y_i\)</span>:
-$<span class="math notranslate nohighlight">\(\hat{m} = \sum w_i y_i\)</span>$</p>
+$<span class="math notranslate nohighlight">\(\hat{m} = \sum w_i (y_i - \bar{y}) = \sum w_i y_i\)</span><span class="math notranslate nohighlight">\(
+where we used the identity again to drop \)</span>\bar{y}$</p>
 </section>
 <section id="apply-the-variance-property">
 <h4>Apply the Variance Property<a class="headerlink" href="#apply-the-variance-property" title="Link to this heading">#</a></h4>
@@ -1055,6 +1172,16 @@ SE(\hat{c}) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \
 <li><p><strong><span class="math notranslate nohighlight">\(\hat{m}\)</span></strong>: Our calculated sample slope.</p></li>
 <li><p><strong><span class="math notranslate nohighlight">\(t_{\alpha/2, n-2}\)</span></strong>: The critical value from the t-distribution table.</p></li>
 <li><p><strong><span class="math notranslate nohighlight">\(SE(\hat{m})\)</span></strong>: The standard error we derived.</p></li>
+</ul>
+<p>Thus if this CI doesn’t include zero, it is the equivalent of saying
+$<span class="math notranslate nohighlight">\(
+|\hat{m}|&gt; t_{\alpha/2, n-2} \times SE(\hat{m})
+\)</span>$</p>
+<p>thus
+$<span class="math notranslate nohighlight">\(
+\frac{|\hat{m}|}{SE(\hat{m})} &gt; t_{\alpha/2, n-2}
+\)</span>$</p>
+<ul class="simple">
 <li><p><strong>Small Samples:</strong> For small <span class="math notranslate nohighlight">\(n\)</span>, the t-distribution has “fatter tails” than the normal distribution, meaning our uncertainty is higher, and the multiplier will be <strong>larger</strong> than <span class="math notranslate nohighlight">\(1.96\)</span>.</p></li>
 <li><p><strong>Large Samples (<span class="math notranslate nohighlight">\(n \to \infty\)</span>):</strong> As the sample size grows, the t-distribution converges to the standard normal distribution. For a 95% confidence level, the value <span class="math notranslate nohighlight">\(t_{0.025, n-2}\)</span> approaches <strong>1.96</strong>.  In practice, any sample of roughly <span class="math notranslate nohighlight">\(n\ge 30\)</span> is large enough to use a normal distribution z statistic.</p></li>
 </ul>
@@ -1092,8 +1219,8 @@ SE(\hat{c}) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="delete-from-here-on-application-to-cru-temperature-data">
-<h1>DELETE from here on Application to CRU temperature data<a class="headerlink" href="#delete-from-here-on-application-to-cru-temperature-data" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="application-to-cru-temperature-data">
+<h1>Application to CRU temperature data<a class="headerlink" href="#application-to-cru-temperature-data" title="Link to this heading">#</a></h1>
 <p>We will know apply these methods to temperature data from CRU to calculate mean temperature trends.  First let’s get a file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1131,7 +1258,7 @@ SE(\hat{c}) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \
 
 <span class="c1"># --- 2. Data Loading &amp; Fixes ---</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/data/cru/cru_tmax_yearmean.nc&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/data/cru/cru_tmax_yearmean_1970.nc&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloading from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
@@ -1139,7 +1266,7 @@ SE(\hat{c}) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \
 <span class="k">with</span> <span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;buffer.nc&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variables found in file:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
     
-    <span class="c1"># Identify the main data variable (it&#39;s usually the one that isn&#39;t lat, lon, or time)</span>
+    <span class="c1"># Identify the main data variable.</span>
     <span class="n">potential_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tmax&#39;</span><span class="p">,</span> <span class="s1">&#39;tmp&#39;</span><span class="p">,</span> <span class="s1">&#39;tmx&#39;</span><span class="p">,</span> <span class="s1">&#39;temp&#39;</span><span class="p">]</span>
     <span class="n">vname</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">potential_names</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
     
@@ -1171,7 +1298,7 @@ SE(\hat{c}) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \
     <span class="n">lons</span> <span class="o">=</span> <span class="n">lons</span><span class="p">[</span><span class="n">sort_idx</span><span class="p">]</span>
     <span class="n">tmax_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">tmax_raw</span><span class="p">,</span> <span class="n">sort_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># --- 3. Run Analysis ---</span>
+<span class="c1"># Analysis</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing global trends...&quot;</span><span class="p">)</span>
 <span class="n">m_map</span><span class="p">,</span> <span class="n">c_map</span> <span class="o">=</span> <span class="n">linear_regression</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">tmax_raw</span><span class="p">)</span>
@@ -1209,13 +1336,13 @@ SE(\hat{c}) = \sqrt{s^2 \left( \frac{1}{n} + \frac{\overline{x}^2}{\sum (x_i - \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading from http://clima-dods.ictp.it/Users/tompkins/data/cru/cru_tmax_yearmean.nc...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading from http://clima-dods.ictp.it/Users/tompkins/data/cru/cru_tmax_yearmean_1970.nc...
 Variables found in file: [&#39;time&#39;, &#39;time_bnds&#39;, &#39;lon&#39;, &#39;lat&#39;, &#39;tmx&#39;, &#39;stn&#39;]
 Using variable: &#39;tmx&#39;
 Processing global trends...
 </pre></div>
 </div>
-<img alt="../../_images/ad3dfc85a525bed382f890c8d96285d3397c01bd97351c42ce09fa4a6a1a497d.png" src="../../_images/ad3dfc85a525bed382f890c8d96285d3397c01bd97351c42ce09fa4a6a1a497d.png" />
+<img alt="../../_images/838363b56c2ab2a69c591d566b6909fd448077e7f50eb9da07b96a91e79a6bba.png" src="../../_images/838363b56c2ab2a69c591d566b6909fd448077e7f50eb9da07b96a91e79a6bba.png" />
 </div>
 </div>
 <summary>
@@ -1270,7 +1397,7 @@ Processing global trends...
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">CDA2: Correlation and Covariance</p>
+        <p class="prev-next-title">CDA3: Correlation and Covariance</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1299,8 +1426,13 @@ Processing global trends...
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-identity">Helpful Identity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-for-the-slope-m">Solving for the Slope (<span class="math notranslate nohighlight">\(m\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-slope-and-intercept-estimators">Summary of slope and intercept estimators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-package">Scipy package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-investigation-where-we-know-the-answer">EXERCISES: Investigation where we “know” the answer</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-coefficient-of-determination-r-2">Defining the Coefficient of Determination (<span class="math notranslate nohighlight">\(r^2\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-r-2-to-pearson-s-r">3. Connecting <span class="math notranslate nohighlight">\(R^2\)</span> to Pearson’s <span class="math notranslate nohighlight">\(r\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-conclusion">4. Final Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-standard-errors-for-intercept-and-slope-in-linear-regression">Derivation of Standard Errors for Intercept and Slope in Linear Regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causes-of-uncertainty">Causes of uncertainty</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results-of-the-uncertainty">Results of the uncertainty</a></li>
@@ -1345,7 +1477,7 @@ Processing global trends...
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-from-here-on-application-to-cru-temperature-data">DELETE from here on Application to CRU temperature data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-cru-temperature-data">Application to CRU temperature data</a></li>
 </ul>
 
   </nav></div>
