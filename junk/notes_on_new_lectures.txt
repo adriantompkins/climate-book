@@ -1,0 +1,15 @@
+
+CDA ideas:
+
+
+wavelets
+
+extreme value theory
+
+extend regression to multilinear
+
+simple NNs, and application to physics routines. 
+
+wavenumber-frequency analysis.
+
+
