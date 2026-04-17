@@ -22,7 +22,7 @@ parts:
     chapters:
       - file: markdown/content_clima_data
         sections:
-          - file: notebooks/part2_cda/CDA1_cdo_netcdf_indices
+          - file: notebooks/part2_cda/CDA1_cdo_netcdf
           - file: notebooks/part2_cda/CDA2_trends_timeseries
           - file: notebooks/part2_cda/CDA3_breakpoint_analysis
           - file: notebooks/part2_cda/CDA4_correlation_covariance
