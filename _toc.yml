@@ -22,14 +22,15 @@ parts:
     chapters:
       - file: markdown/content_clima_data
         sections:
-          - file: notebooks/part2_cda/climdata_gpgp_indices
-          - file: notebooks/part2_cda/climdata_trends_timeseries
-          - file: notebooks/part2_cda/climdata_correlation_covariance
-          - file: notebooks/part2_cda/climdata_breakpoint_analysis
-          - file: notebooks/part2_cda/climdata_FFT_analysis
-          - file: notebooks/part2_cda/climdata_wavelet_analysis
-          - file: notebooks/part2_cda/climdata_EOF1
-          - file: notebooks/part2_cda/climdata_linear_stability_analysis
+          - file: notebooks/part2_cda/CDA1_cdo_netcdf_indices
+          - file: notebooks/part2_cda/CDA2_trends_timeseries
+          - file: notebooks/part2_cda/CDA3_breakpoint_analysis
+          - file: notebooks/part2_cda/CDA4_correlation_covariance
+          - file: notebooks/part2_cda/CDA5_FFT_analysis
+          - file: notebooks/part2_cda/CDA6_wavenumber_freq_analysis
+          - file: notebooks/part2_cda/CDA7_wavelet_analysis
+          - file: notebooks/part2_cda/CDA8_EOF_analysis
+          - file: notebooks/part2_cda/CDA9_linear_stability_analysis
       - file: markdown/content_modelling
         sections:
           - file: notebooks/part2_cda/mod_advection
