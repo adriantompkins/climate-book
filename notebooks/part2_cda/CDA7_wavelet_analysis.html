@@ -1,0 +1,2241 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CDA7: Wavelet Analysis &#8212; Earth System Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d58c46d9" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/part2_cda/CDA7_wavelet_analysis';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CDA8: EOF/PCA analysis" href="CDA8_EOF_analysis.html" />
+    <link rel="prev" title="CDA6: Wavenumber-Frequency Analysis of Equatorial Waves" href="CDA6_wavenumber_freq_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Earth System Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Atmospheric Physics and Data Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_radiation.html">Radiative Transfer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_insolation.html">Insolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_microphysics.html">Microphysics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_climate_sens.html">Climate Feedbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_daisy_world.html">Biogeophysical feedbacks: Daisy World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_0D_ice_feedback.html">Ice albedo feedback in the 0D energy balance model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part1_tpa/clim_EBM_water_vapor.html">Adding water vapor feedback to the grey model of the atmosphere</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../markdown/content_clima_data.html">Climate data analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CDA1_cdo_netcdf.html">CDA1: Manipulating gridded datasets</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="CDA2_trends_timeseries.html">CDA2: Trend derivation</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="CDA3_breakpoint_analysis.html">CDA3: Breakpoint analysis (segmentation analysis)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="CDA4_correlation_covariance.html">CDA4: Correlation and Covariance</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="CDA5_FFT_analysis.html">CDA5: Fourrier Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="CDA6_wavenumber_freq_analysis.html">CDA6: Wavenumber-Frequency Analysis of Equatorial Waves</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">CDA7: Wavelet Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="CDA8_EOF_analysis.html">CDA8: EOF/PCA analysis</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="CDA9_linear_stability_analysis.html">CDA9: Linear stability analysis (under construction)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_modelling.html">Earth System modelling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="mod_advection.html">Focus on advection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_CMIP_IPCC_temperature_trends.html">Coupled Model Intercomparison Project (CMIP)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="mod_climate-system-models.html">The climate system and climate models</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Misc fun</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../markdown/content_misc.html">Random Stuff</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../part3_misc/stochastic_model.html">Stochastic Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part3_misc/ensembles_forecasting_game.html">Forecasting game.</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/adriantompkins/climate-book.git/master?urlpath=lab/tree/notebooks/part2_cda/CDA7_wavelet_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/adriantompkins/climate-book.git/blob/master/notebooks/part2_cda/CDA7_wavelet_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/adriantompkins/climate-book.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/adriantompkins/climate-book.git/issues/new?title=Issue%20on%20page%20%2Fnotebooks/part2_cda/CDA7_wavelet_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/part2_cda/CDA7_wavelet_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CDA7: Wavelet Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CDA7: Wavelet Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-and-theory">Introduction and Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-fourier-analysis">Limitations of Fourier analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-analysis">Wavelet analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-wavelet-transform-cwt">The Continuous Wavelet Transform (CWT)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-definition">The Continuous Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-and-shifting-the-daughter-wavelet">Scaling and Shifting (The “Daughter” Wavelet)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-morlet-mother-wavelet">The Morlet Mother Wavelet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components">Key Components:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-wavelet-transform-cwt-formula">The Continuous Wavelet Transform (CWT) Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-morlet-wavelet-definition-psi-0">The Morlet Wavelet Definition (<span class="math notranslate nohighlight">\(\psi_0\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-parameters">key parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-set-omega-0-w0-in-the-code-to-2-5-10-20-and-discuss-the-implications">EXERCISE: set <span class="math notranslate nohighlight">\(\omega_0\)</span> (w0 in the code) to 2, 5, 10, 20 and discuss the implications.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-set-omega-0-6">Why we set <span class="math notranslate nohighlight">\(\omega_0 = 6\)</span>:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-exact-morlet-wavelet-the-admissibility-correction">Deriving the Exact Morlet Wavelet (The Admissibility Correction)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-the-simplified-wavelet">Integrating the Simplified Wavelet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-correction-factor">Deriving the Correction Factor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-complete-morlet-wavelet">The Complete Morlet Wavelet</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-of-wiggles-the-analysis-timescale-lambda">Scale of wiggles, the analysis timescale <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-analysis-from-scratch">Wavelet analysis from scratch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example-non-stationary-sine-waves">Toy Example: Non-Stationary Sine Waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question">QUESTION?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-try-changing-omega-0-to-see-the-impact-on-resolution">Exercise: try changing <span class="math notranslate nohighlight">\(\omega_0\)</span> to see the impact on resolution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-african-easterly-waves-in-era5-data">Application: African Easterly Waves in ERA5 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-wavelet-spectrum">Plotting the wavelet spectrum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-ecmwf-meridional-winds-for-west-africa">Application to ECMWF meridional winds for West Africa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transitioning-to-standard-packages-pywavelets">4. Transitioning to Standard Packages (<code class="docutils literal notranslate"><span class="pre">PyWavelets</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cone-of-influence-coi">The Cone of Influence (COI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ideas">Exercise ideas…</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cda7-wavelet-analysis">
+<h1>CDA7: Wavelet Analysis<a class="headerlink" href="#cda7-wavelet-analysis" title="Link to this heading">#</a></h1>
+<section id="introduction-and-theory">
+<h2>Introduction and Theory<a class="headerlink" href="#introduction-and-theory" title="Link to this heading">#</a></h2>
+<section id="limitations-of-fourier-analysis">
+<h3>Limitations of Fourier analysis<a class="headerlink" href="#limitations-of-fourier-analysis" title="Link to this heading">#</a></h3>
+<p>In climate science, we frequently analyse time series data to find dominant cycles—such as the El Niño-Southern Oscillation (ENSO) or diurnal temperature variations. As we saw in the last lesson, Fourier analysis is the traditional tool for this, decomposing a signal into constituent sine and cosine waves to identify dominant frequencies.</p>
+<p>However, the Fourier transform only allows us to find <strong>stationary</strong> signals, i.e. the resul is is an “average” measure of the power of each frequency over the entire timeseries.  In some cases, there may be a signal we want to detect which is <em>intermittent</em> and we are interested to know when variability of a certain timescale is occuring.</p>
+<p>For example, if we want to detect African Easterly Waves (AEWs)—synoptic disturbances that only occur during the West African Monsoon season—a standard Fourier transform will tell us a 3-5 day periodicity exists as a peak in the power sprectrum, but it cannot tell us <em>when</em> it occurs to highlight periods of high AEW activity.</p>
+</section>
+<section id="wavelet-analysis">
+<h3>Wavelet analysis<a class="headerlink" href="#wavelet-analysis" title="Link to this heading">#</a></h3>
+<p>Wavelet overcomes this by using localized wave-like functions (wavelets). Instead of infinite cosine waves, wavelets decay to zero at their edges. By stretching (scaling) and shifting (translating) these wavelets across our time series, we build a two-dimensional picture of both frequency (scale) <em>and</em> time.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-continuous-wavelet-transform-cwt">
+<h1>The Continuous Wavelet Transform (CWT)<a class="headerlink" href="#the-continuous-wavelet-transform-cwt" title="Link to this heading">#</a></h1>
+<p>The CWT is essentially a <strong>mathematical microscope</strong>. Unlike the Fourier Transform, which tells you <em>what</em> frequencies exist in a signal, the CWT tells you <strong>when</strong> those frequencies occur and <strong>how long</strong> they last by sliding a “wavelet” along the data.  Unlike the Fourier Transform, which tells you <em>what</em> frequencies exist in a signal, the CWT tells you <strong>when</strong> those frequencies occur and <strong>how long</strong> they last by sliding a “wavelet” along the data.</p>
+<section id="the-continuous-definition">
+<h2>The Continuous Definition<a class="headerlink" href="#the-continuous-definition" title="Link to this heading">#</a></h2>
+<p>At its core, the CWT measures the “similarity” between your signal <span class="math notranslate nohighlight">\(x(t)\)</span> and a transformed version of a Mother Wavelet <span class="math notranslate nohighlight">\(\psi\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[W(s, \tau) = \int_{-\infty}^{\infty} x(t) \psi_{s, \tau}^*(t) dt\]</div>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(x(t)\)</span></strong>: The input signal.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(W(s, \tau)\)</span></strong>: The resulting Wavelet Coefficients.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\psi^*\)</span></strong>: The complex conjugate of the “Daughter Wavelet.”</p></li>
+</ul>
+</section>
+<section id="scaling-and-shifting-the-daughter-wavelet">
+<h2>Scaling and Shifting (The “Daughter” Wavelet)<a class="headerlink" href="#scaling-and-shifting-the-daughter-wavelet" title="Link to this heading">#</a></h2>
+<p>To analyze different frequencies and time positions, we take one single <strong>Mother Wavelet</strong> <span class="math notranslate nohighlight">\(\psi(t)\)</span> and modify it using two parameters: <strong>Scale (<span class="math notranslate nohighlight">\(s\)</span>)</strong> and <strong>Translation (<span class="math notranslate nohighlight">\(\tau\)</span>)</strong>.</p>
+<div class="math notranslate nohighlight">
+\[\psi_{s, \tau}(t) = \frac{1}{\sqrt{s}} \psi \left( \frac{t - \tau}{s} \right)\]</div>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\tau\)</span> (Translation):</strong> Slides the wavelet along the time axis to look at different parts of the signal.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(s\)</span> (Scale):</strong> Stretches or compresses the wavelet.</p>
+<ul>
+<li><p><strong>Small <span class="math notranslate nohighlight">\(s\)</span>:</strong> Compressed shape <span class="math notranslate nohighlight">\(\rightarrow\)</span> captures <strong>high-frequency</strong> (fast) changes.</p></li>
+<li><p><strong>Large <span class="math notranslate nohighlight">\(s\)</span>:</strong> Stretched shape <span class="math notranslate nohighlight">\(\rightarrow\)</span> captures <strong>low-frequency</strong> (slow) trends.</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(1/\sqrt{s}\)</span> (Normalization):</strong> Ensures the wavelet has the same total energy at every scale so that high and low frequencies can be compared fairly.</p></li>
+</ul>
+</section>
+<section id="the-morlet-mother-wavelet">
+<h2>The Morlet Mother Wavelet<a class="headerlink" href="#the-morlet-mother-wavelet" title="Link to this heading">#</a></h2>
+<p>In many applications (like geophysics or bio-signals), we use the <strong>Morlet Wavelet</strong>. It is a complex sine wave multiplied by a Gaussian “envelope.”</p>
+<div class="math notranslate nohighlight">
+\[\psi_0(\eta) = \pi^{-1/4} e^{j \omega_0 \eta} e^{-\eta^2 / 2}\]</div>
+<section id="key-components">
+<h3>Key Components:<a class="headerlink" href="#key-components" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\pi^{-1/4}\)</span></strong>: A constant (approx. <span class="math notranslate nohighlight">\(0.75\)</span>) that ensures the Mother Wavelet has unit energy.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(e^{i \omega_0 \eta}\)</span></strong>: The oscillating part (the complex “wiggle”).</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(e^{-\eta^2 / 2}\)</span></strong>: The Gaussian part (the “bell curve” that keeps the wavelet localized).</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\eta\)</span></strong>: The non-dimensional time, defined as <span class="math notranslate nohighlight">\(\eta = \frac{t - \tau}{s}\)</span>.</p></li>
+</ol>
+</section>
+<section id="the-continuous-wavelet-transform-cwt-formula">
+<h3>The Continuous Wavelet Transform (CWT) Formula<a class="headerlink" href="#the-continuous-wavelet-transform-cwt-formula" title="Link to this heading">#</a></h3>
+<p>When moving from this continuous theory to a computer, we replace the integral (<span class="math notranslate nohighlight">\(\int\)</span>) with a summation (<span class="math notranslate nohighlight">\(\sum\)</span>) and the continuous time (<span class="math notranslate nohighlight">\(t\)</span>) with discrete time steps (<span class="math notranslate nohighlight">\(n \delta t\)</span>).  It is still called a <strong>continuous</strong> transform though as “Continuous” refers to the scales (<span class="math notranslate nohighlight">\(s\)</span>) and translations which can take any real values (confusing I know!).</p>
+<p>So to recap, the CWT measures the “similarity” between your signal and a wavelet shape at a specific time and scale. It acts as a localized “dot product” that slides along your data which is sampled at an interval <span class="math notranslate nohighlight">\(\delta t\)</span>, and we now have summation instead of an integral:</p>
+<div class="math notranslate nohighlight">
+\[W_n(s) = \sqrt{\frac{\delta t}{s}} \sum_{n'=0}^{N-1} x_{n'} \psi^* (\eta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is the non-dimensional time</p>
+<div class="math notranslate nohighlight">
+\[\eta= \frac{(n' - n)\delta t}{s} \]</div>
+<p><strong>Definitions:</strong></p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(x_{n'}\)</span> (The Signal):</strong> Your raw input data series (e.g., daily temperature or sea level).</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\psi\)</span> (The Mother Wavelet - “Psi”):</strong> This is the <strong>template shape</strong> (the stencil) you are using to scan your data. It is a “Wave-let” because it is a small, localized wave that dies out to zero. It is called the “Mother” because all other wavelets in the transform are derived from it.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\psi^*\)</span> (The Complex Conjugate):</strong> Because the Morlet wavelet is complex (contains both Real/Cosine and Imaginary/Sine parts), we use the conjugate to perform a proper <strong>complex inner product</strong>. This ensures we capture the phase of the signal correctly.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(n\)</span> (Target Time Index):</strong> This is the “Now” point. It tells the wavelet where to center itself on your timeline. It is your output time coordinate.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(n'\)</span> (The Summation Index):</strong> This is the “slider.” To calculate the coefficient at time <span class="math notranslate nohighlight">\(n\)</span>, the computer must multiply the wavelet against every neighboring data point <span class="math notranslate nohighlight">\(n'\)</span> and sum them up.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(s\)</span> (The Scale):</strong> This is the <strong>stretching factor</strong>.</p>
+<ul>
+<li><p>Large <span class="math notranslate nohighlight">\(s\)</span> stretches the wavelet to find <strong>long-period</strong> (low frequency) cycles.</p></li>
+<li><p>Small <span class="math notranslate nohighlight">\(s\)</span> squashes the wavelet to find <strong>short-period</strong> (high frequency) wiggles.</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(\delta t\)</span>:</strong> The sampling time, i.e. the time step between your data points.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(W_n(s)\)</span> (The Wavelet Coefficient):</strong> The output. It represents how much “energy” or “matching” exists in the signal at time <span class="math notranslate nohighlight">\(n\)</span> for the period represented by scale <span class="math notranslate nohighlight">\(s\)</span>.</p></li>
+</ul>
+<p>So what do these wavelets look like?  Well we have a number of choices:</p>
+<ul class="simple">
+<li><p>Morlet</p></li>
+<li><p>Mexican Hat</p></li>
+<li><p>Paul</p></li>
+<li><p>Haar</p></li>
+</ul>
+<p>A commonly used one is the Morlet Wavelet.</p>
+</section>
+<section id="the-morlet-wavelet-definition-psi-0">
+<h3>The Morlet Wavelet Definition (<span class="math notranslate nohighlight">\(\psi_0\)</span>)<a class="headerlink" href="#the-morlet-wavelet-definition-psi-0" title="Link to this heading">#</a></h3>
+<p>In geophysics, we define our “Mother” shape (<span class="math notranslate nohighlight">\(\psi_0\)</span>) using the Morlet formula. It is essentially a sine wave wrapped in a “Gaussian envelope.”</p>
+<div class="math notranslate nohighlight">
+\[\psi_0(\eta) = \pi^{-1/4} e^{j \omega_0 \eta} e^{-\eta^2/2}\]</div>
+<p>In the landmark papers on wavelet analysis (specifically Torrence and Compo, 1998, which is the “Bible” of wavelet analysis in climate science), they use the <span class="math notranslate nohighlight">\(0\)</span> subscript to indicate the base version (often referred to as the <strong>mother</strong> wavelet) of the Morlet wavelet where</p>
+<ul class="simple">
+<li><p>The scale (<span class="math notranslate nohighlight">\(s\)</span>) is exactly 1.</p></li>
+<li><p>The translation (<span class="math notranslate nohighlight">\(n\)</span>) is exactly 0.</p></li>
+</ul>
+<p>By defining the “Base” or “Mother” as <span class="math notranslate nohighlight">\(\psi_0(\eta)\)</span>, we are creating the master template. When we actually use it in the CWT, we “birth” the daughter wavelets by stretching and sliding <span class="math notranslate nohighlight">\(\psi_0\)</span>.</p>
+<p>Where <span class="math notranslate nohighlight">\(\eta\)</span> is non-dimensional time, and <span class="math notranslate nohighlight">\(\omega_0\)</span> is the non-dimensional frequency.
+<strong>Term-by-Term Breakdown:</strong></p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\pi^{-1/4}\)</span> (Normalization Factor):</strong> A constant (approx. <span class="math notranslate nohighlight">\(0.75\)</span>) that ensures the wavelet has <strong>unit energy</strong>.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(e^{j \omega_0 \eta}\)</span> (The Oscillatory Part):</strong> This is the complex “Wave.” It provides the wiggles that allow the transform to pick up specific frequencies.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(e^{-\eta^2/2}\)</span> (The Gaussian Envelope):</strong> This is the “Envelope.” It is a bell curve that forces the sine wave to decay to zero at the edges. This is what allows the transform to be “Localized” in time, unlike a standard Fourier sine wave which lasts forever.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\eta\)</span> (Non-dimensional Time - “Eta”):</strong> This is the internal coordinate of the wavelet. In the main CWT formula, <span class="math notranslate nohighlight">\(\eta = \frac{(n' - n)\delta t}{s}\)</span>. It tracks how far a data point is from the center of the wavelet.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\omega_0\)</span> (Non-dimensional Frequency - “Omega-naught”):</strong> This is your <strong>tuning knob</strong>. It defines how many oscillations fit inside the Gaussian envelope. It determines the “shape” of the tool.</p></li>
+</ul>
+<p>It helps to visualize the wavelet before we discuss parameter choices,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<span class="c1"># Define the Full Morlet Wavelet</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">morlet_wavelet</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mf">6.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a complex Morlet wavelet.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">w0</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># but first I will show the components.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">morlet_components</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mf">6.0</span><span class="p">):</span>
+    <span class="c1"># Part 1: The Normalization Constant</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">)</span>
+    
+    <span class="c1"># Part 2: The Gaussian Envelope (The &quot;let&quot; in Wavelet)</span>
+    <span class="n">envelope</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">eta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Part 3: The Complex Oscillator (The &quot;Wave&quot; in Wavelet)</span>
+    <span class="c1"># e^(i*w0*eta) = cos(w0*eta) + i*sin(w0*eta)</span>
+    <span class="n">real_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w0</span> <span class="o">*</span> <span class="n">eta</span><span class="p">)</span>
+    <span class="n">imag_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">w0</span> <span class="o">*</span> <span class="n">eta</span><span class="p">)</span>
+    
+    <span class="c1"># The Full Result</span>
+    <span class="n">full_wavelet</span> <span class="o">=</span> <span class="n">norm</span> <span class="o">*</span> <span class="n">envelope</span> <span class="o">*</span> <span class="p">(</span><span class="n">real_oscillation</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">imag_oscillation</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">norm</span> <span class="o">*</span> <span class="n">envelope</span><span class="p">,</span> <span class="n">real_oscillation</span><span class="p">,</span> <span class="n">imag_oscillation</span><span class="p">,</span> <span class="n">full_wavelet</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setup axis</span>
+<span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="n">env</span><span class="p">,</span> <span class="n">cos_part</span><span class="p">,</span> <span class="n">sin_part</span><span class="p">,</span> <span class="n">full</span> <span class="o">=</span> <span class="n">morlet_components</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">w0</span><span class="p">)</span>
+
+<span class="c1"># Create the multi-panel plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Panel 1: The Envelope</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Gaussian Envelope ($e^{-\eta^2/2}$)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;1. The &#39;Window&#39; (Spatial/Time Localization)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Panel 2: The Pure Oscillations</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">cos_part</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Real Part $\cos(\omega_0 \eta)$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">sin_part</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Imag Part $\sin(\omega_0 \eta)$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2. The Pure Oscillations ($\omega_0 = </span><span class="si">{</span><span class="n">w0</span><span class="si">}</span><span class="s2">$)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Panel 3: The Combined Wavelet (The Mother)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">full</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Full Real (Envelope $</span><span class="se">\t</span><span class="s1">imes$ Cosine)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">full</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Full Imag (Envelope $</span><span class="se">\t</span><span class="s1">imes$ Sine)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">env</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="o">-</span><span class="n">env</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;3. The Morlet Wavelet ($\psi_0$)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Non-dimensional time ($\eta$)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a364e881a5155c7bd0ce8b69d2076ad2cf5ac0aa6fb8ac03992e8e20266f01ab.png" src="../../_images/a364e881a5155c7bd0ce8b69d2076ad2cf5ac0aa6fb8ac03992e8e20266f01ab.png" />
+</div>
+</div>
+<p>We clearly see how the Guassian acts as an envelope for the osscilation and restricts the wave in space, unlike the Fourier transform that performs the convolution with an infinite cosine series.  In the FFT we introduced a window to taper the start and end of a series… the wavelet is simply taking this idea further and tapering the window to a smaller period and then “passing” this over the data.</p>
+<p>Let’s examine the two key parameters now of the wavelet analysis.</p>
+</section>
+<section id="key-parameters">
+<h3>key parameters<a class="headerlink" href="#key-parameters" title="Link to this heading">#</a></h3>
+<p>So the key parameters are</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s\)</span> the stretch factor, related to the (time)scale we are analysing.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega_0\)</span> that sets the number of “wiggles” within the wave packet.</p></li>
+</ul>
+<p>Let’s see how this works… The following code plots the wavelet and you can define <span class="math notranslate nohighlight">\(\omega_0\)</span> at the start.  A default value is 6, but you can set it to 2 or 10, or 20…</p>
+<section id="exercise-set-omega-0-w0-in-the-code-to-2-5-10-20-and-discuss-the-implications">
+<h4>EXERCISE: set <span class="math notranslate nohighlight">\(\omega_0\)</span> (w0 in the code) to 2, 5, 10, 20 and discuss the implications.<a class="headerlink" href="#exercise-set-omega-0-w0-in-the-code-to-2-5-10-20-and-discuss-the-implications" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a centered time axis</span>
+<span class="n">t_axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="n">w0</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">wavelet_vals</span> <span class="o">=</span> <span class="n">morlet_wavelet</span><span class="p">(</span><span class="n">t_axis</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="n">w0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_axis</span><span class="p">,</span> <span class="n">wavelet_vals</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Real Part (Cosine)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_axis</span><span class="p">,</span> <span class="n">wavelet_vals</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Imaginary Part (Sine)&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Morlet Wavelet, $ \omega_0 $ = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">w0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">t_axis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">wavelet_vals</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">wavelet_vals</span><span class="p">),</span> 
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Envelope&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0fc120b4a4b856e453a30f503192c036d477284ed0e462943ac0b4b66f8147a2.png" src="../../_images/0fc120b4a4b856e453a30f503192c036d477284ed0e462943ac0b4b66f8147a2.png" />
+</div>
+</div>
+</section>
+<section id="why-we-set-omega-0-6">
+<h4>Why we set <span class="math notranslate nohighlight">\(\omega_0 = 6\)</span>:<a class="headerlink" href="#why-we-set-omega-0-6" title="Link to this heading">#</a></h4>
+<p>There is a fundamental “Uncertainty Principle” in signal processing: You cannot have perfect resolution in both Time and Frequency.</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\omega_0\)</span> is high (e.g., 20): You get amazing frequency resolution (you can tell the difference between a 10.1 and 10.2 “length” cycle), but the wavelet envelope is so “wide” relative to the oscillation length that you lose track of exactly when the cycle started or ended. Essentially it starts to look like a Fourier analysis…</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\omega_0\)</span> is low (e.g., 2): You know exactly when a pulse happened, but you have no idea what its frequency was because there weren’t enough wiggles to measure it well.  In addition, we need the cosine to have a rough zero mean and when <span class="math notranslate nohighlight">\(\omega_0\)</span> is low this is usually not the case.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\omega_0 = 6\)</span> is the “Golden Middle.” It provides just enough wiggles (about 3 visible oscillations) to give a very good estimate of the frequency, while remaining narrow enough in time to show you exactly when a climate event (like an El Niño) began.  In addition, once <span class="math notranslate nohighlight">\(\omega_0\)</span> approaches 6 the residual is very, very close to zero.</p>
+<p>So the wavelength (<span class="math notranslate nohighlight">\(\lambda\)</span>); the distance between two peaks of the cosine wiggles is exactly <span class="math notranslate nohighlight">\(2\pi \frac{s}{\omega_0}\)</span>, in which case you might wonder why we don’t set <span class="math notranslate nohighlight">\(\omega_0 = 2\pi\)</span>, which would mean the wavelength is exactly our stretching length scale <span class="math notranslate nohighlight">\(s\)</span> (instead of <span class="math notranslate nohighlight">\(2\pi s / 6 \approx \mathbf{1.047} s\)</span>)</p>
+<p>The reason is simply that 6 was adopted as a nearest convenient integer and thus is continued as standard to ensure all Wavelet results are consistent.</p>
+</section>
+</section>
+</section>
+<section id="deriving-the-exact-morlet-wavelet-the-admissibility-correction">
+<h2>Deriving the Exact Morlet Wavelet (The Admissibility Correction)<a class="headerlink" href="#deriving-the-exact-morlet-wavelet-the-admissibility-correction" title="Link to this heading">#</a></h2>
+<p>To be mathematically admissible, a wavelet must have a mean of exactly zero. This means its integral across all time (<span class="math notranslate nohighlight">\(\eta\)</span>) must equal zero:</p>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^{\infty} \psi(\eta) d\eta = 0\]</div>
+<p>Let’s evaluate the integral of the simplified Morlet wavelet, <span class="math notranslate nohighlight">\(\psi_0(\eta) = \pi^{-1/4} e^{j \omega_0 \eta} e^{-\eta^2/2}\)</span>, to see if it meets this condition.</p>
+<section id="integrating-the-simplified-wavelet">
+<h3>Integrating the Simplified Wavelet<a class="headerlink" href="#integrating-the-simplified-wavelet" title="Link to this heading">#</a></h3>
+<p>We want to find the mean, <span class="math notranslate nohighlight">\(M\)</span>, by integrating over all space:</p>
+<div class="math notranslate nohighlight">
+\[M = \int_{-\infty}^{\infty} \pi^{-1/4} e^{j\omega_0 \eta} e^{-\eta^2/2} d\eta\]</div>
+<p>To solve this, we can combine the exponents:</p>
+<div class="math notranslate nohighlight">
+\[M = \pi^{-1/4} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\eta^2 + j\omega_0 \eta} d\eta\]</div>
+<p>Next, we complete the square in the exponent. We can rewrite <span class="math notranslate nohighlight">\(-\frac{1}{2}\eta^2 + j\omega_0 \eta\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[-\frac{1}{2} \left( \eta^2 - 2j\omega_0 \eta \right)\]</div>
+<div class="math notranslate nohighlight">
+\[= -\frac{1}{2} \left( \eta^2 - 2j\omega_0 \eta + (j\omega_0)^2 - (j\omega_0)^2 \right)\]</div>
+<div class="math notranslate nohighlight">
+\[= -\frac{1}{2} (\eta - j\omega_0)^2 - \frac{\omega_0^2}{2}\]</div>
+<p>Substitute this back into the integral:</p>
+<div class="math notranslate nohighlight">
+\[M = \pi^{-1/4} \int_{-\infty}^{\infty} e^{-\frac{1}{2}(\eta - j\omega_0)^2 - \frac{\omega_0^2}{2}} d\eta\]</div>
+<p>We can pull the constant term out of the integral:</p>
+<div class="math notranslate nohighlight">
+\[M = \pi^{-1/4} e^{-\omega_0^2/2} \int_{-\infty}^{\infty} e^{-\frac{1}{2}(\eta - j\omega_0)^2} d\eta\]</div>
+<p>The remaining integral is simply a standard Gaussian integral shifted by a complex constant, which evaluates to <span class="math notranslate nohighlight">\(\sqrt{2\pi}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[M = \pi^{-1/4} \sqrt{2\pi} e^{-\omega_0^2/2}\]</div>
+<p>Because <span class="math notranslate nohighlight">\(M \neq 0\)</span>, the simplified Morlet wavelet violates the admissibility condition!</p>
+</section>
+<section id="deriving-the-correction-factor">
+<h3>Deriving the Correction Factor<a class="headerlink" href="#deriving-the-correction-factor" title="Link to this heading">#</a></h3>
+<p>To force the mean to zero, we must introduce a constant correction term, <span class="math notranslate nohighlight">\(C\)</span>, inside the parent wavelet function:</p>
+<div class="math notranslate nohighlight">
+\[\psi(\eta) = \pi^{-1/4} \left( e^{j\omega_0 \eta} - C \right) e^{-\eta^2/2}\]</div>
+<p>For the total integral to be zero, the integral of our correction term must perfectly cancel out the mean <span class="math notranslate nohighlight">\(M\)</span> we just calculated.</p>
+<p>The integral of the correction term alone is:</p>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^{\infty} \pi^{-1/4} C e^{-\eta^2/2} d\eta = \pi^{-1/4} C \sqrt{2\pi}\]</div>
+<p>(since we can move the C and <span class="math notranslate nohighlight">\(\pi\)</span> term out of the integral and are left with the Gaussian again). Setting the correction integral equal to <span class="math notranslate nohighlight">\(M\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\pi^{-1/4} C \sqrt{2\pi} = \pi^{-1/4} \sqrt{2\pi} e^{-\omega_0^2/2}\]</div>
+<p>Canceling <span class="math notranslate nohighlight">\(\pi^{-1/4} \sqrt{2\pi}\)</span> from both sides leaves us with the exact correction factor:</p>
+<div class="math notranslate nohighlight">
+\[C = e^{-\omega_0^2/2}\]</div>
+</section>
+<section id="the-complete-morlet-wavelet">
+<h3>The Complete Morlet Wavelet<a class="headerlink" href="#the-complete-morlet-wavelet" title="Link to this heading">#</a></h3>
+<p>By plugging <span class="math notranslate nohighlight">\(C\)</span> back into our corrected equation, we arrive at the exact, zero-mean mathematical definition of the complex Morlet wavelet:</p>
+<div class="math notranslate nohighlight">
+\[\psi(\eta) = \pi^{-1/4} \left( e^{j\omega_0 \eta} - e^{-\omega_0^2/2} \right) e^{-\eta^2/2}\]</div>
+<p><em>(Note: In practice, when <span class="math notranslate nohighlight">\(\omega_0 \geq 5\)</span>, the term <span class="math notranslate nohighlight">\(e^{-\omega_0^2/2}\)</span> is so infinitesimally small that it is neglected.</em></p>
+</section>
+</section>
+<section id="scale-of-wiggles-the-analysis-timescale-lambda">
+<h2>Scale of wiggles, the analysis timescale <span class="math notranslate nohighlight">\(\lambda\)</span><a class="headerlink" href="#scale-of-wiggles-the-analysis-timescale-lambda" title="Link to this heading">#</a></h2>
+<p>To derive the lengthscale of the oscillations in the wavelet that define the scale we are analysign for a given <span class="math notranslate nohighlight">\(\omega_0\)</span> and <span class="math notranslate nohighlight">\(s\)</span>, we need to take the Fourier transform of the <strong>full</strong> Morlet wavelet and then differentiate that with respect to <span class="math notranslate nohighlight">\(s\)</span> to find out at which scale it maximises…  For the moment we will skip the math (DERIVATION TO BE ADDED LATER HERE), and just give the result:</p>
+<div class="math notranslate nohighlight">
+\[\lambda_f = \frac{4\pi s}{\omega_0 + \sqrt{2 + \omega_0^2}}\]</div>
+<p>Again for reasonably large values of <span class="math notranslate nohighlight">\(\omega_0\)</span> (where we anyway neglect the correction) then <span class="math notranslate nohighlight">\(\omega_0 + \sqrt{2 + \omega_0^2} \approx 2 \omega_0\)</span> and the lengthscale simplifies to</p>
+<div class="math notranslate nohighlight">
+\[\lambda_f \approx \frac{2\pi s}{\omega_0}\]</div>
+<p>(Which I believe is often coded from scratch in some packages).</p>
+<p>In climate science and geophysics, we want the <strong>Scale</strong> to be intuitively equal to the <strong>Period</strong> so we don’t need a calculator to read our own graphs.</p>
+<ul class="simple">
+<li><p>If we choose <span class="math notranslate nohighlight">\(\omega_0 = 6\)</span>, <span class="math notranslate nohighlight">\(\lambda \approx 1.03 \times s\)</span></p></li>
+<li><p>This means a feature at <strong>Scale 10</strong> is almost exactly a <strong>10-unit cycle</strong> (e.g., 10 years if data points are annual).</p></li>
+</ul>
+<p>Remember, we could have set <span class="math notranslate nohighlight">\(\omega_0 = 2 \pi\)</span> and then <span class="math notranslate nohighlight">\(s\approx \lambda\)</span>, nice, but no one does it so why start a new trend?</p>
+<p><strong>Summary:</strong></p>
+<p><span class="math notranslate nohighlight">\(\omega_0\)</span> is the <strong>internal geometry</strong> of your “packet”, and <span class="math notranslate nohighlight">\(s\)</span> is the <strong>physical size</strong> you stretch that “packet” to. By picking <span class="math notranslate nohighlight">\(\omega_0=6\)</span>, you ensure your “Wavelet Ruler” uses the same units as a “Fourier Ruler.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mi">6</span> <span class="c1">#2*np.pi  # frequency</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mf">1.0</span>       <span class="c1"># Scale for the mother wavelet</span>
+
+<span class="c1"># include s in the axis range </span>
+<span class="n">t_axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># To keep the energy consistent (so the amplitude doesn&#39;t drop), </span>
+<span class="c1"># multiply by the normalization factor:</span>
+<span class="n">wavelet_vals</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">*</span> <span class="n">morlet_wavelet</span><span class="p">(</span><span class="n">t_axis</span> <span class="o">/</span> <span class="n">s</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="n">w0</span><span class="p">)</span>
+
+<span class="c1"># 2. Dynamic math for labels</span>
+
+<span class="c1"># this is the approximation for when w0&gt;=5</span>
+<span class="n">wavelength</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="o">/</span> <span class="n">w0</span>
+
+<span class="c1"># this is the exact that is derived from the Fourier transform of the full CWT </span>
+<span class="c1"># with the CORRECTION factor using Morlet. I need to add this derivation to the notes</span>
+<span class="n">fourier_period</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">w0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_axis</span><span class="p">,</span> <span class="n">wavelet_vals</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Real Part (Cosine)&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">yarrow1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">wavelet_vals</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">*</span><span class="mf">0.75</span>
+<span class="n">yarrow2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">wavelet_vals</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">*</span><span class="mf">0.75</span>
+
+<span class="c1"># --- THE DYNAMIC ANNOTATION ---</span>
+<span class="c1"># Arrow starts at the central peak (0) and ends at the next peak to the right</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">wavelength</span><span class="p">,</span> <span class="n">yarrow1</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">yarrow1</span><span class="p">),</span> 
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Label using LaTeX string formatting</span>
+<span class="n">label_text</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\lambda = \frac{2\pi s}{\omega_0} \approx &quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">wavelength</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">$&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">wavelength</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">yarrow1</span><span class="o">+</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">label_text</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Horizontal line for w0 visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;Tuning: $\omega_0 = &quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">w0</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+
+<span class="c1"># Add the Fourier Period info for comparison</span>
+<span class="c1"># Arrow starts at the central peak (0) and ends at the next peak to the right</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">fourier_period</span><span class="p">,</span> <span class="n">yarrow2</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">yarrow2</span><span class="p">),</span> 
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">fourier_period</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">yarrow2</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;Fourier $T \approx &quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fourier_period</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s$&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Morlet Wavelet Decomposition (Scale $s=</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">$)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Non-dimensional time ($\eta$)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/56184c0854d4c2e734123a002a8485842793f768c74b15ba544e91d57e280b09.png" src="../../_images/56184c0854d4c2e734123a002a8485842793f768c74b15ba544e91d57e280b09.png" />
+</div>
+</div>
+</section>
+<section id="wavelet-analysis-from-scratch">
+<h2>Wavelet analysis from scratch<a class="headerlink" href="#wavelet-analysis-from-scratch" title="Link to this heading">#</a></h2>
+<p>As you know, I like to code things up from scratch, so let’s give it a go -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cwt_scratch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">scales</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mf">6.0</span><span class="p">):</span>
+    <span class="n">n_signal</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">cwt_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">scales</span><span class="p">),</span> <span class="n">n_signal</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scales</span><span class="p">):</span>
+        
+        <span class="c1"># 1. Create wavelet time vector</span>
+        
+        <span class="c1"># this is the width in standard deviations:</span>
+        <span class="c1"># a half width of 3*s cutting the wavelet off while it </span>
+        <span class="c1"># still has 1% of its power. </span>
+        <span class="c1"># This creates &quot;edge effects&quot; or &quot;ringing&quot; in your transform </span>
+        <span class="c1"># because you&#39;ve abruptly chopped off the ends of the wave.</span>
+        <span class="c1"># at 8*s we have $e^{-0.5(8^2)} = </span>
+        <span class="c1"># e^{-32} \approx 1.2 \times 10^{-14}$ amplitude</span>
+        <span class="n">half_width</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">s</span>
+        <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">half_width</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>
+        
+        <span class="c1"># ensure we have central pt by making the len odd.</span>
+        <span class="k">if</span> <span class="n">n_samples</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">n_samples</span> <span class="o">+=</span> <span class="mi">1</span> 
+        <span class="n">t_wavelet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">half_width</span><span class="p">,</span> <span class="n">half_width</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+        
+        <span class="c1"># Generate wavelet using our earlier routine, yay!</span>
+        <span class="n">wavelet</span> <span class="o">=</span> <span class="n">morlet_wavelet</span><span class="p">(</span><span class="n">t_wavelet</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">w0</span><span class="p">)</span> 
+
+        <span class="c1"># Perform convolution, let&#39;s use numpy for this as we already saw this earlier </span>
+        <span class="c1"># but if you want you can use the dot product we introduced in the DFT lecture</span>
+        <span class="c1"># if you really really want to :-) </span>
+        <span class="n">full_conv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">wavelet</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="n">s</span><span class="p">))</span>
+        
+        <span class="c1"># Manually slice the center to match n_signal</span>
+        <span class="c1"># </span>
+        <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wavelet</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">n_signal</span>
+        <span class="n">cwt_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">full_conv</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        
+    <span class="k">return</span> <span class="n">cwt_matrix</span>
+    
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at how the code processes a wave with a 30-day period (s = 30), assuming dt = 0.0416 (1 hour):</p>
+<ul class="simple">
+<li><p>half_width = <span class="math notranslate nohighlight">\(8 * s\)</span></p></li>
+</ul>
+<p>The code calculates that the wavelet needs a half-width of <span class="math notranslate nohighlight">\(8 \times 30 = 240\)</span> days.</p>
+<ul class="simple">
+<li><p>n_samples = int(2 * half_width / dt)</p></li>
+</ul>
+<p>takes the total physical width (480 days) and divides it by your time step (0.0416 days per sample). The function dynamically realizes it needs to build an array of 11,538 data points to accurately draw a 30-day wave using hourly data.</p>
+<ul class="simple">
+<li><p>t_wavelet = np.linspace(-half_width, half_width, n_samples)</p></li>
+</ul>
+<p>generates an incredibly high-resolution time vector spanning exactly from -240 days to +240 days.</p>
+<ul class="simple">
+<li><p>t_wavelet / s</p></li>
+</ul>
+<p>divide days by days. The units cancel out entirely, leaving a dimensionless array to feed into the Morlet routine.</p>
+<p>Ok, are we ready to give this a go…</p>
+</section>
+<section id="toy-example-non-stationary-sine-waves">
+<h2>Toy Example: Non-Stationary Sine Waves<a class="headerlink" href="#toy-example-non-stationary-sine-waves" title="Link to this heading">#</a></h2>
+<p>Before tackling messy climate data, let’s prove our code works. We will create a signal that is non-stationary:</p>
+<ol class="arabic simple">
+<li><p>For the first 500 time steps, it has a period of 20 (high frequency).</p></li>
+<li><p>For the last 500 time steps, it has a period of 80 (low frequency).</p></li>
+</ol>
+<p>A traditional Fourier transform would just show peaks at 20 and 80, giving no information about <em>when</em> those frequencies occurred. Let’s see what our wavelet scalogram does.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">periods_toy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">periods_toy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  4   6   8  10  12  14  16  18  20  22  24  26  28  30  32  34  36  38
+  40  42  44  46  48  50  52  54  56  58  60  62  64  66  68  70  72  74
+  76  78  80  82  84  86  88  90  92  94  96  98 100 102 104 106 108 110
+ 112 114 116 118 120 122 124 126 128 130 132 134 136 138 140 142 144 146
+ 148]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># omega_0 - DEFAULT value is 6. </span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># toy data, two sinewaves of 20 and 80...</span>
+<span class="n">npt</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">t_toy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">npt</span><span class="p">)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">npt</span><span class="p">)</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="n">npt</span> <span class="o">//</span> <span class="mi">2</span> 
+<span class="n">signal</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t_toy</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span> <span class="o">/</span> <span class="mi">20</span><span class="p">)</span>  <span class="c1"># Period = 20</span>
+<span class="n">signal</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t_toy</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span> <span class="o">/</span> <span class="mi">80</span><span class="p">)</span>  <span class="c1"># Period = 80</span>
+
+<span class="c1"># Cwt calc next</span>
+
+<span class="c1"># Periods to analyse - 1,150 means we go from 1 to 150 days.</span>
+<span class="n">periods_toy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Calculate the factor based on the current w0</span>
+<span class="c1"># here use the full version but to be honest for w0&gt;5 we could approx to 2pi/w0</span>
+<span class="n">fourier_factor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">w0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># calc the scales needed to achieve those periods</span>
+<span class="c1"># Since Period = Scale * Factor, then Scale = Period / Factor</span>
+<span class="n">scales_toy</span> <span class="o">=</span> <span class="n">periods_toy</span> <span class="o">/</span> <span class="n">fourier_factor</span>
+
+<span class="c1"># CWT with these dynamically calculated scales</span>
+<span class="n">cwt_toy</span> <span class="o">=</span> <span class="n">cwt_scratch</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="n">scales_toy</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="n">w0</span><span class="p">)</span>
+
+<span class="c1"># get the power, oh yes!</span>
+<span class="n">power_toy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cwt_toy</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># We divide by &#39;scales&#39; because Power (amplitude squared) </span>
+<span class="c1"># needs an s^1 correction to offset the sqrt(s) used in the CWT.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">scales_toy</span><span class="p">)):</span>
+    <span class="n">power_toy</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">power_toy</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">scales_toy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+<span class="c1"># --- PLOTTING ---</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+
+<span class="c1"># Top Panel: Signal</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_toy</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Toy Signal: High frequency shifting to Low frequency&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">npt</span><span class="p">)</span>
+
+<span class="c1"># Bottom Panel: Scalogram (using Periods instead of raw scales)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">power_toy</span><span class="p">,</span> 
+                <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">npt</span><span class="p">,</span> <span class="n">periods_toy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">periods_toy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> 
+                <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span>
+                <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span> <span class="c1"># origin=&#39;lower&#39; keeps periods increasing upwards</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Wavelet Power Spectrum (Corrected to Fourier Period, $\omega_0=</span><span class="si">{</span><span class="n">w0</span><span class="si">}</span><span class="s1">$)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Fourier Period ($T$)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time Step&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add indicator lines for the true periods (20 and 80)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True T=20&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True T=80&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wavelet Power&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/016aefef1d5be4ad45032210a31679cb8b36480c6090c411f445e6c10986080b.png" src="../../_images/016aefef1d5be4ad45032210a31679cb8b36480c6090c411f445e6c10986080b.png" />
+</div>
+</div>
+<p>Notice how clearly the scalogram identifies both the exact period of the waves and the exact time step (500) where the regime shifts!</p>
+<section id="question">
+<h3>QUESTION?<a class="headerlink" href="#question" title="Link to this heading">#</a></h3>
+<p>What do you  notice about the relative powers for the 20 and 80 step cycles?</p>
+<p>In Wavelet analysis, there are two common ways to normalize, energy conserving or peak amplitude conserving.</p>
+<p><span class="math notranslate nohighlight">\(L^2\)</span> Normalization (“L” for Lebesgue).</p>
+<p>The <span class="math notranslate nohighlight">\(2\)</span> refers to the exponent used in the integration. For a wavelet <span class="math notranslate nohighlight">\(\psi\)</span>, we ensure:$<span class="math notranslate nohighlight">\(\|\psi\|_2 = \sqrt{\int_{-\infty}^{\infty} |\psi(t)|^2 dt} = 1\)</span>$</p>
+<p>The square means we are representing energy and this leads to the <span class="math notranslate nohighlight">\(1/\sqrt{s}\)</span> scale factor,  which is what we use and is usually the default in wavelet analysis.  Go back to teh scratch cwt routine and find the line where we scale by <span class="math notranslate nohighlight">\(1/\sqrt(s)\)</span>, which ensures the wavelet has the same <strong>total energy</strong> at every scale. However, because the larger scales (<span class="math notranslate nohighlight">\(T=80\)</span>) are “stretched out” in time, they have more “samples” for a fixed sample rate. This makes larger scales appear to have higher power than smaller scales for the same input amplitude.</p>
+<p><span class="math notranslate nohighlight">\(L^1\)</span> Normalization (<span class="math notranslate nohighlight">\(1/s\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[\|\psi\|_1 = \int_{-\infty}^{\infty} |\psi(t)| dt = 1\]</div>
+<p>This ensures the peak amplitude is preserved across scales. If you use a scale factor <span class="math notranslate nohighlight">\(1/s\)</span>, a sine wave with amplitude 1.0 will result in a wavelet coefficient of roughly 1.0 at its corresponding scale, regardless of whether the period is 20 or 80… BUT…</p>
+<p>In geophysics we want the “Total Energy” in the time domain to equal the “Total Energy” in the wavelet domain.  A consequence of this is that <strong>White Noise</strong> is “Flat” in <span class="math notranslate nohighlight">\(L^2\)</span>T his is the most practical reason for researchers. If you run a CWT on pure White Noise:With <span class="math notranslate nohighlight">\(1/\sqrt{s}\)</span> (<span class="math notranslate nohighlight">\(L^2\)</span>): The average power will look roughly the same at all scales. The scalogram looks like a uniform “static.”With <span class="math notranslate nohighlight">\(1/s\)</span> (<span class="math notranslate nohighlight">\(L^1\)</span>): The high frequencies (small scales) will look much “louder” than the low frequencies. Since many scientists use wavelets to find signals buried in noise, they prefer a convention where the noise floor looks flat.</p>
+</section>
+<section id="exercise-try-changing-omega-0-to-see-the-impact-on-resolution">
+<h3>Exercise: try changing <span class="math notranslate nohighlight">\(\omega_0\)</span> to see the impact on resolution<a class="headerlink" href="#exercise-try-changing-omega-0-to-see-the-impact-on-resolution" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="application-african-easterly-waves-in-era5-data">
+<h2>Application: African Easterly Waves in ERA5 Data<a class="headerlink" href="#application-african-easterly-waves-in-era5-data" title="Link to this heading">#</a></h2>
+<p>Now we apply this to a real meteorological phenomenon. African Easterly Waves (AEWs) are westward-propagating synoptic disturbances that originate over North Africa. They are primary precursors to Atlantic tropical cyclones.</p>
+<p>AEWs are best detected in the meridional (v-component) wind at the 700 hPa level, typically exhibiting periods of <strong>3 to 5 days</strong>. Because they rely on the African Easterly Jet, they are highly seasonal, peaking during the summer monsoon (July to September).</p>
+<p>We will load ERA5 reanalysis data. <em>(Note: For this notebook to run cleanly out-of-the-box, we generate a synthetic <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> that mimics the structure and statistical properties of an ERA5 V-wind slice at 15°N, 0°E over a full year).</em> Let’s use our CWT to detect the summer AEW activity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+<span class="c1"># --- FETCH AND LOAD THE NETCDF FILE FROM URL ---</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/diploma/data/vwind_anom_detrend.nc&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading NetCDF into memory...&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+<span class="c1">#ds_real = xr.open_dataset(io.BytesIO(response.content), engine=&#39;scipy&#39;)</span>
+<span class="n">ds_real</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">),</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;h5netcdf&#39;</span><span class="p">)</span>
+
+<span class="c1"># --- EXTRACT 1D TIME SERIES ---</span>
+<span class="n">var_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds_real</span><span class="o">.</span><span class="n">data_vars</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Dynamically grab the main variable</span>
+<span class="c1"># .squeeze() drops lon, lat, and pressure_level since they are length 1</span>
+<span class="n">da_vwind</span> <span class="o">=</span> <span class="n">ds_real</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading NetCDF into memory...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_vwind</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in notebooks */
+
+:root {
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+  line-height: 1.6;
+  padding-bottom: 4px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.xr-header {
+  border-bottom: solid 1px var(--xr-border-color);
+  margin-bottom: 4px;
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-obj-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type,
+.xr-group-box-contents > label {
+  color: var(--xr-font-color2);
+  display: block;
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item > input,
+.xr-group-box-contents > input,
+.xr-array-wrap > input {
+  display: block;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+}
+
+.xr-section-item > input + label,
+.xr-var-item > input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item > input:enabled + label,
+.xr-var-item > input:enabled + label,
+.xr-array-wrap > input:enabled + label,
+.xr-group-box-contents > input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item > input:focus-visible + label,
+.xr-var-item > input:focus-visible + label,
+.xr-array-wrap > input:focus-visible + label,
+.xr-group-box-contents > input:focus-visible + label {
+  outline: auto;
+}
+
+.xr-section-item > input:enabled + label:hover,
+.xr-var-item > input:enabled + label:hover,
+.xr-array-wrap > input:enabled + label:hover,
+.xr-group-box-contents > input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.xr-section-summary > em {
+  font-weight: normal;
+}
+
+.xr-span-grid {
+  grid-column-end: -1;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.3em;
+}
+
+.xr-group-box-contents > input:checked + label > span {
+  display: inline-block;
+  padding-left: 0.6em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details,
+.xr-group-box-contents > label {
+  padding-top: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in ~ .xr-section-details {
+  display: none;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-children {
+  display: inline-grid;
+  grid-template-columns: 100%;
+  grid-column: 1 / -1;
+  padding-top: 4px;
+}
+
+.xr-group-box {
+  display: inline-grid;
+  grid-template-columns: 0px 30px auto;
+}
+
+.xr-group-box-vline {
+  grid-column-start: 1;
+  border-right: 0.2em solid;
+  border-color: var(--xr-border-color);
+  width: 0px;
+}
+
+.xr-group-box-hline {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  height: 1em;
+  width: 26px;
+  border-bottom: 0.2em solid;
+  border-color: var(--xr-border-color);
+}
+
+.xr-group-box-contents {
+  grid-column-start: 3;
+  padding-bottom: 4px;
+}
+
+.xr-group-box-contents > label::before {
+  content: "📂";
+  padding-right: 0.3em;
+}
+
+.xr-group-box-contents > input:checked + label::before {
+  content: "📁";
+}
+
+.xr-group-box-contents > input:checked + label {
+  padding-bottom: 0px;
+}
+
+.xr-group-box-contents > input:checked ~ .xr-sections {
+  display: none;
+}
+
+.xr-group-box-contents > input + label > span {
+  display: none;
+}
+
+.xr-group-box-ellipsis {
+  font-size: 1.4em;
+  font-weight: 900;
+  color: var(--xr-font-color2);
+  letter-spacing: 0.15em;
+  cursor: default;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
+  margin-bottom: 0;
+  padding-top: 2px;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;v&#x27; (valid_time: 4416)&gt; Size: 18kB
+[4416 values with dtype=float32]
+Coordinates:
+  * valid_time      (valid_time) datetime64[ns] 35kB 2025-05-01 ... 2025-10-3...
+    lon             float64 8B 0.0
+    lat             float64 8B 0.0
+    pressure_level  float64 8B 700.0
+Attributes: (12/31)
+    standard_name:                            northward_wind
+    long_name:                                V component of wind
+    units:                                    m s**-1
+    GRIB_paramId:                             132
+    GRIB_dataType:                            an
+    GRIB_numberOfPoints:                      289
+    ...                                       ...
+    GRIB_longitudeOfLastGridPointInDegrees:   12.0
+    GRIB_missingValue:                        3.4028234663852886e+38
+    GRIB_name:                                V component of wind
+    GRIB_shortName:                           v
+    GRIB_totalNumber:                         0
+    GRIB_units:                               m s**-1</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-obj-name'>&#x27;v&#x27;</div><ul class='xr-dim-list'><li><span class='xr-has-index'>valid_time</span>: 4416</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-150d833c-ff4a-41f8-a539-e4bfcdd2e133' class='xr-array-in' type='checkbox' checked><label for='section-150d833c-ff4a-41f8-a539-e4bfcdd2e133' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>...</span></div><div class='xr-array-data'><pre>[4416 values with dtype=float32]</pre></div></div></li><li class='xr-section-item'><input id='section-ac84ec3b-42fa-4dd5-bbef-8ee37228b1b3' class='xr-section-summary-in' type='checkbox' checked /><label for='section-ac84ec3b-42fa-4dd5-bbef-8ee37228b1b3' class='xr-section-summary' title='Expand/collapse section'>Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>valid_time</span></div><div class='xr-var-dims'>(valid_time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2025-05-01 ... 2025-10-31T23:00:00</div><input id='attrs-62434f79-7697-4510-a449-8000a938320b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-62434f79-7697-4510-a449-8000a938320b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dc02a0d2-3d3a-4a5c-a01a-a2ea09ea24d6' class='xr-var-data-in' type='checkbox'><label for='data-dc02a0d2-3d3a-4a5c-a01a-a2ea09ea24d6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2025-05-01T00:00:00.000000000&#x27;, &#x27;2025-05-01T01:00:00.000000000&#x27;,
+       &#x27;2025-05-01T02:00:00.000000000&#x27;, ..., &#x27;2025-10-31T21:00:00.000000000&#x27;,
+       &#x27;2025-10-31T22:00:00.000000000&#x27;, &#x27;2025-10-31T23:00:00.000000000&#x27;],
+      shape=(4416,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lon</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0</div><input id='attrs-99f16350-ed24-4a1c-8590-e941b3a849c6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-99f16350-ed24-4a1c-8590-e941b3a849c6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ff578368-5e7a-40cf-bf17-42586776e508' class='xr-var-data-in' type='checkbox'><label for='data-ff578368-5e7a-40cf-bf17-42586776e508' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array(0.)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lat</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0</div><input id='attrs-4d0fdd49-900e-4a28-aa5f-0833dafb3329' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4d0fdd49-900e-4a28-aa5f-0833dafb3329' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6cc501cd-6865-4cb5-b144-7973b3614905' class='xr-var-data-in' type='checkbox'><label for='data-6cc501cd-6865-4cb5-b144-7973b3614905' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array(0.)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>pressure_level</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>700.0</div><input id='attrs-097e7160-d520-4b76-9f66-7f14f664caef' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-097e7160-d520-4b76-9f66-7f14f664caef' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-27f9925f-4325-4584-a78e-459017496dd8' class='xr-var-data-in' type='checkbox'><label for='data-27f9925f-4325-4584-a78e-459017496dd8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>air_pressure</dd><dt><span>long_name :</span></dt><dd>pressure</dd><dt><span>units :</span></dt><dd>hPa</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>axis :</span></dt><dd>Z</dd><dt><span>stored_direction :</span></dt><dd>decreasing</dd></dl></div><div class='xr-var-data'><pre>array(700.)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-387c8c60-c4ee-4499-9b72-195a7831ff44' class='xr-section-summary-in' type='checkbox' /><label for='section-387c8c60-c4ee-4499-9b72-195a7831ff44' class='xr-section-summary' title='Expand/collapse section'>Attributes: <span>(31)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>standard_name :</span></dt><dd>northward_wind</dd><dt><span>long_name :</span></dt><dd>V component of wind</dd><dt><span>units :</span></dt><dd>m s**-1</dd><dt><span>GRIB_paramId :</span></dt><dd>132</dd><dt><span>GRIB_dataType :</span></dt><dd>an</dd><dt><span>GRIB_numberOfPoints :</span></dt><dd>289</dd><dt><span>GRIB_typeOfLevel :</span></dt><dd>isobaricInhPa</dd><dt><span>GRIB_stepUnits :</span></dt><dd>1</dd><dt><span>GRIB_stepType :</span></dt><dd>instant</dd><dt><span>GRIB_gridType :</span></dt><dd>regular_ll</dd><dt><span>GRIB_uvRelativeToGrid :</span></dt><dd>0</dd><dt><span>GRIB_NV :</span></dt><dd>0</dd><dt><span>GRIB_Nx :</span></dt><dd>17</dd><dt><span>GRIB_Ny :</span></dt><dd>17</dd><dt><span>GRIB_cfName :</span></dt><dd>northward_wind</dd><dt><span>GRIB_cfVarName :</span></dt><dd>v</dd><dt><span>GRIB_gridDefinitionDescription :</span></dt><dd>Latitude/Longitude Grid</dd><dt><span>GRIB_iDirectionIncrementInDegrees :</span></dt><dd>0.25</dd><dt><span>GRIB_iScansNegatively :</span></dt><dd>0</dd><dt><span>GRIB_jDirectionIncrementInDegrees :</span></dt><dd>0.25</dd><dt><span>GRIB_jPointsAreConsecutive :</span></dt><dd>0</dd><dt><span>GRIB_jScansPositively :</span></dt><dd>0</dd><dt><span>GRIB_latitudeOfFirstGridPointInDegrees :</span></dt><dd>12.0</dd><dt><span>GRIB_latitudeOfLastGridPointInDegrees :</span></dt><dd>8.0</dd><dt><span>GRIB_longitudeOfFirstGridPointInDegrees :</span></dt><dd>8.0</dd><dt><span>GRIB_longitudeOfLastGridPointInDegrees :</span></dt><dd>12.0</dd><dt><span>GRIB_missingValue :</span></dt><dd>3.4028234663852886e+38</dd><dt><span>GRIB_name :</span></dt><dd>V component of wind</dd><dt><span>GRIB_shortName :</span></dt><dd>v</dd><dt><span>GRIB_totalNumber :</span></dt><dd>0</dd><dt><span>GRIB_units :</span></dt><dd>m s**-1</dd></dl></div></li></ul></div></div></div></div>
+</div>
+</section>
+<section id="plotting-the-wavelet-spectrum">
+<h2>Plotting the wavelet spectrum<a class="headerlink" href="#plotting-the-wavelet-spectrum" title="Link to this heading">#</a></h2>
+<p>We introduce a helper routine to plot the wavelet power.  In general, if we plot the raw power then the color scale is “washed out” by setting the maximum color to the maximum power.  This is because the power distribution tends to have “long tails”. We could use a color palette that is nonlinear and “bunches” up the color distribution but instead we adopt the more common approach to take the log of the power.</p>
+<p>We could plot this log of the power, but instead here we also take the step of normalizing it by dividing by the variance of the field first.  Thus the normalized power is unitless.  Sometime a smoothed background spectrum is subtracted in order to highlight regions of enhanced power - although the method of applying the smoothing or deriving the red spectrum to subtract does introduce an element of arbitraryness to the plot.</p>
+<p>Check the code carefully to ensure you understand what is being plotted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_wavelet_spectrum</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Wavelet Power Spectrum&quot;</span><span class="p">,</span> 
+                          <span class="n">v_signal</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Period (Days)&quot;</span><span class="p">,</span><span class="n">tstitle</span><span class="o">=</span><span class="s2">&quot;Signal Amplitude&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots a professional scalogram for atmospheric signals.</span>
+<span class="sd">    Returns: (fig, ax_signal, ax_wavelet)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+
+    <span class="c1"># Top Panel: Time Series</span>
+    <span class="k">if</span> <span class="n">v_signal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">v_signal</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">tstitle</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time Series of Signal&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    
+    <span class="c1"># Safely calculate variance normalization and log if v_signal is provided</span>
+    <span class="k">if</span> <span class="n">v_signal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">v_signal</span><span class="p">)</span>
+        <span class="n">norm_power</span> <span class="o">=</span> <span class="n">power</span> <span class="o">/</span> <span class="n">variance</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">norm_power</span> <span class="o">=</span> <span class="n">power</span>
+        
+    <span class="n">log_power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">norm_power</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
+    
+    <span class="c1"># Dynamically find the real ceiling of your data</span>
+    <span class="n">actual_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">log_power</span><span class="p">)</span>
+    
+    <span class="c1"># Set the floor to the 50th percentile to hide background static</span>
+    <span class="c1"># (Adjust this number up if it&#39;s still too noisy, down if it&#39;s too dark)</span>
+    <span class="n">actual_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanpercentile</span><span class="p">(</span><span class="n">log_power</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> 
+    
+    <span class="c1"># Bottom Panel: The Scalogram</span>
+    <span class="n">pcm</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">log_power</span><span class="p">,</span> 
+                         <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> 
+                         <span class="n">vmin</span><span class="o">=</span><span class="n">actual_min</span><span class="p">,</span>  <span class="c1"># dynamically set!</span>
+                         <span class="n">vmax</span><span class="o">=</span><span class="n">actual_max</span><span class="p">,</span>  <span class="c1"># dynamically set! </span>
+                         <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Standard atmospheric science log-y setup</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="c1"># Custom ticks for diurnal and AEW ranges</span>
+    <span class="n">ytick_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ytick_values</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="n">periods</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">periods</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">())</span>
+    
+    <span class="c1"># Utilizing your custom ylabel argument</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="c1"># Format X-Axis</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">())</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+    
+    <span class="c1"># Colorbar</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;log(Normalized Power/Variance)&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="application-to-ecmwf-meridional-winds-for-west-africa">
+<h3>Application to ECMWF meridional winds for West Africa<a class="headerlink" href="#application-to-ecmwf-meridional-winds-for-west-africa" title="Link to this heading">#</a></h3>
+<p>Using the data we accessed earlier (the 4x4 degree box, 8-12E and 8-12N, averaged meridional wind at p=700hPa) we will now calculate the timestep (hourly) from the series (somewhat hard-wired, sorry!), and then calculate the wavelet power.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab the 1D arrays for the CWT (using your specific &#39;valid_time&#39; dimension)</span>
+<span class="n">time_era5</span> <span class="o">=</span> <span class="n">da_vwind</span><span class="p">[</span><span class="s1">&#39;valid_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">v_wind_data</span> <span class="o">=</span> <span class="n">da_vwind</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># calculate dt </span>
+<span class="c1"># Subtracting two datetime64 objects gives a timedelta64.</span>
+<span class="c1"># Dividing by timedelta64(1, &#39;D&#39;) converts that exact duration into a fraction of a day.</span>
+<span class="n">dt_days</span> <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="n">time_era5</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time_era5</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected time step (dt): </span><span class="si">{</span><span class="n">dt_days</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> days&quot;</span><span class="p">)</span>
+
+<span class="c1"># wavelet analysis</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing CWT...&quot;</span><span class="p">)</span>
+<span class="c1"># scales_era5 = np.arange(1, 30, 0.5)  # was linear scales</span>
+<span class="c1"># this gives approx log spaced scales</span>
+<span class="n">scales_era5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mf">6.0</span>  <span class="c1"># Default Morlet parameter</span>
+<span class="n">cwt_era5</span> <span class="o">=</span> <span class="n">cwt_scratch</span><span class="p">(</span><span class="n">v_wind_data</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt_days</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="n">scales_era5</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="n">w0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detected time step (dt): 0.0417 days
+Computing CWT...
+</pre></div>
+</div>
+</div>
+</div>
+<p>So having calculated the CWT, we need to take the square of the coefficients to get the wavelet power.   We also calculate the periods for each stretch factor <span class="math notranslate nohighlight">\(s\)</span> for which we use the full equation, but as we have <span class="math notranslate nohighlight">\(\omega_0=6\)</span>, we could have also simply used <span class="math notranslate nohighlight">\(2 \pi s/\omega_0\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to plot periods</span>
+<span class="c1"># plotting function expects &#39;periods&#39;, not raw scales</span>
+<span class="n">power_era5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cwt_era5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">fourier_factor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">w0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">periods_era5</span> <span class="o">=</span> <span class="n">scales_era5</span> <span class="o">*</span> <span class="n">fourier_factor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>finally we plot the log normalized power:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make the plot </span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_sig</span><span class="p">,</span> <span class="n">ax_wav</span> <span class="o">=</span> <span class="n">plot_wavelet_spectrum</span><span class="p">(</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">time_era5</span><span class="p">,</span> 
+    <span class="n">periods</span><span class="o">=</span><span class="n">periods_era5</span><span class="p">,</span> 
+    <span class="n">power</span><span class="o">=</span><span class="n">power_era5</span><span class="p">,</span> 
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ERA5 Meridional Wind Wavelet Power Spectrum&quot;</span><span class="p">,</span> 
+    <span class="n">v_signal</span><span class="o">=</span><span class="n">v_wind_data</span><span class="p">,</span>
+    <span class="n">tstitle</span><span class="o">=</span><span class="s2">&quot;Meridional Wind (m/s)&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Period (Days)&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># You can still add your AEW band highlights to the returned ax_wav object!</span>
+<span class="n">ax_wav</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax_wav</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1"># Place text dynamically based on the time array</span>
+<span class="n">ax_wav</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">time_era5</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_era5</span><span class="p">)</span><span class="o">*</span><span class="mf">0.02</span><span class="p">)],</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;AEW Band (3-5 days)&#39;</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1440d25c71f3f0e22575027154cffa45a1560a5e784e2ae560b082e4ae30a727.png" src="../../_images/1440d25c71f3f0e22575027154cffa45a1560a5e784e2ae560b082e4ae30a727.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="transitioning-to-standard-packages-pywavelets">
+<h2>4. Transitioning to Standard Packages (<code class="docutils literal notranslate"><span class="pre">PyWavelets</span></code>)<a class="headerlink" href="#transitioning-to-standard-packages-pywavelets" title="Link to this heading">#</a></h2>
+<p>While writing the code from scratch demystifies the mathematics, doing this operation manually using standard convolution is slow for large datasets (like 40 years of daily global gridded data).</p>
+<p>Professional packages utilize the <strong>Fast Fourier Transform (FFT)</strong> to compute the convolution theorem rapidly in frequency space. They also properly handle zero-padding at the boundaries to prevent circular convolution wrap-around.</p>
+<p>Here, we implement the exact same analysis using <code class="docutils literal notranslate"><span class="pre">PyWavelets</span></code> (<code class="docutils literal notranslate"><span class="pre">pywt</span></code>).</p>
+<p>Now this package has a lot of wavelet options, and I suggest you read the documentation carefully to understand what they are. I didn’t in my rush to complete this lecture on time, and thus my first version of these notes used a wavelet that was inconsistent with my bespoke code :-D oops!</p>
+<p>In the lecture I was using wavelet option: ‘cmor1.0-0.955’, while this <em>is</em> a Morlet wavelet it used a factor of 1.5 in the Guassian envelope, making it narrower than the factor of 2 I use in my bespoke code to duplicate the original Torrence &amp; Compo.  Why did it do this?  Well it comes back to the scaling and the norms we introduced earlier.</p>
+<p><strong>The Geophysics Standard</strong></p>
+<p>The Morlet wavelet we coded up is based on Torrence &amp; Compo (1998):<span class="math notranslate nohighlight">\(\psi_0(\eta) = \pi^{-1/4} e^{i\omega_0\eta} e^{-\eta^2/2}\)</span>.  Recall the <span class="math notranslate nohighlight">\(\pi^{-1/4}\)</span> constant; this forces the mother wavelet to have an L2 norm (total energy) of exactly 1. If you take the Fourier transform of this specific wavelet to find its peak frequency response, the maximum amplitude response it can generate to a perfectly matching sine wave is <span class="math notranslate nohighlight">\(2^{1/2} \pi^{1/4} \approx 1.882\)</span>.2.</p>
+<p>Instead, the PyWavelets package defines the standard default complex Morlet wavelet (cmor) to have an L1 norm (total area) of exactly 1. To do this, it drops the <span class="math notranslate nohighlight">\(\pi^{-1/4}\)</span> completely and uses a different denominator for the Gaussian envelope of 1.5 instead of 2.0.  Because of this L1 design, the Fourier transform of the PyWavelets mother wavelet has a peak frequency response of exactly <span class="math notranslate nohighlight">\(1.0\)</span>.</p>
+<p>Thus to get the same results from the pywavelets package, we need to use a Morlet wavelet with factor 2.0 in the envelope and scale the power (which is squared coeff) by <span class="math notranslate nohighlight">\((2^{1/2} \pi^{1/4})^2 = 2 \sqrt{\pi} \approx 3.54\)</span>.</p>
+<p>In usual applications, this doesn’t really matter as we usually subtract a smoothed background spectrum and plot the anomalies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pywt</span>
+
+<span class="c1"># Force PyWavelets to match Torrence &amp; Compo (w0=6)</span>
+<span class="n">w0</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">center_freq</span> <span class="o">=</span> <span class="n">w0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">pywt_wavelet</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cmor2.0-</span><span class="si">{</span><span class="n">center_freq</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="c1"># note!!!! </span>
+<span class="c1"># Create 80 logarithmically spaced scales.</span>
+<span class="n">scales_pywt</span> <span class="o">=</span> <span class="n">scales_era5</span><span class="o">*</span><span class="mi">24</span> <span class="c1"># needs to be hardwired to hourly</span>
+
+<span class="c1"># cwt:</span>
+<span class="c1"># In PyWavelets, the complex Morlet is &#39;cmorB-C&#39;, where B is bandwidth and C is center frequency.</span>
+<span class="c1"># To match our analytical w0=6, we use a center frequency of ~0.955 (since pywt defines it as w0/(2*pi))</span>
+<span class="n">cwt_pywt</span><span class="p">,</span> <span class="n">freqs_pywt</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">v_wind_data</span><span class="p">,</span> <span class="n">scales_pywt</span><span class="p">,</span> <span class="n">pywt_wavelet</span><span class="p">,</span> <span class="n">sampling_period</span><span class="o">=</span><span class="n">dt_days</span><span class="p">)</span>
+<span class="n">power_pywt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cwt_pywt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the two arrays to prove they are computing the same thing</span>
+<span class="c1"># Find the maximum power to understand the scale</span>
+<span class="n">max_pywt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">power_pywt</span><span class="p">)</span>
+<span class="n">max_mine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">power_era5</span><span class="p">)</span>
+
+<span class="c1">#diff=max_pkg-max_mine</span>
+
+<span class="c1"># Calculate the difference as a percentage of the peak signal</span>
+<span class="c1">#relative_diff = (diff / max_pywt) * 100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max pywt Power: </span><span class="si">{</span><span class="n">max_pywt</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max mine Power: </span><span class="si">{</span><span class="n">max_mine</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">#print(f&quot;Mean Absolute Diff: {diff:.2f}&quot;)</span>
+<span class="c1">#print(f&quot;Relative Difference: {relative_diff:.2f}%&quot;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max pywt Power: 2049.55
+Max mine Power: 2041.59
+</pre></div>
+</div>
+</div>
+</div>
+<p>that’s pretty close, we are happy with that!!!</p>
+<p>Let’s calculate the periods and plot it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CONVERT FREQUENCY TO PERIOD</span>
+<span class="c1"># PyWavelets returns cycles per time-unit. Since dt is in days, 1/f is days.</span>
+<span class="n">periods_pywt</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">freqs_pywt</span>
+
+<span class="n">fig_pkg</span><span class="p">,</span> <span class="n">ax_sig_pywt</span><span class="p">,</span> <span class="n">ax_wav_pywt</span> <span class="o">=</span> <span class="n">plot_wavelet_spectrum</span><span class="p">(</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">time_era5</span><span class="p">,</span> 
+    <span class="n">periods</span><span class="o">=</span><span class="n">periods_pywt</span><span class="p">,</span> 
+    <span class="n">power</span><span class="o">=</span><span class="n">power_pywt</span><span class="p">,</span> 
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PyWavelets Power Spectrum of meridional wind for AEW detection &quot;</span><span class="p">,</span> 
+    <span class="n">tstitle</span><span class="o">=</span><span class="s2">&quot;Meridional Wind (m/s)&quot;</span><span class="p">,</span>
+    <span class="n">v_signal</span><span class="o">=</span><span class="n">v_wind_data</span><span class="p">,</span> 
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Period (Days)&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Add AEW band </span>
+<span class="n">ax_wav_pywt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax_wav_pywt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax_wav_pywt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">time_era5</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_era5</span><span class="p">)</span><span class="o">*</span><span class="mf">0.02</span><span class="p">)],</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;AEW Band (3-5 days)&#39;</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/41c67cbc40cb94176bed1ad921c3a0c4fd97094e6983ae21401621d9932402b1.png" src="../../_images/41c67cbc40cb94176bed1ad921c3a0c4fd97094e6983ae21401621d9932402b1.png" />
+</div>
+</div>
+</section>
+<section id="the-cone-of-influence-coi">
+<h2>The Cone of Influence (COI)<a class="headerlink" href="#the-cone-of-influence-coi" title="Link to this heading">#</a></h2>
+<p>If you look closely at the edges of our previous scalograms, you might notice the power drops off or behaves strangely. This introduces a critical concept in wavelet analysis: <strong>The Cone of Influence (COI)</strong>.</p>
+<p>Because the wavelet is computed using a convolution, it requires data on both sides of a given time step. As we approach the beginning or end of our time series, the scaled wavelet extends beyond the bounds of our actual data.</p>
+<p>To compute the transform at the edges, algorithms implicitly pad the data (usually with zeros). This zero-padding reduces the variance at the edges, creating artificially low wavelet power.</p>
+<p>The COI defines the region of the wavelet spectrum where these edge effects become significant. It is mathematically defined as the e-folding time of the autocorrelation of the wavelet power. For a Morlet wavelet with <span class="math notranslate nohighlight">\(\omega_0 = 6\)</span>, the e-folding time is roughly:</p>
+<div class="math notranslate nohighlight">
+\[ t_{COI} = \sqrt{2} s \]</div>
+<p>Where <span class="math notranslate nohighlight">\(s\)</span> is the wavelet scale. Because lower frequencies (larger scales) use wider wavelets, the edge effects penetrate deeper into the time series. This creates a cone-shaped region at the boundaries. Any wavelet power outside the COI (often shaded out) should be interpreted with high skepticism.</p>
+<p>Here is a calculation of the COI which is then overplotted over the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_coi</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">w0</span><span class="o">=</span><span class="mf">6.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Overlays the Cone of Influence (COI) onto an existing wavelet axis.</span>
+<span class="sd">    Shades out the regions influenced by edge effects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1. Convert datetime objects to numerical days so we can add/subtract t_coi</span>
+    <span class="n">t_num</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">t_num</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t_num</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># 2. Convert Fourier Period back to wavelet scale (s)</span>
+    <span class="c1"># For Morlet w0=6, the relationship is Period ≈ 1.036 * s</span>
+    <span class="n">fourier_factor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">w0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">scales</span> <span class="o">=</span> <span class="n">periods</span> <span class="o">/</span> <span class="n">fourier_factor</span>
+    
+    <span class="c1"># 3. Calculate the e-folding time (COI boundary) in physical days</span>
+    <span class="c1"># As per your text: t_coi = sqrt(2) * s</span>
+    <span class="n">t_coi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">scales</span>
+    
+    <span class="c1"># 4. Define the left and right boundary curves</span>
+    <span class="n">coi_left</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">t_coi</span>
+    <span class="n">coi_right</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t_coi</span>
+    
+    <span class="c1"># 5. Shade the regions outside the COI</span>
+    <span class="c1"># We use &#39;fill_betweenx&#39; to fill from the edges inward</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_betweenx</span><span class="p">(</span><span class="n">periods</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">coi_left</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> 
+                     <span class="n">hatch</span><span class="o">=</span><span class="s1">&#39;//&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_betweenx</span><span class="p">(</span><span class="n">periods</span><span class="p">,</span> <span class="n">coi_right</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> 
+                     <span class="n">hatch</span><span class="o">=</span><span class="s1">&#39;//&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    
+    <span class="c1"># 6. Draw the definitive boundary line</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coi_left</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coi_right</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    
+    <span class="c1"># Reset x-limits just in case the fill stretched the plot bounds</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>let’s try it out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Plot your wavelet (using either bespoke or PyWavelets)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_sig</span><span class="p">,</span> <span class="n">ax_wav</span> <span class="o">=</span> <span class="n">plot_wavelet_spectrum</span><span class="p">(</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">time_era5</span><span class="p">,</span> 
+    <span class="n">periods</span><span class="o">=</span><span class="n">periods_era5</span><span class="p">,</span> <span class="c1"># or periods_pkg</span>
+    <span class="n">power</span><span class="o">=</span><span class="n">power_era5</span><span class="p">,</span>     <span class="c1"># or power_pkg</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Wavelet Power Spectrum with COI&quot;</span><span class="p">,</span> 
+    <span class="n">v_signal</span><span class="o">=</span><span class="n">v_wind_data</span><span class="p">,</span> 
+    <span class="n">tstitle</span><span class="o">=</span><span class="s2">&quot;Meridional Wind (m/s)&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Period (Days)&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 2. Add your AEW band highlights</span>
+<span class="n">ax_wav</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax_wav</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1"># 3. Add the Cone of Influence!</span>
+<span class="n">add_coi</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax_wav</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time_era5</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">periods_era5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fbfd2dc17bd9a4ddd762a28ed2749a3c5cbc2a10acef82a3f2fd2287603a1c03.png" src="../../_images/fbfd2dc17bd9a4ddd762a28ed2749a3c5cbc2a10acef82a3f2fd2287603a1c03.png" />
+</div>
+</div>
+</section>
+<section id="exercise-ideas">
+<h2>Exercise ideas…<a class="headerlink" href="#exercise-ideas" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Try to download V-winds for other years from ERA5 and see how much variation there is from year to year in winds…</p></li>
+<li><p>Here we used 8N-12N and 8E-12E means…  what about trying another box further north</p></li>
+<li><p>Think of a wave or oscillation you have learned about in your courses.  It could be equatorial Rossby waves, or the Madden Julian oscillation - can you think of a variable you can analyse to see if you can see periods when the wave is active or not?</p></li>
+</ol>
+<section id="further-reading">
+<h3>Further Reading:<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h3>
+<p>Pywavelets documentation and examples:
+<a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/ref/cwt.html">https://pywavelets.readthedocs.io/en/latest/ref/cwt.html</a></p>
+<p>Torrence, Christopher, and Gilbert P. Compo. “A practical guide to wavelet analysis.” Bulletin of the American Meteorological society 79.1 (1998): 61-78.
+<a class="reference external" href="https://journals.ametsoc.org/view/journals/bams/79/1/1520-0477_1998_079_0061_apgtwa_2_0_co_2.xml">https://journals.ametsoc.org/view/journals/bams/79/1/1520-0477_1998_079_0061_apgtwa_2_0_co_2.xml</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "adriantompkins/climate-book.git",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "climlab"
+        },
+        kernelOptions: {
+            name: "climlab",
+            path: "./notebooks/part2_cda"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'climlab'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CDA6_wavenumber_freq_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CDA6: Wavenumber-Frequency Analysis of Equatorial Waves</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="CDA8_EOF_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CDA8: EOF/PCA analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CDA7: Wavelet Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-and-theory">Introduction and Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-fourier-analysis">Limitations of Fourier analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-analysis">Wavelet analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-wavelet-transform-cwt">The Continuous Wavelet Transform (CWT)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-definition">The Continuous Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-and-shifting-the-daughter-wavelet">Scaling and Shifting (The “Daughter” Wavelet)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-morlet-mother-wavelet">The Morlet Mother Wavelet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components">Key Components:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-wavelet-transform-cwt-formula">The Continuous Wavelet Transform (CWT) Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-morlet-wavelet-definition-psi-0">The Morlet Wavelet Definition (<span class="math notranslate nohighlight">\(\psi_0\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-parameters">key parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-set-omega-0-w0-in-the-code-to-2-5-10-20-and-discuss-the-implications">EXERCISE: set <span class="math notranslate nohighlight">\(\omega_0\)</span> (w0 in the code) to 2, 5, 10, 20 and discuss the implications.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-set-omega-0-6">Why we set <span class="math notranslate nohighlight">\(\omega_0 = 6\)</span>:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-exact-morlet-wavelet-the-admissibility-correction">Deriving the Exact Morlet Wavelet (The Admissibility Correction)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-the-simplified-wavelet">Integrating the Simplified Wavelet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-correction-factor">Deriving the Correction Factor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-complete-morlet-wavelet">The Complete Morlet Wavelet</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-of-wiggles-the-analysis-timescale-lambda">Scale of wiggles, the analysis timescale <span class="math notranslate nohighlight">\(\lambda\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-analysis-from-scratch">Wavelet analysis from scratch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example-non-stationary-sine-waves">Toy Example: Non-Stationary Sine Waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question">QUESTION?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-try-changing-omega-0-to-see-the-impact-on-resolution">Exercise: try changing <span class="math notranslate nohighlight">\(\omega_0\)</span> to see the impact on resolution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-african-easterly-waves-in-era5-data">Application: African Easterly Waves in ERA5 Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-wavelet-spectrum">Plotting the wavelet spectrum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-to-ecmwf-meridional-winds-for-west-africa">Application to ECMWF meridional winds for West Africa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transitioning-to-standard-packages-pywavelets">4. Transitioning to Standard Packages (<code class="docutils literal notranslate"><span class="pre">PyWavelets</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cone-of-influence-coi">The Cone of Influence (COI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ideas">Exercise ideas…</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Adrian Tompkins
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
