@@ -41,9 +41,8 @@ html:
     - _static/custom.css
 
 launch_buttons:
-  notebook_interface: "jupyterlab" # "jupyterlab"  # or "classic"
+  notebook_interface: "classic" # "jupyterlab"  # or "classic"
   binderhub_url: "https://mybinder.org"
-  branch: "main" # Change this from master to main
   colab_url: "https://colab.research.google.com"
   thebe                  : true
 
