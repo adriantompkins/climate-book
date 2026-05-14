@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d58c46d9" />
@@ -66,7 +66,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Climate data analysis" href="markdown/content_clima_data.html" />
+    <link rel="next" title="Radiative Transfer" href="markdown/content_radiation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -166,7 +166,23 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="markdown/content_radiation.html">Radiative Transfer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/part1_tpa/radn_orbital.html">Orbital variations, insolation, and the ice ages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/part1_tpa/radn_insolation.html">Insolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/part1_tpa/radn_radeq.html">Radiative Equilibrium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/part1_tpa/radn_rce.html">Radiative-Convective Equilibrium</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="markdown/content_climate_sens.html">Climate Feedbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/part1_tpa/clim_daisy_world.html">Biogeophysical feedbacks: Daisy World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/part1_tpa/clim_EBM_0D_ice_feedback.html">Ice albedo feedback in the 0D energy balance model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/part1_tpa/clim_EBM_water_vapor.html">Adding water vapor feedback to the grey model of the atmosphere</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="markdown/content_clima_data.html">Climate data analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/part2_cda/CDA1_cdo_netcdf.html">CDA1: Manipulating gridded datasets</a></li>
@@ -383,6 +399,13 @@
 <p>This is my attempt at an online Jupyter-notebook to support the three courses I (sometimes) teach with some hands-on modules, namely Atmospheric Thermodynamics and Physics (TPA), Climate Data analysis (CDA) and Earth System Modelling and Climate Change.  It is a bit of a mixed bag as the modules support various courses and there are syllabus gaps, it is not intended as a stand-alone read.</p>
 <p>I should acknowledge that some of the earlier TPA notebooks have been forked from Brian Rose’s excellent online book (with permisssion!) and also need climlab to be installed.  Other later modules on climate sensitivity and EOFs are adapted from material I received from various colleagues, each (hopefully!) attributed in the notebook in question.  The remaining notebooks I wrote myself from scratch - please do not hesitate to let me know if you find errors or have suggestions: <a class="reference external" href="mailto:tompkins&#37;&#52;&#48;ictp&#46;it">tompkins<span>&#64;</span>ictp<span>&#46;</span>it</a></p>
 <div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Thermodynamics and Physics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="markdown/content_radiation.html">Radiative Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown/content_climate_sens.html">Climate Feedbacks</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Climate Data Analysis</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="markdown/content_clima_data.html">Climate data analysis</a></li>
@@ -421,11 +444,11 @@
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="markdown/content_clima_data.html"
+       href="markdown/content_radiation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Climate data analysis</p>
+        <p class="prev-next-title">Radiative Transfer</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -1,6 +1,21 @@
 format: jb-book
 root: intro
 parts:
+parts:
+  - caption: Thermodynamics and Physics
+    chapters:
+      - file: markdown/content_radiation
+        sections:
+          - file: notebooks/part1_tpa/radn_orbital
+          - file: notebooks/part1_tpa/radn_insolation
+          - file: notebooks/part1_tpa/radn_radeq
+          - file: notebooks/part1_tpa/radn_rce
+      - file: markdown/content_climate_sens
+        sections:
+          - file: notebooks/part1_tpa/clim_daisy_world
+          - file: notebooks/part1_tpa/clim_EBM_0D_ice_feedback
+          - file: notebooks/part1_tpa/clim_EBM_water_vapor
+
   - caption: Climate Data Analysis
     chapters:
       - file: markdown/content_clima_data
